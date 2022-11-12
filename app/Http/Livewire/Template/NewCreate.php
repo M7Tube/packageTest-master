@@ -1,0 +1,250 @@
+<?php
+
+namespace App\Http\Livewire\Template;
+
+use App\Models\NewTemplate;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+
+class NewCreate extends Component
+{
+    use WithFileUploads;
+
+    public $title;
+    public $desc;
+    public $icon;
+    public $pages = [];
+    public $title_page_questions;
+    public $title_page_title;
+    public $template_id;
+    public $check;
+    public $activeone;
+    public $activechangingresponse;
+    public $uploading;
+    protected $queryString = ['activeone', 'template_id','activechangingresponse'];
+    protected $listeners = [
+        'changeindex', 'change_active_one', 'multiple_choise_changeindex'
+    ];
+    public function boot()
+    {
+        $this->activeone = 0;
+        $this->uploading = false;
+        $this->title_page_questions[] = ['response' => 1, 'is_required' => 0, 'text_answer_format' => 0];
+
+        $last = NewTemplate::all(['new_template_id'])->last();
+        if ($last) {
+            $this->template_id = $last['new_template_id'];
+            $this->check = NewTemplate::find($last['new_template_id'], ['title', 'desc', 'title_page', 'title_page_title', 'pages', 'icon']);
+            if ($this->check) {
+                $this->title = $this->check->title;
+                $this->desc = $this->check->desc;
+                // if ($this->check->icon)
+                $this->icon = $this->check->icon;
+                $this->title_page_questions = $this->check->title_page;
+                $this->title_page_title = $this->check->title_page_title;
+                $this->pages = $this->check->pages;
+            }
+        } else {
+            $this->template_id = 1;
+        }
+        // dd($this->icon);
+    }
+
+    public function increment()
+    {
+        $this->activeone = $this->activeone + 1;
+    }
+
+    public function add_new_response($questionKey)
+    {
+        if (count($this->title_page_questions[$questionKey]['multiple_choice']) < 15)
+            $this->title_page_questions[$questionKey]['multiple_choice'][] = '';
+    }
+
+    public function page_add_new_response($pageKey, $questionKey)
+    {
+        if (count($this->pages[$pageKey][$questionKey]['multiple_choice']) < 15)
+            $this->pages[$pageKey][$questionKey]['multiple_choice'][] = '';
+    }
+
+    public function clear_new_response_option($questionKey)
+    {
+        if (count($this->title_page_questions[$questionKey]['multiple_choice']) > 0)
+            $this->title_page_questions[$questionKey]['multiple_choice'] = [''];
+    }
+    public function page_clear_new_response_option($pageKey, $questionKey)
+    {
+        if (count($this->pages[$pageKey][$questionKey]['multiple_choice']) > 0)
+            $this->pages[$pageKey][$questionKey]['multiple_choice'] = [''];
+    }
+    public function title_page_add_question()
+    {
+        if (str_contains($this->activeone, 'p_')) {
+            $arr = explode('_', $this->activeone);
+            $string = implode('_',array_slice($arr, 0, 3));
+            array_splice($this->pages[$arr[1]]['question'], $arr[2] + 1, 0, [['response' => 1, 'is_required' => 0, 'text_answer_format' => 0]]);
+            // dd($arr[0]);
+        } else {
+            array_splice($this->title_page_questions, $this->activeone + 1, 0, [['response' => 1, 'is_required' => 0, 'text_answer_format' => 0]]);
+        }
+    }
+
+
+    public function title_page_delete_question($key)
+    {
+        // dd(count($this->title_page_questions));
+        if (count($this->title_page_questions) > 1)
+            // unset($this->title_page_questions[$key]);
+            array_splice($this->title_page_questions, $key, 1);
+    }
+
+    public function add_page()
+    {
+        $this->pages[] = ['question' => [['response' => 1, 'is_required' => 0, 'text_answer_format' => 0]]];
+        // dd($this->pages);
+    }
+
+    // public function page_delete($key)
+    // {
+    //     unset($this->pages[$key]);
+    // }
+
+    // public function saveBulkEdit()
+    // {
+    //     foreach ($this->title_page_questions as $key => $value) {
+    //         foreach ([$value] as $key2 => $value2) {
+    //             // dd($value2);
+    //             if (array_key_exists('is_required', [$value2])) {
+    //                 $value2['is_required'] = true;
+    //             } else {
+    //                 $this->title_page_questions[$key] = ['is_required' => true];
+    //                 // array_push($this->title_page_questions[$key],['is_required' => true]);
+    //             }
+    //         }
+    //     }
+    // }
+
+    public function changeindex($oldIndex, $newIndex)
+    {
+        $temp = $this->title_page_questions[$oldIndex];
+        $this->title_page_questions[$oldIndex] = $this->title_page_questions[$newIndex];
+        $this->title_page_questions[$newIndex] = $temp;
+        // $this->activeone = $newIndex;
+        $this->updating();
+    }
+
+    public function multiple_choise_changeindex($oldIndex, $newIndex)
+    {
+        $temp = $this->title_page_questions[$this->activeone]['multiple_choice'][$oldIndex];
+        $this->title_page_questions[$this->activeone]['multiple_choice'][$oldIndex] = $this->title_page_questions[$this->activeone]['multiple_choice'][$newIndex];
+        $this->title_page_questions[$this->activeone]['multiple_choice'][$newIndex] = $temp;
+        // $this->activeone = $newIndex;
+        $this->updating();
+    }
+
+    public function change_active_one($newIndex)
+    {
+        $this->activeone = $newIndex;
+        $this->updating();
+    }
+
+    // public function normal_page_add_question($pageKey)
+    // {
+    //     // $this->pages[$pageKey] = ['question'=>['']];
+    //     // dd($pageKey);
+    //     $this->pages[$pageKey]['question'][] = '';
+    //     // foreach ($this->pages[$pageKey] as $key => $value) {
+    //     //     dd($value);
+    //     //     $value=['question'=>['']];
+    //     // }
+    // }
+
+    public function normal_page_delete_question($pageKey, $questionKey)
+    {
+        if ($this->pages[$pageKey]['question'] > 1)
+            unset($this->pages[$pageKey]['question'][$questionKey]);
+    }
+
+    // public function clear_page()
+    // {
+    //     $this->title = null;
+    //     $this->desc = null;
+    //     $this->icon = null;
+    //     $this->questions = [''];
+    //     $this->title_page_questions = [''];
+    //     $this->pages = [];
+    //     return redirect()->route('new-create-template');
+    // }
+
+    public function delete_image()
+    {
+        $this->icon = null;
+        $this->updating();
+    }
+
+    public function updatedIcon()
+    {
+        // $this->icon=$this->icon->getClientOriginalName();
+        $this->uploading = true;
+        $this->updating();
+    }
+
+    public function updating()
+    {
+        $check_for_exist = NewTemplate::find($this->template_id);
+        if (!$this->icon) {
+            if (!$check_for_exist) {
+                NewTemplate::Create([
+                    'title' => $this->title ?? '',
+                    'desc' => $this->desc ?? '',
+                    'title_page' => $this->title_page_questions ?? [],
+                    'title_page_title' => $this->title_page_title ?? null,
+                    'pages' => $this->pages ?? [],
+                    'user_id' => 1,
+                ]);
+            } else {
+                $check_for_exist->title = $this->title ?? '';
+                $check_for_exist->icon = null;
+                $check_for_exist->desc = $this->desc ?? '';
+                $check_for_exist->title_page = $this->title_page_questions ?? [];
+                $check_for_exist->title_page_title = $this->title_page_title ?? null;
+                $check_for_exist->pages = $this->pages ?? [];
+                $check_for_exist->user_id = 1;
+                $check_for_exist->save();
+            }
+        } else {
+            if (!$check_for_exist) {
+                NewTemplate::Create([
+                    'icon' => $this->icon->getClientOriginalName(),
+                    'title' => $this->title ?? '',
+                    'desc' => $this->desc ?? '',
+                    'title_page' => $this->title_page_questions ?? [],
+                    'title_page_title' => $this->title_page_title ?? null,
+                    'pages' => $this->pages ?? [],
+                    'user_id' => 1,
+                ]);
+                $this->icon->storeAs('images', $this->icon->getClientOriginalName());
+            } else {
+                $check_for_exist->title = $this->title ?? '';
+                $check_for_exist->desc = $this->desc ?? '';
+                $check_for_exist->title_page = $this->title_page_questions ?? [];
+                $check_for_exist->title_page_title = $this->title_page_title ?? null;
+                $check_for_exist->pages = $this->pages ?? [];
+                $check_for_exist->user_id = 1;
+                if ($this->uploading == true) {
+                    $this->icon->storeAs('images', $this->icon->getClientOriginalName());
+                    $check_for_exist->icon = $this->icon->getClientOriginalName();
+                    $this->icon = $this->icon->getClientOriginalName();
+                }
+                $check_for_exist->save();
+            }
+        }
+        $this->uploading = false;
+    }
+    // public function render()
+    // {
+    //     return view('livewire.template.new-create', [
+    //         'data' => $this->check,
+    //     ]);
+    // }
+}
