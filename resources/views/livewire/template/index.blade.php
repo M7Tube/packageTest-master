@@ -207,7 +207,7 @@
                                             </div>
                                         </td>
                                         <td style="max-width: 9.375rem;" class="jMRRAb hide-on-small">
-                                            <a href="{{ route('start.inspection', $record->new_template_id) }}"
+                                            <a href="{{ route('start.inspection', ['id'=>$record->new_template_id,'page'=>0]) }}"
                                                 class="chnkCq hide-on-small" style="text-decoration: none;">
                                                 Start inspection
                                             </a>
@@ -251,7 +251,7 @@
                                                     </div>
                                                     <div class="ipTnOK">
                                                         <a style="margin-right: 0.25rem; text-decoration: none;"
-                                                            href="{{ route('start.inspection', $record->new_template_id) }}">
+                                                            href="{{ route('start.inspection', ['id'=>$record->new_template_id,'page'=>0]) }}">
                                                             <button type="button" class="izsjvq">
                                                                 Start inspection
                                                             </button>

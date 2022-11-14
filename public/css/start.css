@@ -674,6 +674,133 @@ body h6,
 .czOQuo > button:not(:last-child) {
     margin-right: 0.5rem;
 }
+.iSZloI {
+    display: flex;
+    flex-flow: column wrap;
+    -moz-box-align: stretch;
+    align-items: stretch;
+    width: calc(100% + 1rem);
+    margin: calc(-0.5rem) 0px 0px calc(-0.5rem);
+}
+.iSZloI button {
+    width: calc(100% - 1rem);
+    margin: 0.5rem 0px 0px 0.5rem;
+}
+.dvKLcp {
+    margin: 0px;
+    padding: 0.75rem 1.25rem;
+    background-color: rgb(19, 133, 95);
+    border: 1px solid rgb(19, 133, 95);
+    border-radius: 0.5rem;
+    color: rgb(255, 255, 255);
+    font-size: 0.875rem;
+    font-weight: 400;
+    cursor: pointer;
+    opacity: 1;
+    outline: 0px;
+    text-align: center;
+    text-overflow: ellipsis;
+    transition: all 200ms ease 0s;
+    user-select: none;
+    word-break: normal;
+    display: inline-flex;
+    -moz-box-pack: center;
+    justify-content: center;
+    -moz-box-align: center;
+    align-items: center;
+}
+.hUtmQb {
+    margin: 0px;
+    padding: 0.75rem 1.25rem;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(191, 198, 212);
+    border-radius: 0.5rem;
+    color: rgb(71, 64, 212);
+    font-size: 0.875rem;
+    font-weight: 400;
+    cursor: pointer;
+    opacity: 1;
+    outline: 0px;
+    text-align: center;
+    text-overflow: ellipsis;
+    transition: all 200ms ease 0s;
+    user-select: none;
+    word-break: normal;
+    display: inline-flex;
+    -moz-box-pack: center;
+    justify-content: center;
+    -moz-box-align: center;
+    align-items: center;
+}
+.hUtmQb {
+    margin: 0px;
+    padding: 0.75rem 1.25rem;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(191, 198, 212);
+    border-radius: 0.5rem;
+    color: rgb(71, 64, 212);
+    font-size: 0.875rem;
+    font-weight: 400;
+    cursor: pointer;
+    opacity: 1;
+    outline: 0px;
+    text-align: center;
+    text-overflow: ellipsis;
+    transition: all 200ms ease 0s;
+    user-select: none;
+    word-break: normal;
+    display: inline-flex;
+    -moz-box-pack: center;
+    justify-content: center;
+    -moz-box-align: center;
+    align-items: center;
+}
+.iXGbAw {
+    margin: 0px;
+    padding: 0.75rem 1.25rem;
+    background-color: rgb(198, 0, 34);
+    border: 1px solid rgb(198, 0, 34);
+    border-radius: 0.5rem;
+    color: rgb(255, 255, 255);
+    font-size: 0.875rem;
+    font-weight: 400;
+    cursor: pointer;
+    opacity: 1;
+    outline: 0px;
+    text-align: center;
+    text-overflow: ellipsis;
+    transition: all 200ms ease 0s;
+    user-select: none;
+    word-break: normal;
+    display: inline-flex;
+    -moz-box-pack: center;
+    justify-content: center;
+    -moz-box-align: center;
+    align-items: center;
+}
+.dPziny {
+    margin: 0px;
+    padding: 0.75rem 1.25rem;
+    background-color: rgb(112, 112, 112);
+    border: 1px solid rgb(112, 112, 112);
+    border-radius: 0.5rem;
+    color: rgb(255, 255, 255);
+    font-size: 0.875rem;
+    font-weight: 400;
+    cursor: pointer;
+    opacity: 1;
+    outline: 0px;
+    text-align: center;
+    text-overflow: ellipsis;
+    transition: all 200ms ease 0s;
+    user-select: none;
+    word-break: normal;
+    display: inline-flex;
+    -moz-box-pack: center;
+    justify-content: center;
+    -moz-box-align: center;
+    align-items: center;
+}
 @media (min-width: 36em) {
     .cSkQhk {
         position: fixed;

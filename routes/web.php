@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::group(['prefix' => 'inspection'], function () {
         Route::view('/', 'NewPages.inspection.index')->name('index.inspection');
-        Route::view('/start/id/{id}', 'NewPages.inspection.start')->name('start.inspection');
+        Route::view('/start/id/{id}/page/{page?}', 'NewPages.inspection.start')->name('start.inspection');
     });
 });
 require __DIR__ . '/auth.php';

@@ -17,6 +17,7 @@ class Start extends Component
     }
     public function export()
     {
+        dd($this->title_page_result);
         return redirect()->route('new_export', ['data' => $this->title_page_result]);
     }
 

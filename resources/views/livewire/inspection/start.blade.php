@@ -100,14 +100,24 @@
                                                         });
                                                     </script>
                                                 @elseif ($question['response'] == 7)
-                                                    @forelse ($question['multiple_choice'] as $response)
-                                                        <input type="radio" class="btn-check w-100"
-                                                            id="option{{ $loop->parent->index }}{{ $loop->index }}"
-                                                            wire:model.lazy="title_page_result.{{ $loop->index }}.value">
-                                                        <label class="btn w-100 my-1 border" style=""
-                                                            for="option{{ $loop->parent->index }}{{ $loop->index }}">{{ $response['title'] }}</label>
-                                                    @empty
-                                                    @endforelse
+                                                    <div class="btn-group" role="group"
+                                                        aria-label="Basic radio toggle button group">
+                                                        <div class="row">
+                                                            @forelse ($question['multiple_choice'] as $response)
+                                                                <div class="col-12 my-1">
+                                                                    <input type="radio" class="btn-check"
+                                                                        wire:model.lazy="title_page_result.{{ $loop->parent->index }}.value"
+                                                                        value="{{ $response['title'] }}._.{{ $response['color'] }}"
+                                                                        id="{{ $loop->parent->index }}{{ $loop->index }}">
+                                                                    <label class="btn w-100"
+                                                                        for="{{ $loop->parent->index }}{{ $loop->index }}">
+                                                                        {{ $response['title'] }}
+                                                                    </label>
+                                                                </div>
+                                                            @empty
+                                                            @endforelse
+                                                        </div>
+                                                    </div>
                                                 @elseif ($question['response'] == 8)
                                                     <textarea rows="5" cols="30" type="text" class="form-control" id="demo"></textarea>
                                                     <script>
@@ -200,7 +210,7 @@
                                                 <div>
                                                     <div class="bJmYpV">
                                                         <div class="sc-bqGGPW fyoKEo"><button type="button"
-                                                                onclick="document.getElementsByClassName('kRvCBh')[0].style.display='block'"
+                                                                onclick="document.getElementsByClassName('kRvCBh')[{{ $loop->index }}].style.display='block'"
                                                                 class="sc-kEqXSa dVzWRr">
                                                                 <span class="sc-iqAclL jibPFy">
                                                                     <svg width="1rem" height="1rem"
@@ -233,24 +243,39 @@
                                         document.getElementsByClassName('kRvCBh')[id].style.display = 'none';
                                     }
 
-                                    function giveDocNumber(id) {
-                                        @this.set('title_page_result.' + id + '.value', 'dasf');
-                                        // @this.set('title_page_result.' + id + '.value', '1');
-                                    }
+                                    // function giveDocNumber(id) {
+                                    //     @this.set('title_page_result.' + id + '.value', 'dasf');
+                                    //     // @this.set('title_page_result.' + id + '.value', '1');
+                                    // }
                                 </script>
                             </div>
-                            <div class="eIqTdO">
-                                <button color="#ffffff" font-size="0.875rem" style="float: right;" type="button"
-                                    wire:click.prevent="export" class="gIOqQk">
-                                    Export (TEST)
-                                    <svg viewBox="0 0 24 24" width="17" height="17" class="button_icon"
-                                        focusable="false" data-anchor="arrow-right-svg">
-                                        <path
-                                            d="M17.633 11.181l-9.52-8.866a1.323 1.323 0 0 0-1.745.028 1.113 1.113 0 0 0-.03 1.625l8.228 7.663a.509.509 0 0 1 0 .755l-8.212 7.646c-.461.461-.448 1.18.03 1.625.479.446 1.25.458 1.745.028l9.504-8.85c.235-.22.368-.517.367-.827a1.12 1.12 0 0 0-.367-.827z"
-                                            fill="#ffffff" fill-rule="nonzero"></path>
-                                    </svg>
-                                </button>
-                            </div>
+                            @if (count($data['pages']) > 0)
+                                <div class="eIqTdO">
+                                    <button color="#ffffff" font-size="0.875rem" style="float: right;"
+                                        type="button" wire:click.prevent="next_page({{ request('page')+1 }})" class="gIOqQk">
+                                        Next page
+                                        <svg viewBox="0 0 24 24" width="17" height="17" class="button_icon"
+                                            focusable="false" data-anchor="arrow-right-svg">
+                                            <path
+                                                d="M17.633 11.181l-9.52-8.866a1.323 1.323 0 0 0-1.745.028 1.113 1.113 0 0 0-.03 1.625l8.228 7.663a.509.509 0 0 1 0 .755l-8.212 7.646c-.461.461-.448 1.18.03 1.625.479.446 1.25.458 1.745.028l9.504-8.85c.235-.22.368-.517.367-.827a1.12 1.12 0 0 0-.367-.827z"
+                                                fill="#ffffff" fill-rule="nonzero"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            @else
+                                <div class="eIqTdO">
+                                    <button color="#ffffff" font-size="0.875rem" style="float: right;"
+                                        type="button" wire:click.prevent="export" class="gIOqQk">
+                                        Export (TEST)
+                                        <svg viewBox="0 0 24 24" width="17" height="17" class="button_icon"
+                                            focusable="false" data-anchor="arrow-right-svg">
+                                            <path
+                                                d="M17.633 11.181l-9.52-8.866a1.323 1.323 0 0 0-1.745.028 1.113 1.113 0 0 0-.03 1.625l8.228 7.663a.509.509 0 0 1 0 .755l-8.212 7.646c-.461.461-.448 1.18.03 1.625.479.446 1.25.458 1.745.028l9.504-8.85c.235-.22.368-.517.367-.827a1.12 1.12 0 0 0-.367-.827z"
+                                                fill="#ffffff" fill-rule="nonzero"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
