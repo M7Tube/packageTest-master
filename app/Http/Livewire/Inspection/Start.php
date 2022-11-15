@@ -15,6 +15,7 @@ class Start extends Component
     public $page;
     public $title_page_result;
     public $page_result;
+    public $pictures = [];
     protected $queryString = ['page'];
 
     public function mount()
@@ -23,7 +24,7 @@ class Start extends Component
     }
     public function test()
     {
-        dd($this->title_page_result);
+        dd($this->pictures);
     }
     public function export()
     {
@@ -39,7 +40,7 @@ class Start extends Component
 
     public function render()
     {
-        $this->page=request('page');
+        $this->page = request('page');
         return view('livewire.inspection.start', [
             'data' => NewTemplate::find($this->template_id),
         ]);

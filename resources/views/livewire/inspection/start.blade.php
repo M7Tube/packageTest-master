@@ -200,8 +200,61 @@
                                                                 Add media
                                                             </button>
                                                             <input type="file" class="hHuzqj" accept="image/*"
-                                                                tabindex="-1" wire:model="title_page_result.{{ $loop->index }}.value" multiple>
+                                                                tabindex="-1"
+                                                                wire:model="pictures.title_page.question.{{ $loop->index }}.images"
+                                                                multiple>
                                                         </div>
+                                                        @if ($pictures)
+                                                            <div class="hiuMsG">
+                                                                <div class="gCLqFS">
+                                                                    @if ($pictures['title_page']['question'][$loop->index]['images'])
+                                                                        @forelse ($pictures['title_page']['question'][$loop->index]['images'] as $pic)
+                                                                            <div class="ikLXml">
+                                                                                <div class="lazyload-wrapper ">
+                                                                                    <img class="iokESV ekAWcw"
+                                                                                        id="myImg{{ $loop->index }}"
+                                                                                        src="{{ $pic->temporaryUrl() }}">
+                                                                                    <!-- The Modal -->
+                                                                                    <div id="myModal{{ $loop->index }}"
+                                                                                        class="modal">
+                                                                                        <span
+                                                                                            class="close{{ $loop->index }}">&times;</span>
+                                                                                        <img class="modal-content"
+                                                                                            id="img{{ $loop->index }}">
+                                                                                        <div
+                                                                                            id="caption{{ $loop->index }}">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <script>
+                                                                                // Get the modal
+                                                                                var modal{{ $loop->index }} = document.getElementById("myModal" + {{ $loop->index }});
+
+                                                                                // Get the image and insert it inside the modal - use its "alt" text as a caption
+                                                                                var img{{ $loop->index }} = document.getElementById("myImg" + {{ $loop->index }});
+                                                                                var modalImg{{ $loop->index }} = document.getElementById("img" + {{ $loop->index }});
+                                                                                var captionText{{ $loop->index }} = document.getElementById("caption" + {{ $loop->index }});
+                                                                                img{{ $loop->index }}.onclick = function() {
+                                                                                    modal{{ $loop->index }}.style.display = "block";
+                                                                                    modalImg{{ $loop->index }}.src = this.src;
+                                                                                    captionText{{ $loop->index }}.innerHTML = this.alt;
+                                                                                }
+
+                                                                                // Get the <span> element that closes the modal
+                                                                                var span{{ $loop->index }} = document.getElementsByClassName("close" + {{ $loop->index }})[0];
+
+                                                                                // When the user clicks on <span> (x), close the modal
+                                                                                span{{ $loop->index }}.onclick = function() {
+                                                                                    modal{{ $loop->index }}.style.display = "none";
+                                                                                }
+                                                                            </script>
+                                                                        @empty
+                                                                        @endforelse
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        @endif
                                                     @endif
                                                 </div>
                                                 <div class="hDVsDR">
@@ -437,7 +490,8 @@
                                                                         function success() {
                                                                             var data = JSON.parse(this.responseText); //parse the string to JSON
                                                                             x.value = data['results'][0]['formatted_address'];
-                                                                            @this.set('page_result.' + {{ $loop->parent->index }} + '.question.' + {{ $loop->index }} + '.value', data['results'][0]['formatted_address']);
+                                                                            @this.set('page_result.' + {{ $loop->parent->index }} + '.question.' + {{ $loop->index }} + '.value',
+                                                                                data['results'][0]['formatted_address']);
                                                                             // console.log(data);
                                                                         }
 
@@ -489,7 +543,7 @@
                                                                         Add media
                                                                     </button>
                                                                     <input type="file" class="hHuzqj"
-                                                                        wire:model="page_result.{{ $loop->parent->index }}.question.{{ $loop->index }}.value"
+                                                                        wire:model="pictures.page.{{ $loop->parent->index }}.question.{{ $loop->index }}.images"
                                                                         accept="image/*" multiple>
                                                                 </div>
                                                                 {{-- @if ($picture)
