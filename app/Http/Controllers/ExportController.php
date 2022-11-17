@@ -17,13 +17,18 @@ class ExportController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $pdf = PDF2::loadView('pdf.new_7_11_2022.ar_pdf');
-        return $pdf->download('pdf_file.pdf');
+        $data=[
+            'title_page'=>$request['title_page'],
+            'pages'=>$request['pages']
+        ];
+        return $data;
+        // $pdf = PDF2::loadView('pdf.new_7_11_2022.ar_pdf');
+        // return $pdf->download('pdf_file.pdf');
         // return $request['data'];
         ini_set('max_execution_time', '300');
         ini_set("pcre.backtrack_limit", "50000000");
-        view()->share('data', $request['data']);
-        $pdf = PDF2::loadView('pdf.pdf_new_design', $request['data']);
+        view()->share('data', $data);
+        $pdf = PDF2::loadView('pdf.pdf_new_design', $data);
         return $pdf->download('pdf_file.pdf');
 
         // $cart = session()->get('cart', []);

@@ -15,6 +15,7 @@ class Start extends Component
     public $page;
     public $title_page_result;
     public $page_result;
+    // public $last_doc;
     public $pictures = [];
     protected $queryString = ['page'];
 
@@ -43,15 +44,23 @@ class Start extends Component
     }
     public function export()
     {
-        dd($this->title_page_result);
-        return redirect()->route('new_export', ['data' => $this->title_page_result]);
+        // dd($this->page_result);
+        return redirect()->route('new_export', ['title_page' => $this->title_page_result,'pages' => $this->page_result]);
     }
 
-    // public function next_page()
-    // {
-    //     $this->page++;
-    //     // $this->render();
-    // }
+    public function next_page()
+    {
+        $this->page++;
+        $this->emit('gotoTop');
+        // $this->render();
+    }
+
+    public function previous_page()
+    {
+        $this->page--;
+        $this->emit('gotoTop');
+        // $this->render();
+    }
 
     public function render()
     {

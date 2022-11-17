@@ -362,6 +362,29 @@ body h6,
     align-items: center;
     background-color: rgb(248, 249, 252);
 }
+.gqAxJM {
+    margin: 0px;
+    padding: 0.75rem 1.25rem;
+    background-color: rgb(103, 93, 244);
+    border: medium none;
+    border-radius: 0.5rem;
+    color: rgb(255, 255, 255);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    opacity: 1;
+    outline: 0px;
+    text-align: center;
+    text-overflow: ellipsis;
+    transition: all 200ms ease 0s;
+    user-select: none;
+    word-break: normal;
+    display: inline-flex;
+    -moz-box-pack: center;
+    justify-content: center;
+    -moz-box-align: center;
+    align-items: center;
+}
 .fPDdjU {
     width: 100%;
     display: flex;
