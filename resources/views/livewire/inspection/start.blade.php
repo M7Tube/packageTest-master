@@ -1,5 +1,5 @@
 <div id="root">
-    {{-- <button wire:click.prevent="test">test</button> --}}
+    <button wire:click.prevent="test">test</button>
     <div id="app-container" class="gtvfKz">
         <div class="brCoKm">
             <div class="gBIxUd">
@@ -890,4 +890,12 @@
             </div>
         </div>
     </div>
+    <script>
+        window.onload = function() {
+            @this.set('title_page_result.icon',
+                {!! json_encode($data['icon'], JSON_HEX_TAG) !!});
+            @this.set('title_page_result.title',
+                {!! json_encode($data['title'], JSON_HEX_TAG) !!});
+        };
+    </script>
 </div>
