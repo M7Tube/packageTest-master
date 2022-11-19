@@ -105,10 +105,12 @@ class NewCreate extends Component
         // dd($this->pages);
     }
 
-    // public function page_delete($key)
-    // {
-    //     unset($this->pages[$key]);
-    // }
+    public function delete_page($key)
+    {
+        array_splice($this->pages, $key, 1);
+        $this->updating();
+        // unset($this->pages[$key]);
+    }
 
     // public function saveBulkEdit()
     // {

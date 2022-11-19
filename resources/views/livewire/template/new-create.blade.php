@@ -1264,14 +1264,15 @@
                                     </path>
                                 </svg>
                             </div>
-                            <div>
+                            <div style="flex: 2 1 0%;">
                                 <div class="fceloL mt-1">
                                     <input type="text" class="page-title" placeholder="Untitled page"
                                         wire:model.lazy="pages.{{ $loop->index }}.title">
                                 </div>
                             </div>
                             <div>
-                                <button type="button" class="jvZSBO">
+                                <button type="button" class="jvZSBO"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                     <svg width="24" height="24" viewBox="0 0 14 14" focusable="false">
                                         <g transform="translate(5.542 1.458)" fill="#545f70" fill-rule="nonzero">
                                             <circle transform="rotate(90 1.458 5.542)" cx="1.458" cy="5.542"
@@ -1286,6 +1287,26 @@
                                         </g>
                                     </svg>
                                 </button>
+                                <div class="tether-element dropdown-menu tether-element-attached-bottom tether-element-attached-right tether-target-attached-top tether-target-attached-center tether-enabled tether-out-of-bounds tether-out-of-bounds-bottom"
+                                    style="z-index: 20; top: 0px; position: absolute; transform: translateX(375.733px) translateY(216.25px) translateZ(0px); left: 0px;"
+                                    wire:ignore.self>
+                                    <div class="cKwbqr">
+                                        <div class="epicTj" wire:click.prevent="delete_page({{ $loop->index }})">
+                                            <div style="display: flex; align-items: center;" class="iBzfYz">
+                                                <svg width="21" height="21" viewBox="0 0 14 14"
+                                                    focusable="false">
+                                                    <path
+                                                        d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                        fill="#545f70" fill-rule="nonzero">
+                                                    </path>
+                                                </svg>
+                                                <span style="padding-left: 0.4rem; color: rgb(31, 37, 51);">
+                                                    Delete
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div id="collapseTwo{{ $loop->index }}" aria-labelledby="headingTwo"
@@ -1690,7 +1711,8 @@
                                                                                 wire:click.prevent="normal_page_delete_question({{ $loop->parent->index }},{{ $loop->index }})">
                                                                                 <div style="display: flex; align-items: center;"
                                                                                     class="iBzfYz">
-                                                                                    <svg width="21" height="21"
+                                                                                    <svg width="21"
+                                                                                        height="21"
                                                                                         viewBox="0 0 14 14"
                                                                                         focusable="false">
                                                                                         <path
