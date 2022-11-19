@@ -1254,6 +1254,17 @@
                 <div id="accordionExample{{ $loop->index }}" wire:ignore.self>
                     <div class="accordion-item pages">
                         <div class="kVgydw" class="accordion-button collapsed" type="button">
+                            {{-- <div class="haXfJL page_index_drag-icon" style="margin-left:0%;">
+                                <svg viewBox="0 0 24 24" width="24"
+                                    height="24" focusable="false" style="margin-left:0%;">
+                                    <path fill="none"
+                                        d="M0 0h24v24H0V0z">
+                                    </path>
+                                    <path fill="#675df4"
+                                        d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                    </path>
+                                </svg>
+                            </div> --}}
                             <div class="Ceqkm" data-bs-toggle="collapse"
                                 data-bs-target="#collapseTwo{{ $loop->index }}" aria-expanded="false"
                                 aria-controls="collapseTwo{{ $loop->index }}">
@@ -1271,8 +1282,8 @@
                                 </div>
                             </div>
                             <div>
-                                <button type="button" class="jvZSBO"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <button type="button" class="jvZSBO" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     <svg width="24" height="24" viewBox="0 0 14 14" focusable="false">
                                         <g transform="translate(5.542 1.458)" fill="#545f70" fill-rule="nonzero">
                                             <circle transform="rotate(90 1.458 5.542)" cx="1.458" cy="5.542"
@@ -1365,13 +1376,20 @@
                                                                         <div class="bBjJyf">
                                                                             <div
                                                                                 style="display: flex; align-items: center;">
-                                                                                <div class="eAfucY">
-                                                                                    <input
-                                                                                        class="question-title-focus eVpkze w-100 h-100 {{ $pageQuestion['response'] == 10 ? 'question-title-instruction' : 'question-title' }} "
-                                                                                        placeholder="Write a Question ..."
+                                                                                @if ($pageQuestion['response'] == 10)
+                                                                                    <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
                                                                                         wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"
-                                                                                        id="question-title-input-{{ $loop->parent->index }}{{ $loop->index }}">
-                                                                                </div>
+                                                                                        id="question-title-input-{{ $loop->parent->index }}{{ $loop->index }}"></textarea>
+                                                                                @else
+                                                                                    <div class="eAfucY">
+                                                                                        <input
+                                                                                            class="question-title-focus eVpkze w-100 h-100 question-title"
+                                                                                            placeholder="Write a Question ..."
+                                                                                            wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"
+                                                                                            id="question-title-input-{{ $loop->parent->index }}{{ $loop->index }}">
+                                                                                    </div>
+                                                                                @endif
+
                                                                             </div>
                                                                         </div>
                                                                     </div>
