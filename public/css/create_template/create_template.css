@@ -2903,7 +2903,6 @@ input[type="checkbox"] {
     flex-shrink: 0;
     cursor: pointer;
 }
-
 .active-border {
     border: 2px solid rgb(71, 64, 212);
 }
@@ -2977,7 +2976,6 @@ input[type="checkbox"] {
         overflow: hidden;
         z-index: 0;
     }
-
     .jvZSBO svg {
         z-index: 2;
         position: relative;

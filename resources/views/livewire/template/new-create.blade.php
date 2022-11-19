@@ -1270,6 +1270,23 @@
                                         wire:model.lazy="pages.{{ $loop->index }}.title">
                                 </div>
                             </div>
+                            <div>
+                                <button type="button" class="jvZSBO">
+                                    <svg width="24" height="24" viewBox="0 0 14 14" focusable="false">
+                                        <g transform="translate(5.542 1.458)" fill="#545f70" fill-rule="nonzero">
+                                            <circle transform="rotate(90 1.458 5.542)" cx="1.458" cy="5.542"
+                                                r="1.458">
+                                            </circle>
+                                            <circle transform="rotate(90 1.458 9.625)" cx="1.458" cy="9.625"
+                                                r="1.458">
+                                            </circle>
+                                            <circle transform="rotate(90 1.458 1.458)" cx="1.458" cy="1.458"
+                                                r="1.458">
+                                            </circle>
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                         <div id="collapseTwo{{ $loop->index }}" aria-labelledby="headingTwo"
                             data-bs-parent="#accordionExample" wire:ignore.self>
@@ -2504,11 +2521,11 @@
                                             @endforelse
                                         </div>
                                         <script>
-                                            const page{{$loop->index}} = document.querySelector(".pagewrapper"+{{ $loop->index }});
-                                            new Sortable(page{{$loop->index}}, {
+                                            const page{{ $loop->index }} = document.querySelector(".pagewrapper" + {{ $loop->index }});
+                                            new Sortable(page{{ $loop->index }}, {
                                                 onEnd: function(evt) {
                                                     // Livewire.emit('change_active_one', evt.newIndex);
-                                                    Livewire.emit('page_changeindex', evt.oldIndex, evt.newIndex,{{$loop->index}});
+                                                    Livewire.emit('page_changeindex', evt.oldIndex, evt.newIndex, {{ $loop->index }});
                                                 },
                                                 animation: 350,
                                                 filter: ".last-section",
