@@ -21,15 +21,15 @@ class NewCreate extends Component
     public $activeone;
     public $activechangingresponse;
     public $uploading;
-    protected $queryString = ['activeone', 'template_id','activechangingresponse'];
+    protected $queryString = ['activeone', 'template_id', 'activechangingresponse'];
     protected $listeners = [
-        'changeindex', 'change_active_one', 'multiple_choise_changeindex'
+        'changeindex', 'change_active_one', 'multiple_choise_changeindex','page_changeindex'
     ];
     public function boot()
     {
         $this->activeone = 0;
         $this->uploading = false;
-        $this->title_page_questions[] = ['response' => 1, 'is_required' => 0, 'text_answer_format' => 0];
+        $this->title_page_questions[] = ['response' => 1, 'is_required' => false, 'text_answer_format' => 0];
 
         $last = NewTemplate::all(['new_template_id'])->last();
         if ($last) {
@@ -81,11 +81,11 @@ class NewCreate extends Component
     {
         if (str_contains($this->activeone, 'p_')) {
             $arr = explode('_', $this->activeone);
-            $string = implode('_',array_slice($arr, 0, 3));
-            array_splice($this->pages[$arr[1]]['question'], $arr[2] + 1, 0, [['response' => 1, 'is_required' => 0, 'text_answer_format' => 0]]);
+            $string = implode('_', array_slice($arr, 0, 3));
+            array_splice($this->pages[$arr[1]]['question'], $arr[2] + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
             // dd($arr[0]);
         } else {
-            array_splice($this->title_page_questions, $this->activeone + 1, 0, [['response' => 1, 'is_required' => 0, 'text_answer_format' => 0]]);
+            array_splice($this->title_page_questions, $this->activeone + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
         }
     }
 
@@ -100,7 +100,8 @@ class NewCreate extends Component
 
     public function add_page()
     {
-        $this->pages[] = ['question' => [['response' => 1, 'is_required' => 0, 'text_answer_format' => 0]]];
+        // dd($this->pages);
+        $this->pages[] = ['question' => [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]];
         // dd($this->pages);
     }
 
@@ -138,6 +139,15 @@ class NewCreate extends Component
         $temp = $this->title_page_questions[$this->activeone]['multiple_choice'][$oldIndex];
         $this->title_page_questions[$this->activeone]['multiple_choice'][$oldIndex] = $this->title_page_questions[$this->activeone]['multiple_choice'][$newIndex];
         $this->title_page_questions[$this->activeone]['multiple_choice'][$newIndex] = $temp;
+        // $this->activeone = $newIndex;
+        $this->updating();
+    }
+
+    public function page_changeindex($oldIndex, $newIndex, $page)
+    {
+        $temp = $this->pages[$page]['question'][$oldIndex];
+        $this->pages[$page]['question'][$oldIndex] = $this->pages[$page]['question'][$newIndex];
+        $this->pages[$page]['question'][$newIndex] = $temp;
         // $this->activeone = $newIndex;
         $this->updating();
     }

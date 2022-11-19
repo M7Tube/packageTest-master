@@ -1,5 +1,5 @@
 <div id="root">
-    <button wire:click.prevent="test">test</button>
+    {{-- <button wire:click.prevent="test">test</button> --}}
     <div id="app-container" class="gtvfKz">
         <div class="brCoKm">
             <div class="gBIxUd">
@@ -71,17 +71,16 @@
                                                             <div class="cTGqGw kYUEsK">
                                                                 <span class="jjaCv">
                                                                     {{ $question['response'] == 3 ? null : $question['title'] ?? '' }}
-                                                                    {{--
+
                                                                     <input type="hidden"
-                                                                        wire:model.lazy="title_page_result.{{ $loop->index }}.key"
-                                                                        onload="">
+                                                                        wire:model.lazy="title_page_result.{{ $loop->index }}.key">
                                                                     <script>
-                                                                        window.onload = function() {
-                                                                            // yourFunction(param1, param2);
-                                                                            @this.set('title_page_result.' + {{ $loop->index }} + '.key',
-                                                                                {!! json_encode($question['title'], JSON_HEX_TAG) !!});
-                                                                        };
-                                                                    </script> --}}
+                                                                        // window.onload = function() {
+                                                                        // yourFunction(param1, param2);
+                                                                        @this.set('title_page_result.' + {{ $loop->index }} + '.key',
+                                                                            {!! json_encode($question['title'], JSON_HEX_TAG) !!});
+                                                                        // };
+                                                                    </script>
                                                                     {{-- {{ $question['title'] ?? '' }} --}}
                                                                 </span>
                                                             </div>

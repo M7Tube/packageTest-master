@@ -1297,10 +1297,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="kLpTzB wrapper{{ $loop->index }}" onclick="focusOnPage()"
+                                        <div class="kLpTzB pagewrapper{{ $loop->index }}" onclick="focusOnPage()"
                                             {{-- {{ str_contains($this->activeone, 'p_') ? 'wire:ignore.self' : 'wire:ignore' }} --}}>
                                             @forelse ($page['question'] as $pageQuestionkey => $pageQuestion)
-                                                <div class="hkphPX dragable {{ $activeone == 'p_' . $loop->parent->index . '_' . $loop->index ? 'active-border' : '' }}"
+                                                <div class="hkphPX page_dragable {{ $activeone == 'p_' . $loop->parent->index . '_' . $loop->index ? 'active-border' : '' }}"
                                                     onclick="@this.set('activeone', 'p_' + {{ $loop->parent->index }} + '_' + {{ $loop->index }});">
                                                     <div class="REnvQ">
                                                         <div class="kxrOmS cuypVQ">
@@ -1309,7 +1309,7 @@
                                                             <div class="bAJknk">
                                                                 <div class="huXueT">
                                                                     <div class="kGgXUq">
-                                                                        <div class="haXfJL drag-icon">
+                                                                        <div class="haXfJL page_drag-icon">
                                                                             <svg viewBox="0 0 24 24" width="24"
                                                                                 height="24" focusable="false">
                                                                                 <path fill="none"
@@ -2503,6 +2503,22 @@
                                             @empty
                                             @endforelse
                                         </div>
+                                        <script>
+                                            const page{{$loop->index}} = document.querySelector(".pagewrapper"+{{ $loop->index }});
+                                            new Sortable(page{{$loop->index}}, {
+                                                onEnd: function(evt) {
+                                                    // Livewire.emit('change_active_one', evt.newIndex);
+                                                    Livewire.emit('page_changeindex', evt.oldIndex, evt.newIndex,{{$loop->index}});
+                                                },
+                                                animation: 350,
+                                                filter: ".last-section",
+                                                draggable: ".page_dragable",
+                                                handle: ".page_drag-icon",
+                                                dragClass: "sortable-chosen",
+                                                ghostClass: "sortable-chosen",
+                                                chosenClass: "sortable-chosen",
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
