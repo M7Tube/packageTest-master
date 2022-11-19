@@ -288,11 +288,9 @@ body {
     display: flex;
     flex-direction: row;
     background-color: rgb(243, 246, 251);
-    /* border: 1px solid rgb(208, 215, 225); */
     border-top: 1px solid rgb(208, 215, 225);
     border-bottom: 1px solid rgb(123, 128, 135);
     user-select: none;
-    /* border-radius:  0px 0px 0.5rem 0.5rem; */
     -moz-box-pack: justify;
     justify-content: space-between;
 }
