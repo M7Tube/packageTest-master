@@ -1010,7 +1010,7 @@
                                                                                                 class="jyUuRY graKfr"
                                                                                                 onclick="setResponseValue(7)"
                                                                                                 data-bs-toggle="modal"
-                                                                                                {{-- data-bs-target="#MultipleChoiseOptionModal{{ $activechangingresponse }}" --}}>
+                                                                                                data-bs-target="#MultipleChoiseOptionModal{{ $activechangingresponse }}">
                                                                                                 +
                                                                                                 Responses
                                                                                             </div>
@@ -1161,8 +1161,8 @@
                                             }
                                         }
 
-                                        function setResponseValueFromReadyOptions(questionKey, responseId, optionId) {
-                                            @this.set('title_page_questions.' + questionKey + '.response', responseId);
+                                        function setResponseValueFromReadyOptions(responseId, optionId) {
+                                            @this.set('title_page_questions.' + {{ $activechangingresponse }} + '.response', responseId);
                                             var option = [];
                                             if (optionId == 1) {
                                                 option[0] = {
@@ -1238,7 +1238,7 @@
                                                     color: "#eaebed"
                                                 };
                                             }
-                                            @this.set('title_page_questions.' + questionKey + '.multiple_choice', option);
+                                            @this.set('title_page_questions.' + {{ $activechangingresponse }} + '.multiple_choice', option);
                                         }
                                     </script>
                                 </div>
@@ -2643,12 +2643,12 @@
             const pages1 = document.querySelectorAll('.pages');
             const titlepage1 = document.querySelectorAll('.title_page');
             pages1.forEach(element2 => {
-                console.log(element2.setAttribute('wire:ignore'));
-                console.log(element2.hasAttribute('wire:ignore'));
+                element2.setAttribute('wire:ignore');
+                element2.hasAttribute('wire:ignore');
             });
             titlepage1.forEach(element1 => {
-                console.log(element1.removeAttribute('wire:ignore'));
-                console.log(element1.hasAttribute('wire:ignore'));
+                element1.removeAttribute('wire:ignore');
+                element1.hasAttribute('wire:ignore');
             });
         }
 
@@ -2656,12 +2656,12 @@
             const pages2 = document.querySelectorAll('.pages');
             const titlepage2 = document.querySelectorAll('.title_page');
             titlepage2.forEach(element4 => {
-                console.log(element4.setAttribute('wire:ignore'));
-                console.log(element4.hasAttribute('wire:ignore'));
+                element4.setAttribute('wire:ignore');
+                element4.hasAttribute('wire:ignore');
             });
             pages2.forEach(element3 => {
-                console.log(element3.removeAttribute('wire:ignore'));
-                console.log(element3.hasAttribute('wire:ignore'));
+                element3.removeAttribute('wire:ignore');
+                element3.hasAttribute('wire:ignore');
             });
         }
     </script>
