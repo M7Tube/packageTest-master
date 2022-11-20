@@ -335,6 +335,19 @@ class AppApiController extends Controller
             ]);
         }
     }
+    public function export(Request $request)
+    {
+        $request->validate([
+            'template_id'=>['required', 'integer', 'exists:new_templates,new_template_id'],
+        ]);
+        return $request->title_page;
+        // $template = NewTemplate::find($request->template_id);
+        // if ($template) {
+        //     return $this->success(200, 'Successfull Request', 'data', [
+        //         'Template' => StartInspectionResource::collection([$template]),
+        //     ]);
+        // }
+    }
 
     public function homepage($perpage)
     {
