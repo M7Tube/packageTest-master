@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
             // Route::post('/form', [AppApiController::class, 'form'])->name('form');
         });
         Route::group(['prefix' => '/export'], function () {
-            Route::get('/', [AppApiController::class, 'export'])->name('export');
+            Route::post('/', [AppApiController::class, 'export'])->name('export');
             // Route::post('/inspection/saveValue', [AppApiController::class, 'saveValue'])->name('saveValue');
             // Route::post('/inspection/inprogress', [AppApiController::class, 'inspection_inprogress'])->name('inspection_inprogress');
             // Route::post('/handover', [AppApiController::class, 'handover'])->name('handover');
