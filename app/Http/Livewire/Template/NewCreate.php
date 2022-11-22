@@ -14,6 +14,7 @@ class NewCreate extends Component
     public $desc;
     public $icon;
     public $pages = [];
+    public $common_multiple_choise_options;
     public $title_page_questions;
     public $title_page_title;
     public $template_id;
@@ -23,7 +24,7 @@ class NewCreate extends Component
     public $uploading;
     protected $queryString = ['activeone', 'template_id', 'activechangingresponse'];
     protected $listeners = [
-        'changeindex', 'change_active_one', 'multiple_choise_changeindex','page_changeindex'
+        'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex'
     ];
     public function boot()
     {
@@ -34,7 +35,7 @@ class NewCreate extends Component
         $last = NewTemplate::all(['new_template_id'])->last();
         if ($last) {
             $this->template_id = $last['new_template_id'];
-            $this->check = NewTemplate::find($last['new_template_id'], ['title', 'desc', 'title_page', 'title_page_title', 'pages', 'icon']);
+            $this->check = NewTemplate::find($last['new_template_id']);
             if ($this->check) {
                 $this->title = $this->check->title;
                 $this->desc = $this->check->desc;
@@ -43,6 +44,7 @@ class NewCreate extends Component
                 $this->title_page_questions = $this->check->title_page;
                 $this->title_page_title = $this->check->title_page_title;
                 $this->pages = $this->check->pages;
+                $this->common_multiple_choise_options = $this->check->common_multiple_choise_options;
             }
         } else {
             $this->template_id = 1;
@@ -50,6 +52,53 @@ class NewCreate extends Component
         // dd($this->icon);
     }
 
+    public function setResponseValue($response)
+    {
+        $this->title_page_questions[$this->activeone]['response'] = $response;
+        if ($response == 2) {
+            // unset($this->title_page_questions[$this->activeone]);
+            $this->title_page_questions[$this->activeone]['docNum_format'] = '000001';
+        }
+        if ($response == 7) {
+            // if (!@this.get('title_page_questions.' + value).hasOwnProperty('multiple_choice')) {
+            if (!$this->title_page_questions[$this->activeone]['multiple_choice']) {
+                // @this.set('title_page_questions.' + value + '.multiple_choice', ['']);
+                $this->title_page_questions[$this->activeone]['multiple_choice'] = [''];
+            }
+        }
+    }
+
+    public function PageSetResponseValue($pagekey, $questionkey, $response)
+    {
+        $this->pages[$pagekey]['question'][$questionkey]['response'] = $response;
+        if ($response == 2) {
+            $this->pages[$pagekey]['question'][$questionkey]['docNum_format'] = '000001';
+        }
+        if ($response == 7) {
+            if (!$this->pages[$pagekey]['question'][$questionkey]['multiple_choice']) {
+                $this->pages[$pagekey]['question'][$questionkey]['multiple_choice'] = [''];
+            }
+        }
+    }
+
+    public function test2()
+    {
+        unset($this->title_page_questions[0]['text_answer_format']);
+    }
+    public function test()
+    {
+        dd($this->title_page_questions);
+    }
+    public function save_multiple_choise($type, $questionKey)
+    {
+        if (is_null($this->common_multiple_choise_options))
+            $this->common_multiple_choise_options[0] = $this->title_page_questions[$questionKey]['multiple_choice'];
+        else {
+            // dd(count($this->common_multiple_choise_options));
+            $this->common_multiple_choise_options[count($this->common_multiple_choise_options)] = $this->title_page_questions[$questionKey]['multiple_choice'];
+        }
+        // dd($this->common_multiple_choise_options);
+    }
     public function increment()
     {
         $this->activeone = $this->activeone + 1;

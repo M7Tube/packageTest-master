@@ -20,6 +20,7 @@ class NewTemplate extends Model
         'title_page',
         'title_page_title',
         'pages',
+        'common_multiple_choise_options',
         'user_id'
     ];
 

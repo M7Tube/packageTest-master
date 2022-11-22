@@ -21,6 +21,7 @@ class CreateNewTemplatesTable extends Migration
             $table->json('title_page');
             $table->text('title_page_title')->nullable();
             $table->json('pages');
+            $table->json('common_multiple_choise_options')->nullable();
             $table->bigInteger('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade')->index()->unsigned();
             $table->timestamps();
         });

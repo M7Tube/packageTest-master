@@ -1,4 +1,6 @@
 <div id="myDiv">
+    <button wire:click.prevent="test">print test</button>
+    <button wire:click.prevent="test2">delete</button>
     <div class="mt-5" style="margin-bottom: 100%;">
         <div class="container-fluid">
             <div class="row">
@@ -6,8 +8,8 @@
                     <div class="d-flex align-items-left justify-content-start">
                         @if (!$icon)
                             <div class="col-12 col-md-2">
-                                <input type="file" wire:model.lazy="icon" alt="template icon" style="display:none;"
-                                    id="customefileupload" accept="image/*">
+                                <input type="file" wire:model.lazy="icon" alt="template icon"
+                                    style="display:none;" id="customefileupload" accept="image/*">
                                 <label for="customefileupload" class="customfileupload">
                                     <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -611,7 +613,7 @@
                                                                                                 type="button"
                                                                                                 class="ggbIJY"
                                                                                                 style="margin-left:10px;"
-                                                                                                data-bs-dismiss="modal">
+                                                                                                wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})">
                                                                                                 Save and
                                                                                                 apply
                                                                                             </button>
@@ -734,7 +736,7 @@
                                                                                     </div>
                                                                                 </div>
 
-                                                                                <a onclick="setResponseValue(2)"
+                                                                                <a wire:click.prevent="setResponseValue(2)"
                                                                                     data-bs-dismiss="modal"
                                                                                     style="text-decoration: none;">
                                                                                     <div style="display: flex;"
@@ -764,7 +766,7 @@
                                                                                         responses
                                                                                     </div>
                                                                                 </div>
-                                                                                <a onclick="setResponseValue(1)"
+                                                                                <a wire:click.prevent="setResponseValue(1)"
                                                                                     data-bs-dismiss="modal"
                                                                                     style="text-decoration: none;">
                                                                                     <div style="display: flex;"
@@ -785,7 +787,7 @@
                                                                                             answer</span>
                                                                                     </div>
                                                                                 </a>
-                                                                                <a onclick="setResponseValue(4)"
+                                                                                <a wire:click.prevent="setResponseValue(4)"
                                                                                     data-bs-dismiss="modal"
                                                                                     style="text-decoration: none;">
                                                                                     <div style="display: flex;"
@@ -806,7 +808,7 @@
                                                                                         <span>Number</span>
                                                                                     </div>
                                                                                 </a>
-                                                                                <a onclick="setResponseValue(3)"
+                                                                                <a wire:click.prevent="setResponseValue(3)"
                                                                                     data-bs-dismiss="modal"
                                                                                     style="text-decoration: none;">
                                                                                     <div style="display: flex;"
@@ -829,7 +831,7 @@
                                                                                 </a>
                                                                                 <div class="bcPAfa">
                                                                                 </div>
-                                                                                <a onclick="setResponseValue(5)"
+                                                                                <a wire:click.prevent="setResponseValue(5)"
                                                                                     data-bs-dismiss="modal"
                                                                                     style="text-decoration: none;">
                                                                                     <div style="display: flex;"
@@ -853,7 +855,7 @@
                                                                                     </div>
                                                                                 </a>
                                                                                 <div style="display: flex;"
-                                                                                    onclick="setResponseValue(11)"
+                                                                                    wire:click.prevent="setResponseValue(11)"
                                                                                     data-bs-dismiss="modal"
                                                                                     class="gupkBu iDhWfr">
                                                                                     <div class="fJrMSZ">
@@ -870,7 +872,7 @@
                                                                                     </div>
                                                                                     <span>Media</span>
                                                                                 </div>
-                                                                                {{-- <a onclick="setResponseValue(9)"
+                                                                                {{-- <a wire:click.prevent="setResponseValue(9)"
                                                                                                             data-bs-dismiss="modal"
                                                                                                             style="text-decoration: none;">
                                                                                                             <div style="display: flex;"
@@ -930,7 +932,7 @@
                                                                                                                 <span>Slider</span>
                                                                                                             </div>
                                                                                                         </a> --}}
-                                                                                <a onclick="setResponseValue(6)"
+                                                                                <a wire:click.prevent="setResponseValue(6)"
                                                                                     data-bs-dismiss="modal"
                                                                                     style="text-decoration: none;">
                                                                                     <div style="display: flex;"
@@ -950,7 +952,7 @@
                                                                                         <span>Signature</span>
                                                                                     </div>
                                                                                 </a>
-                                                                                <a onclick="setResponseValue(8)"
+                                                                                <a wire:click.prevent="setResponseValue(8)"
                                                                                     data-bs-dismiss="modal"
                                                                                     style="text-decoration: none;">
                                                                                     <div style="display: flex;"
@@ -977,7 +979,7 @@
                                                                                 <div class="bcPAfa">
                                                                                 </div>
                                                                                 <div style="display: flex;"
-                                                                                    onclick="setResponseValue(10)"
+                                                                                    wire:click.prevent="setResponseValue(10)"
                                                                                     data-bs-dismiss="modal"
                                                                                     class="gupkBu iDhWfr mb-5">
                                                                                     <div class="fDgnZG">
@@ -1008,13 +1010,36 @@
                                                                                             </div>
                                                                                             <div role="button"
                                                                                                 class="jyUuRY graKfr"
-                                                                                                onclick="setResponseValue(7)"
+                                                                                                wire:click.prevent="setResponseValue(7)"
                                                                                                 data-bs-toggle="modal"
                                                                                                 data-bs-target="#MultipleChoiseOptionModal{{ $activechangingresponse }}">
                                                                                                 +
                                                                                                 Responses
                                                                                             </div>
                                                                                         </div>
+                                                                                        @if (!empty($common_multiple_choise_options))
+                                                                                            <div class="gupkBu eCBvzO">
+                                                                                                <div class="evLYbt"
+                                                                                                    {{-- Question key | response id | readyOption id --}}
+                                                                                                    onclick="setResponseValueFromReadyOptions(7,1)"
+                                                                                                    data-bs-dismiss="modal">
+                                                                                                    <div
+                                                                                                        class="fyczhl">
+                                                                                                        @forelse ($common_multiple_choise_options as $common_multiple_choise_option)
+                                                                                                            @forelse ($common_multiple_choise_option as $record)
+                                                                                                                <div color=""
+                                                                                                                    class="xXWzF"
+                                                                                                                    style="background-color: {{ $record['color'] ?? '' }};">
+                                                                                                                    {{ $record['title'] ?? '' }}
+                                                                                                                </div>
+                                                                                                            @empty
+                                                                                                            @endforelse
+                                                                                                        @empty
+                                                                                                        @endforelse
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        @endif
                                                                                         <div class="gupkBu eCBvzO">
                                                                                             <div class="evLYbt"
                                                                                                 {{-- Question key | response id | readyOption id --}}
@@ -1145,22 +1170,6 @@
                                         </div>
                                     </div>
                                     <script>
-                                        function setResponseValue(response) {
-                                            var value = @this.get('activeone');
-                                            @this.set('title_page_questions.' + value + '.response', response);
-                                            if (response == 2) {
-                                                // if (!@this.get('title_page_questions.' + value).hasOwnProperty('multiple_choice')) {
-                                                //     @this.set('title_page_questions.' + value + '.multiple_choice', ['']);
-                                                // }
-                                                @this.set('title_page_questions.' + value + '.docNum_format', '000001');
-                                            }
-                                            if (response == 7) {
-                                                if (!@this.get('title_page_questions.' + value).hasOwnProperty('multiple_choice')) {
-                                                    @this.set('title_page_questions.' + value + '.multiple_choice', ['']);
-                                                }
-                                            }
-                                        }
-
                                         function setResponseValueFromReadyOptions(responseId, optionId) {
                                             @this.set('title_page_questions.' + {{ $activechangingresponse }} + '.response', responseId);
                                             var option = [];
@@ -1809,7 +1818,7 @@
                                                                                                                     information
                                                                                                                 </div>
                                                                                                             </div>
-                                                                                                            <a onclick="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},2)"
+                                                                                                            <a wire:click.prevent="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},2)"
                                                                                                                 data-bs-dismiss="modal"
                                                                                                                 style="text-decoration: none;">
                                                                                                                 <div style="display: flex;"
@@ -1843,7 +1852,7 @@
                                                                                                                     responses
                                                                                                                 </div>
                                                                                                             </div>
-                                                                                                            <a onclick="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},1)"
+                                                                                                            <a wire:click.prevent="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},1)"
                                                                                                                 data-bs-dismiss="modal"
                                                                                                                 style="text-decoration: none;">
                                                                                                                 <div style="display: flex;"
@@ -1865,7 +1874,7 @@
                                                                                                                         answer</span>
                                                                                                                 </div>
                                                                                                             </a>
-                                                                                                            <a onclick="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},4)"
+                                                                                                            <a wire:click.prevent="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},4)"
                                                                                                                 data-bs-dismiss="modal"
                                                                                                                 style="text-decoration: none;">
                                                                                                                 <div style="display: flex;"
@@ -1887,7 +1896,7 @@
                                                                                                                     <span>Number</span>
                                                                                                                 </div>
                                                                                                             </a>
-                                                                                                            <a onclick="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},3)"
+                                                                                                            <a wire:click.prevent="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},3)"
                                                                                                                 data-bs-dismiss="modal"
                                                                                                                 style="text-decoration: none;">
                                                                                                                 <div style="display: flex;"
@@ -1914,7 +1923,7 @@
                                                                                                             <div
                                                                                                                 class="bcPAfa">
                                                                                                             </div>
-                                                                                                            <a onclick="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},5)"
+                                                                                                            <a wire:click.prevent="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},5)"
                                                                                                                 data-bs-dismiss="modal"
                                                                                                                 style="text-decoration: none;">
                                                                                                                 <div style="display: flex;"
@@ -1941,7 +1950,7 @@
                                                                                                                 </div>
                                                                                                             </a>
                                                                                                             <div style="display: flex;"
-                                                                                                                onclick="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},11)"
+                                                                                                                wire:click.prevent="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},11)"
                                                                                                                 data-bs-dismiss="modal"
                                                                                                                 class="gupkBu iDhWfr">
                                                                                                                 <div
@@ -1959,7 +1968,7 @@
                                                                                                                 </div>
                                                                                                                 <span>Media</span>
                                                                                                             </div>
-                                                                                                            {{-- <a onclick="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},9)"
+                                                                                                            {{-- <a wire:click.prevent="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},9)"
                                                                                                                 data-bs-dismiss="modal"
                                                                                                                 style="text-decoration: none;">
                                                                                                                 <div style="display: flex;"
@@ -2019,7 +2028,7 @@
                                                                                                                     <span>Slider</span>
                                                                                                                 </div>
                                                                                                             </a> --}}
-                                                                                                            <a onclick="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},6)"
+                                                                                                            <a wire:click.prevent="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},6)"
                                                                                                                 data-bs-dismiss="modal"
                                                                                                                 style="text-decoration: none;">
                                                                                                                 <div style="display: flex;"
@@ -2040,7 +2049,7 @@
                                                                                                                     <span>Signature</span>
                                                                                                                 </div>
                                                                                                             </a>
-                                                                                                            <a onclick="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},8)"
+                                                                                                            <a wire:click.prevent="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},8)"
                                                                                                                 data-bs-dismiss="modal"
                                                                                                                 style="text-decoration: none;">
                                                                                                                 <div style="display: flex;"
@@ -2069,7 +2078,7 @@
                                                                                                                 class="bcPAfa">
                                                                                                             </div>
                                                                                                             <div style="display: flex;"
-                                                                                                                onclick="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},10)"
+                                                                                                                wire:click.prevent="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},10)"
                                                                                                                 data-bs-dismiss="modal"
                                                                                                                 class="gupkBu iDhWfr mb-5">
                                                                                                                 <div
@@ -2107,7 +2116,7 @@
                                                                                                                         </div>
                                                                                                                         <div role="button"
                                                                                                                             class="jyUuRY graKfr"
-                                                                                                                            onclick="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},7)"
+                                                                                                                            wire:click.prevent="PageSetResponseValue({{ $loop->parent->index }},{{ $loop->index }},7)"
                                                                                                                             data-bs-toggle="modal"
                                                                                                                             data-bs-target="#MultipleChoiseOptionModal{{ $loop->parent->index }}{{ $loop->index }}">
                                                                                                                             +
@@ -2412,21 +2421,6 @@
                                                                     </div>
                                                                 </div>
                                                                 <script>
-                                                                    function PageSetResponseValue(pagekey, questionkey, response) {
-                                                                        @this.set('pages.' + pagekey + '.question.' + questionkey + '.response', response);
-                                                                        if (response == 2) {
-                                                                            // if (!@this.get('pages.' + pagekey).hasOwnProperty('multiple_choice')) {
-                                                                            //     @this.set('pages.' + pagekey + '.multiple_choice', ['']);
-                                                                            // }
-                                                                            @this.set('pages.' + pagekey + '.question.' + questionkey + '.docNum_format', '000001');
-                                                                        }
-                                                                        if (response == 7) {
-                                                                            if (!@this.get('pages.' + pagekey + '.question.' + questionkey).hasOwnProperty('multiple_choice')) {
-                                                                                @this.set('pages.' + pagekey + '.question.' + questionkey + '.multiple_choice', ['']);
-                                                                            }
-                                                                        }
-                                                                    }
-
                                                                     function PageSetResponseValueFromReadyOptions(pageSKey, questionSKey, responseId, optionId) {
                                                                         @this.set('pages.' + pageSKey + '.question.' + questionSKey + '.response', responseId);
                                                                         var option = [];
