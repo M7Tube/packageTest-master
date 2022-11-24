@@ -408,6 +408,11 @@
                                         </div>
                                     </div>
                                 @empty
+                                    <tr class="dwZqgh">
+                                        <td colspan="10" rowspan="10" class="text-center">
+                                            {{ __('Empty') }}
+                                        </td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>

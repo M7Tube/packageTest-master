@@ -1,6 +1,6 @@
 <div id="myDiv">
-    <button wire:click.prevent="test">print test</button>
-    <button wire:click.prevent="test2">delete</button>
+    {{-- <button wire:click.prevent="test">print test</button> --}}
+    {{-- <button wire:click.prevent="test2">delete</button>  --}}
     <div class="mt-5" style="margin-bottom: 100%;">
         <div class="container-fluid">
             <div class="row">
@@ -613,7 +613,8 @@
                                                                                                 type="button"
                                                                                                 class="ggbIJY"
                                                                                                 style="margin-left:10px;"
-                                                                                                wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})">
+                                                                                                {{-- wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})" --}}
+                                                                                                >
                                                                                                 Save and
                                                                                                 apply
                                                                                             </button>

@@ -54,30 +54,74 @@ class NewCreate extends Component
 
     public function setResponseValue($response)
     {
-        $this->title_page_questions[$this->activeone]['response'] = $response;
-        if ($response == 2) {
-            // unset($this->title_page_questions[$this->activeone]);
+        // $this->title_page_questions[$this->activeone]['response'] = $response;
+        if ($response == 1) {
+            unset($this->title_page_questions[$this->activeone]);
+            $this->title_page_questions[$this->activeone]['response'] = $response;
+            $this->title_page_questions[$this->activeone]['is_required'] = false;
+            $this->title_page_questions[$this->activeone]['text_answer_format'] = 0;
+        } elseif ($response == 2) {
+            unset($this->title_page_questions[$this->activeone]);
+            $this->title_page_questions[$this->activeone]['response'] = $response;
+            $this->title_page_questions[$this->activeone]['is_required'] = false;
             $this->title_page_questions[$this->activeone]['docNum_format'] = '000001';
-        }
-        if ($response == 7) {
-            // if (!@this.get('title_page_questions.' + value).hasOwnProperty('multiple_choice')) {
-            if (!$this->title_page_questions[$this->activeone]['multiple_choice']) {
-                // @this.set('title_page_questions.' + value + '.multiple_choice', ['']);
+        } elseif ($response == 5) {
+            unset($this->title_page_questions[$this->activeone]);
+            $this->title_page_questions[$this->activeone]['response'] = $response;
+            $this->title_page_questions[$this->activeone]['is_required'] = false;
+            $this->title_page_questions[$this->activeone]['is_date'] = false;
+            $this->title_page_questions[$this->activeone]['is_time'] = false;
+        } elseif ($response == 7) {
+            if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
+                unset($this->title_page_questions[$this->activeone]);
+            }
+            $this->title_page_questions[$this->activeone]['response'] = $response;
+            // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
+            $this->title_page_questions[$this->activeone]['is_required'] = false;
+            $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
+            if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
                 $this->title_page_questions[$this->activeone]['multiple_choice'] = [''];
             }
+        } else {
+            unset($this->title_page_questions[$this->activeone]);
+            $this->title_page_questions[$this->activeone]['response'] = $response;
+            $this->title_page_questions[$this->activeone]['is_required'] = false;
         }
     }
 
     public function PageSetResponseValue($pagekey, $questionkey, $response)
     {
-        $this->pages[$pagekey]['question'][$questionkey]['response'] = $response;
-        if ($response == 2) {
+        if ($response == 1) {
+            unset($this->pages[$pagekey]['question'][$questionkey]);
+            $this->pages[$pagekey]['question'][$questionkey]['response'] = $response;
+            $this->pages[$pagekey]['question'][$questionkey]['is_required'] = false;
+            $this->pages[$pagekey]['question'][$questionkey]['text_answer_format'] = 0;
+        } elseif ($response == 2) {
+            unset($this->pages[$pagekey]['question'][$questionkey]);
+            $this->pages[$pagekey]['question'][$questionkey]['response'] = $response;
+            $this->pages[$pagekey]['question'][$questionkey]['is_required'] = false;
             $this->pages[$pagekey]['question'][$questionkey]['docNum_format'] = '000001';
-        }
-        if ($response == 7) {
-            if (!$this->pages[$pagekey]['question'][$questionkey]['multiple_choice']) {
+        } elseif ($response == 5) {
+            unset($this->pages[$pagekey]['question'][$questionkey]);
+            $this->pages[$pagekey]['question'][$questionkey]['response'] = $response;
+            $this->pages[$pagekey]['question'][$questionkey]['is_required'] = false;
+            $this->pages[$pagekey]['question'][$questionkey]['is_date'] = false;
+            $this->pages[$pagekey]['question'][$questionkey]['is_time'] = false;
+        } elseif ($response == 7) {
+            if (!array_key_exists('multiple_choice', $this->pages[$pagekey]['question'][$questionkey])) {
+                unset($this->pages[$pagekey]['question'][$questionkey]);
+            }
+            $this->pages[$pagekey]['question'][$questionkey]['response'] = $response;
+            // dd(array_key_exists('multiple_choice', $this->pages[$pagekey]['question'][$questionkey]));
+            $this->pages[$pagekey]['question'][$questionkey]['is_required'] = false;
+            $this->pages[$pagekey]['question'][$questionkey]['multi_select_multiple_choise'] = false;
+            if (!array_key_exists('multiple_choice', $this->pages[$pagekey]['question'][$questionkey])) {
                 $this->pages[$pagekey]['question'][$questionkey]['multiple_choice'] = [''];
             }
+        } else {
+            unset($this->pages[$pagekey]['question'][$questionkey]);
+            $this->pages[$pagekey]['question'][$questionkey]['response'] = $response;
+            $this->pages[$pagekey]['question'][$questionkey]['is_required'] = false;
         }
     }
 

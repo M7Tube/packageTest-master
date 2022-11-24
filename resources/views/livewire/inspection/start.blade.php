@@ -1,5 +1,5 @@
 <div id="root">
-    {{-- <button wire:click.prevent="test">test</button> --}}
+    <button wire:click.prevent="test">print test</button>
     <div id="app-container" class="gtvfKz">
         <div class="brCoKm">
             <div class="gBIxUd">
@@ -50,7 +50,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="dxopML">
-                                                                    {{ $data['title_page_title'] }}
+                                                                    {{ $data['title_page_title'] ?? '' }}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -64,24 +64,17 @@
                                     <div></div>
                                     @forelse ($data['title_page'] as $question)
                                         <div>
-                                            <div class="dWlTBc QuestionCard">
+                                            <div class="dWlTBc QuestionCard"
+                                                style="{{ $question['is_required'] == true && (!isset($title_page_result[$loop->index]['value']) || $title_page_result[$loop->index]['value'] == '') ? 'border-left: 0.25rem solid rgb(168, 36, 42);' : '' }}">
                                                 <div class="QuestionInnerContainer">
                                                     <div class="iGjeXI">
+                                                        @if ($question['is_required'] == true && $question['response'] != 3)
+                                                            <div class="bQzAit">*</div>
+                                                        @endif
                                                         <div class="ljnLdg">
                                                             <div class="cTGqGw kYUEsK">
                                                                 <span class="jjaCv">
                                                                     {{ $question['response'] == 3 ? null : $question['title'] ?? '' }}
-
-                                                                    <input type="hidden"
-                                                                        wire:model.lazy="title_page_result.{{ $loop->index }}.key">
-                                                                    <script>
-                                                                        // window.onload = function() {
-                                                                        // yourFunction(param1, param2);
-                                                                        @this.set('title_page_result.' + {{ $loop->index }} + '.key',
-                                                                            {!! json_encode($question['title'], JSON_HEX_TAG) !!});
-                                                                        // };
-                                                                    </script>
-                                                                    {{-- {{ $question['title'] ?? '' }} --}}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -89,52 +82,38 @@
                                                     @if ($question['response'] == 1)
                                                         @if ($question['text_answer_format'] == 0)
                                                             <input class="hxhzuE gEIQZu fs-block" type="text"
-                                                                wire:model.lazy="title_page_result.{{ $loop->index }}.value">
+                                                                wire:model="title_page_result.{{ $loop->index }}.value">
                                                         @elseif ($question['text_answer_format'] == 1)
-                                                            <textarea class="hxhzuE gEIQZu fs-block" type="text" wire:model.lazy="title_page_result.{{ $loop->index }}.value"></textarea>
+                                                            <textarea class="hxhzuE gEIQZu fs-block" type="text" wire:model="title_page_result.{{ $loop->index }}.value"></textarea>
                                                         @endif
                                                     @elseif ($question['response'] == 2)
                                                         <input class="hxhzuE gEIQZu fs-block" type="text"
                                                             wire:model="title_page_result.{{ $loop->index }}.value">
-                                                        <script>
-                                                            window.onload = function() {
-                                                                @this.set('title_page_result.' + {{ $loop->index }} + '.value',
-                                                                    {!! json_encode($question['docNum_format'], JSON_HEX_TAG) !!});
-                                                            };
-                                                        </script>
+                                                    @elseif ($question['response'] == 3)
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                wire:model="title_page_result.{{ $loop->index }}.value"
+                                                                id="flexCheckDefault{{ $loop->index }}">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                {{ $question['title'] ?? '' }}
+                                                            </label>
+                                                        </div>
                                                     @elseif ($question['response'] == 5)
                                                         <input class="hxhzuE gEIQZu fs-block"
                                                             type="{{ !empty($question['is_date']) && !empty($question['is_time']) ? ($question['is_date'] == 1 && $question['is_time'] == 1 ? 'datetime-local' : 'date') : 'date' }}"
-                                                            wire:model.lazy="title_page_result.{{ $loop->index }}.value">
+                                                            wire:model="title_page_result.{{ $loop->index }}.value">
                                                     @elseif ($question['response'] == 4)
-                                                        <input class="hxhzuE gEIQZu fs-block only-number" type="number"
-                                                            wire:model.lazy="title_page_result.{{ $loop->index }}.value">
+                                                        <input
+                                                            class="hxhzuE gEIQZu fs-block only-number{{ $loop->index }}"
+                                                            type="number"
+                                                            wire:model="title_page_result.{{ $loop->index }}.value">
                                                         <script>
-                                                            document.querySelector(".only-number").addEventListener("keypress", function(evt) {
+                                                            document.querySelector(".only-number" + {{ $loop->index }}).addEventListener("keypress", function(evt) {
                                                                 if (evt.which < 48 || evt.which > 57) {
                                                                     evt.preventDefault();
                                                                 }
                                                             });
                                                         </script>
-                                                    @elseif ($question['response'] == 7)
-                                                        <div class="btn-group" role="group"
-                                                            aria-label="Basic radio toggle button group">
-                                                            <div class="row">
-                                                                @forelse ($question['multiple_choice'] as $response)
-                                                                    <div class="col-12 my-1">
-                                                                        <input type="radio" class="btn-check"
-                                                                            wire:model.lazy="title_page_result.{{ $loop->parent->index }}.value"
-                                                                            value="{{ $response['title'] }}._.{{ $response['color'] }}"
-                                                                            id="{{ $loop->parent->index }}{{ $loop->index }}">
-                                                                        <label class="btn w-100"
-                                                                            for="{{ $loop->parent->index }}{{ $loop->index }}">
-                                                                            {{ $response['title'] }}
-                                                                        </label>
-                                                                    </div>
-                                                                @empty
-                                                                @endforelse
-                                                            </div>
-                                                        </div>
                                                     @elseif ($question['response'] == 6)
                                                         <div class="d-flex">
                                                             <input type="text"
@@ -213,6 +192,25 @@
                                                                 // window.open(data);
                                                             });
                                                         </script>
+                                                    @elseif ($question['response'] == 7)
+                                                        <div class="btn-group" role="group"
+                                                            aria-label="Basic radio toggle button group">
+                                                            <div class="row">
+                                                                @forelse ($question['multiple_choice'] as $response)
+                                                                    <div class="col-12 my-1">
+                                                                        <input type="radio" class="btn-check"
+                                                                            wire:model.lazy="title_page_result.{{ $loop->parent->index }}.value"
+                                                                            value="{{ $response['title'] }}._.{{ $response['color'] ?? '' }}"
+                                                                            id="{{ $loop->parent->index }}{{ $loop->index }}">
+                                                                        <label class="btn w-100"
+                                                                            for="{{ $loop->parent->index }}{{ $loop->index }}">
+                                                                            {{ $response['title'] ?? '' }}
+                                                                        </label>
+                                                                    </div>
+                                                                @empty
+                                                                @endforelse
+                                                            </div>
+                                                        </div>
                                                     @elseif ($question['response'] == 8)
                                                         <textarea rows="5" cols="30" type="text" class="form-control" id="demo"></textarea>
                                                         <script>
@@ -889,12 +887,4 @@
             </div>
         </div>
     </div>
-    <script>
-        window.onload = function() {
-            @this.set('title_page_result.icon',
-                {!! json_encode($data['icon'], JSON_HEX_TAG) !!});
-            @this.set('title_page_result.title',
-                {!! json_encode($data['title'], JSON_HEX_TAG) !!});
-        };
-    </script>
 </div>

@@ -15,6 +15,7 @@ class Start extends Component
     public $page;
     public $title_page_result;
     public $page_result;
+    public $data;
     // public $last_doc;
     public $list = [];
     public $pictures = [];
@@ -25,6 +26,19 @@ class Start extends Component
     {
         // $this->page = 0;
         $this->template_id = request('id');
+        $this->data = NewTemplate::find($this->template_id);
+        $this->title_page_result['icon'] = $this->data['title_page']['icon'] ?? null;
+        $this->title_page_result['title'] = $this->data['title_page']['title'] ?? null;
+        foreach ($this->data['title_page'] as $key => $value) {
+            $this->title_page_result[$key]['key'] = $value['title'] ?? null;
+            if ($value['response'] != 6) {
+                $this->title_page_result[$key]['value'] = null;
+            }
+            $this->title_page_result[$key]['note'] = null;
+            if ($value['response'] == 2) {
+                $this->title_page_result[$key]['value'] = $value['docNum_format'];
+            }
+        }
     }
 
     public function updatedPictures()
@@ -44,7 +58,7 @@ class Start extends Component
     }
     public function test()
     {
-        dd($this->pictures);
+        dd($this->title_page_result);
     }
     public function export()
     {
@@ -66,11 +80,9 @@ class Start extends Component
         // $this->render();
     }
 
-    public function render()
-    {
-        // $this->page = request('page');
-        return view('livewire.inspection.start', [
-            'data' => NewTemplate::find($this->template_id),
-        ]);
-    }
+    // public function render()
+    // {
+    //     // $this->page = request('page');
+    //     return view('livewire.inspection.start');
+    // }
 }

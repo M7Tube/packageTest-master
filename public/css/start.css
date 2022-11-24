@@ -385,6 +385,16 @@ body h6,
     -moz-box-align: center;
     align-items: center;
 }
+.bQzAit {
+    flex-shrink: 0;
+    width: 0.75rem;
+    font-family: Roboto, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.025rem;
+    color: rgb(168, 36, 42);
+}
 .fPDdjU {
     width: 100%;
     display: flex;
