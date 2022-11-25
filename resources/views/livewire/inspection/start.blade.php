@@ -353,7 +353,7 @@
                                                                     style="display: flex; justify-content: space-between; align-items: center;">
                                                                     <div class="czOQuo">
                                                                         <button color="#ffffff" font-size="0.875rem"
-                                                                            type="button" disabled=""
+                                                                            type="button" onclick="hide_note_action({{ $loop->index }})"
                                                                             class="cEDpxx">
                                                                             Save
                                                                         </button>
@@ -406,10 +406,9 @@
                                             document.getElementsByClassName('kRvCBh')[id].style.display = 'none';
                                         }
 
-                                        // function giveDocNumber(id) {
-                                        //     @this.set('title_page_result.' + id + '.value', 'dasf');
-                                        //     // @this.set('title_page_result.' + id + '.value', '1');
-                                        // }
+                                        function hide_note_action(id) {
+                                            document.getElementsByClassName('kRvCBh')[id].style.display = 'none';
+                                        }
                                     </script>
                                 </div>
                                 @if (count($data['pages']) > 0 && request('page') < count($data['pages']) + 1)
@@ -762,7 +761,7 @@
                                                                                 <div class="czOQuo">
                                                                                     <button color="#ffffff"
                                                                                         font-size="0.875rem"
-                                                                                        type="button" disabled=""
+                                                                                        type="button" onclick="page_hide_note_action({{ $loop->parent->index }},{{ $loop->index }})"
                                                                                         class="cEDpxx">
                                                                                         Save
                                                                                     </button>
@@ -818,10 +817,9 @@
                                                         document.getElementsByClassName('kRvCBh' + {{ $loop->index }})[id].style.display = 'none';
                                                     }
 
-                                                    // function giveDocNumber(id) {
-                                                    //     @this.set('title_page_result.' + id + '.value', 'dasf');
-                                                    //     // @this.set('title_page_result.' + id + '.value', '1');
-                                                    // }
+                                                    function page_hide_note_action(pId, id) {
+                                                        document.getElementsByClassName('kRvCBh' + {{ $loop->index }})[id].style.display = 'none';
+                                                    }
                                                 </script>
                                             </div>
                                             <div class="eIqTdO">
