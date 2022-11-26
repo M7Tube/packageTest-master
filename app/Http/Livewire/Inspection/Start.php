@@ -17,6 +17,7 @@ class Start extends Component
     public $page_result;
     public $data;
     public $title;
+    public $desc;
     public $list = [];
     public $pictures = [];
     protected $queryString = ['page'];
@@ -28,6 +29,7 @@ class Start extends Component
         $this->template_id = request('id');
         $this->data = NewTemplate::find($this->template_id);
         $this->title= $this->data->title ?? null;
+        $this->desc= $this->data->desc ?? null;
         $this->icon= $this->data->icon ?? null;
         foreach ($this->data['title_page'] as $key => $value) {
             $this->title_page_result[$key]['key'] = $value['title'] ?? null;
@@ -38,6 +40,8 @@ class Start extends Component
             $this->title_page_result[$key]['note'] = null;
             if ($value['response'] == 2) {
                 $this->title_page_result[$key]['value'] = $value['docNum_format'];
+            }elseif ($value['response'] == 5) {
+                $this->title_page_result[$key]['value'] = date("Y-m-d H:i:s");;
             }
         }
     }

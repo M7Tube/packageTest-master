@@ -8326,10 +8326,8 @@
             <div class="row"  style="margin-bottom: 50px;">
                 <div class="col-xs-5">
                     @forelse ($data['title_page'] as $record)
-                        @if ($record['response'] == 2)
-                            <span style="color:gray;">{{ $record['value'] }}</span>
-                            @break
-                        @endif
+                        <span style="color:gray;">{{$data['desc']}}{{ $record['response'] == 2 ? $record['value'] :'' }}</span>
+                        @break
                     @empty
                     @endforelse
                 </div>
