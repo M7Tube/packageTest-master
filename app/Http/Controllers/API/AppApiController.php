@@ -340,9 +340,9 @@ class AppApiController extends Controller
         $request->validate([
             'template_id'=>['required', 'integer', 'exists:new_templates,new_template_id'],
         ]);
-        return $request->all();
+        // return $request->all();
         $data=[
-            'title'=>$request['title'],
+            'title'=>$request['Template']['title'],
             'title_page'=>$request['title_page'],
             'pages'=>$request['pages']
         ];

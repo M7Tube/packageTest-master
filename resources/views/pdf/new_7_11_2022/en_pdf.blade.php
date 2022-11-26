@@ -8314,44 +8314,51 @@
 </head>
 
 <body>
-    <div class="container p-5 m-5">
-        <div class="row">
-            <div class="col-xs-5">
-                {{ $data['title'] ?? '' }}
+    <div class="container">
+        <div style="margin:25px;">
+            <div class="row">
+                <div class="col-xs-5">
+                    {{ $data['title'] ?? '' }}
+                </div>
+                <div class="col-xs-5">
+                </div>
             </div>
-            <div class="col-xs-5">
+            <div class="row"  style="margin-bottom: 50px;">
+                <div class="col-xs-5">
+                    @forelse ($data['title_page'] as $record)
+                        @if ($record['response'] == 2)
+                            <span style="color:gray;">{{ $record['value'] }}</span>
+                            @break
+                        @endif
+                    @empty
+                    @endforelse
+                </div>
+                <div class="col-xs-5">
+                </div>
             </div>
         </div>
-        <div class="row"  style="margin-bottom: 50px;">
-            <div class="col-xs-5">
-                @forelse ($data['title_page'] as $record)
-                    @if ($record['response'] == 2)
-                        <span style="color:gray;">{{ $record['value'] }}</span>
-                    @break
-                @endif
-
-            @empty
-            @endforelse
-        </div>
-        <div class="col-xs-5">
-        </div>
+    <div style="margin:25px;">
+        @forelse ($data['title_page'] as $record)
+            <div class="row" style="border-bottom: 1px solid #e0e0e0;">
+                <div class="col-xs-5" style="">
+                    <span class="" style="font-size: 15.4292px;">{{ $record['key'] ?? '' }}</span>
+                </div>
+                <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
+                    @if ($record['response']==7)
+                        <span class="" style="background-color: {{explode('._.',$record['value']?? '')[1] ??''}}; ">
+                            {{ explode('._.',$record['value']?? '')[0]??'' }}
+                        </span>
+                    @else
+                        <span class="" style="color:#7b7673; font-size: 15.4292px;
+                        font-family: sans-serif;">
+                        {{ $record['value'] ?? '' }}
+                        </span>
+                    @endif
+                </div>
+            </div>
+        @empty
+        @endforelse
     </div>
-    @forelse ($data['title_page'] as $record)
-    <div class="row">
-            <div class="col-xs-5">
-                <span class="">{{ $record['key'] ?? '' }}</span>
-            </div>
-            <div class="col-xs-5" style="text-align: right;">
-                @if ($record['response']==7)
-                    <span class="text-center" style="background-color: {{explode('._.',$record['value']?? '')[1] ??''}}; ">{{ explode('._.',$record['value']?? '')[0]??'' }}</span>
-                @else
-                    <span class="text-center" style="">{{ $record['value'] ?? '' }}</span>
-                @endif
-            </div>
-            <hr style="border: 1px solid red;">
-        </div>
-    @empty
-    @endforelse
 </div>
 </body>
 
