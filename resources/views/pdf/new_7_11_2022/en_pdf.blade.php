@@ -8303,14 +8303,12 @@
         }
 
         /*# sourceMappingURL=bootstrap.css.map */
-
     </style>
     <style>
         @page {
             header: page-header;
             footer: page-footer;
         }
-
     </style>
     <title>test</title>
 </head>
@@ -8319,7 +8317,7 @@
     <div class="container p-5 m-5">
         <div class="row">
             <div class="col-xs-5">
-                {{$data['title']??''}}
+                {{ $data['title'] ?? '' }}
             </div>
             <div class="col-xs-5">
             </div>
@@ -8327,19 +8325,30 @@
         <div class="row">
             <div class="col-xs-5">
                 @forelse ($data['title_page'] as $record)
-                    @if ($record['response']==2)
-                        <span class="text-"></span>{{$record['value']}}
-                        @break
-                    @endif
+                    @if ($record['response'] == 2)
+                        <span style="color:gray;">{{ $record['value'] }}</span>
+                    @break
+                @endif
 
-                @empty
-
-                @endforelse
-            </div>
-            <div class="col-xs-5">
-            </div>
+            @empty
+            @endforelse
+        </div>
+        <div class="col-xs-5">
         </div>
     </div>
+    <div class="row">
+        @forelse ($data['title_page'] as $record)
+            <div class="col-xs-5" style="margin-bottom: 100px;">
+                <span class="">{{ $record['key'] ?? '' }}</span>
+            </div>
+            <div class="col-xs-5" style="margin-bottom: 100px;">
+                <span class="">{{ $record['value'] ?? '' }}</span>
+
+            </div>
+        @empty
+        @endforelse
+    </div>
+</div>
 </body>
 
 </html>
