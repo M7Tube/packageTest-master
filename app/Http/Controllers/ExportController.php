@@ -18,6 +18,7 @@ class ExportController extends Controller
     public function __invoke(Request $request)
     {
         $data=[
+            'title'=>$request['title'],
             'title_page'=>$request['title_page'],
             'pages'=>$request['pages']
         ];

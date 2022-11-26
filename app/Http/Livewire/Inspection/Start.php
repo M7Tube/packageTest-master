@@ -16,7 +16,7 @@ class Start extends Component
     public $title_page_result;
     public $page_result;
     public $data;
-    // public $last_doc;
+    public $title;
     public $list = [];
     public $pictures = [];
     protected $queryString = ['page'];
@@ -27,10 +27,11 @@ class Start extends Component
         // $this->page = 0;
         $this->template_id = request('id');
         $this->data = NewTemplate::find($this->template_id);
-        $this->title_page_result['icon'] = $this->data['title_page']['icon'] ?? null;
-        $this->title_page_result['title'] = $this->data['title_page']['title'] ?? null;
+        $this->title= $this->data->title ?? null;
+        $this->icon= $this->data->icon ?? null;
         foreach ($this->data['title_page'] as $key => $value) {
             $this->title_page_result[$key]['key'] = $value['title'] ?? null;
+            $this->title_page_result[$key]['response'] = $value['response'] ?? null;
             if ($value['response'] != 6) {
                 $this->title_page_result[$key]['value'] = null;
             }
@@ -63,7 +64,7 @@ class Start extends Component
     public function export()
     {
         // dd($this->page_result);
-        return redirect()->route('new_export', ['title_page' => $this->title_page_result, 'pages' => $this->page_result]);
+        return redirect()->route('new_export', ['title'=>$this->title,'title_page' => $this->title_page_result, 'pages' => $this->page_result]);
     }
 
     public function next_page()

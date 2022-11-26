@@ -8316,7 +8316,30 @@
 </head>
 
 <body>
+    <div class="container p-5 m-5">
+        <div class="row">
+            <div class="col-xs-5">
+                {{$data['title']??''}}
+            </div>
+            <div class="col-xs-5">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5">
+                @forelse ($data['title_page'] as $record)
+                    @if ($record['response']==2)
+                        <span class="text-"></span>{{$record['value']}}
+                        @break
+                    @endif
 
+                @empty
+
+                @endforelse
+            </div>
+            <div class="col-xs-5">
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
