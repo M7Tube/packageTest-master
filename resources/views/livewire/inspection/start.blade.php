@@ -99,7 +99,7 @@
                                                             </label>
                                                         </div>
                                                     @elseif ($question['response'] == 5)
-                                                        <input class="form-control fs-block"
+                                                        <input class="form-control fs-block text-left"
                                                         {{-- hxhzuE gEIQZu  --}}
                                                             type="{{ !empty($question['is_date']) && !empty($question['is_time']) ? ($question['is_date'] == 1 && $question['is_time'] == 1 ? 'datetime-local' : 'date') : 'date' }}"
                                                             wire:model="title_page_result.{{ $loop->index }}.value">
