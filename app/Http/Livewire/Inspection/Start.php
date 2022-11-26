@@ -18,6 +18,7 @@ class Start extends Component
     public $data;
     public $title;
     public $desc;
+    public $icon;
     public $list = [];
     public $pictures = [];
     protected $queryString = ['page'];
@@ -68,7 +69,7 @@ class Start extends Component
     public function export()
     {
         // dd($this->page_result);
-        return redirect()->route('new_export', ['title'=>$this->title,'title_page' => $this->title_page_result, 'pages' => $this->page_result]);
+        return redirect()->route('new_export', ['title'=>$this->title,'desc'=>$this->desc,'icon'=>$this->icon,'title_page' => $this->title_page_result, 'pages' => $this->page_result]);
     }
 
     public function next_page()

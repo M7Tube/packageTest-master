@@ -81,13 +81,13 @@
                                                     </div>
                                                     @if ($question['response'] == 1)
                                                         @if ($question['text_answer_format'] == 0)
-                                                            <input class="hxhzuE gEIQZu fs-block" type="text"
+                                                            <input class="form-control fs-block" type="text"
                                                                 wire:model="title_page_result.{{ $loop->index }}.value">
                                                         @elseif ($question['text_answer_format'] == 1)
-                                                            <textarea class="hxhzuE gEIQZu fs-block" type="text" wire:model="title_page_result.{{ $loop->index }}.value"></textarea>
+                                                            <textarea class="form-control fs-block" type="text" wire:model="title_page_result.{{ $loop->index }}.value"></textarea>
                                                         @endif
                                                     @elseif ($question['response'] == 2)
-                                                        <input class="hxhzuE gEIQZu fs-block" type="text"
+                                                        <input class="form-control fs-block" type="text"
                                                             wire:model="title_page_result.{{ $loop->index }}.value">
                                                     @elseif ($question['response'] == 3)
                                                         <div class="form-check">
@@ -99,12 +99,13 @@
                                                             </label>
                                                         </div>
                                                     @elseif ($question['response'] == 5)
-                                                        <input class="hxhzuE gEIQZu fs-block"
+                                                        <input class="form-control fs-block"
+                                                        {{-- hxhzuE gEIQZu  --}}
                                                             type="{{ !empty($question['is_date']) && !empty($question['is_time']) ? ($question['is_date'] == 1 && $question['is_time'] == 1 ? 'datetime-local' : 'date') : 'date' }}"
                                                             wire:model="title_page_result.{{ $loop->index }}.value">
                                                     @elseif ($question['response'] == 4)
                                                         <input
-                                                            class="hxhzuE gEIQZu fs-block only-number{{ $loop->index }}"
+                                                            class="form-control fs-block only-number{{ $loop->index }}"
                                                             type="number"
                                                             wire:model="title_page_result.{{ $loop->index }}.value">
                                                         <script>

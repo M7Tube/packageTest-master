@@ -20,6 +20,7 @@ class ExportController extends Controller
         $data=[
             'title'=>$request['title'],
             'desc'=>$request['desc'],
+            'icon'=>$request['icon'],
             'title_page'=>$request['title_page'],
             'pages'=>$request['pages']
         ];

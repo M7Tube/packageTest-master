@@ -8318,6 +8318,14 @@
         <div style="margin:25px;">
             <div class="row">
                 <div class="col-xs-5">
+                    <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/images/' . $data['icon'])) !!}" alt="logo">
+                    {{$data['icon']}}
+                </div>
+                <div class="col-xs-5">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-5">
                     {{ $data['title'] ?? '' }}
                 </div>
                 <div class="col-xs-5">

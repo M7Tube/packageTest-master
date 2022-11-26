@@ -633,7 +633,7 @@ body h6,
     font-size: 1rem;
     font-family: Roboto, sans-serif;
     line-height: 1.5rem;
-    width: inherit;
+    width: 100%;
     padding: 0.5em 1em;
     border-radius: 0.3rem;
     border: 1px solid rgb(191, 198, 212);
