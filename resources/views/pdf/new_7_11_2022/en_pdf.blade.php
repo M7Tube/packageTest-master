@@ -8322,7 +8322,7 @@
             <div class="col-xs-5">
             </div>
         </div>
-        <div class="row">
+        <div class="row"  style="margin-bottom: 50px;">
             <div class="col-xs-5">
                 @forelse ($data['title_page'] as $record)
                     @if ($record['response'] == 2)
@@ -8336,18 +8336,22 @@
         <div class="col-xs-5">
         </div>
     </div>
+    @forelse ($data['title_page'] as $record)
     <div class="row">
-        @forelse ($data['title_page'] as $record)
-            <div class="col-xs-5" style="margin-bottom: 100px;">
+            <div class="col-xs-5">
                 <span class="">{{ $record['key'] ?? '' }}</span>
             </div>
-            <div class="col-xs-5" style="margin-bottom: 100px;">
-                <span class="">{{ $record['value'] ?? '' }}</span>
-
+            <div class="col-xs-5" style="text-align: right;">
+                @if ($record['response']==7)
+                    <span class="text-center" style="background-color: {{explode('._.',$record['value']?? '')[1] ??''}}; ">{{ explode('._.',$record['value']?? '')[0]??'' }}</span>
+                @else
+                    <span class="text-center" style="">{{ $record['value'] ?? '' }}</span>
+                @endif
             </div>
-        @empty
-        @endforelse
-    </div>
+            <hr style="border: 1px solid red;">
+        </div>
+    @empty
+    @endforelse
 </div>
 </body>
 
