@@ -340,17 +340,16 @@ class AppApiController extends Controller
         $request->validate([
             'template_id'=>['required', 'integer', 'exists:new_templates,new_template_id'],
         ]);
-        // return $request->all();
         $data=[
-            'title'=>$request['Template']['title'],
-            'title_page'=>$request['title_page'],
-            'pages'=>$request['pages']
+            'title'=>json_decode($request['Template'])->title,
+            'title_page'=>json_decode($request['Template'])->data->title_page,
+            'pages'=>json_decode($request['Template'])->data->pages
         ];
         // return $data;
         ini_set('max_execution_time', '300');
         ini_set("pcre.backtrack_limit", "50000000");
         view()->share('data', $data);
-        $pdf = PDF2::loadView('pdf.new_7_11_2022.en_pdf', $data);
+        $pdf = PDF2::loadView('pdf.new_7_11_2022.api_en_pdf', $data);
         return $pdf->download('pdf_file.pdf');
         // $template = NewTemplate::find($request->template_id);
         // if ($template) {
@@ -358,6 +357,7 @@ class AppApiController extends Controller
         //         'Template' => StartInspectionResource::collection([$template]),
         //     ]);
         // }
+
     }
 
     public function homepage($perpage)
