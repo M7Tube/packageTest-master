@@ -8326,15 +8326,15 @@
             </div>
             <div class="row">
                 <div class="col-xs-5">
-                    {{ $data['title'] ?? '' }}
+                    {{ $data->title ?? '' }}
                 </div>
                 <div class="col-xs-5">
                 </div>
             </div>
             <div class="row"  style="margin-bottom: 50px;">
                 <div class="col-xs-5">
-                    @forelse ($data['title_page'] as $record)
-                        <span style="color:gray;">{{$data['desc']??''}}{{ $record['response'] == 2 ? $record['value'] :'' }}</span>
+                    @forelse ($data->title_page as $record)
+                        <span style="color:gray;">{{$data->desc??''}}{{ $record->response == 2 ? $record->value :'' }}</span>
                         @break
                     @empty
                     @endforelse
@@ -8344,20 +8344,20 @@
             </div>
         </div>
     <div style="margin:25px;">
-        @forelse ($data['title_page'] as $record)
+        @forelse ($data->title_page as $record)
             <div class="row" style="border-bottom: 1px solid #e0e0e0;">
                 <div class="col-xs-5" style="">
-                    <span class="" style="font-size: 15.4292px;">{{ $record['key'] ?? '' }}</span>
+                    <span class="" style="font-size: 15.4292px;">{{ $record->key ?? '' }}</span>
                 </div>
                 <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
-                    @if ($record['response']==7)
-                        <span class="" style="background-color: {{explode('._.',$record['value']?? '')[1] ??''}}; ">
-                            {{ explode('._.',$record['value']?? '')[0]??'' }}
+                    @if ($record->response==7)
+                        <span class="" style="background-color: {{explode('._.',$record->value?? '')[1] ??''}}; ">
+                            {{ explode('._.',$record->value?? '')[0]??'' }}
                         </span>
                     @else
                         <span class="" style="color:#7b7673; font-size: 15.4292px;
                         font-family: sans-serif;">
-                        {{ $record['value'] ?? '' }}
+                        {{ $record->value ?? '' }}
                         </span>
                     @endif
                 </div>

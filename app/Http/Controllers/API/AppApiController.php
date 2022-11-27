@@ -350,7 +350,13 @@ class AppApiController extends Controller
         ini_set("pcre.backtrack_limit", "50000000");
         view()->share('data', $data);
         $pdf = PDF2::loadView('pdf.new_7_11_2022.api_en_pdf', $data);
-        return $pdf->download('pdf_file.pdf');
+        // return $pdf->download('pdf_file.pdf');
+        $output = $pdf->output();
+        $name = 'file'. now() .'.pdf';
+        //  storeAs($name, $output);
+        Storage::put('pdf/' . $name, $pdf->output());
+        
+        return $file = 'https://www.c-rpt.com/storage/app/pdf' . '/' . $name;
         // $template = NewTemplate::find($request->template_id);
         // if ($template) {
         //     return $this->success(200, 'Successfull Request', 'data', [
