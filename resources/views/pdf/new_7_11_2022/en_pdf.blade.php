@@ -7,13 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
         html {
-            font-family: sans-serif;
+            font-family: tharlon;
             -webkit-text-size-adjust: 100%;
             -ms-text-size-adjust: 100%;
         }
 
         body {
             margin: 0;
+            font-family: tharlon;
         }
 
         article,
@@ -8314,12 +8315,14 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="font-family: xbriyaz;">
         <div style="margin:25px;">
             <div class="row">
                 <div class="col-xs-5">
-                    <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/images/' . $data['icon'])) !!}" alt="logo">
-                    {{$data['icon']}}
+                    <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/images/Example.png')) !!}" alt="logo" width="150px">
+                    <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/public/images/Example.png')) !!}" style="height: auto; width: 1000px;">
+                    {{-- <img src="image.jpg" style="width:90mm;" />s --}}
+                    {{-- {{$data['icon']}} --}}
                 </div>
                 <div class="col-xs-5">
                 </div>

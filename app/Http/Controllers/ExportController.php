@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use App\Models\Vat;
-use PDF2;
+use PDF;
 use Illuminate\Http\Request;
 
 class ExportController extends Controller
@@ -17,25 +17,28 @@ class ExportController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $data=[
-            'title'=>$request['title'],
-            'desc'=>$request['desc'],
-            'icon'=>$request['icon'],
-            'title_page'=>$request['title_page'],
-            'pages'=>$request['pages']
+        $data = [
+            'title' => $request['title'],
+            'desc' => $request['desc'],
+            'icon' => $request['icon'],
+            'title_page' => $request['title_page'],
+            'pages' => $request['pages']
         ];
         // return $data;
         ini_set('max_execution_time', '300');
         ini_set("pcre.backtrack_limit", "50000000");
         view()->share('data', $data);
-        $pdf = PDF2::loadView('pdf.new_7_11_2022.en_pdf', $data);
+        $pdf = PDF::chunkLoadView('<html-separator/>','pdf.new_7_11_2022.en_pdf', $data);
+        $pdf->showImageErrors = true;
+        $pdf->curlAllowUnsafeSslRequests = true;
+        $pdf->debug = true;
         return $pdf->download('pdf_file.pdf');
         // return $request['data'];
-        ini_set('max_execution_time', '300');
-        ini_set("pcre.backtrack_limit", "50000000");
-        view()->share('data', $data);
-        $pdf = PDF2::loadView('pdf.pdf_new_design', $data);
-        return $pdf->download('pdf_file.pdf');
+        // ini_set('max_execution_time', '300');
+        // ini_set("pcre.backtrack_limit", "50000000");
+        // view()->share('data', $data);
+        // $pdf = PDF2::loadView('pdf.pdf_new_design', $data);
+        // return $pdf->download('pdf_file.pdf');
 
         // $cart = session()->get('cart', []);
         // $info = session()->get('info', []);
