@@ -166,7 +166,7 @@
                                                     <div height="100%" class="cSYTlB bfMWNi">
                                                         <div class="VTXFo jSNyoh">
                                                             <div class="bMYHDk initials">
-                                                                UT
+                                                                {{-- <img class="bMYHDk initials" src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/images/'.$record->icon)) !!}" alt="icon" width="25px"> --}}
                                                             </div>
                                                         </div>
                                                     </div>

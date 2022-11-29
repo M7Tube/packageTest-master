@@ -19,7 +19,7 @@ class Index extends Component
         return view(
             'livewire.template.index',
             [
-                'data' => NewTemplate::with('user')->paginate(25, ['new_template_id', 'title', 'desc', 'user_id', 'created_at','updated_at', 'pages']),
+                'data' => NewTemplate::with('user')->paginate(25, ['new_template_id', 'title', 'desc','icon', 'user_id', 'created_at','updated_at', 'pages']),
             ]
         );
     }

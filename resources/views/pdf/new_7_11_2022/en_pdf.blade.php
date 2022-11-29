@@ -8326,7 +8326,8 @@
             <div class="row" style="">
                 <div class="col-xs-5" style="">
                     <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/images/Example.png')) !!}" alt="logo" width="150px">
-                    <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/public/images/Example.png')) !!}" style="height: auto; width: 1000px;">
+                    <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/public/images/Example.png')) !!}"
+                        style="height: auto; width: 1000px;">
                     {{-- <img src="image.jpg" style="width:90mm;" />s --}}
                     {{-- {{$data['icon']}} --}}
                 </div>
@@ -8334,17 +8335,19 @@
                 </div>
             </div>
             <div class="row" style="margin-bottom: 5px;">
-                <div class="col-xs-5">
+                <div class="col-xs-10">
                     <span style="font-size: 22px;">{{ $data['title'] ?? '' }}</span>
                 </div>
-                <div class="col-xs-5">
-                </div>
+                {{-- <div class="col-xs-5">
+                </div> --}}
             </div>
-            <div class="row"  style="">
+            <div class="row" style="">
                 <div class="col-xs-5">
                     @forelse ($data['title_page'] as $record)
-                        <span style="color:gray;">{{$data['desc']}}{{ $record['response'] == 2 ? $record['value'] :'' }}</span>
-                        @break
+                        <span
+                            style="color:gray;">{{ $data['desc'] }}{{ $record['response'] == 2 ? $record['value'] : '' }}</span>
+                    @break
+
                     @empty
                     @endforelse
                 </div>
@@ -8353,30 +8356,31 @@
                 </div>
             </div>
         </div>
-    <div style="margin:20px;">
-        @forelse ($data['title_page'] as $record)
-            <div class="row" style="margin-bottom: 10px;">
-                <div class="col-xs-5" style="">
-                    <span class="" style="font-size: 15.4292px;">{{ $record['key'] ?? '' }}</span>
+        <div style="margin:20px;">
+            @forelse ($data['title_page'] as $record)
+                <div class="row" style="margin-bottom: {{ $record['response'] == 7 ? '0px' : '10px' }};">
+                    <div class="col-xs-5" style="">
+                        <span class="" style="font-size: 15.4292px;">{{ $record['key'] ?? '' }}</span>
+                    </div>
+                    <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
+                        @if ($record['response'] == 7)
+                            <h6
+                                style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ explode('._.', $record['value'] ?? '')[1] ?? '' }};">
+                                {{ explode('._.', $record['value'] ?? '')[0] ?? '' }}</h6>
+                        @else
+                            <span class="" style="color:#7b7673; font-size: 12.4292px;">
+                                {{ $record['value'] ?? '' }}
+                            </span>
+                        @endif
+                    </div>
                 </div>
-                <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
-                    @if ($record['response']==7)
-                        <span class="" style="background-color: {{explode('._.',$record['value']?? '')[1] ??''}}; ">
-                            {{ explode('._.',$record['value']?? '')[0]??'' }}
-                        </span>
-                    @else
-                        <span class="" style="color:#7b7673; font-size: 12.4292px;
-                        ">
-                        {{ $record['value'] ?? '' }}
-                        </span>
-                    @endif
-                </div>
-            </div>
-            <div style="border-bottom: 1px solid #e0e0e0; margin-bottom: 10px;"></div>
-        @empty
-        @endforelse
+                <div style="border-bottom: 1px solid #e0e0e0; margin-bottom: 10px;"></div>
+            @empty
+            @endforelse
+        </div>
     </div>
-</div>
+    <pagebreak></pagebreak>
+    يسب
 </body>
 
 </html>
