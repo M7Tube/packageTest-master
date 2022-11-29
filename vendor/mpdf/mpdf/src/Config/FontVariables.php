@@ -93,6 +93,20 @@ class FontVariables
 			 */
 
 			'fontdata' => [
+                'roboto' => [
+                    'R' => 'Cairo-VariableFont_slnt,wght.ttf',
+                    'B' => "Cairo-Light.ttf",
+					'I' => "Cairo-Light.ttf",
+					'BI' => "Cairo-Light.ttf",
+                    // 'useOTL' => 0xFF,
+					'useKashida' => 75,
+                ],
+                'roboto-thin' => [
+                    'R' => 'Roboto-Thin.ttf',
+                ],
+                'test' => [
+                    'R' => 'NotoSansArabic-VariableFont_wdth,wght.ttf',
+                ],
 				"dejavusanscondensed" => [
 					'R' => "DejaVuSansCondensed.ttf",
 					'B' => "DejaVuSansCondensed-Bold.ttf",
