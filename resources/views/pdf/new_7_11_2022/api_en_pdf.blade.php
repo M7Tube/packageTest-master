@@ -8333,7 +8333,7 @@
             </div>
             <div class="row"  style="margin-bottom: 50px;">
                 <div class="col-xs-5">
-                    @forelse ($data->title_page as $record)
+                    @forelse ($data['title_page'] as $record)
                         <span style="color:gray;">{{$data->desc??''}}{{ $record->response == 2 ? $record->value :'' }}</span>
                         @break
                     @empty
