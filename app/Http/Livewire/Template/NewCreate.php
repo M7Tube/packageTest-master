@@ -224,6 +224,98 @@ class NewCreate extends Component
         $this->title_page_questions[$this->activechangingresponse]['multiple_choice'] = $option;
     }
 
+    public function PageSetResponseValueFromReadyOptions($pageSKey, $questionSKey, $responseid, $optionid)
+    {
+        $this->pages[$pageSKey]['question'][$questionSKey]['response'] = $responseid;
+        $option = [];
+        if ($optionid == 1) {
+            $option = [
+                [
+                    'title' => 'Good',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'Fair',
+                    'color' => '#f9f2e2',
+                ],
+                [
+                    'title' => 'Poor',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ];
+        }
+        if ($optionid == 2) {
+            $option = [
+                [
+                    'title' => 'Safe',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'At Risk',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ];
+        }
+        if ($optionid == 3) {
+            $option = [
+                [
+                    'title' => 'Pass',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'Fail',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ];
+        }
+        if ($optionid == 4) {
+            $option = [
+                [
+                    'title' => 'Yes',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'No',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ];
+        }
+        if ($optionid == 5) {
+            $option = [
+                [
+                    'title' => 'Compliant',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'Non-Compliant',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ];
+        }
+        $this->pages[$pageSKey]['question'][$questionSKey]['multiple_choice'] = $option;
+
+    }
+
     public function test2()
     {
         unset($this->title_page_questions[0]['text_answer_format']);

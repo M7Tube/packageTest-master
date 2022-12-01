@@ -2046,7 +2046,7 @@
                                                                                                                         class="gupkBu eCBvzO">
                                                                                                                         <div class="evLYbt"
                                                                                                                             {{-- Question key | response id | readyOption id --}}
-                                                                                                                            onclick="PageSetResponseValueFromReadyOptions({{ $loop->parent->index }},{{ $loop->index }},7,1)"
+                                                                                                                            wire:click.prevent="PageSetResponseValueFromReadyOptions({{ $loop->parent->index }},{{ $loop->index }},7,1)"
                                                                                                                             data-bs-dismiss="modal">
                                                                                                                             <div
                                                                                                                                 class="fyczhl">
@@ -2073,7 +2073,7 @@
                                                                                                                         class="gupkBu eCBvzO">
                                                                                                                         <div class="evLYbt"
                                                                                                                             {{-- Question key | response id | readyOption id --}}
-                                                                                                                            onclick="PageSetResponseValueFromReadyOptions({{ $loop->parent->index }},{{ $loop->index }},7,2)"
+                                                                                                                            wire:click.prevent="PageSetResponseValueFromReadyOptions({{ $loop->parent->index }},{{ $loop->index }},7,2)"
                                                                                                                             data-bs-dismiss="modal">
                                                                                                                             <div
                                                                                                                                 class="fyczhl">
@@ -2097,7 +2097,7 @@
                                                                                                                         class="gupkBu eCBvzO">
                                                                                                                         <div class="evLYbt"
                                                                                                                             {{-- Question key | response id | readyOption id --}}
-                                                                                                                            onclick="PageSetResponseValueFromReadyOptions({{ $loop->parent->index }},{{ $loop->index }},7,3)"
+                                                                                                                            wire:click.prevent="PageSetResponseValueFromReadyOptions({{ $loop->parent->index }},{{ $loop->index }},7,3)"
                                                                                                                             data-bs-dismiss="modal">
                                                                                                                             <div
                                                                                                                                 class="fyczhl">
@@ -2120,7 +2120,7 @@
                                                                                                                         class="gupkBu eCBvzO">
                                                                                                                         <div class="evLYbt"
                                                                                                                             {{-- Question key | response id | readyOption id --}}
-                                                                                                                            onclick="PageSetResponseValueFromReadyOptions({{ $loop->parent->index }},{{ $loop->index }},7,4)"
+                                                                                                                            wire:click.prevent="PageSetResponseValueFromReadyOptions({{ $loop->parent->index }},{{ $loop->index }},7,4)"
                                                                                                                             data-bs-dismiss="modal">
                                                                                                                             <div
                                                                                                                                 class="fyczhl">
@@ -2143,7 +2143,7 @@
                                                                                                                         class="gupkBu eCBvzO">
                                                                                                                         <div class="evLYbt"
                                                                                                                             {{-- Question key | response id | readyOption id --}}
-                                                                                                                            onclick="PageSetResponseValueFromReadyOptions({{ $loop->parent->index }},{{ $loop->index }},7,5)"
+                                                                                                                            wire:click.prevent="PageSetResponseValueFromReadyOptions({{ $loop->parent->index }},{{ $loop->index }},7,5)"
                                                                                                                             data-bs-dismiss="modal">
                                                                                                                             <div
                                                                                                                                 class="fyczhl">
@@ -2339,87 +2339,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <script>
-                                                                    function PageSetResponseValueFromReadyOptions(pageSKey, questionSKey, responseId, optionId) {
-                                                                        @this.set('pages.' + pageSKey + '.question.' + questionSKey + '.response', responseId);
-                                                                        var option = [];
-                                                                        if (optionId == 1) {
-                                                                            option[0] = {
-                                                                                title: "Good",
-                                                                                color: "#e7f3ef"
-                                                                            };
-                                                                            option[1] = {
-                                                                                title: "Fair",
-                                                                                color: "#f9f2e2"
-                                                                            };
-                                                                            option[2] = {
-                                                                                title: "Poor",
-                                                                                color: "#f3e0e5"
-                                                                            };
-                                                                            option[3] = {
-                                                                                title: "N/A",
-                                                                                color: "#eaebed"
-                                                                            };
-                                                                        }
-                                                                        if (optionId == 2) {
-                                                                            option[0] = {
-                                                                                title: "Safe",
-                                                                                color: "#e7f3ef"
-                                                                            };
-                                                                            option[1] = {
-                                                                                title: "At Risk",
-                                                                                color: "#f3e0e5"
-                                                                            };
-                                                                            option[2] = {
-                                                                                title: "N/A",
-                                                                                color: "#eaebed"
-                                                                            };
-                                                                        }
-                                                                        if (optionId == 3) {
-                                                                            option[0] = {
-                                                                                title: "Pass",
-                                                                                color: "#e7f3ef"
-                                                                            };
-                                                                            option[1] = {
-                                                                                title: "Fail",
-                                                                                color: "#f3e0e5"
-                                                                            };
-                                                                            option[2] = {
-                                                                                title: "N/A",
-                                                                                color: "#eaebed"
-                                                                            };
-                                                                        }
-                                                                        if (optionId == 4) {
-                                                                            option[0] = {
-                                                                                title: "Yes",
-                                                                                color: "#e7f3ef"
-                                                                            };
-                                                                            option[1] = {
-                                                                                title: "No",
-                                                                                color: "#f3e0e5"
-                                                                            };
-                                                                            option[2] = {
-                                                                                title: "N/A",
-                                                                                color: "#eaebed"
-                                                                            };
-                                                                        }
-                                                                        if (optionId == 5) {
-                                                                            option[0] = {
-                                                                                title: "Compliant",
-                                                                                color: "#e7f3ef"
-                                                                            };
-                                                                            option[1] = {
-                                                                                title: "Non-Compliant",
-                                                                                color: "#f3e0e5"
-                                                                            };
-                                                                            option[2] = {
-                                                                                title: "N/A",
-                                                                                color: "#eaebed"
-                                                                            };
-                                                                        }
-                                                                        @this.set('pages.' + pageSKey + '.question.' + questionSKey + '.multiple_choice', option);
-                                                                    }
-                                                                </script>
                                                             </div>
                                                             <button class="bKqzym blqywb">
                                                                 <svg width="21" height="21"
