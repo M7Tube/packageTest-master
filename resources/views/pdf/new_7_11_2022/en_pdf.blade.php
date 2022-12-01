@@ -8358,9 +8358,10 @@
         </div>
         <div style="margin:20px;">
             @forelse ($data['title_page'] as $record)
-                <div class="row" style="margin-bottom: {{ $record['response'] == 7 ? '0px' : '10px' }};">
+                <div class="row">
+                    {{--  style="margin-bottom: {{ $record['response'] == 7 ? '0px' : '10px' }};" --}}
                     <div class="col-xs-5" style="">
-                        <span class="" style="font-size: 15.4292px;">{{ $record['key'] ?? '' }}</span>
+                        <span class="" style="font-size: 15.4292px;">{{ $record['key'] ?? 'Untitled question' }}</span>
                     </div>
                     <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
                         @if ($record['response'] == 7)
@@ -8374,7 +8375,8 @@
                         @endif
                     </div>
                 </div>
-                <div style="border-bottom: 1px solid #e0e0e0; margin-bottom: 10px;"></div>
+                <div style="border-bottom: 1px solid #e0e0e0;"></div>
+                {{--  margin-bottom: 10px; --}}
             @empty
             @endforelse
         </div>

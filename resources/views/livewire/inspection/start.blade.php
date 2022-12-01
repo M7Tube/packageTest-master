@@ -1,5 +1,5 @@
 <div id="root">
-    <button wire:click.prevent="test">print test</button>
+    {{-- <button wire:click.prevent="test">print test</button> --}}
     <div id="app-container" class="gtvfKz">
         <div class="brCoKm">
             <div class="gBIxUd">
@@ -100,7 +100,7 @@
                                                         </div>
                                                     @elseif ($question['response'] == 5)
                                                         <input class="form-control fs-block text-left"
-                                                        {{-- hxhzuE gEIQZu  --}}
+                                                            {{-- hxhzuE gEIQZu  --}}
                                                             type="{{ !empty($question['is_date']) && !empty($question['is_time']) ? ($question['is_date'] == 1 && $question['is_time'] == 1 ? 'datetime-local' : 'date') : 'date' }}"
                                                             wire:model="title_page_result.{{ $loop->index }}.value">
                                                     @elseif ($question['response'] == 4)
@@ -194,20 +194,28 @@
                                                             });
                                                         </script>
                                                     @elseif ($question['response'] == 7)
-                                                        <div class="btn-group" role="group"
+                                                        <div class="" role="group"
                                                             aria-label="Basic radio toggle button group">
                                                             <div class="row">
                                                                 @forelse ($question['multiple_choice'] as $response)
-                                                                    <div class="col-12 my-1">
+                                                                    <div class="col-12 my-1 test">
                                                                         <input type="radio" class="btn-check"
                                                                             wire:model.lazy="title_page_result.{{ $loop->parent->index }}.value"
                                                                             value="{{ $response['title'] }}._.{{ $response['color'] ?? '' }}"
                                                                             id="{{ $loop->parent->index }}{{ $loop->index }}">
-                                                                        <label class="btn w-100"
+                                                                        <label class="btn w-100 border-0"
+                                                                            style=""
                                                                             for="{{ $loop->parent->index }}{{ $loop->index }}">
                                                                             {{ $response['title'] ?? '' }}
                                                                         </label>
                                                                     </div>
+                                                                    <style>
+                                                                        .test:focus-within {
+                                                                            background-color: red;
+                                                                            border: 2px solid grey;
+                                                                            transition: width 2s;
+                                                                        }
+                                                                    </style>
                                                                 @empty
                                                                 @endforelse
                                                             </div>
@@ -354,7 +362,8 @@
                                                                     style="display: flex; justify-content: space-between; align-items: center;">
                                                                     <div class="czOQuo">
                                                                         <button color="#ffffff" font-size="0.875rem"
-                                                                            type="button" onclick="hide_note_action({{ $loop->index }})"
+                                                                            type="button"
+                                                                            onclick="hide_note_action({{ $loop->index }})"
                                                                             class="cEDpxx">
                                                                             Save
                                                                         </button>
@@ -762,7 +771,8 @@
                                                                                 <div class="czOQuo">
                                                                                     <button color="#ffffff"
                                                                                         font-size="0.875rem"
-                                                                                        type="button" onclick="page_hide_note_action({{ $loop->parent->index }},{{ $loop->index }})"
+                                                                                        type="button"
+                                                                                        onclick="page_hide_note_action({{ $loop->parent->index }},{{ $loop->index }})"
                                                                                         class="cEDpxx">
                                                                                         Save
                                                                                     </button>

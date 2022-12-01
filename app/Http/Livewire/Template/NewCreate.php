@@ -74,13 +74,21 @@ class NewCreate extends Component
         } elseif ($response == 7) {
             if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
                 unset($this->title_page_questions[$this->activeone]);
-            }
-            $this->title_page_questions[$this->activeone]['response'] = $response;
-            // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
-            $this->title_page_questions[$this->activeone]['is_required'] = false;
-            $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
-            if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
-                $this->title_page_questions[$this->activeone]['multiple_choice'] = [''];
+                $this->title_page_questions[$this->activeone]['response'] = $response;
+                // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
+                $this->title_page_questions[$this->activeone]['is_required'] = false;
+                $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
+                if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
+                    $this->title_page_questions[$this->activeone]['multiple_choice'] = [''];
+                }
+            } else {
+                // $this->title_page_questions[$this->activeone]['response'] = $response;
+                // // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
+                // $this->title_page_questions[$this->activeone]['is_required'] = false;
+                // $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
+                // if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
+                //     $this->title_page_questions[$this->activeone]['multiple_choice'] = [''];
+                // }
             }
         } else {
             unset($this->title_page_questions[$this->activeone]);
@@ -125,13 +133,122 @@ class NewCreate extends Component
         }
     }
 
+    public function setResponseValueFromReadyOptions($responseid, $optionid)
+    {
+        $this->title_page_questions[$this->activechangingresponse]['response'] = $responseid;
+        $option = [];
+        if ($optionid == 1) {
+            $option = [
+                [
+                    'title' => 'Good',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'Fair',
+                    'color' => '#f9f2e2',
+                ],
+                [
+                    'title' => 'Poor',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ];
+        }
+        if ($optionid == 2) {
+            $option = [
+                [
+                    'title' => 'Safe',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'At Risk',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ];
+        }
+        if ($optionid == 3) {
+            $option = [
+                [
+                    'title' => 'Pass',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'Fail',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ];
+        }
+        if ($optionid == 4) {
+            $option = [
+                [
+                    'title' => 'Yes',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'No',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ];
+        }
+        if ($optionid == 5) {
+            $option = [
+                [
+                    'title' => 'Compliant',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'Non-Compliant',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ];
+        }
+        $this->title_page_questions[$this->activechangingresponse]['multiple_choice'] = $option;
+    }
+
     public function test2()
     {
         unset($this->title_page_questions[0]['text_answer_format']);
     }
     public function test()
     {
-        dd($this->title_page_questions);
+        $option = [
+            [
+                'title' => 'Good',
+                'color' => '#e7f3ef',
+            ],
+            [
+                'title' => 'Fair',
+                'color' => '#f9f2e2',
+            ],
+            [
+                'title' => 'Poor',
+                'color' => '#f3e0e5',
+            ],
+            [
+                'title' => 'N/A',
+                'color' => '#eaebed',
+            ],
+        ];
+        dd($option);
     }
     public function save_multiple_choise($type, $questionKey)
     {
