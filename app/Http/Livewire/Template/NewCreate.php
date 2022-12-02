@@ -22,13 +22,15 @@ class NewCreate extends Component
     public $activeone;
     public $activechangingresponse;
     public $uploading;
-    protected $queryString = ['activeone', 'template_id', 'activechangingresponse'];
+    public $new_template;
+    protected $queryString = ['activeone', 'template_id', 'activechangingresponse','new_template'];
     protected $listeners = [
         'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex'
     ];
     public function boot()
     {
         $this->activeone = 0;
+        $this->new_template = 0;
         $this->uploading = false;
         $this->title_page_questions[] = ['response' => 1, 'is_required' => false, 'text_answer_format' => 0];
 
@@ -313,45 +315,19 @@ class NewCreate extends Component
             ];
         }
         $this->pages[$pageSKey]['question'][$questionSKey]['multiple_choice'] = $option;
-
     }
 
-    public function test2()
-    {
-        unset($this->title_page_questions[0]['text_answer_format']);
-    }
-    public function test()
-    {
-        $option = [
-            [
-                'title' => 'Good',
-                'color' => '#e7f3ef',
-            ],
-            [
-                'title' => 'Fair',
-                'color' => '#f9f2e2',
-            ],
-            [
-                'title' => 'Poor',
-                'color' => '#f3e0e5',
-            ],
-            [
-                'title' => 'N/A',
-                'color' => '#eaebed',
-            ],
-        ];
-        dd($option);
-    }
     public function save_multiple_choise($type, $questionKey)
     {
-        if (is_null($this->common_multiple_choise_options))
-            $this->common_multiple_choise_options[0] = $this->title_page_questions[$questionKey]['multiple_choice'];
-        else {
-            // dd(count($this->common_multiple_choise_options));
-            $this->common_multiple_choise_options[count($this->common_multiple_choise_options)] = $this->title_page_questions[$questionKey]['multiple_choice'];
-        }
-        // dd($this->common_multiple_choise_options);
+        // if (is_null($this->common_multiple_choise_options))
+        //     $this->common_multiple_choise_options[0] = $this->title_page_questions[$questionKey]['multiple_choice'];
+        // else {
+        //     // dd(count($this->common_multiple_choise_options));
+        //     $this->common_multiple_choise_options[count($this->common_multiple_choise_options)] = $this->title_page_questions[$questionKey]['multiple_choice'];
+        // }
+        // // dd($this->common_multiple_choise_options);
     }
+
     public function increment()
     {
         $this->activeone = $this->activeone + 1;
@@ -374,11 +350,13 @@ class NewCreate extends Component
         if (count($this->title_page_questions[$questionKey]['multiple_choice']) > 0)
             $this->title_page_questions[$questionKey]['multiple_choice'] = [''];
     }
+
     public function page_clear_new_response_option($pageKey, $questionKey)
     {
         if (count($this->pages[$pageKey][$questionKey]['multiple_choice']) > 0)
             $this->pages[$pageKey][$questionKey]['multiple_choice'] = [''];
     }
+
     public function title_page_add_question()
     {
         if (str_contains($this->activeone, 'p_')) {
@@ -391,43 +369,24 @@ class NewCreate extends Component
         }
     }
 
-
     public function title_page_delete_question($key)
     {
-        // dd(count($this->title_page_questions));
-        if (count($this->title_page_questions) > 1)
-            // unset($this->title_page_questions[$key]);
+        if (count($this->title_page_questions) > 1) {
             array_splice($this->title_page_questions, $key, 1);
+            $this->updating();
+        }
     }
 
     public function add_page()
     {
-        // dd($this->pages);
         $this->pages[] = ['question' => [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]];
-        // dd($this->pages);
     }
 
     public function delete_page($key)
     {
         array_splice($this->pages, $key, 1);
         $this->updating();
-        // unset($this->pages[$key]);
     }
-
-    // public function saveBulkEdit()
-    // {
-    //     foreach ($this->title_page_questions as $key => $value) {
-    //         foreach ([$value] as $key2 => $value2) {
-    //             // dd($value2);
-    //             if (array_key_exists('is_required', [$value2])) {
-    //                 $value2['is_required'] = true;
-    //             } else {
-    //                 $this->title_page_questions[$key] = ['is_required' => true];
-    //                 // array_push($this->title_page_questions[$key],['is_required' => true]);
-    //             }
-    //         }
-    //     }
-    // }
 
     public function changeindex($oldIndex, $newIndex)
     {
@@ -462,33 +421,13 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    // public function normal_page_add_question($pageKey)
-    // {
-    //     // $this->pages[$pageKey] = ['question'=>['']];
-    //     // dd($pageKey);
-    //     $this->pages[$pageKey]['question'][] = '';
-    //     // foreach ($this->pages[$pageKey] as $key => $value) {
-    //     //     dd($value);
-    //     //     $value=['question'=>['']];
-    //     // }
-    // }
-
     public function normal_page_delete_question($pageKey, $questionKey)
     {
-        if ($this->pages[$pageKey]['question'] > 1)
+        if ($this->pages[$pageKey]['question'] > 1) {
             unset($this->pages[$pageKey]['question'][$questionKey]);
+            $this->updating();
+        }
     }
-
-    // public function clear_page()
-    // {
-    //     $this->title = null;
-    //     $this->desc = null;
-    //     $this->icon = null;
-    //     $this->questions = [''];
-    //     $this->title_page_questions = [''];
-    //     $this->pages = [];
-    //     return redirect()->route('new-create-template');
-    // }
 
     public function delete_image()
     {

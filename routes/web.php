@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::view('test-location', 'test_location');
 Route::get('/', function () {
     return redirect()->route('login');
@@ -30,7 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::group(['prefix' => 'templates'], function () {
         Route::view('/', 'NewPages.template.index')->name('index.template');
-        Route::view('/create', 'NewPages.template.create')->name('create.template');
+        Route::view('/test', 'NewPages.template.test');
+        Route::view('/create', 'NewPages.template.create', ['new_template' => 0])->name('create.template');
         Route::view('/preview/id/{id?}', 'NewPages.template.preview')->name('preview.template');
     });
     Route::group(['prefix' => 'inspection'], function () {
