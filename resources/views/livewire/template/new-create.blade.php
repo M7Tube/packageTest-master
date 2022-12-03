@@ -97,7 +97,7 @@
                             </div>
                             <div>
                                 <div class="kxrOmS eqGxMu">
-                                    <div class="cldFRc">
+                                    <div class="cldFRc" wire:click.prevent="title_page_add_question">
                                         <svg viewBox="0 0 24 24" width="14" height="14"
                                             style="cursor: pointer;" class="gdPDbX" focusable="false">
                                             <path d="M0 0h24v24H0z" fill="none"></path>
@@ -642,7 +642,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button class="bKqzym blqywb">
+                                                    <button class="bKqzym blqywb" wire:click.prevent="title_page_delete_question({{ $loop->index }})">
                                                         <svg width="21" height="21" viewBox="0 0 14 14"
                                                             focusable="false">
                                                             <path
@@ -1254,7 +1254,7 @@
                                 <div class="cxbltl">
                                     <div>
                                         <div class="kxrOmS eqGxMu">
-                                            <div class="cldFRc">
+                                            <div class="cldFRc" wire:click.prevent="title_page_add_question">
                                                 <svg viewBox="0 0 24 24" width="14" height="14"
                                                     style="cursor: pointer;" class="gdPDbX" focusable="false">
                                                     <path d="M0 0h24v24H0z" fill="none"></path>
@@ -2340,7 +2340,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <button class="bKqzym blqywb">
+                                                            <button class="bKqzym blqywb" wire:click.prevent="normal_page_delete_question({{ $loop->parent->index }},{{ $loop->index }})">
                                                                 <svg width="21" height="21"
                                                                     viewBox="0 0 14 14" focusable="false">
                                                                     <path
