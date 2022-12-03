@@ -820,7 +820,7 @@ body h6,
     outline: 0px;
     text-align: center;
     text-overflow: ellipsis;
-    transition: all 200ms ease 0s;
+    /* transition: all 200ms ease 0s; */
     user-select: none;
     word-break: normal;
     display: inline-flex;
@@ -843,7 +843,7 @@ body h6,
     outline: 0px;
     text-align: center;
     text-overflow: ellipsis;
-    transition: all 200ms ease 0s;
+    /* transition: all 200ms ease 0s; */
     user-select: none;
     word-break: normal;
     display: inline-flex;
