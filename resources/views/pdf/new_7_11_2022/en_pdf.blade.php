@@ -8365,9 +8365,23 @@
                     </div>
                     <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
                         @if ($record['response'] == 7)
-                            <h6
-                                style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ explode('._.', $record['value'] ?? '')[1] ?? '' }};">
-                                {{ explode('._.', $record['value'] ?? '')[0] ?? '' }}</h6>
+                            @if (is_array($record['value']))
+                                @if (isset($record['value']['option']))
+                                    <h6
+                                    style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ $record['value']['value'] ?? '' }};">
+                                    {{  $record['value']['key'] ?? '' }}</h6>
+                                @else
+                                @foreach ($record['value'] as $value)
+                                    <h6
+                                    style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ explode('._.', $value ?? '')[1] ?? '' }};">
+                                    {{ explode('._.', $value ?? '')[0] ?? '' }}</h6>
+                                @endforeach
+                                @endif
+                            @else
+                                <h6
+                                    style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ explode('._.', $record['value'] ?? '')[1] ?? '' }};">
+                                    {{ explode('._.', $record['value'] ?? '')[0] ?? '' }}</h6>
+                            @endif
                         @else
                             <span class="" style="color:#7b7673; font-size: 12.4292px;">
                                 {{ $record['value'] ?? '' }}

@@ -1,5 +1,5 @@
 <div id="root">
-    {{-- <button wire:click.prevent="test">print test</button> --}}
+    <button wire:click.prevent="test">print test</button>
     <div id="app-container" class="gtvfKz">
         <div class="brCoKm">
             <div class="gBIxUd">
