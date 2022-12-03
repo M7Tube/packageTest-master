@@ -32,7 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'templates'], function () {
         Route::view('/', 'NewPages.template.index')->name('index.template');
         Route::view('/test', 'NewPages.template.test');
-        Route::view('/create', 'NewPages.template.create', ['new_template' => 0])->name('create.template');
+        Route::view('/create', 'NewPages.template.create')->name('create.template');
+        // , ['new_template' => 0]
         Route::view('/preview/id/{id?}', 'NewPages.template.preview')->name('preview.template');
     });
     Route::group(['prefix' => 'inspection'], function () {

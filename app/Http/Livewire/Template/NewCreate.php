@@ -23,7 +23,7 @@ class NewCreate extends Component
     public $activechangingresponse;
     public $uploading;
     public $new_template;
-    protected $queryString = ['activeone', 'template_id', 'activechangingresponse','new_template'];
+    protected $queryString = ['activeone', 'template_id', 'activechangingresponse', 'new_template'];
     protected $listeners = [
         'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex'
     ];
@@ -33,25 +33,20 @@ class NewCreate extends Component
         $this->new_template = 0;
         $this->uploading = false;
         $this->title_page_questions[] = ['response' => 1, 'is_required' => false, 'text_answer_format' => 0];
-
-        $last = NewTemplate::all(['new_template_id'])->last();
+        $last = NewTemplate::all()->last();
         if ($last) {
             $this->template_id = $last['new_template_id'];
-            $this->check = NewTemplate::find($last['new_template_id']);
-            if ($this->check) {
-                $this->title = $this->check->title;
-                $this->desc = $this->check->desc;
-                // if ($this->check->icon)
-                $this->icon = $this->check->icon;
-                $this->title_page_questions = $this->check->title_page;
-                $this->title_page_title = $this->check->title_page_title;
-                $this->pages = $this->check->pages;
-                $this->common_multiple_choise_options = $this->check->common_multiple_choise_options;
-            }
+            $this->title = $last->title;
+            $this->desc = $last->desc;
+            // if ($last->icon)
+            $this->icon = $last->icon;
+            $this->title_page_questions = $last->title_page;
+            $this->title_page_title = $last->title_page_title;
+            $this->pages = $last->pages;
+            $this->common_multiple_choise_options = $last->common_multiple_choise_options;
         } else {
             $this->template_id = 1;
         }
-        // dd($this->icon);
     }
 
     public function setResponseValue($response)
