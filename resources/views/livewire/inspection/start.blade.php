@@ -214,22 +214,23 @@
                                                                         @endforelse
                                                                     </div>
                                                                 @elseif ($question['multi_select_multiple_choise'] == true)
-                                                                <div wire:ignore>
-                                                                    <select class="selectpicker w-100" data-live-search="true" multiple
-                                                                        wire:model="title_page_result.{{ $loop->index }}.value" >
-                                                                        <option value="0">
-                                                                            Nothing selected
-                                                                        </option>
-                                                                        @forelse ($question['multiple_choice'] as $response)
-                                                                            <option
-                                                                                value="{{ $response['title'] }}._.{{ $response['color'] }}"
-                                                                                data-content="<span class='badge' style='background-color:{{ $response['color'] }}; color:black;'>{{ $response['title'] ?? '' }}</span>">
-                                                                                {{ $response['title'] ?? '' }}
+                                                                    <div wire:ignore>
+                                                                        <select class="selectpicker w-100"
+                                                                            data-live-search="true" multiple
+                                                                            wire:model="title_page_result.{{ $loop->index }}.value">
+                                                                            <option value="0">
+                                                                                Nothing selected
                                                                             </option>
-                                                                        @empty
-                                                                        @endforelse
-                                                                    </select>
-                                                                </div>
+                                                                            @forelse ($question['multiple_choice'] as $response)
+                                                                                <option
+                                                                                    value="{{ $response['title'] }}._.{{ $response['color'] }}"
+                                                                                    data-content="<span class='badge' style='background-color:{{ $response['color'] }}; color:black;'>{{ $response['title'] ?? '' }}</span>">
+                                                                                    {{ $response['title'] ?? '' }}
+                                                                                </option>
+                                                                            @empty
+                                                                            @endforelse
+                                                                        </select>
+                                                                    </div>
                                                                 @endif
                                                             @else
                                                                 <div class="iSZloI">
@@ -251,7 +252,8 @@
                                                             @endif
                                                         @elseif (count($question['multiple_choice']) > 4)
                                                             <div wire:ignore>
-                                                                <select class="selectpicker w-100" data-live-search="true"
+                                                                <select class="selectpicker w-100"
+                                                                    data-live-search="true"
                                                                     wire:model="title_page_result.{{ $loop->index }}.value">
                                                                     <option value="0">
                                                                         Nothing selected
