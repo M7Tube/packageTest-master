@@ -29,9 +29,9 @@ class Start extends Component
         // $this->page = 0;
         $this->template_id = request('id');
         $this->data = NewTemplate::find($this->template_id);
-        $this->title= $this->data->title ?? null;
-        $this->desc= $this->data->desc ?? null;
-        $this->icon= $this->data->icon ?? null;
+        $this->title = $this->data->title ?? null;
+        $this->desc = $this->data->desc ?? null;
+        $this->icon = $this->data->icon ?? null;
         foreach ($this->data['title_page'] as $key => $value) {
             $this->title_page_result[$key]['key'] = $value['title'] ?? null;
             $this->title_page_result[$key]['response'] = $value['response'] ?? null;
@@ -41,8 +41,10 @@ class Start extends Component
             $this->title_page_result[$key]['note'] = null;
             if ($value['response'] == 2) {
                 $this->title_page_result[$key]['value'] = $value['docNum_format'];
-            }elseif ($value['response'] == 5) {
-                $this->title_page_result[$key]['value'] = date("Y-m-d H:i:s");;
+            } elseif ($value['response'] == 5) {
+                $this->title_page_result[$key]['value'] = date("Y-m-d H:i:s");
+            } elseif ($value['response'] == 7) {
+                $this->title_page_result[$key]['value'] = ['option' => -1, 'key' => null, 'value' => null];
             }
         }
     }
@@ -62,14 +64,21 @@ class Start extends Component
             array_push($this->pictures, $this->list);
         }
     }
+
     public function test()
     {
         dd($this->title_page_result);
     }
+
+    public function set_multiple_choice_value($questionKey, $optionKey, $title, $color)
+    {
+        $this->title_page_result[$questionKey]['value'] = ['option' => $optionKey, 'key' => $title, 'value' => $color];
+    }
+
     public function export()
     {
         // dd($this->page_result);
-        return redirect()->route('new_export', ['title'=>$this->title,'desc'=>$this->desc,'icon'=>$this->icon,'title_page' => $this->title_page_result, 'pages' => $this->page_result]);
+        return redirect()->route('new_export', ['title' => $this->title, 'desc' => $this->desc, 'icon' => $this->icon, 'title_page' => $this->title_page_result, 'pages' => $this->page_result]);
     }
 
     public function next_page()

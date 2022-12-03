@@ -194,7 +194,80 @@
                                                             });
                                                         </script>
                                                     @elseif ($question['response'] == 7)
-                                                        <div class="" role="group"
+                                                        @if (count($question['multiple_choice']) <= 4)
+                                                            @if (!empty($question['multi_select_multiple_choise']))
+                                                                @if ($question['multi_select_multiple_choise'] == false)
+                                                                    <div class="iSZloI">
+                                                                        @forelse ($question['multiple_choice'] as $response)
+                                                                            <button
+                                                                                wire:click.prevent="set_multiple_choice_value({{ $loop->parent->index }},{{ $loop->index }},'{{ $response['title'] ?? '' }}','{{ $response['color'] ?? '' }}')"
+                                                                                type="button" class="hUtmQb "
+                                                                                style="background-color: {{ $title_page_result[$loop->parent->index]['value']['option'] == $loop->index && $title_page_result[$loop->parent->index]['value']['option'] != -1 ? $response['color'] ?? '' : '' }}; {{ $title_page_result[$loop->parent->index]['value']['option'] == $loop->index &&
+                                                                                $title_page_result[$loop->parent->index]['value']['option'] != -1
+                                                                                    ? 'color: linear-gradient(var(--enable-color) calc(100% * var(--enable)),var(--disable-color) 0);'
+                                                                                    : '' }}">
+                                                                                <span>
+                                                                                    {{ $response['title'] ?? '' }}
+                                                                                </span>
+                                                                            </button>
+                                                                        @empty
+                                                                        @endforelse
+                                                                    </div>
+                                                                @elseif ($question['multi_select_multiple_choise'] == true)
+                                                                <div wire:ignore>
+                                                                    <select class="selectpicker" data-live-search="true" multiple
+                                                                        wire:model="title_page_result.{{ $loop->index }}.value" >
+                                                                        <option value="0">
+                                                                            Nothing selected
+                                                                        </option>
+                                                                        @forelse ($question['multiple_choice'] as $response)
+                                                                            <option
+                                                                                value="{{ $response['title'] }}._.{{ $response['color'] }}"
+                                                                                data-content="<span class='badge' style='background-color:{{ $response['color'] }}; color:black;'>{{ $response['title'] ?? '' }}</span>">
+                                                                                {{ $response['title'] ?? '' }}
+                                                                            </option>
+                                                                        @empty
+                                                                        @endforelse
+                                                                    </select>
+                                                                </div>
+                                                                @endif
+                                                            @else
+                                                                <div class="iSZloI">
+                                                                    @forelse ($question['multiple_choice'] as $response)
+                                                                        <button
+                                                                            wire:click.prevent="set_multiple_choice_value({{ $loop->parent->index }},{{ $loop->index }},'{{ $response['title'] ?? '' }}','{{ $response['color'] ?? '' }}')"
+                                                                            type="button" class="hUtmQb "
+                                                                            style="background-color: {{ $title_page_result[$loop->parent->index]['value']['option'] == $loop->index && $title_page_result[$loop->parent->index]['value']['option'] != -1 ? $response['color'] ?? '' : '' }}; {{ $title_page_result[$loop->parent->index]['value']['option'] == $loop->index &&
+                                                                            $title_page_result[$loop->parent->index]['value']['option'] != -1
+                                                                                ? 'color: linear-gradient(var(--enable-color) calc(100% * var(--enable)),var(--disable-color) 0);'
+                                                                                : '' }}">
+                                                                            <span>
+                                                                                {{ $response['title'] ?? '' }}
+                                                                            </span>
+                                                                        </button>
+                                                                    @empty
+                                                                    @endforelse
+                                                                </div>
+                                                            @endif
+                                                        @elseif (count($question['multiple_choice']) > 4)
+                                                            <div wire:ignore>
+                                                                <select class="selectpicker" data-live-search="true"
+                                                                    wire:model="title_page_result.{{ $loop->index }}.value">
+                                                                    <option value="0">
+                                                                        Nothing selected
+                                                                    </option>
+                                                                    @forelse ($question['multiple_choice'] as $response)
+                                                                        <option
+                                                                            value="{{ $response['title'] }}._.{{ $response['color'] }}"
+                                                                            data-content="<span class='badge' style='background-color:{{ $response['color'] }}; color:black;'>{{ $response['title'] ?? '' }}</span>">
+                                                                            {{ $response['title'] ?? '' }}
+                                                                        </option>
+                                                                    @empty
+                                                                    @endforelse
+                                                                </select>
+                                                            </div>
+                                                        @endif
+                                                        {{-- <div class="" role="group"
                                                             aria-label="Basic radio toggle button group">
                                                             <div class="row">
                                                                 @forelse ($question['multiple_choice'] as $response)
@@ -219,7 +292,7 @@
                                                                 @empty
                                                                 @endforelse
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     @elseif ($question['response'] == 8)
                                                         <textarea rows="5" cols="30" type="text" class="form-control" id="demo"></textarea>
                                                         <script>
