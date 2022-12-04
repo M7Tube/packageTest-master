@@ -1248,10 +1248,9 @@
                                                                                                 Responses
                                                                                             </div>
                                                                                         </div>
-                                                                                        @if (!empty($common_multiple_choise_options))
+                                                                                        {{-- @if (!empty($common_multiple_choise_options))
                                                                                             <div class="gupkBu eCBvzO">
                                                                                                 <div class="evLYbt"
-                                                                                                    {{-- Question key | response id | readyOption id --}}
                                                                                                     wire:click.prevent="setResponseValueFromReadyOptions(7,1)"
                                                                                                     data-bs-dismiss="modal">
                                                                                                     <div
@@ -1270,7 +1269,7 @@
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
-                                                                                        @endif
+                                                                                        @endif --}}
                                                                                         <div class="gupkBu eCBvzO">
                                                                                             <div class="evLYbt"
                                                                                                 {{-- Question key | response id | readyOption id --}}

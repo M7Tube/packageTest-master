@@ -460,6 +460,82 @@ class NewCreate extends Component
 
     public function updating()
     {
+        $option = [
+            [
+                [
+                    'title' => 'Good',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'Fair',
+                    'color' => '#f9f2e2',
+                ],
+                [
+                    'title' => 'Poor',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ],
+            [
+                [
+                    'title' => 'Safe',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'At Risk',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ],
+            [
+                [
+                    'title' => 'Pass',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'Fail',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ],
+            [
+                [
+                    'title' => 'Yes',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'No',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ],
+            [
+                [
+                    'title' => 'Compliant',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'Non-Compliant',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ]
+        ];
         $check_for_exist = NewTemplate::find($this->template_id);
         if (!$this->icon) {
             if (!$check_for_exist) {
@@ -469,6 +545,7 @@ class NewCreate extends Component
                     'title_page' => $this->title_page_questions ?? [],
                     'title_page_title' => $this->title_page_title ?? null,
                     'pages' => $this->pages ?? [],
+                    'common_multiple_choise_options' => $option ?? null,
                     'user_id' => 1,
                 ]);
             } else {
@@ -478,6 +555,7 @@ class NewCreate extends Component
                 $check_for_exist->title_page = $this->title_page_questions ?? [];
                 $check_for_exist->title_page_title = $this->title_page_title ?? null;
                 $check_for_exist->pages = $this->pages ?? [];
+                $check_for_exist->common_multiple_choise_options = $option ?? null;
                 $check_for_exist->user_id = 1;
                 $check_for_exist->save();
             }
@@ -490,6 +568,7 @@ class NewCreate extends Component
                     'title_page' => $this->title_page_questions ?? [],
                     'title_page_title' => $this->title_page_title ?? null,
                     'pages' => $this->pages ?? [],
+                    'common_multiple_choise_options' => $option ?? null,
                     'user_id' => 1,
                 ]);
                 $this->icon->storeAs('images', $this->icon->getClientOriginalName());
@@ -499,6 +578,7 @@ class NewCreate extends Component
                 $check_for_exist->title_page = $this->title_page_questions ?? [];
                 $check_for_exist->title_page_title = $this->title_page_title ?? null;
                 $check_for_exist->pages = $this->pages ?? [];
+                $check_for_exist->common_multiple_choise_options = $option ?? null;
                 $check_for_exist->user_id = 1;
                 if ($this->uploading == true) {
                     $this->icon->storeAs('images', $this->icon->getClientOriginalName());

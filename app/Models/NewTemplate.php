@@ -27,6 +27,7 @@ class NewTemplate extends Model
     protected $casts = [
         'title_page' => 'json',
         'pages' => 'json',
+        'common_multiple_choise_options' => 'json',
     ];
 
     public function user()
