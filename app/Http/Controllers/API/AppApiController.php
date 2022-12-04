@@ -345,7 +345,7 @@ class AppApiController extends Controller
             'title_page'=>json_decode($request['Template'])->data->title_page,
             'pages'=>json_decode($request['Template'])->data->pages
         ];
-        // return $data;
+        return $data;
         ini_set('max_execution_time', '300');
         ini_set("pcre.backtrack_limit", "50000000");
         view()->share('data', $data);
@@ -355,7 +355,7 @@ class AppApiController extends Controller
         $name = 'file'. now() .'.pdf';
         //  storeAs($name, $output);
         Storage::put('pdf/' . $name, $pdf->output());
-        
+
         return $file = 'https://www.c-rpt.com/storage/app/pdf' . '/' . $name;
         // $template = NewTemplate::find($request->template_id);
         // if ($template) {
