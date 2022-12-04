@@ -804,33 +804,114 @@
                                                     <div class="cukrBe">
                                                         <div class="hLDzma">
                                                             <div>
-                                                                <div class="eMiEgJ">
-                                                                    <div role="checkbox" aria-checked="true"
-                                                                        class="xxrKk">
-                                                                        <input aria-hidden="false" type="checkbox"
-                                                                            aria-checked="true" checked=""
-                                                                            hidden="">
-                                                                        <div data-anchor="renderer-container"
-                                                                            class="eFQUJT">
-                                                                            <svg viewBox="0 0 24 24" width="21"
-                                                                                height="21"
-                                                                                style="display: inline-block;"
-                                                                                focusable="false">
-                                                                                <path fill="none"
-                                                                                    d="M0 0h24v24H0V0z">
-                                                                                </path>
-                                                                                <path fill="#4740d4"
-                                                                                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.29 13.29a.996.996 0 0 1-1.41 0L5.71 12.7a.996.996 0 1 1 1.41-1.41L10 14.17l6.88-6.88a.996.996 0 1 1 1.41 1.41l-7.58 7.59z">
-                                                                                </path>
-                                                                            </svg>
+                                                                @if ($title_page_question['response'] == 2)
+                                                                    <div class="epicTj">
+                                                                        <div class="krtjey">
+                                                                            <span style="margin-top:50px; "></span>
+                                                                            Format:
+                                                                            <div class="ORzaJ knjhoD">
+                                                                                <input type="text"
+                                                                                    class="docNum_format"
+                                                                                    wire:model.lazy="title_page_questions.{{ $qkey }}.docNum_format" />
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                    <label class="fJJVDV">
-                                                                        <div class="gEVyqy">
-                                                                            Required
+                                                                @elseif($title_page_question['response'] == 1)
+                                                                    <div class="epicTj">
+                                                                        <div class="krtjey">
+                                                                            <span style="margin-top:50px; "></span>
+                                                                            Format:
+                                                                            <div class="ORzaJ knjhoD">
+                                                                                <select
+                                                                                    wire:model.lazy="title_page_questions.{{ $qkey }}.text_answer_format"
+                                                                                    id="text_answer_format{{ $loop->index }}"
+                                                                                    class="text_answer_format">
+                                                                                    <option value="0">
+                                                                                        {{ __('Short answer') }}
+                                                                                    </option>
+                                                                                    <option value="1">
+                                                                                        {{ __('Long answer') }}
+                                                                                    </option>
+                                                                                </select>
+                                                                            </div>
                                                                         </div>
-                                                                    </label>
-                                                                </div>
+                                                                    </div>
+                                                                @elseif($title_page_question['response'] == 5)
+                                                                    <div class="epicTj">
+                                                                        <div class="eMiEgJ">
+                                                                            <div role="checkbox" aria-checked="true"
+                                                                                class="xxrKk">
+                                                                                <input id="is_date{{ $loop->index }}"
+                                                                                    aria-hidden="false"
+                                                                                    type="checkbox"
+                                                                                    wire:model="title_page_questions.{{ $qkey }}.is_date">
+                                                                            </div>
+                                                                            <label
+                                                                                for="9ea156a4-4105-43e5-9bcc-686d413e9961-input"
+                                                                                class="fJJVDV">
+                                                                                <div class="fDpeEn">
+                                                                                    Date</div>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="epicTj">
+                                                                        <div class="eMiEgJ">
+                                                                            <div role="checkbox" aria-checked="true"
+                                                                                class="xxrKk">
+                                                                                <input id="is_time{{ $loop->index }}"
+                                                                                    aria-hidden="false"
+                                                                                    type="checkbox"
+                                                                                    wire:model="title_page_questions.{{ $qkey }}.is_time">
+                                                                            </div>
+                                                                            <label
+                                                                                for="128d3837-41f6-4887-9807-8fd3c5db4330-input"
+                                                                                class="fJJVDV">
+                                                                                <div class="fDpeEn">
+                                                                                    Time</div>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                @elseif($title_page_question['response'] == 7)
+                                                                    <div class="epicTj">
+                                                                        <div class="eMiEgJ">
+                                                                            <div role="checkbox" aria-checked="true"
+                                                                                class="xxrKk">
+                                                                                <input
+                                                                                    id="multi_select_multiple_choise{{ $loop->index }}"
+                                                                                    aria-hidden="false"
+                                                                                    type="checkbox"
+                                                                                    wire:model="title_page_questions.{{ $qkey }}.multi_select_multiple_choise">
+                                                                            </div>
+                                                                            <label
+                                                                                for="9ea156a4-4105-43e5-9bcc-686d413e9961-input"
+                                                                                class="fJJVDV">
+                                                                                <div class="fDpeEn">
+                                                                                    Multiple Selection
+                                                                                </div>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                                @if ($title_page_question['response'] != 10)
+                                                                    <div class="epicTj">
+                                                                        <div class="eMiEgJ">
+                                                                            <div role="checkbox" aria-checked="false"
+                                                                                class="xxrKk">
+                                                                                <input
+                                                                                    id="is_required{{ $loop->index }}"
+                                                                                    aria-hidden="false"
+                                                                                    type="checkbox"
+                                                                                    wire:model="title_page_questions.{{ $qkey }}.is_required">
+                                                                            </div>
+                                                                            <label class="fJJVDV">
+                                                                                <div class="fDpeEn">
+                                                                                    Required
+                                                                                </div>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1214,7 +1295,8 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                             <button type="button"
-                                                                                                class="jvZSBO" wire:click.prevent="EditMultipleChoiseOptionModal"
+                                                                                                class="jvZSBO"
+                                                                                                wire:click.prevent="EditMultipleChoiseOptionModal"
                                                                                                 data-bs-toggle="modal"
                                                                                                 data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
                                                                                                 <svg width="20"
@@ -1251,7 +1333,8 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                             <button type="button"
-                                                                                                class="jvZSBO" wire:click.prevent="EditMultipleChoiseOptionModal"
+                                                                                                class="jvZSBO"
+                                                                                                wire:click.prevent="EditMultipleChoiseOptionModal"
                                                                                                 data-bs-toggle="modal"
                                                                                                 data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
                                                                                                 <svg width="20"
@@ -1287,7 +1370,8 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                             <button type="button"
-                                                                                                class="jvZSBO" wire:click.prevent="EditMultipleChoiseOptionModal"
+                                                                                                class="jvZSBO"
+                                                                                                wire:click.prevent="EditMultipleChoiseOptionModal"
                                                                                                 data-bs-toggle="modal"
                                                                                                 data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
                                                                                                 <svg width="20"
@@ -1323,7 +1407,8 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                             <button type="button"
-                                                                                                class="jvZSBO" wire:click.prevent="EditMultipleChoiseOptionModal"
+                                                                                                class="jvZSBO"
+                                                                                                wire:click.prevent="EditMultipleChoiseOptionModal"
                                                                                                 data-bs-toggle="modal"
                                                                                                 data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
                                                                                                 <svg width="20"
@@ -1359,7 +1444,8 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                             <button type="button"
-                                                                                                class="jvZSBO" wire:click.prevent="EditMultipleChoiseOptionModal"
+                                                                                                class="jvZSBO"
+                                                                                                wire:click.prevent="EditMultipleChoiseOptionModal"
                                                                                                 data-bs-toggle="modal"
                                                                                                 data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
                                                                                                 <svg width="20"
@@ -1785,10 +1871,12 @@
                                                                                                 wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.text_answer_format"
                                                                                                 id="text_answer_format{{ $loop->parent->index }}{{ $loop->index }}"
                                                                                                 class="text_answer_format">
-                                                                                                <option value="0">
+                                                                                                <option
+                                                                                                    value="0">
                                                                                                     {{ __('Short answer') }}
                                                                                                 </option>
-                                                                                                <option value="1">
+                                                                                                <option
+                                                                                                    value="1">
                                                                                                     {{ __('Long answer') }}
                                                                                                 </option>
                                                                                             </select>

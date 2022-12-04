@@ -65,7 +65,7 @@
                                     @forelse ($data['title_page'] as $question)
                                         <div>
                                             <div class="dWlTBc QuestionCard"
-                                                style="{{ $question['is_required'] == true && (!isset($title_page_result[$loop->index]['value']) || $title_page_result[$loop->index]['value'] == '') ? 'border-left: 0.25rem solid rgb(168, 36, 42);' : '' }}">
+                                                style="{{ $question['is_required'] == true && (!isset($title_page_result[$loop->index]['value']) || $title_page_result[$loop->index]['value'] == '' || ($question['response'] == 7 ? ((is_array($title_page_result[$loop->index]['value']) ? (array_key_exists('value',$title_page_result[$loop->index]['value']) ? $title_page_result[$loop->index]['value']['value']== null : $title_page_result[$loop->index]['value'] == null) : $title_page_result[$loop->index]['value'] == null)) : '')) ? 'border-left: 0.25rem solid rgb(168, 36, 42);' : '' }}">
                                                 <div class="QuestionInnerContainer">
                                                     <div class="iGjeXI">
                                                         @if ($question['is_required'] == true && $question['response'] != 3)
@@ -218,7 +218,7 @@
                                                                         <select class="selectpicker w-100"
                                                                             data-live-search="true" multiple
                                                                             wire:model="title_page_result.{{ $loop->index }}.value">
-                                                                            <option value="0">
+                                                                            <option value="null">
                                                                                 Nothing selected
                                                                             </option>
                                                                             @forelse ($question['multiple_choice'] as $response)
