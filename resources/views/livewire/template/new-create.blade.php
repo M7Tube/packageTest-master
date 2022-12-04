@@ -613,17 +613,17 @@
                                                                                                 type="button"
                                                                                                 class="ggbIJY"
                                                                                                 style="margin-left:10px;"
-                                                                                                {{-- wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})" --}}>
+                                                                                                {{-- wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})" --}} data-bs-dismiss="modal">
                                                                                                 Save and
                                                                                                 apply
                                                                                             </button>
                                                                                         @endif
-                                                                                        <button color="#4740d4"
-                                                                                            font-size="0.875rem"
-                                                                                            type="button"
+                                                                                        <button role="button"
                                                                                             class="kDSJkL"
                                                                                             style="margin-left:10px;"
-                                                                                            data-bs-dismiss="modal">Cancel</button>
+                                                                                            wire:click.prevent="clear_new_response_option({{ $qkey }})">
+                                                                                            Cancel
+                                                                                        </button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -761,17 +761,18 @@
                                                                                                 type="button"
                                                                                                 class="ggbIJY"
                                                                                                 style="margin-left:10px;"
-                                                                                                {{-- wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})" --}}>
+                                                                                                {{-- wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})" --}} data-bs-dismiss="modal">
                                                                                                 Save and
                                                                                                 apply
                                                                                             </button>
                                                                                         @endif
-                                                                                        <button color="#4740d4"
-                                                                                            font-size="0.875rem"
-                                                                                            type="button"
+                                                                                        <button role="button"
                                                                                             class="kDSJkL"
                                                                                             style="margin-left:10px;"
-                                                                                            data-bs-dismiss="modal">Cancel</button>
+                                                                                            wire:click.prevent="clear_new_response_option({{ $qkey }})"
+                                                                                            data-bs-dismiss="modal">
+                                                                                            Cancel
+                                                                                        </button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -2641,13 +2642,13 @@
                                                                                                         apply
                                                                                                     </button>
                                                                                                 @endif
-                                                                                                <button
-                                                                                                    color="#4740d4"
-                                                                                                    font-size="0.875rem"
-                                                                                                    type="button"
+                                                                                                <button role="button"
                                                                                                     class="kDSJkL"
                                                                                                     style="margin-left:10px;"
-                                                                                                    data-bs-dismiss="modal">Cancel</button>
+                                                                                                    wire:click.prevent="page_clear_new_response_option({{ $loop->parent->index }},{{ $loop->index }})"
+                                                                                                    data-bs-dismiss="modal">
+                                                                                                    Cancel
+                                                                                                </button>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>

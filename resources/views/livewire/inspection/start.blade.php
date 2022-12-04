@@ -1,5 +1,5 @@
 <div id="root">
-    <button wire:click.prevent="test">print test</button>
+    {{-- <button wire:click.prevent="test">print test</button> --}}
     <div id="app-container" class="gtvfKz">
         <div class="brCoKm">
             <div class="gBIxUd">
@@ -65,7 +65,7 @@
                                     @forelse ($data['title_page'] as $question)
                                         <div>
                                             <div class="dWlTBc QuestionCard"
-                                                style="{{ $question['is_required'] == true && (!isset($title_page_result[$loop->index]['value']) || $title_page_result[$loop->index]['value'] == '' || ($question['response'] == 7 ? ((is_array($title_page_result[$loop->index]['value']) ? (array_key_exists('value',$title_page_result[$loop->index]['value']) ? $title_page_result[$loop->index]['value']['value']== null : $title_page_result[$loop->index]['value'] == null) : $title_page_result[$loop->index]['value'] == null)) : '')) ? 'border-left: 0.25rem solid rgb(168, 36, 42);' : '' }}">
+                                                style="{{ $question['is_required'] == true && (!isset($title_page_result[$loop->index]['value']) || $title_page_result[$loop->index]['value'] == '' || ($question['response'] == 7 ? (is_array($title_page_result[$loop->index]['value']) ? (array_key_exists('value', $title_page_result[$loop->index]['value']) ? $title_page_result[$loop->index]['value']['value'] == null : $title_page_result[$loop->index]['value'] == null) : $title_page_result[$loop->index]['value'] == null) : '')) ? 'border-left: 0.25rem solid rgb(168, 36, 42);' : '' }}">
                                                 <div class="QuestionInnerContainer">
                                                     <div class="iGjeXI">
                                                         @if ($question['is_required'] == true && $question['response'] != 3)
@@ -74,7 +74,7 @@
                                                         <div class="ljnLdg">
                                                             <div class="cTGqGw kYUEsK">
                                                                 <span class="jjaCv">
-                                                                    {{ $question['response'] == 3 ? null : $question['title'] ?? '' }}
+                                                                    {{ $question['response'] == 3 ? null : $question['title'] ?? 'Untitled question' }}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -207,7 +207,7 @@
                                                                                     ? 'color: linear-gradient(var(--enable-color) calc(100% * var(--enable)),var(--disable-color) 0);'
                                                                                     : '' }}">
                                                                                 <span>
-                                                                                    {{ $response['title'] ?? '' }}
+                                                                                    {{ $response['title'] ?? 'Untitled choice' }}
                                                                                 </span>
                                                                             </button>
                                                                         @empty
@@ -225,7 +225,7 @@
                                                                                 <option
                                                                                     value="{{ $response['title'] }}._.{{ $response['color'] }}"
                                                                                     data-content="<span class='badge' style='background-color:{{ $response['color'] }}; color:black;'>{{ $response['title'] ?? '' }}</span>">
-                                                                                    {{ $response['title'] ?? '' }}
+                                                                                    {{ $response['title'] ?? 'Untitled choice' }}
                                                                                 </option>
                                                                             @empty
                                                                             @endforelse
@@ -243,7 +243,7 @@
                                                                                 ? 'color: linear-gradient(var(--enable-color) calc(100% * var(--enable)),var(--disable-color) 0);'
                                                                                 : '' }}">
                                                                             <span>
-                                                                                {{ $response['title'] ?? '' }}
+                                                                                {{ $response['title'] ?? 'Untitled choice' }}
                                                                             </span>
                                                                         </button>
                                                                     @empty
@@ -425,6 +425,9 @@
                                                             </div>
                                                         </div>
                                                     @endif
+                                                </div>
+                                                <div class="QuestionInnerContainer mt-3">
+                                                    {{ !empty($title_page_result[$loop->index]['note']) ? $title_page_result[$loop->index]['note'] : null }}
                                                 </div>
                                                 <div class="hDVsDR">
                                                     {{-- add note --}}
