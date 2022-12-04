@@ -8325,10 +8325,7 @@
         <div style="margin:18px;">
             <div class="row" style="">
                 <div class="col-xs-5" style="">
-                    <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/images/Example.png')) !!}" alt="logo" width="150px">
-                    <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/public/images/Example.png')) !!}"
-                        style="height: auto; width: 1000px;">
-                    {{-- <img src="image.jpg" style="width:90mm;" />s --}}
+
                     {{-- {{$data['icon']}} --}}
                 </div>
                 <div class="col-xs-5">
