@@ -69,28 +69,49 @@ class NewCreate extends Component
             $this->title_page_questions[$this->activeone]['is_date'] = false;
             $this->title_page_questions[$this->activeone]['is_time'] = false;
         } elseif ($response == 7) {
+            // if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
+            unset($this->title_page_questions[$this->activeone]);
+            $this->title_page_questions[$this->activeone]['response'] = $response;
+            // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
+            $this->title_page_questions[$this->activeone]['is_required'] = false;
+            $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
             if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
-                unset($this->title_page_questions[$this->activeone]);
-                $this->title_page_questions[$this->activeone]['response'] = $response;
-                // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
-                $this->title_page_questions[$this->activeone]['is_required'] = false;
-                $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
-                if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
-                    $this->title_page_questions[$this->activeone]['multiple_choice'] = [''];
-                }
-            } else {
-                // $this->title_page_questions[$this->activeone]['response'] = $response;
-                // // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
-                // $this->title_page_questions[$this->activeone]['is_required'] = false;
-                // $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
-                // if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
-                //     $this->title_page_questions[$this->activeone]['multiple_choice'] = [''];
-                // }
+                $this->title_page_questions[$this->activeone]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
             }
+            // } else {
+            // $this->title_page_questions[$this->activeone]['response'] = $response;
+            // // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
+            // $this->title_page_questions[$this->activeone]['is_required'] = false;
+            // $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
+            // if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
+            //     $this->title_page_questions[$this->activeone]['multiple_choice'] = [''];
+            // }
+            // }
         } else {
             unset($this->title_page_questions[$this->activeone]);
             $this->title_page_questions[$this->activeone]['response'] = $response;
             $this->title_page_questions[$this->activeone]['is_required'] = false;
+        }
+    }
+
+    public function EditMultipleChoiseOptionModal()
+    {
+        if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
+            unset($this->title_page_questions[$this->activeone]);
+            // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
+            $this->title_page_questions[$this->activeone]['is_required'] = false;
+            $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
+            if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
+                $this->title_page_questions[$this->activeone]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
+            }
+        } else {
+            // $this->title_page_questions[$this->activeone]['response'] = $response;
+            // // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
+            // $this->title_page_questions[$this->activeone]['is_required'] = false;
+            // $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
+            // if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
+            //     $this->title_page_questions[$this->activeone]['multiple_choice'] = [''];
+            // }
         }
     }
 
@@ -331,25 +352,25 @@ class NewCreate extends Component
     public function add_new_response($questionKey)
     {
         if (count($this->title_page_questions[$questionKey]['multiple_choice']) < 15)
-            $this->title_page_questions[$questionKey]['multiple_choice'][] = '';
+            $this->title_page_questions[$questionKey]['multiple_choice'][] = ['title' => null, 'color' => '#13855f'];
     }
 
     public function page_add_new_response($pageKey, $questionKey)
     {
         if (count($this->pages[$pageKey][$questionKey]['multiple_choice']) < 15)
-            $this->pages[$pageKey][$questionKey]['multiple_choice'][] = '';
+            $this->pages[$pageKey][$questionKey]['multiple_choice'][] = ['title' => null, 'color' => '#13855f'];
     }
 
     public function clear_new_response_option($questionKey)
     {
         if (count($this->title_page_questions[$questionKey]['multiple_choice']) > 0)
-            $this->title_page_questions[$questionKey]['multiple_choice'] = [''];
+            $this->title_page_questions[$questionKey]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
     }
 
     public function page_clear_new_response_option($pageKey, $questionKey)
     {
         if (count($this->pages[$pageKey][$questionKey]['multiple_choice']) > 0)
-            $this->pages[$pageKey][$questionKey]['multiple_choice'] = [''];
+            $this->pages[$pageKey][$questionKey]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
     }
 
     public function title_page_add_question()

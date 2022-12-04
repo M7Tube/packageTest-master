@@ -641,8 +641,157 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="modal fade m-0 p-0"
+                                                            id="EditMultipleChoiseOptionModal{{ $loop->index }}"
+                                                            tabindex="-1"
+                                                            aria-labelledby="EditMultipleChoiseOptionModal{{ $loop->index }}Label"
+                                                            aria-hidden="true" wire:ignore.self>
+                                                            <div class="modal-dialog modal-fullscreen">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h1 class="modal-title fs-5"
+                                                                            id="EditMultipleChoiseOptionModal{{ $loop->index }}Label">
+                                                                            Response Options
+                                                                        </h1>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="iVmibF cxbltl">
+                                                                            <div class="bJfPHR hzzSzX">
+                                                                                <div>
+                                                                                    <div class="jOMNlj">
+                                                                                        <h3 class="lhPVYY">Multiple
+                                                                                            choice responses
+                                                                                        </h3>
+                                                                                        <div class="grGybe">
+                                                                                            <div class="gEVyqy dZoNkv">
+                                                                                                e.g.
+                                                                                                Yes,
+                                                                                                No, N/A
+                                                                                            </div>
+                                                                                            <div class="eMiEgJ">
+                                                                                                <button role="button"
+                                                                                                    style="color: rgb(71, 64, 212);"
+                                                                                                    wire:click.prevent="clear_new_response_option({{ $qkey }})">
+                                                                                                    Reset
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="dFFhJP">
+                                                                                            <span>Response</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div style="background: transparent; border: medium none;"
+                                                                                        class="jkEVJ">
+                                                                                        <div
+                                                                                            class="multible_choise_wrapper">
+                                                                                            @if (!empty($title_page_question['response']))
+                                                                                                @if ($title_page_question['response'] == 7)
+                                                                                                    @if (!empty($title_page_question['multiple_choice']))
+                                                                                                        @forelse ($title_page_question['multiple_choice'] as $responsKey => $respons)
+                                                                                                            <div data-rbd-droppable-id="responses{{ $loop->parent->index }}{{ $responsKey }}"
+                                                                                                                data-rbd-droppable-context-id="{{ $loop->parent->index }}{{ $responsKey }}"
+                                                                                                                class="dragable">
+                                                                                                                <div data-rbd-draggable-context-id="{{ $loop->parent->index }}{{ $responsKey }}"
+                                                                                                                    class="kOpTns">
+                                                                                                                    <div tabindex="{{ $loop->parent->index }}{{ $responsKey }}"
+                                                                                                                        role="button"
+                                                                                                                        aria-describedby="rbd-hidden-text-1-hidden-text-8"
+                                                                                                                        draggable="false"
+                                                                                                                        class="eCLrAf drag-icon">
+                                                                                                                        <svg viewBox="0 0 24 24"
+                                                                                                                            width="21"
+                                                                                                                            height="21"
+                                                                                                                            focusable="false">
+                                                                                                                            <path
+                                                                                                                                fill="none"
+                                                                                                                                d="M0 0h24v24H0V0z">
+                                                                                                                            </path>
+                                                                                                                            <path
+                                                                                                                                fill="#bfc6d4"
+                                                                                                                                d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                                                                                                            </path>
+                                                                                                                        </svg>
+                                                                                                                    </div>
+                                                                                                                    <div
+                                                                                                                        class="kxFgkR">
+                                                                                                                        <div
+                                                                                                                            class="iAngMj">
+                                                                                                                            <div
+                                                                                                                                class="bWxUpN">
+                                                                                                                                <input
+                                                                                                                                    class="eVpkze w-100 h-100 question-title"
+                                                                                                                                    placeholder="Response title"
+                                                                                                                                    id="response-title{{ $loop->parent->index }}{{ $responsKey }}"
+                                                                                                                                    wire:model.lazy="title_page_questions.{{ $loop->parent->index }}.multiple_choice.{{ $responsKey }}.title">
+                                                                                                                            </div>
+                                                                                                                            <input
+                                                                                                                                type="color"
+                                                                                                                                wire:model.lazy="title_page_questions.{{ $loop->parent->index }}.multiple_choice.{{ $responsKey }}.color"
+                                                                                                                                class="form-control form-control-color gocNNg kxrOmS"
+                                                                                                                                style="height: 25px; width:30px; border-radius: 300px;"
+                                                                                                                                id="response-color{{ $loop->parent->index }}{{ $responsKey }}"
+                                                                                                                                title="Choose your color">
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        @empty
+                                                                                                        @endforelse
+                                                                                                    @endif
+                                                                                                @endif
+                                                                                            @endif
+                                                                                            @if (!empty($title_page_question['multiple_choice']))
+                                                                                                <button role="button"
+                                                                                                    class="nyGSP"
+                                                                                                    wire:click.prevent="add_new_response({{ $qkey }})">
+                                                                                                    +
+                                                                                                    Add
+                                                                                                    Response
+                                                                                                </button>
+                                                                                            @endif
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="fhTZet">
+                                                                                        @if (!empty($title_page_question['multiple_choice'][0]['title']))
+                                                                                            <button color="#ffffff"
+                                                                                                font-size="0.875rem"
+                                                                                                type="button"
+                                                                                                class="ggbIJY"
+                                                                                                style="margin-left:10px;"
+                                                                                                {{-- wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})" --}}>
+                                                                                                Save and
+                                                                                                apply
+                                                                                            </button>
+                                                                                        @endif
+                                                                                        <button color="#4740d4"
+                                                                                            font-size="0.875rem"
+                                                                                            type="button"
+                                                                                            class="kDSJkL"
+                                                                                            style="margin-left:10px;"
+                                                                                            data-bs-dismiss="modal">Cancel</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                            class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal">Close</button>
+                                                                        <button type="button"
+                                                                            class="btn btn-primary">
+                                                                            Save changes
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <button class="bKqzym blqywb" wire:click.prevent="title_page_delete_question({{ $loop->index }})">
+                                                    <button class="bKqzym blqywb"
+                                                        wire:click.prevent="title_page_delete_question({{ $loop->index }})">
                                                         <svg width="21" height="21" viewBox="0 0 14 14"
                                                             focusable="false">
                                                             <path
@@ -1064,6 +1213,21 @@
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
+                                                                                            <button type="button"
+                                                                                                class="jvZSBO" wire:click.prevent="EditMultipleChoiseOptionModal"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
+                                                                                                <svg width="20"
+                                                                                                    height="20"
+                                                                                                    viewBox="0 0 14 14"
+                                                                                                    focusable="false">
+                                                                                                    <path
+                                                                                                        d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
+                                                                                                        fill-rule="nonzero"
+                                                                                                        fill="#545f70">
+                                                                                                    </path>
+                                                                                                </svg>
+                                                                                            </button>
                                                                                         </div>
                                                                                         <div class="gupkBu eCBvzO">
                                                                                             <div class="evLYbt"
@@ -1086,6 +1250,21 @@
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
+                                                                                            <button type="button"
+                                                                                                class="jvZSBO" wire:click.prevent="EditMultipleChoiseOptionModal"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
+                                                                                                <svg width="20"
+                                                                                                    height="20"
+                                                                                                    viewBox="0 0 14 14"
+                                                                                                    focusable="false">
+                                                                                                    <path
+                                                                                                        d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
+                                                                                                        fill-rule="nonzero"
+                                                                                                        fill="#545f70">
+                                                                                                    </path>
+                                                                                                </svg>
+                                                                                            </button>
                                                                                         </div>
                                                                                         <div class="gupkBu eCBvzO">
                                                                                             <div class="evLYbt"
@@ -1107,6 +1286,21 @@
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
+                                                                                            <button type="button"
+                                                                                                class="jvZSBO" wire:click.prevent="EditMultipleChoiseOptionModal"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
+                                                                                                <svg width="20"
+                                                                                                    height="20"
+                                                                                                    viewBox="0 0 14 14"
+                                                                                                    focusable="false">
+                                                                                                    <path
+                                                                                                        d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
+                                                                                                        fill-rule="nonzero"
+                                                                                                        fill="#545f70">
+                                                                                                    </path>
+                                                                                                </svg>
+                                                                                            </button>
                                                                                         </div>
                                                                                         <div class="gupkBu eCBvzO">
                                                                                             <div class="evLYbt"
@@ -1128,6 +1322,21 @@
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
+                                                                                            <button type="button"
+                                                                                                class="jvZSBO" wire:click.prevent="EditMultipleChoiseOptionModal"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
+                                                                                                <svg width="20"
+                                                                                                    height="20"
+                                                                                                    viewBox="0 0 14 14"
+                                                                                                    focusable="false">
+                                                                                                    <path
+                                                                                                        d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
+                                                                                                        fill-rule="nonzero"
+                                                                                                        fill="#545f70">
+                                                                                                    </path>
+                                                                                                </svg>
+                                                                                            </button>
                                                                                         </div>
                                                                                         <div class="gupkBu eCBvzO">
                                                                                             <div class="evLYbt"
@@ -1149,6 +1358,21 @@
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
+                                                                                            <button type="button"
+                                                                                                class="jvZSBO" wire:click.prevent="EditMultipleChoiseOptionModal"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
+                                                                                                <svg width="20"
+                                                                                                    height="20"
+                                                                                                    viewBox="0 0 14 14"
+                                                                                                    focusable="false">
+                                                                                                    <path
+                                                                                                        d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
+                                                                                                        fill-rule="nonzero"
+                                                                                                        fill="#545f70">
+                                                                                                    </path>
+                                                                                                </svg>
+                                                                                            </button>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -2068,6 +2292,20 @@
                                                                                                                                 </div>
                                                                                                                             </div>
                                                                                                                         </div>
+                                                                                                                        <button
+                                                                                                                            type="button"
+                                                                                                                            class="jvZSBO">
+                                                                                                                            <svg width="20"
+                                                                                                                                height="20"
+                                                                                                                                viewBox="0 0 14 14"
+                                                                                                                                focusable="false">
+                                                                                                                                <path
+                                                                                                                                    d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
+                                                                                                                                    fill-rule="nonzero"
+                                                                                                                                    fill="#545f70">
+                                                                                                                                </path>
+                                                                                                                            </svg>
+                                                                                                                        </button>
                                                                                                                     </div>
                                                                                                                     <div
                                                                                                                         class="gupkBu eCBvzO">
@@ -2340,7 +2578,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <button class="bKqzym blqywb" wire:click.prevent="normal_page_delete_question({{ $loop->parent->index }},{{ $loop->index }})">
+                                                            <button class="bKqzym blqywb"
+                                                                wire:click.prevent="normal_page_delete_question({{ $loop->parent->index }},{{ $loop->index }})">
                                                                 <svg width="21" height="21"
                                                                     viewBox="0 0 14 14" focusable="false">
                                                                     <path
