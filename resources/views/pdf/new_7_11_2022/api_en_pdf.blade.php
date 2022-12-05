@@ -8340,9 +8340,9 @@
             </div>
             <div class="row" style="">
                 <div class="col-xs-5">
-                    @forelse ($data['title_page'] as $record)
+                    @forelse ($data->title_page as $record)
                         <span
-                            style="color:gray;">{{ $data['desc'] ?? '' }}{{ $record['response'] == 2 ? $record['value'] : '' }}</span>
+                            style="color:gray;">{{ $data->desc ?? '' }}{{ $record->response == 2 ? $record->value : '' }}</span>
                     @break
 
                     @empty
@@ -8354,28 +8354,28 @@
             </div>
         </div>
         <div style="margin:20px;">
-            @forelse ($data['title_page'] as $record)
+            @forelse ($data->title_page as $record)
                 <div class="row">
                     <div class="col-xs-5" style="">
-                        <span class="" style="font-size: 15.4292px;">{{ $record['title'] ?? 'Untitled question' }}</span>
+                        <span class="" style="font-size: 15.4292px;">{{ $record->title ?? 'Untitled question' }}</span>
                     </div>
                     <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
-                        @if ($record['response'] == 7)
-                            @if (is_array($record['value']))
-                                @foreach ($record['value'] as $value)
+                        @if ($record->response == 7)
+                            @if (is_array($record->value))
+                                @foreach ($record->value as $value)
                                     <h6
-                                    style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ $value['color'] ?? '' }};">
-                                    {{ $value['title'] ?? '' }}</h6>
+                                    style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ $value->color ?? '' }};">
+                                    {{ $value->title ?? '' }}</h6>
                                 @endforeach
                             @endif
                         @else
                             <span class="" style="color:#7b7673; font-size: 12.4292px;">
-                                {{ $record['value'] ?? '' }}
+                                {{ $record->value ?? '' }}
                             </span>
                         @endif
                     </div>
                     <div class="col-xs-5" style="color: gray;">
-                        {{ $record['note'] ?? '' }}
+                        {{ $record->note ?? '' }}
                     </div>
                 </div>
                 <div style="border-bottom: 1px solid #e0e0e0;"></div>
