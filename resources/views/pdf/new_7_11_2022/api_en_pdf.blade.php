@@ -7,13 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
         html {
-            font-family: sans-serif;
+            font-family: tharlon;
             -webkit-text-size-adjust: 100%;
             -ms-text-size-adjust: 100%;
         }
 
         body {
             margin: 0;
+            font-family: tharlon;
         }
 
         article,
@@ -8314,58 +8315,77 @@
 </head>
 
 <body>
-    <div class="container">
-        <div style="margin:25px;">
-            <div class="row">
-                <div class="col-xs-5">
-                    {{-- <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/images/' . $data['icon'])) !!}" alt="logo">
-                    {{$data['icon']}} --}}
+    <div class="container" style="font-family: xbriyaz;">
+        {{--
+            freeserif,xbriyaz,lateef,
+            --}}
+        <div style="margin-bottom: 115px;">
+            &nbsp;
+        </div>
+        <div style="margin:18px;">
+            <div class="row" style="">
+                <div class="col-xs-5" style="">
+
+                    {{-- {{$data['icon']}} --}}
                 </div>
                 <div class="col-xs-5">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-5">
-                    {{ $data->title ?? '' }}
+            <div class="row" style="margin-bottom: 5px;">
+                <div class="col-xs-10">
+                    <span style="font-size: 22px;">{{ $data->title ?? '' }}</span>
                 </div>
-                <div class="col-xs-5">
-                </div>
+                {{-- <div class="col-xs-5">
+                </div> --}}
             </div>
-            <div class="row"  style="margin-bottom: 50px;">
+            <div class="row" style="">
                 <div class="col-xs-5">
-                    @forelse ($data['title_page'] as $record)
-                        <span style="color:gray;">{{$data->desc??''}}{{ $record->response == 2 ? $record->value :'' }}</span>
-                        @break
+                    @forelse ($data->title_page as $record)
+                        <span
+                            style="color:gray;">{{ $data->desc }}{{ $record->response == 2 ? $record->value : '' }}</span>
+                    @break
+
                     @empty
                     @endforelse
                 </div>
-                <div class="col-xs-5">
+                <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
+                    <span style="color:green; font-size: 12px; font-weight: lighter;" dir="ltr">Complete</span>
                 </div>
             </div>
         </div>
-    <div style="margin:25px;">
-        @forelse ($data->title_page as $record)
-            <div class="row" style="border-bottom: 1px solid #e0e0e0;">
-                <div class="col-xs-5" style="">
-                    <span class="" style="font-size: 15.4292px;">{{ $record->title ?? '' }}</span>
+        <div style="margin:20px;">
+            @forelse ($data->title_page as $record)
+                <div class="row">
+                    {{--  style="margin-bottom: {{ $record['response'] == 7 ? '0px' : '10px' }};" --}}
+                    <div class="col-xs-5" style="">
+                        <span class="" style="font-size: 15.4292px;">{{ $record->title ?? 'Untitled question' }}</span>
+                    </div>
+                    <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
+                        @if ($record->response == 7)
+                            @if (is_array($record->value))
+                                @foreach ($record->value as $value)
+                                    <h6
+                                    style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ $value->color ?? '' }};">
+                                    {{ $value->title ?? '' }}</h6>
+                                @endforeach
+                        @else
+                            <span class="" style="color:#7b7673; font-size: 12.4292px;">
+                                {{ $record->value ?? '' }}
+                            </span>
+                        @endif
+                    </div>
+                    <div class="col-xs-5" style="color: gray;">
+                        {{ $record->note ?? '' }}
+                    </div>
                 </div>
-                <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
-                    @if ($record->response==7)
-                        <span class="" style="background-color: {{explode('._.',$record->value?? '')[1] ??''}}; ">
-                            {{ explode('._.',$record->value?? '')[0]??'' }}
-                        </span>
-                    @else
-                        <span class="" style="color:#7b7673; font-size: 15.4292px;
-                        font-family: sans-serif;">
-                        {{ $record->value ?? '' }}
-                        </span>
-                    @endif
-                </div>
-            </div>
-        @empty
-        @endforelse
+                <div style="border-bottom: 1px solid #e0e0e0;"></div>
+                {{--  margin-bottom: 10px; --}}
+            @empty
+            @endforelse
+        </div>
     </div>
-</div>
+    <pagebreak></pagebreak>
+    يسب
 </body>
 
 </html>
