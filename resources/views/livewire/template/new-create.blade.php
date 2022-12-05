@@ -613,7 +613,8 @@
                                                                                                 type="button"
                                                                                                 class="ggbIJY"
                                                                                                 style="margin-left:10px;"
-                                                                                                {{-- wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})" --}} data-bs-dismiss="modal">
+                                                                                                {{-- wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})" --}}
+                                                                                                data-bs-dismiss="modal">
                                                                                                 Save and
                                                                                                 apply
                                                                                             </button>
@@ -761,7 +762,8 @@
                                                                                                 type="button"
                                                                                                 class="ggbIJY"
                                                                                                 style="margin-left:10px;"
-                                                                                                {{-- wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})" --}} data-bs-dismiss="modal">
+                                                                                                {{-- wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})" --}}
+                                                                                                data-bs-dismiss="modal">
                                                                                                 Save and
                                                                                                 apply
                                                                                             </button>
@@ -1270,196 +1272,68 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         @endif --}}
-                                                                                        <div class="gupkBu eCBvzO">
-                                                                                            <div class="evLYbt"
-                                                                                                {{-- Question key | response id | readyOption id --}}
-                                                                                                wire:click.prevent="setResponseValueFromReadyOptions(7,1)"
-                                                                                                data-bs-dismiss="modal">
-                                                                                                <div class="fyczhl">
-                                                                                                    <div color="#13855f"
-                                                                                                        class="xXWzF">
-                                                                                                        Good
+                                                                                        @if (!empty($common_multiple_choise_options))
+                                                                                            @forelse ($common_multiple_choise_options as $common_multiple_choise_option)
+                                                                                                <div
+                                                                                                    class="gupkBu eCBvzO">
+                                                                                                    <div class="evLYbt"
+                                                                                                        {{-- Question key | response id | readyOption id --}}
+                                                                                                        wire:click.prevent="setResponseValueFromReadyOptions(7,{{$loop->iteration}})"
+                                                                                                        data-bs-dismiss="modal">
+                                                                                                        <div
+                                                                                                            class="fyczhl">
+                                                                                                            @forelse ($common_multiple_choise_option as $record)
+                                                                                                                <div color="#13855f"
+                                                                                                                    class="xXWzF"
+                                                                                                                    style="font-family: Roboto, sans-serif;
+                                                                                                                            font-size: 0.8rem;
+                                                                                                                            font-weight: 400;
+                                                                                                                            margin-right: 0.4rem;
+                                                                                                                            display: inline-block;
+                                                                                                                            vertical-align: inherit;
+                                                                                                                            white-space: nowrap;
+                                                                                                                            line-height: initial;
+                                                                                                                            padding: 0.2rem 0.4rem;
+                                                                                                                            border-radius: 0.75rem;
+                                                                                                                            max-width: 8.75rem;
+                                                                                                                            overflow: hidden;
+                                                                                                                            text-overflow: ellipsis;
+                                                                                                                            flex-shrink: 0;
+                                                                                                                            color: rgb(
+                                                                                                                                calc(var(--content-R) * var(--text-tint) + 100% - 100% * var(--text-tint)),
+                                                                                                                                calc(var(--content-G) * var(--text-tint) + 100% - 100% * var(--text-tint)),
+                                                                                                                                calc(var(--content-B) * var(--text-tint) + 100% - 100% * var(--text-tint))
+                                                                                                                            );
+                                                                                                                            border: 1px solid transparent;
+                                                                                                                            background-color: {{ $record['color'] ?? '' }};">
+                                                                                                                    {{ $record['title'] ?? '' }}
+                                                                                                                </div>
+                                                                                                            @empty
+                                                                                                            @endforelse
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                    <div color="#ffb000"
-                                                                                                        class="jZNie">
-                                                                                                        Fair
-                                                                                                    </div>
-                                                                                                    <div color="#c60022"
-                                                                                                        class="hcaARf">
-                                                                                                        Poor
-                                                                                                    </div>
-                                                                                                    <div color="#707070"
-                                                                                                        class="gOgMGu">
-                                                                                                        N/A
-                                                                                                    </div>
+                                                                                                    <button
+                                                                                                        type="button"
+                                                                                                        class="jvZSBO"
+                                                                                                        wire:click.prevent="EditMultipleChoiseOptionModal"
+                                                                                                        data-bs-toggle="modal"
+                                                                                                        data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
+                                                                                                        <svg width="20"
+                                                                                                            height="20"
+                                                                                                            viewBox="0 0 14 14"
+                                                                                                            focusable="false">
+                                                                                                            <path
+                                                                                                                d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
+                                                                                                                fill-rule="nonzero"
+                                                                                                                fill="#545f70">
+                                                                                                            </path>
+                                                                                                        </svg>
+                                                                                                    </button>
                                                                                                 </div>
-                                                                                            </div>
-                                                                                            <button type="button"
-                                                                                                class="jvZSBO"
-                                                                                                wire:click.prevent="EditMultipleChoiseOptionModal"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
-                                                                                                <svg width="20"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 14 14"
-                                                                                                    focusable="false">
-                                                                                                    <path
-                                                                                                        d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
-                                                                                                        fill-rule="nonzero"
-                                                                                                        fill="#545f70">
-                                                                                                    </path>
-                                                                                                </svg>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                        <div class="gupkBu eCBvzO">
-                                                                                            <div class="evLYbt"
-                                                                                                {{-- Question key | response id | readyOption id --}}
-                                                                                                wire:click.prevent="setResponseValueFromReadyOptions(7,2)"
-                                                                                                data-bs-dismiss="modal">
-                                                                                                <div class="fyczhl">
-                                                                                                    <div color="#13855f"
-                                                                                                        class="xXWzF">
-                                                                                                        Safe
-                                                                                                    </div>
-                                                                                                    <div color="#c60022"
-                                                                                                        class="hcaARf">
-                                                                                                        At
-                                                                                                        Risk
-                                                                                                    </div>
-                                                                                                    <div color="#707070"
-                                                                                                        class="gOgMGu">
-                                                                                                        N/A
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <button type="button"
-                                                                                                class="jvZSBO"
-                                                                                                wire:click.prevent="EditMultipleChoiseOptionModal"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
-                                                                                                <svg width="20"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 14 14"
-                                                                                                    focusable="false">
-                                                                                                    <path
-                                                                                                        d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
-                                                                                                        fill-rule="nonzero"
-                                                                                                        fill="#545f70">
-                                                                                                    </path>
-                                                                                                </svg>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                        <div class="gupkBu eCBvzO">
-                                                                                            <div class="evLYbt"
-                                                                                                {{-- Question key | response id | readyOption id --}}
-                                                                                                wire:click.prevent="setResponseValueFromReadyOptions(7,3)"
-                                                                                                data-bs-dismiss="modal">
-                                                                                                <div class="fyczhl">
-                                                                                                    <div color="#13855f"
-                                                                                                        class="xXWzF">
-                                                                                                        Pass
-                                                                                                    </div>
-                                                                                                    <div color="#c60022"
-                                                                                                        class="hcaARf">
-                                                                                                        Fail
-                                                                                                    </div>
-                                                                                                    <div color="#707070"
-                                                                                                        class="gOgMGu">
-                                                                                                        N/A
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <button type="button"
-                                                                                                class="jvZSBO"
-                                                                                                wire:click.prevent="EditMultipleChoiseOptionModal"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
-                                                                                                <svg width="20"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 14 14"
-                                                                                                    focusable="false">
-                                                                                                    <path
-                                                                                                        d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
-                                                                                                        fill-rule="nonzero"
-                                                                                                        fill="#545f70">
-                                                                                                    </path>
-                                                                                                </svg>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                        <div class="gupkBu eCBvzO">
-                                                                                            <div class="evLYbt"
-                                                                                                {{-- Question key | response id | readyOption id --}}
-                                                                                                wire:click.prevent="setResponseValueFromReadyOptions(7,4)"
-                                                                                                data-bs-dismiss="modal">
-                                                                                                <div class="fyczhl">
-                                                                                                    <div color="#13855f"
-                                                                                                        class="xXWzF">
-                                                                                                        Yes
-                                                                                                    </div>
-                                                                                                    <div color="#c60022"
-                                                                                                        class="hcaARf">
-                                                                                                        No
-                                                                                                    </div>
-                                                                                                    <div color="#707070"
-                                                                                                        class="gOgMGu">
-                                                                                                        N/A
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <button type="button"
-                                                                                                class="jvZSBO"
-                                                                                                wire:click.prevent="EditMultipleChoiseOptionModal"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
-                                                                                                <svg width="20"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 14 14"
-                                                                                                    focusable="false">
-                                                                                                    <path
-                                                                                                        d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
-                                                                                                        fill-rule="nonzero"
-                                                                                                        fill="#545f70">
-                                                                                                    </path>
-                                                                                                </svg>
-                                                                                            </button>
-                                                                                        </div>
-                                                                                        <div class="gupkBu eCBvzO">
-                                                                                            <div class="evLYbt"
-                                                                                                {{-- Question key | response id | readyOption id --}}
-                                                                                                wire:click.prevent="setResponseValueFromReadyOptions(7,5)"
-                                                                                                data-bs-dismiss="modal">
-                                                                                                <div class="fyczhl">
-                                                                                                    <div color="#13855f"
-                                                                                                        class="xXWzF">
-                                                                                                        Compliant
-                                                                                                    </div>
-                                                                                                    <div color="#c60022"
-                                                                                                        class="hcaARf">
-                                                                                                        Non-Compliant
-                                                                                                    </div>
-                                                                                                    <div color="#707070"
-                                                                                                        class="gOgMGu">
-                                                                                                        N/A
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <button type="button"
-                                                                                                class="jvZSBO"
-                                                                                                wire:click.prevent="EditMultipleChoiseOptionModal"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
-                                                                                                <svg width="20"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 14 14"
-                                                                                                    focusable="false">
-                                                                                                    <path
-                                                                                                        d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
-                                                                                                        fill-rule="nonzero"
-                                                                                                        fill="#545f70">
-                                                                                                    </path>
-                                                                                                </svg>
-                                                                                            </button>
-                                                                                        </div>
+
+                                                                                            @empty
+                                                                                            @endforelse
+                                                                                        @endif
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
