@@ -8325,7 +8325,7 @@
         <div style="margin:18px;">
             <div class="row" style="">
                 <div class="col-xs-5" style="">
-                    <img src="data:image/png;base64, {!! base64_encode(file_get_contents('../public/images/logo.png')) !!}"  width="83" height="69">
+                    <img src="data:image/png;base64, {!! base64_encode(file_get_contents('../storage/app/images/'.$data['icon'])) !!}"  width="83" height="69">
                     {{-- {{$data['icon']}} --}}
                 </div>
                 <div class="col-xs-5">
@@ -8434,6 +8434,8 @@
                             @endif
                         @elseif ($record['response'] == 6)
                             @if (!empty($record['signature']))
+                            <br>
+                            {{ $record['signature']['name'] }}
                                 <img src="{{ $record['signature']['value'] }}" alt="test">
                             @endif
                         @else
