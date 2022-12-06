@@ -173,25 +173,22 @@ class NewCreate extends Component
         }
     }
 
-    public function EditMultipleChoiseOptionModal()
+    public function EditMultipleChoiseOptionModal($option)
     {
-        if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
-            unset($this->title_page_questions[$this->activeone]);
-            // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
-            $this->title_page_questions[$this->activeone]['is_required'] = false;
-            $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
-            if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
-                $this->title_page_questions[$this->activeone]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
-            }
-        } else {
-            // $this->title_page_questions[$this->activeone]['response'] = $response;
-            // // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
-            // $this->title_page_questions[$this->activeone]['is_required'] = false;
-            // $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
-            // if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
-            //     $this->title_page_questions[$this->activeone]['multiple_choice'] = [''];
-            // }
-        }
+        unset($this->title_page_questions[$this->activeone]);
+        $this->title_page_questions[$this->activeone]['response'] = 7;
+        $this->title_page_questions[$this->activeone]['is_required'] = false;
+        $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
+        $this->title_page_questions[$this->activeone]['multiple_choice'] = $this->option[$option];
+    }
+
+    public function pageEditMultipleChoiseOptionModal($pagekey,$questionkey,$option)
+    {
+        unset($this->pages[$pagekey]['question'][$questionkey]);
+        $this->pages[$pagekey]['question'][$questionkey]['response'] = 7;
+        $this->pages[$pagekey]['question'][$questionkey]['is_required'] = false;
+        $this->pages[$pagekey]['question'][$questionkey]['multi_select_multiple_choise'] = false;
+        $this->pages[$pagekey]['question'][$questionkey]['multiple_choice'] = $this->option[$option];
     }
 
     public function PageSetResponseValue($pagekey, $questionkey, $response)

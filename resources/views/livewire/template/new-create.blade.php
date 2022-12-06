@@ -1315,7 +1315,7 @@
                                                                                                     <button
                                                                                                         type="button"
                                                                                                         class="jvZSBO"
-                                                                                                        wire:click.prevent="EditMultipleChoiseOptionModal"
+                                                                                                        wire:click.prevent="EditMultipleChoiseOptionModal({{ $loop->index }})"
                                                                                                         data-bs-toggle="modal"
                                                                                                         data-bs-target="#EditMultipleChoiseOptionModal{{ $activechangingresponse }}">
                                                                                                         <svg width="20"
@@ -2271,9 +2271,9 @@
                                                                                                                                 <button
                                                                                                                                     type="button"
                                                                                                                                     class="jvZSBO"
-                                                                                                                                    wire:click.prevent="EditMultipleChoiseOptionModal"
+                                                                                                                                    wire:click.prevent="pageEditMultipleChoiseOptionModal({{ $pagekey }},{{ $pageQuestionkey }},{{ $loop->index }})"
                                                                                                                                     data-bs-toggle="modal"
-                                                                                                                                    data-bs-target="#pageEditMultipleChoiseOptionModal{{ $loop->parent->index }}{{ $loop->index }}">
+                                                                                                                                    data-bs-target="#pageEditMultipleChoiseOptionModal{{ $pagekey }}{{ $pageQuestionkey }}">
                                                                                                                                     <svg width="20"
                                                                                                                                         height="20"
                                                                                                                                         viewBox="0 0 14 14"
@@ -2349,7 +2349,7 @@
                                                                                                         <button
                                                                                                             role="button"
                                                                                                             style="color: rgb(71, 64, 212);"
-                                                                                                            wire:click.prevent="page_clear_new_response_option({{ $loop->parent->index }},{{ $loop->index }})">
+                                                                                                            wire:click.prevent="page_clear_new_response_option({{ $pagekey }},{{ $pageQuestionkey }})">
                                                                                                             Reset
                                                                                                         </button>
                                                                                                     </div>
@@ -2468,15 +2468,15 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal fade m-0 p-0"
-                                                                    id="pageEditMultipleChoiseOptionModal{{ $loop->parent->index }}{{ $loop->index }}"
+                                                                    id="#pageEditMultipleChoiseOptionModal{{ $pagekey }}{{ $pageQuestionkey }}"
                                                                     tabindex="-1"
-                                                                    aria-labelledby="pageEditMultipleChoiseOptionModal{{ $loop->parent->index }}{{ $loop->index }}Label"
+                                                                    aria-labelledby="#pageEditMultipleChoiseOptionModal{{ $pagekey }}{{ $pageQuestionkey }}Label"
                                                                     aria-hidden="true" wire:ignore.self>
                                                                     <div class="modal-dialog modal-fullscreen">
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
                                                                                 <h1 class="modal-title fs-5"
-                                                                                    id="pageEditMultipleChoiseOptionModal{{ $loop->parent->index }}{{ $loop->index }}Label">
+                                                                                    id="#pageEditMultipleChoiseOptionModal{{ $pagekey }}{{ $pageQuestionkey }}Label">
                                                                                     Response Options
                                                                                 </h1>
                                                                                 <button type="button"
@@ -2505,7 +2505,7 @@
                                                                                                         <button
                                                                                                             role="button"
                                                                                                             style="color: rgb(71, 64, 212);"
-                                                                                                            wire:click.prevent="page_clear_new_response_option({{ $loop->parent->index }},{{ $loop->index }})">
+                                                                                                            wire:click.prevent="page_clear_new_response_option({{ $pagekey }},{{ $pageQuestionkey }})">
                                                                                                             Reset
                                                                                                         </button>
                                                                                                     </div>
@@ -2555,15 +2555,13 @@
                                                                                                                                         <input
                                                                                                                                             class="eVpkze w-100 h-100 question-title"
                                                                                                                                             placeholder="Response title"
-                                                                                                                                            id="page-response-title{{ $loop->parent->index }}{{ $responsKey }}"
-                                                                                                                                            wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.multiple_choice.{{ $responsKey }}.title">
+                                                                                                                                            wire:model.lazy="pages.{{ $pagekey }}.question.{{ $pageQuestionkey }}.multiple_choice.{{ $responsKey }}.title">
                                                                                                                                     </div>
                                                                                                                                     <input
                                                                                                                                         type="color"
-                                                                                                                                        wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.multiple_choice.{{ $responsKey }}.color"
+                                                                                                                                        wire:model.lazy="pages.{{ $pagekey }}.question.{{ $pageQuestionkey }}.multiple_choice.{{ $responsKey }}.color"
                                                                                                                                         class="form-control form-control-color gocNNg kxrOmS"
                                                                                                                                         style="height: 25px; width:30px; border-radius: 300px;"
-                                                                                                                                        id="page-response-color{{ $loop->parent->index }}{{ $responsKey }}"
                                                                                                                                         title="Choose your color">
                                                                                                                                 </div>
                                                                                                                             </div>
@@ -2578,7 +2576,7 @@
                                                                                                         <button
                                                                                                             role="button"
                                                                                                             class="nyGSP"
-                                                                                                            wire:click.prevent="add_new_response({{ $qkey }})">
+                                                                                                            wire:click.prevent="page_add_new_response({{ $pagekey }},{{ $pageQuestionkey }})">
                                                                                                             +
                                                                                                             Add
                                                                                                             Response
@@ -2605,7 +2603,7 @@
                                                                                                         role="button"
                                                                                                         class="kDSJkL"
                                                                                                         style="margin-left:10px;"
-                                                                                                        wire:click.prevent="page_clear_new_response_option({{ $loop->parent->index }},{{ $loop->index }})"
+                                                                                                        wire:click.prevent="page_clear_new_response_option({{ $pagekey }},{{ $pageQuestionkey }})"
                                                                                                         data-bs-dismiss="modal">
                                                                                                         Cancel
                                                                                                     </button>
