@@ -20,6 +20,8 @@ class NewCreate extends Component
     public $template_id;
     public $check;
     public $activeone;
+    public $option;
+    public $check_for_exist;
     public $activechangingresponse;
     public $uploading;
     public $new_template;
@@ -30,6 +32,82 @@ class NewCreate extends Component
     public function boot()
     {
         $this->activeone = 0;
+        $this->option = [
+            [
+                [
+                    'title' => 'Good',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'Fair',
+                    'color' => '#f9f2e2',
+                ],
+                [
+                    'title' => 'Poor',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ],
+            [
+                [
+                    'title' => 'Safe',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'At Risk',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ],
+            [
+                [
+                    'title' => 'Pass',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'Fail',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ],
+            [
+                [
+                    'title' => 'Yes',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'No',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ],
+            [
+                [
+                    'title' => 'Compliant',
+                    'color' => '#e7f3ef',
+                ],
+                [
+                    'title' => 'Non-Compliant',
+                    'color' => '#f3e0e5',
+                ],
+                [
+                    'title' => 'N/A',
+                    'color' => '#eaebed',
+                ],
+            ]
+        ];
         $this->new_template = 0;
         $this->uploading = false;
         $this->title_page_questions[] = ['response' => 1, 'is_required' => false, 'text_answer_format' => 0];
@@ -44,8 +122,20 @@ class NewCreate extends Component
             $this->title_page_title = $last->title_page_title;
             $this->pages = $last->pages;
             $this->common_multiple_choise_options = $last->common_multiple_choise_options;
+            $this->check_for_exist = NewTemplate::find($this->template_id);
         } else {
-            $this->template_id = 1;
+            $template = NewTemplate::Create([
+                'icon' => null,
+                'title' => $this->title ?? '',
+                'desc' => $this->desc ?? '',
+                'title_page' => $this->title_page_questions ?? [],
+                'title_page_title' => $this->title_page_title ?? null,
+                'pages' => $this->pages ?? [],
+                'common_multiple_choise_options' => $this->option ?? null,
+                'user_id' => 1,
+            ]);
+            $this->template_id = $template->new_template_id;
+            $this->check_for_exist = NewTemplate::find($template->new_template_id);
         }
     }
 
@@ -69,24 +159,13 @@ class NewCreate extends Component
             $this->title_page_questions[$this->activeone]['is_date'] = false;
             $this->title_page_questions[$this->activeone]['is_time'] = false;
         } elseif ($response == 7) {
-            // if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
             unset($this->title_page_questions[$this->activeone]);
             $this->title_page_questions[$this->activeone]['response'] = $response;
-            // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
             $this->title_page_questions[$this->activeone]['is_required'] = false;
             $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
             if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
                 $this->title_page_questions[$this->activeone]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
             }
-            // } else {
-            // $this->title_page_questions[$this->activeone]['response'] = $response;
-            // // dd(array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]));
-            // $this->title_page_questions[$this->activeone]['is_required'] = false;
-            // $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
-            // if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
-            //     $this->title_page_questions[$this->activeone]['multiple_choice'] = [''];
-            // }
-            // }
         } else {
             unset($this->title_page_questions[$this->activeone]);
             $this->title_page_questions[$this->activeone]['response'] = $response;
@@ -134,15 +213,13 @@ class NewCreate extends Component
             $this->pages[$pagekey]['question'][$questionkey]['is_date'] = false;
             $this->pages[$pagekey]['question'][$questionkey]['is_time'] = false;
         } elseif ($response == 7) {
-            if (!array_key_exists('multiple_choice', $this->pages[$pagekey]['question'][$questionkey])) {
-                unset($this->pages[$pagekey]['question'][$questionkey]);
-            }
+            unset($this->pages[$pagekey]['question'][$questionkey]);
             $this->pages[$pagekey]['question'][$questionkey]['response'] = $response;
             // dd(array_key_exists('multiple_choice', $this->pages[$pagekey]['question'][$questionkey]));
             $this->pages[$pagekey]['question'][$questionkey]['is_required'] = false;
             $this->pages[$pagekey]['question'][$questionkey]['multi_select_multiple_choise'] = false;
             if (!array_key_exists('multiple_choice', $this->pages[$pagekey]['question'][$questionkey])) {
-                $this->pages[$pagekey]['question'][$questionkey]['multiple_choice'] = [''];
+                $this->pages[$pagekey]['question'][$questionkey]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
             }
         } else {
             unset($this->pages[$pagekey]['question'][$questionkey]);
@@ -357,8 +434,8 @@ class NewCreate extends Component
 
     public function page_add_new_response($pageKey, $questionKey)
     {
-        if (count($this->pages[$pageKey][$questionKey]['multiple_choice']) < 15)
-            $this->pages[$pageKey][$questionKey]['multiple_choice'][] = ['title' => null, 'color' => '#13855f'];
+        if (count($this->pages[$pageKey]['question'][$questionKey]['multiple_choice']) < 15)
+            $this->pages[$pageKey]['question'][$questionKey]['multiple_choice'][] = ['title' => null, 'color' => '#13855f'];
     }
 
     public function clear_new_response_option($questionKey)
@@ -369,8 +446,8 @@ class NewCreate extends Component
 
     public function page_clear_new_response_option($pageKey, $questionKey)
     {
-        if (count($this->pages[$pageKey][$questionKey]['multiple_choice']) > 0)
-            $this->pages[$pageKey][$questionKey]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
+        if (count($this->pages[$pageKey]['question'][$questionKey]['multiple_choice']) > 0)
+            $this->pages[$pageKey]['question'][$questionKey]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
     }
 
     public function title_page_add_question()
@@ -460,134 +537,20 @@ class NewCreate extends Component
 
     public function updating()
     {
-        $option = [
-            [
-                [
-                    'title' => 'Good',
-                    'color' => '#e7f3ef',
-                ],
-                [
-                    'title' => 'Fair',
-                    'color' => '#f9f2e2',
-                ],
-                [
-                    'title' => 'Poor',
-                    'color' => '#f3e0e5',
-                ],
-                [
-                    'title' => 'N/A',
-                    'color' => '#eaebed',
-                ],
-            ],
-            [
-                [
-                    'title' => 'Safe',
-                    'color' => '#e7f3ef',
-                ],
-                [
-                    'title' => 'At Risk',
-                    'color' => '#f3e0e5',
-                ],
-                [
-                    'title' => 'N/A',
-                    'color' => '#eaebed',
-                ],
-            ],
-            [
-                [
-                    'title' => 'Pass',
-                    'color' => '#e7f3ef',
-                ],
-                [
-                    'title' => 'Fail',
-                    'color' => '#f3e0e5',
-                ],
-                [
-                    'title' => 'N/A',
-                    'color' => '#eaebed',
-                ],
-            ],
-            [
-                [
-                    'title' => 'Yes',
-                    'color' => '#e7f3ef',
-                ],
-                [
-                    'title' => 'No',
-                    'color' => '#f3e0e5',
-                ],
-                [
-                    'title' => 'N/A',
-                    'color' => '#eaebed',
-                ],
-            ],
-            [
-                [
-                    'title' => 'Compliant',
-                    'color' => '#e7f3ef',
-                ],
-                [
-                    'title' => 'Non-Compliant',
-                    'color' => '#f3e0e5',
-                ],
-                [
-                    'title' => 'N/A',
-                    'color' => '#eaebed',
-                ],
-            ]
-        ];
-        $check_for_exist = NewTemplate::find($this->template_id);
-        if (!$this->icon) {
-            if (!$check_for_exist) {
-                NewTemplate::Create([
-                    'title' => $this->title ?? '',
-                    'desc' => $this->desc ?? '',
-                    'title_page' => $this->title_page_questions ?? [],
-                    'title_page_title' => $this->title_page_title ?? null,
-                    'pages' => $this->pages ?? [],
-                    'common_multiple_choise_options' => $option ?? null,
-                    'user_id' => 1,
-                ]);
-            } else {
-                $check_for_exist->title = $this->title ?? '';
-                $check_for_exist->icon = null;
-                $check_for_exist->desc = $this->desc ?? '';
-                $check_for_exist->title_page = $this->title_page_questions ?? [];
-                $check_for_exist->title_page_title = $this->title_page_title ?? null;
-                $check_for_exist->pages = $this->pages ?? [];
-                $check_for_exist->common_multiple_choise_options = $option ?? null;
-                $check_for_exist->user_id = 1;
-                $check_for_exist->save();
-            }
-        } else {
-            if (!$check_for_exist) {
-                NewTemplate::Create([
-                    'icon' => $this->icon->getClientOriginalName(),
-                    'title' => $this->title ?? '',
-                    'desc' => $this->desc ?? '',
-                    'title_page' => $this->title_page_questions ?? [],
-                    'title_page_title' => $this->title_page_title ?? null,
-                    'pages' => $this->pages ?? [],
-                    'common_multiple_choise_options' => $option ?? null,
-                    'user_id' => 1,
-                ]);
-                $this->icon->storeAs('images', $this->icon->getClientOriginalName());
-            } else {
-                $check_for_exist->title = $this->title ?? '';
-                $check_for_exist->desc = $this->desc ?? '';
-                $check_for_exist->title_page = $this->title_page_questions ?? [];
-                $check_for_exist->title_page_title = $this->title_page_title ?? null;
-                $check_for_exist->pages = $this->pages ?? [];
-                $check_for_exist->common_multiple_choise_options = $option ?? null;
-                $check_for_exist->user_id = 1;
-                if ($this->uploading == true) {
-                    $this->icon->storeAs('images', $this->icon->getClientOriginalName());
-                    $check_for_exist->icon = $this->icon->getClientOriginalName();
-                    $this->icon = $this->icon->getClientOriginalName();
-                }
-                $check_for_exist->save();
-            }
+        $this->check_for_exist->title = $this->title ?? '';
+        // $this->check_for_exist->icon = null;
+        $this->check_for_exist->desc = $this->desc ?? '';
+        $this->check_for_exist->title_page = $this->title_page_questions ?? [];
+        $this->check_for_exist->title_page_title = $this->title_page_title ?? null;
+        $this->check_for_exist->pages = $this->pages ?? [];
+        $this->check_for_exist->common_multiple_choise_options = $this->option ?? null;
+        $this->check_for_exist->user_id = 1;
+        if ($this->uploading == true) {
+            $this->icon->storeAs('images', $this->icon->getClientOriginalName());
+            $this->check_for_exist->icon = $this->icon->getClientOriginalName();
+            $this->icon = $this->icon->getClientOriginalName();
         }
+        $this->check_for_exist->save();
         $this->uploading = false;
     }
     // public function render()

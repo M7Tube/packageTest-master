@@ -2234,7 +2234,7 @@
                                                                                                                                 class="gupkBu eCBvzO">
                                                                                                                                 <div class="evLYbt"
                                                                                                                                     {{-- Question key | response id | readyOption id --}}
-                                                                                                                                    wire:click.prevent="PageSetResponseValueFromReadyOptions({{ $loop->parent->index }},{{ $loop->index }},7,{{ $loop->iteration }})"
+                                                                                                                                    wire:click.prevent="PageSetResponseValueFromReadyOptions({{ $pagekey }},{{ $pageQuestionkey }},7,{{ $loop->iteration }})"
                                                                                                                                     data-bs-dismiss="modal">
                                                                                                                                     <div
                                                                                                                                         class="fyczhl">
@@ -2399,15 +2399,15 @@
                                                                                                                                         <input
                                                                                                                                             class="eVpkze w-100 h-100 question-title"
                                                                                                                                             placeholder="Response title"
-                                                                                                                                            id="page-response-title{{ $loop->parent->index }}{{ $responsKey }}"
-                                                                                                                                            wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.multiple_choice.{{ $responsKey }}.title">
+                                                                                                                                            id="page-response-title{{ $pagekey }}{{ $pageQuestionkey }}{{ $responsKey }}"
+                                                                                                                                            wire:model.lazy="pages.{{ $pagekey }}.question.{{ $pageQuestionkey }}.multiple_choice.{{ $responsKey }}.title">
                                                                                                                                     </div>
                                                                                                                                     <input
                                                                                                                                         type="color"
-                                                                                                                                        wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.multiple_choice.{{ $responsKey }}.color"
+                                                                                                                                        wire:model.lazy="pages.{{ $pagekey }}.question.{{ $pageQuestionkey }}.multiple_choice.{{ $responsKey }}.color"
                                                                                                                                         class="form-control form-control-color gocNNg kxrOmS"
                                                                                                                                         style="height: 25px; width:30px; border-radius: 300px;"
-                                                                                                                                        id="page-response-color{{ $loop->parent->index }}{{ $responsKey }}"
+                                                                                                                                        id="page-response-color{{ $pagekey }}{{ $pageQuestionkey }}{{ $responsKey }}"
                                                                                                                                         title="Choose your color">
                                                                                                                                 </div>
                                                                                                                             </div>
@@ -2422,7 +2422,7 @@
                                                                                                         <button
                                                                                                             role="button"
                                                                                                             class="nyGSP"
-                                                                                                            wire:click.prevent="page_add_new_response({{ $loop->parent->index }},{{ $loop->index }})">
+                                                                                                            wire:click.prevent="page_add_new_response({{ $pagekey }},{{ $pageQuestionkey }})">
                                                                                                             +
                                                                                                             Add
                                                                                                             Response

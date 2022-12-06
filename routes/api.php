@@ -76,7 +76,7 @@ Route::get('/migrate', function () {
     return "refreshed";
 });
 Route::get('/clear', function () {
-    return NewTemplate::find(1);
+    return NewTemplate::all()->first();
     Artisan::call('optimize:clear');
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
