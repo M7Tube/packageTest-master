@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use App\Models\Vat;
-use PDF;
+use PDF2;
 use Illuminate\Http\Request;
 
 class ExportController extends Controller
@@ -28,7 +28,7 @@ class ExportController extends Controller
         ini_set('max_execution_time', '300');
         ini_set("pcre.backtrack_limit", "50000000");
         view()->share('data', $data);
-        $pdf = PDF::chunkLoadView('<html-separator/>', 'pdf.new_7_11_2022.en_pdf', $data, [
+        $pdf = PDF2::chunkLoadView('<html-separator/>', 'pdf.new_7_11_2022.en_pdf', $data, [
             'title' => 'PDF Title',
             'author' => 'PDF Author',
             'margin_left' => 20,

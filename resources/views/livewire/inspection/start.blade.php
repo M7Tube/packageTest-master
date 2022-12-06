@@ -1,5 +1,5 @@
 <div id="root">
-    {{-- <button wire:click.prevent="test">print test</button> --}}
+    <button wire:click.prevent="test">print test</button>
     <div id="app-container" class="gtvfKz">
         <div class="brCoKm">
             <div class="gBIxUd">
@@ -541,7 +541,7 @@
                                             <div class="kYZfuZ">
                                                 <div class="kSYIEK">
                                                     <div class="kWyuDi hLlPJJ">
-                                                        <div class="bqdqKq" tabindex="0">
+                                                        <div class="bqdqKq" tabindex="{{ $pKey }}">
                                                             <div style="border: medium none;" class="select-value">
                                                                 <div class="hZgdqC">
                                                                     <div class="fPDdjU">
@@ -554,8 +554,7 @@
                                                                                     <path
                                                                                         d="M12.819 17.633l8.866-9.52a1.323 1.323 0 0 0-.028-1.745 1.113 1.113 0 0 0-1.625-.03l-7.663 8.228a.509.509 0 0 1-.755 0L3.968 6.354a1.113 1.113 0 0 0-1.625.03 1.323 1.323 0 0 0-.028 1.745l8.85 9.504c.22.235.517.368.827.367a1.12 1.12 0 0 0 .827-.367z"
                                                                                         fill="#545f70"
-                                                                                        fill-rule="nonzero">
-                                                                                    </path>
+                                                                                        fill-rule="nonzero"></path>
                                                                                 </svg>
                                                                                 <div style="margin-bottom: 0.5rem;"
                                                                                     class="jcwCWQ">
@@ -578,77 +577,90 @@
                                                 <div></div>
                                                 @forelse ($page['question'] as $qKey => $question)
                                                     <div>
-                                                        <div class="dWlTBc QuestionCard">
+                                                        <div class="dWlTBc QuestionCard"
+                                                            style="{{ $question['is_required'] == true && (!isset($page_result[$pKey]['question'][$loop->index]['value']) || $page_result[$pKey]['question'][$loop->index]['value'] == '' || ($question['response'] == 7 ? (is_array($page_result[$pKey]['question'][$loop->index]['value']) ? (array_key_exists('value', $page_result[$pKey]['question'][$loop->index]['value']) ? $page_result[$pKey]['question'][$loop->index]['value']['value'] == null : $page_result[$pKey]['question'][$loop->index]['value'] == null) : $page_result[$pKey]['question'][$loop->index]['value'] == null) : '')) ? 'border-left: 0.25rem solid rgb(168, 36, 42);' : '' }}">
                                                             <div class="QuestionInnerContainer">
                                                                 <div class="iGjeXI">
+                                                                    @if ($question['is_required'] == true && $question['response'] != 3)
+                                                                        <div class="bQzAit">*</div>
+                                                                    @endif
                                                                     <div class="ljnLdg">
                                                                         <div class="cTGqGw kYUEsK">
                                                                             <span class="jjaCv">
-                                                                                {{ $question['response'] == 3 ? null : $question['title'] ?? '' }}
-                                                                                {{-- {{ $question['title'] ?? '' }} --}}
+                                                                                {{ $question['response'] == 3 ? null : $question['title'] ?? 'Untitled question' }}
                                                                             </span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 @if ($question['response'] == 1)
                                                                     @if ($question['text_answer_format'] == 0)
-                                                                        <input class="hxhzuE gEIQZu fs-block"
+                                                                        <input class="form-control fs-block"
                                                                             type="text"
-                                                                            wire:model.lazy="page_result.{{ $loop->parent->index }}.question.{{ $loop->index }}.value">
+                                                                            wire:model="page_result.{{ $pKey }}.question.{{ $loop->index }}.value">
                                                                     @elseif ($question['text_answer_format'] == 1)
-                                                                        <textarea class="hxhzuE gEIQZu fs-block" type="text"
-                                                                            wire:model.lazy="page_result.{{ $loop->parent->index }}.question.{{ $loop->index }}.value"></textarea>
+                                                                        <textarea class="form-control fs-block" type="text"
+                                                                            wire:model="page_result.{{ $pKey }}.question.{{ $loop->index }}.value"></textarea>
                                                                     @endif
                                                                 @elseif ($question['response'] == 2)
-                                                                    <input class="hxhzuE gEIQZu fs-block"
+                                                                    <input class="form-control fs-block"
                                                                         type="text"
-                                                                        wire:model.lazy="page_result.{{ $loop->parent->index }}.question.{{ $loop->index }}.value">
-                                                                    <script>
-                                                                        @this.set('page_result.' + {{ $loop->parent->index }} + '.question.' + {{ $loop->index }} + '.value',
-                                                                            {!! json_encode($question['docNum_format'], JSON_HEX_TAG) !!});
-                                                                    </script>
+                                                                        wire:model="page_result.{{ $pKey }}.question.{{ $loop->index }}.value">
+                                                                @elseif ($question['response'] == 3)
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input"
+                                                                            type="checkbox"
+                                                                            wire:model="page_result.{{ $pKey }}.question.{{ $loop->index }}.value"
+                                                                            id="flexCheckDefault{{ $pKey }}{{ $loop->index }}">
+                                                                        <label class="form-check-label"
+                                                                            for="flexCheckDefault">
+                                                                            {{ $question['title'] ?? 'Untitled question' }}
+                                                                        </label>
+                                                                    </div>
                                                                 @elseif ($question['response'] == 5)
-                                                                    <input class="hxhzuE gEIQZu fs-block"
+                                                                    <input class="form-control fs-block text-left"
+                                                                        {{-- hxhzuE gEIQZu  --}}
                                                                         type="{{ !empty($question['is_date']) && !empty($question['is_time']) ? ($question['is_date'] == 1 && $question['is_time'] == 1 ? 'datetime-local' : 'date') : 'date' }}"
-                                                                        wire:model.lazy="page_result.{{ $loop->parent->index }}.question.{{ $loop->index }}.value">
+                                                                        wire:model="page_result.{{ $pKey }}.question.{{ $loop->index }}.value">
                                                                 @elseif ($question['response'] == 4)
-                                                                    <input class="hxhzuE gEIQZu fs-block only-number"
+                                                                    <input
+                                                                        class="form-control fs-block only-number{{ $pKey }}{{ $loop->index }}"
                                                                         type="number"
-                                                                        wire:model.lazy="page_result.{{ $loop->parent->index }}.question.{{ $loop->index }}.value">
+                                                                        wire:model="page_result.{{ $pKey }}.question.{{ $loop->index }}.value">
                                                                     <script>
-                                                                        document.querySelector(".only-number").addEventListener("keypress", function(evt) {
-                                                                            if (evt.which < 48 || evt.which > 57) {
-                                                                                evt.preventDefault();
-                                                                            }
-                                                                        });
+                                                                        document.querySelector(".only-number" + {{ $pKey }}{{ $loop->index }}).addEventListener("keypress",
+                                                                            function(evt) {
+                                                                                if (evt.which < 48 || evt.which > 57) {
+                                                                                    evt.preventDefault();
+                                                                                }
+                                                                            });
                                                                     </script>
                                                                 @elseif ($question['response'] == 6)
                                                                     <div class="d-flex">
                                                                         <input type="text"
-                                                                            wire:model.lazy="page_result.{{ $loop->parent->index }}.question.{{ $loop->index }}.signature.name"
+                                                                            wire:model.lazy="page_result.{{ $pKey }}.question.{{ $loop->index }}.signature.name"
                                                                             id="" class="form-control w-75">
                                                                         <!-- Button trigger modal -->
                                                                         <button class="btn w-25 mx-1"
                                                                             style="background-color: #4740d4; color:white;"
                                                                             class="btn btn-primary"
                                                                             data-bs-toggle="modal"
-                                                                            data-bs-target="#signatureModal{{ $loop->parent->index }}{{ $loop->index }}">
+                                                                            data-bs-target="#signatureModal{{ $pKey }}{{ $loop->index }}">
                                                                             <img src="{{ asset('images/signature-svgrepo-com.svg') }}"
                                                                                 width="25px" alt="signature"
                                                                                 style="color:white;">
                                                                         </button>
                                                                         <!-- Modal -->
                                                                         <div class="modal fade"
-                                                                            id="signatureModal{{ $loop->parent->index }}{{ $loop->index }}"
+                                                                            id="signatureModal{{ $pKey }}{{ $loop->index }}"
                                                                             tabindex="-1"
-                                                                            aria-labelledby="signatureModal{{ $loop->parent->index }}{{ $loop->index }}Label"
+                                                                            aria-labelledby="signatureModal{{ $pKey }}{{ $loop->index }}Label"
                                                                             aria-hidden="true">
                                                                             <div
                                                                                 class="modal-dialog modal-fullscreen-sm-down">
                                                                                 <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <h5 class="modal-title text-center"
-                                                                                            id="signatureModal{{ $loop->parent->index }}{{ $loop->index }}Label">
+                                                                                            id="signatureModal{{ $pKey }}{{ $loop->index }}Label">
                                                                                             Please add your signature
                                                                                         </h5>
                                                                                         <button type="button"
@@ -657,12 +669,15 @@
                                                                                             aria-label="Close"></button>
                                                                                     </div>
                                                                                     <div class="modal-body">
-                                                                                        <canvas
-                                                                                            id="signature-pad{{ $loop->parent->index }}{{ $loop->index }}"
-                                                                                            class="small-sign-pad w-100"
-                                                                                            style="border-bottom: 2px dashed rgb(191, 198, 212);"></canvas>
+                                                                                        <div>
+
+                                                                                            <canvas
+                                                                                                id="signature-pad{{ $pKey }}{{ $loop->index }}"
+                                                                                                class="small-sign-pad w-100"
+                                                                                                style="border-bottom: 2px dashed rgb(191, 198, 212);"></canvas>
+                                                                                        </div>
                                                                                         <button
-                                                                                            id="clear{{ $loop->parent->index }}{{ $loop->index }}"
+                                                                                            id="clear{{ $pKey }}{{ $loop->index }}"
                                                                                             class="btn btn-outline-secondary"
                                                                                             style="margin-top:300px;">Clear</button>
                                                                                     </div>
@@ -672,7 +687,7 @@
                                                                                             data-bs-dismiss="modal">Close</button>
                                                                                         <button type="button"
                                                                                             class="btn btn-outline-primary"
-                                                                                            id="save{{ $loop->parent->index }}{{ $loop->index }}">Save
+                                                                                            id="save{{ $pKey }}{{ $loop->index }}">Save
                                                                                             changes</button>
                                                                                     </div>
                                                                                 </div>
@@ -680,51 +695,138 @@
                                                                         </div>
                                                                     </div>
                                                                     <script>
-                                                                        var signaturePad{{ $loop->parent->index }}{{ $loop->index }} = new SignaturePad(document.getElementById(
-                                                                            'signature-pad' + {{ $loop->parent->index }}{{ $loop->index }}), {
-                                                                            backgroundColor: 'rgba(150, 100, 25, 0)',
+                                                                        var signaturePad{{ $pKey }}{{ $loop->index }} = new SignaturePad(document.getElementById(
+                                                                            'signature-pad' +
+                                                                            {{ $pKey }}{{ $loop->index }}), {
+                                                                            backgroundColor: '#ede9e8',
                                                                             penColor: 'rgb(0, 0, 0)'
                                                                         });
-                                                                        var saveButton{{ $loop->parent->index }}{{ $loop->index }} = document.getElementById('save' +
-                                                                            {{ $loop->parent->index }}{{ $loop->index }});
-                                                                        var cancelButton{{ $loop->parent->index }}{{ $loop->index }} = document.getElementById('clear' +
-                                                                            {{ $loop->parent->index }}{{ $loop->index }});
+                                                                        var saveButton{{ $pKey }}{{ $loop->index }} = document.getElementById('save' +
+                                                                            {{ $pKey }}{{ $loop->index }});
+                                                                        var cancelButton{{ $pKey }}{{ $loop->index }} = document.getElementById('clear' +
+                                                                            {{ $pKey }}{{ $loop->index }});
 
 
-                                                                        cancelButton{{ $loop->parent->index }}{{ $loop->index }}.addEventListener('click', function(event) {
-                                                                            signaturePad{{ $loop->parent->index }}{{ $loop->index }}.clear();
+                                                                        cancelButton{{ $pKey }}{{ $loop->index }}.addEventListener('click', function(event) {
+                                                                            signaturePad{{ $pKey }}{{ $loop->index }}.clear();
                                                                         });
-                                                                        saveButton{{ $loop->parent->index }}{{ $loop->index }}.addEventListener('click', function(event) {
-                                                                            var data{{ $loop->parent->index }}{{ $loop->index }} =
-                                                                                signaturePad{{ $loop->parent->index }}{{ $loop->index }}.toDataURL('image/png');
-                                                                            @this.set('page_result.' + {{ $loop->parent->index }} + '.question.' + {{ $loop->index }} +
-                                                                                '.signature.value', data{{ $loop->parent->index }}{{ $loop->index }});
-                                                                            $('#signatureModal' + {{ $loop->parent->index }}{{ $loop->index }}).modal('hide');
+                                                                        saveButton{{ $pKey }}{{ $loop->index }}.addEventListener('click', function(event) {
+                                                                            var data{{ $pKey }}{{ $loop->index }} =
+                                                                                signaturePad{{ $pKey }}{{ $loop->index }}.toDataURL('image/png');
+                                                                            console.log(@this.set('page_result.' + {{ $pKey }} + '.question.' + {{ $loop->index }} +
+                                                                                '.signature.value',
+                                                                                data{{ $pKey }}{{ $loop->index }}));
+                                                                            // console.log(@this.get('title_page_result.' + {{ $loop->index }} + '.signature.name'));
+                                                                            $('#signatureModal' + {{ $pKey }}{{ $loop->index }}).modal('hide');
                                                                             // console.log(data);
                                                                             // Send data to server instead...
                                                                             // window.open(data);
                                                                         });
                                                                     </script>
                                                                 @elseif ($question['response'] == 7)
-                                                                    <div class="btn-group" role="group"
-                                                                        aria-label="Basic radio toggle button group">
-                                                                        <div class="row">
-                                                                            @forelse ($question['multiple_choice'] as $rKey => $response)
-                                                                                <div class="col-12 my-1">
-                                                                                    <input type="radio"
-                                                                                        class="btn-check"
-                                                                                        wire:model.lazy="page_result.{{ $pKey }}.question.{{ $qKey }}.value"
-                                                                                        value="{{ $response['title'] }}._.{{ $response['color'] }}"
-                                                                                        id="{{ $loop->parent->index }}{{ $loop->index }}">
-                                                                                    <label class="btn w-100"
-                                                                                        for="{{ $loop->parent->index }}{{ $loop->index }}">
-                                                                                        {{ $response['title'] }}
-                                                                                    </label>
+                                                                    @if (count($question['multiple_choice']) <= 4)
+                                                                        @if (!empty($question['multi_select_multiple_choise']))
+                                                                            @if ($question['multi_select_multiple_choise'] == false)
+                                                                                <div class="iSZloI">
+                                                                                    @forelse ($question['multiple_choice'] as $response)
+                                                                                        <button
+                                                                                            wire:click.prevent="page_set_multiple_choice_value({{ $pKey }},{{ $qKey }},{{ $loop->index }},'{{ $response['title'] ?? '' }}','{{ $response['color'] ?? '' }}')"
+                                                                                            type="button"
+                                                                                            class="hUtmQb "
+                                                                                            style="background-color: {{ $page_result[$pKey]['question'][$qKey]['value']['option'] == $loop->index && $page_result[$pKey]['question'][$qKey]['value']['option'] != -1 ? $response['color'] ?? '' : '' }}; {{ $page_result[$pKey]['question'][$qKey]['value']['option'] == $loop->index &&
+                                                                                            $page_result[$pKey]['question'][$qKey]['value']['option'] != -1
+                                                                                                ? 'color: linear-gradient(var(--enable-color) calc(100% * var(--enable)),var(--disable-color) 0);'
+                                                                                                : '' }}">
+                                                                                            <span>
+                                                                                                {{ $response['title'] ?? 'Untitled choice' }}
+                                                                                            </span>
+                                                                                        </button>
+                                                                                    @empty
+                                                                                    @endforelse
                                                                                 </div>
-                                                                            @empty
-                                                                            @endforelse
+                                                                            @elseif ($question['multi_select_multiple_choise'] == true)
+                                                                                <div wire:ignore>
+                                                                                    <select class="selectpicker w-100"
+                                                                                        data-live-search="true"
+                                                                                        multiple
+                                                                                        wire:model="page_result.{{ $pKey }}.question.{{ $qKey }}.value">
+                                                                                        <option value="null">
+                                                                                            Nothing selected
+                                                                                        </option>
+                                                                                        @forelse ($question['multiple_choice'] as $response)
+                                                                                            <option
+                                                                                                value="{{ $response['title'] }}._.{{ $response['color'] }}"
+                                                                                                data-content="<span class='badge' style='background-color:{{ $response['color'] }}; color:black;'>{{ $response['title'] ?? '' }}</span>">
+                                                                                                {{ $response['title'] ?? 'Untitled choice' }}
+                                                                                            </option>
+                                                                                        @empty
+                                                                                        @endforelse
+                                                                                    </select>
+                                                                                </div>
+                                                                            @endif
+                                                                        @else
+                                                                            <div class="iSZloI">
+                                                                                @forelse ($question['multiple_choice'] as $response)
+                                                                                    <button
+                                                                                        wire:click.prevent="page_set_multiple_choice_value({{ $pKey }},{{ $qKey }},{{ $loop->index }},'{{ $response['title'] ?? '' }}','{{ $response['color'] ?? '' }}')"
+                                                                                        type="button" class="hUtmQb "
+                                                                                        style="background-color: {{ $page_result[$pKey]['question'][$qKey]['value']['option'] == $loop->index && $page_result[$pKey]['question'][$qKey]['value']['option'] != -1 ? $response['color'] ?? '' : '' }}; {{ $page_result[$pKey]['question'][$qKey]['value']['option'] == $loop->index &&
+                                                                                        $page_result[$pKey]['question'][$qKey]['value']['option'] != -1
+                                                                                            ? 'color: linear-gradient(var(--enable-color) calc(100% * var(--enable)),var(--disable-color) 0);'
+                                                                                            : '' }}">
+                                                                                        <span>
+                                                                                            {{ $response['title'] ?? 'Untitled choice' }}
+                                                                                        </span>
+                                                                                    </button>
+                                                                                @empty
+                                                                                @endforelse
+                                                                            </div>
+                                                                        @endif
+                                                                    @elseif (count($question['multiple_choice']) > 4)
+                                                                        <div wire:ignore>
+                                                                            <select class="selectpicker w-100"
+                                                                                data-live-search="true"
+                                                                                wire:model="page_result.{{ $pKey }}.question.{{ $qKey }}.value">
+                                                                                <option value="0">
+                                                                                    Nothing selected
+                                                                                </option>
+                                                                                @forelse ($question['multiple_choice'] as $response)
+                                                                                    <option
+                                                                                        value="{{ $response['title'] }}._.{{ $response['color'] }}"
+                                                                                        data-content="<span class='badge' style='background-color:{{ $response['color'] }}; color:black;'>{{ $response['title'] ?? '' }}</span>">
+                                                                                        {{ $response['title'] ?? '' }}
+                                                                                    </option>
+                                                                                @empty
+                                                                                @endforelse
+                                                                            </select>
                                                                         </div>
+                                                                    @endif
+                                                                    {{-- <div class="" role="group"
+                                                                    aria-label="Basic radio toggle button group">
+                                                                    <div class="row">
+                                                                        @forelse ($question['multiple_choice'] as $response)
+                                                                            <div class="col-12 my-1 test">
+                                                                                <input type="radio" class="btn-check"
+                                                                                    wire:model.lazy="title_page_result.{{ $loop->parent->index }}.value"
+                                                                                    value="{{ $response['title'] }}._.{{ $response['color'] ?? '' }}"
+                                                                                    id="{{ $loop->parent->index }}{{ $loop->index }}">
+                                                                                <label class="btn w-100 border-0"
+                                                                                    style=""
+                                                                                    for="{{ $loop->parent->index }}{{ $loop->index }}">
+                                                                                    {{ $response['title'] ?? '' }}
+                                                                                </label>
+                                                                            </div>
+                                                                            <style>
+                                                                                .test:focus-within {
+                                                                                    background-color: red;
+                                                                                    border: 2px solid grey;
+                                                                                    transition: width 2s;
+                                                                                }
+                                                                            </style>
+                                                                        @empty
+                                                                        @endforelse
                                                                     </div>
+                                                                </div> --}}
                                                                 @elseif ($question['response'] == 8)
                                                                     <textarea rows="5" cols="30" type="text" class="form-control" id="demo"></textarea>
                                                                     <script>
@@ -751,8 +853,8 @@
                                                                             function success() {
                                                                                 var data = JSON.parse(this.responseText); //parse the string to JSON
                                                                                 x.value = data['results'][0]['formatted_address'];
-                                                                                @this.set('page_result.' + {{ $loop->parent->index }} + '.question.' + {{ $loop->index }} + '.value',
-                                                                                    data['results'][0]['formatted_address']);
+                                                                                @this.set('page_result.' + {{ $pKey }} + '.question.' + {{ $qKey }} + '.value', data[
+                                                                                    'results'][0]['formatted_address']);
                                                                                 // console.log(data);
                                                                             }
 
@@ -790,9 +892,9 @@
                                                                         }
                                                                     </script>
                                                                 @elseif ($question['response'] == 11)
-                                                                    <div class="etYWGL cBEPSE fehvTc"
-                                                                        style="top: 12.5%;">
-                                                                        <button style="width: 100%;" type="button"
+                                                                    <div class="etYWGL cBEPSE fehvTc">
+                                                                        <button color="#ffffff" font-size="0.875rem"
+                                                                            style="width: 100%;" type="button"
                                                                             class="gqAxJM">
                                                                             <svg width="17" height="17"
                                                                                 viewBox="0 0 16 16"
@@ -806,58 +908,90 @@
                                                                             Add media
                                                                         </button>
                                                                         <input type="file" class="hHuzqj"
-                                                                            wire:model="pictures.page.{{ $loop->parent->index }}.question.{{ $loop->index }}.images"
-                                                                            accept="image/*" multiple>
+                                                                            accept="image/*" tabindex="-1"
+                                                                            wire:model="pictures" multiple>
                                                                     </div>
-                                                                    {{-- @if ($picture)
-                                                                            @forelse ($picture as $pic)
-                                                                                <div class="col-6 col-md-3">
-                                                                                    <img src="{{ $pic->temporaryUrl() }}"
-                                                                                        alt="preview pictures" width="175px">
-                                                                                </div>
-                                                                                <div class="hiuMsG">
-                                                                                    <div class="gCLqFS">
-                                                                                        <div class="ikLXml">
-                                                                                            <div class="lazyload-wrapper "><img
-                                                                                                    class="iokESV ekAWcw"
-                                                                                                    src="blob:https://app.au.safetyculture.com/7a0215ef-ad66-4009-824b-cd289e117550">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="ikLXml">
-                                                                                            <div class="lazyload-wrapper "><img
-                                                                                                    class="iokESV ekAWcw"
-                                                                                                    src="blob:https://app.au.safetyculture.com/b130795f-ccf7-4fb5-8abb-acb4465c5a86">
+                                                                    <div class="hiuMsG">
+                                                                        <div class="gCLqFS">
+                                                                            @if ($pictures)
+                                                                                @forelse ($pictures as $pic)
+                                                                                    <div class="ikLXml">
+                                                                                        <div class="lazyload-wrapper ">
+                                                                                            <img class="iokESV ekAWcw"
+                                                                                                id="myImg{{ $pKey }}{{ $loop->index }}"
+                                                                                                src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents(storage_path('app/images/' . $pic))) !!}">
+                                                                                            <!-- The Modal -->
+                                                                                            <div id="myModal{{ $pKey }}{{ $loop->index }}"
+                                                                                                class="img-modal">
+                                                                                                <span
+                                                                                                    class="close{{ $pKey }}{{ $loop->index }}">&times;</span>
+                                                                                                <img class="img-modal-content"
+                                                                                                    id="img{{ $pKey }}{{ $loop->index }}">
+                                                                                                <div
+                                                                                                    id="caption{{ $pKey }}{{ $loop->index }}">
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
-                                                                            @empty
-                                                                            @endforelse
-                                                                        @endif --}}
+                                                                                    <script>
+                                                                                        // Get the modal
+                                                                                        var modal{{ $pKey }}{{ $loop->index }} = document.getElementById("myModal" +
+                                                                                            {{ $pKey }}{{ $loop->index }});
+
+                                                                                        // Get the image and insert it inside the modal - use its "alt" text as a caption
+                                                                                        var img{{ $pKey }}{{ $loop->index }} = document.getElementById("myImg" +
+                                                                                            {{ $pKey }}{{ $loop->index }});
+                                                                                        var modalImg{{ $pKey }}{{ $loop->index }} = document.getElementById("img" +
+                                                                                            {{ $pKey }}{{ $loop->index }});
+                                                                                        var captionText{{ $pKey }}{{ $loop->index }} = document.getElementById("caption" +
+                                                                                            {{ $pKey }}{{ $loop->index }});
+                                                                                        img{{ $pKey }}{{ $loop->index }}.onclick = function() {
+                                                                                            modal{{ $pKey }}{{ $loop->index }}.style.display = "block";
+                                                                                            modalImg{{ $pKey }}{{ $loop->index }}.src = this.src;
+                                                                                            captionText{{ $pKey }}{{ $loop->index }}.innerHTML = this.alt;
+                                                                                        }
+
+                                                                                        // Get the <span> element that closes the modal
+                                                                                        var span{{ $pKey }}{{ $loop->index }} = document.getElementsByClassName("close" +
+                                                                                            {{ $pKey }}{{ $loop->index }})[0];
+
+                                                                                        // When the user clicks on <span> (x), close the modal
+                                                                                        span{{ $pKey }}{{ $loop->index }}.onclick = function() {
+                                                                                            modal{{ $pKey }}{{ $loop->index }}.style.display = "none";
+                                                                                        }
+                                                                                    </script>
+                                                                                @empty
+                                                                                @endforelse
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
                                                                 @endif
+                                                            </div>
+                                                            <div class="QuestionInnerContainer mt-3">
+                                                                {{ !empty($page_result[$pKey]['question'][$loop->index]['note']) ? $page_result[$pKey]['question'][$loop->index]['note'] : null }}
                                                             </div>
                                                             <div class="hDVsDR">
                                                                 {{-- add note --}}
-                                                                <div class="kRvCBh kRvCBh{{ $loop->parent->index }}"
-                                                                    wire:ignore.self>
+                                                                <div class="kRvCBh{{ $pKey }}"
+                                                                    style="display: none;" wire:ignore.self>
                                                                     <div class="gqIGVk">
                                                                         <div class="kMPIlg">
                                                                             <textarea class="mSXeo fs-block" placeholder="Type your notes..." style="height: 42px;"
-                                                                                wire:model.lazy="page_result.{{ $loop->parent->index }}.question.{{ $loop->index }}.note"></textarea>
+                                                                                wire:model.lazy="page_result.{{ $pKey }}.question.{{ $qKey }}.note"></textarea>
                                                                             <div
                                                                                 style="display: flex; justify-content: space-between; align-items: center;">
                                                                                 <div class="czOQuo">
                                                                                     <button color="#ffffff"
                                                                                         font-size="0.875rem"
                                                                                         type="button"
-                                                                                        onclick="page_hide_note_action({{ $loop->parent->index }},{{ $loop->index }})"
+                                                                                        onclick="hide_note_action({{ $pKey }},{{ $qKey }})"
                                                                                         class="cEDpxx">
                                                                                         Save
                                                                                     </button>
                                                                                     <button color="#4740d4"
                                                                                         font-size="0.875rem"
                                                                                         type="button" class="chnkCq"
-                                                                                        onclick="page_cancel_note_action({{ $loop->parent->index }},{{ $loop->index }})">
+                                                                                        onclick="cancel_note_action({{ $pKey }},{{ $qKey }})">
                                                                                         Cancel
                                                                                     </button>
                                                                                 </div>
@@ -869,7 +1003,7 @@
                                                                     <div class="bJmYpV">
                                                                         <div class="sc-bqGGPW fyoKEo"><button
                                                                                 type="button"
-                                                                                onclick="document.getElementsByClassName('kRvCBh')[{{ $loop->index }}].style.display='block'"
+                                                                                onclick="document.getElementsByClassName('kRvCBh'+{{ $pKey }})[{{ $qKey }}].style.display='block'"
                                                                                 class="sc-kEqXSa dVzWRr">
                                                                                 <span class="sc-iqAclL jibPFy">
                                                                                     <svg width="1rem" height="1rem"
@@ -901,29 +1035,20 @@
                                                 @empty
                                                 @endforelse
                                                 <script>
-                                                    function page_cancel_note_action(pId, id) {
-                                                        @this.set('page_result.' + pId + '.question.' + id + '.note', null);
-                                                        document.getElementsByClassName('kRvCBh' + {{ $loop->index }})[id].style.display = 'none';
+                                                    function cancel_note_action(pageid, id) {
+                                                        @this.set('page_result.' + pageid + '.question.' + id + '.note', null);
+                                                        document.getElementsByClassName('kRvCBh' + {{ $pKey }})[id].style.display = 'none';
                                                     }
 
-                                                    function page_hide_note_action(pId, id) {
-                                                        document.getElementsByClassName('kRvCBh' + {{ $loop->index }})[id].style.display = 'none';
+                                                    function hide_note_action(pageid, id) {
+                                                        document.getElementsByClassName('kRvCBh' + {{ $pKey }})[id].style.display = 'none';
                                                     }
                                                 </script>
                                             </div>
-                                            <div class="eIqTdO">
-                                                <button style="float: left;" type="button"
-                                                    wire:click.prevent="previous_page" class="gqAxJM">
-                                                    <svg viewBox="0 0 24 24" width="17" height="17"
-                                                        class="button_icon" focusable="false">
-                                                        <path
-                                                            d="M6.367 11.181l9.52-8.866a1.323 1.323 0 0 1 1.745.028c.479.445.492 1.164.03 1.625L9.434 11.63a.509.509 0 0 0 0 .755l8.212 7.646c.461.461.448 1.18-.03 1.625a1.323 1.323 0 0 1-1.745.028l-9.504-8.85A1.123 1.123 0 0 1 6 12.007a1.12 1.12 0 0 1 .367-.827z"
-                                                            fill="#ffffff" fill-rule="nonzero"></path>
-                                                    </svg>
-                                                    Previous Page
-                                                </button>
-                                                @if (count($data['pages']) > 0 && !$loop->last)
-                                                    <button style="float: right;" type="button" {{-- onclick="focusOnTitlePage({{ $loop->iteration }})" --}}
+                                            @if (count($data['pages']) > 0 && !$loop->last)
+                                                <div class="eIqTdO">
+                                                    <button color="#ffffff" font-size="0.875rem"
+                                                        style="float: right;" type="button" {{-- onclick="focusOnTitlePage({{ request('page') ?? 0 }})" --}}
                                                         wire:click.prevent="next_page" class="gIOqQk">
                                                         Next page
                                                         <svg viewBox="0 0 24 24" width="17" height="17"
@@ -934,8 +1059,11 @@
                                                                 fill="#ffffff" fill-rule="nonzero"></path>
                                                         </svg>
                                                     </button>
-                                                @else
-                                                    <button style="float: right;" type="button"
+                                                </div>
+                                            @else
+                                                <div class="eIqTdO">
+                                                    <button color="#ffffff" font-size="0.875rem"
+                                                        style="float: right;" type="button"
                                                         wire:click.prevent="export" class="gIOqQk">
                                                         Export
                                                         <svg viewBox="0 0 24 24" width="17" height="17"
@@ -946,8 +1074,8 @@
                                                                 fill="#ffffff" fill-rule="nonzero"></path>
                                                         </svg>
                                                     </button>
-                                                @endif
-                                            </div>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

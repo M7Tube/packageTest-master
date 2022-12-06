@@ -8396,7 +8396,65 @@
         </div>
     </div>
     <pagebreak></pagebreak>
-    يسب
+    {{-- fsd --}}
+    @forelse ($data['pages'] as $record2)
+        <div style="margin:20px;">
+            <div class="row" style="background-color:#f5f5f5; padding-left: 0px; padding-top:2.5px; padding-bottom:5px;">
+                <div class="col-xs-10">
+                    <h3 class="text-left"><b>{{$record2['pagetitle']}}</b></h3>
+                </div>
+            </div>
+            @forelse ($record2['question'] as $record)
+                <div class="row">
+                    {{--  style="margin-bottom: {{ $record['response'] == 7 ? '0px' : '10px' }};" --}}
+                    <div class="col-xs-5" style="">
+                        <span class="" style="font-size: 15.4292px;">{{ $record['key'] ?? 'Untitled question' }}</span>
+                    </div>
+                    <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
+                        @if ($record['response'] == 7)
+                            @if (is_array($record['value']))
+                                @if (isset($record['value']['option']))
+                                    <h6
+                                    style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ $record['value']['value'] ?? '' }};">
+                                    {{  $record['value']['key'] ?? '' }}</h6>
+                                @else
+                                @foreach ($record['value'] as $value)
+                                    <h6
+                                    style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ explode('._.', $value ?? '')[1] ?? '' }};">
+                                    {{ explode('._.', $value ?? '')[0] ?? '' }}</h6>
+                                @endforeach
+                                @endif
+                            @else
+                                <h6
+                                    style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ explode('._.', $record['value'] ?? '')[1] ?? '' }};">
+                                    {{ explode('._.', $record['value'] ?? '')[0] ?? '' }}</h6>
+                            @endif
+                        @elseif ($record['response'] == 6)
+                            @if(!empty($record['signature']))
+                                {{-- <img src="{{$record['signature']['value']}}" alt="test"> --}}
+                                {{-- <img src="data:image/png;base64,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 " alt="test"> --}}
+                            @endif
+                        @else
+                            <span class="" style="color:#7b7673; font-size: 12.4292px;">
+                                {{ $record['value'] ?? '' }}
+                            </span>
+                        @endif
+                    </div>
+                    <div class="col-xs-5" style="color: gray;">
+                        {{ $record['note'] ?? '' }}
+                    </div>
+                </div>
+                <div style="border-bottom: 1px solid #e0e0e0;"></div>
+                {{--  margin-bottom: 10px; --}}
+            @empty
+            @endforelse
+        </div>
+        @if (!$loop->last)
+            <pagebreak></pagebreak>
+        @endif
+    @empty
+
+    @endforelse
 </body>
 
 </html>

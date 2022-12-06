@@ -47,6 +47,24 @@ class Start extends Component
                 $this->title_page_result[$key]['value'] = ['option' => -1, 'key' => null, 'value' => null];
             }
         }
+        foreach ($this->data['pages'] as $key => $value) {
+            $this->page_result[$key]['pagetitle'] = $value['title'] ?? null;
+            foreach ($value['question'] as $key2 => $value2) {
+                $this->page_result[$key]['question'][$key2]['key'] = $value2['title'] ?? null;
+                $this->page_result[$key]['question'][$key2]['response'] = $value2['response'] ?? null;
+                if ($value2['response'] != 6) {
+                    $this->page_result[$key]['question'][$key2]['value'] = null;
+                }
+                $this->page_result[$key]['question'][$key2]['note'] = null;
+                if ($value2['response'] == 2) {
+                    $this->page_result[$key]['question'][$key2]['value'] = $value2['docNum_format'];
+                } elseif ($value2['response'] == 5) {
+                    $this->page_result[$key]['question'][$key2]['value'] = date("Y-m-d H:i:s");
+                } elseif ($value2['response'] == 7) {
+                    $this->page_result[$key]['question'][$key2]['value'] = ['option' => -1, 'key' => null, 'value' => null];
+                }
+            }
+        }
     }
 
     public function updatedPictures()
@@ -67,12 +85,21 @@ class Start extends Component
 
     public function test()
     {
-        dd($this->title_page_result);
+        $data=[
+            'title_page'=>$this->title_page_result,
+            'pages'=>$this->page_result,
+        ];
+        dd($data);
     }
 
     public function set_multiple_choice_value($questionKey, $optionKey, $title, $color)
     {
         $this->title_page_result[$questionKey]['value'] = ['option' => $optionKey, 'key' => $title, 'value' => $color];
+    }
+
+    public function page_set_multiple_choice_value($pageKey,$questionKey, $optionKey, $title, $color)
+    {
+        $this->page_result[$pageKey]['question'][$questionKey]['value'] = ['option' => $optionKey, 'key' => $title, 'value' => $color];
     }
 
     public function export()
