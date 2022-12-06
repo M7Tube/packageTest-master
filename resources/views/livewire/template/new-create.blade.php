@@ -525,6 +525,7 @@
                                                                                             </div>
                                                                                             <div class="eMiEgJ">
                                                                                                 <button role="button"
+                                                                                                    class="btn"
                                                                                                     style="color: rgb(71, 64, 212);"
                                                                                                     wire:click.prevent="clear_new_response_option({{ $qkey }})">
                                                                                                     Reset
@@ -586,6 +587,22 @@
                                                                                                                                 style="height: 25px; width:30px; border-radius: 300px;"
                                                                                                                                 id="response-color{{ $loop->parent->index }}{{ $responsKey }}"
                                                                                                                                 title="Choose your color">
+                                                                                                                            @if (count($title_page_question['multiple_choice']) > 1)
+                                                                                                                                <button
+                                                                                                                                    class="gocNNg kxrOmS bKqzym" style="margin-right: 0%;margin-left: 15px;"
+                                                                                                                                    wire:click.prevent="title_page_delete_mc_choise({{ $loop->index }},{{ $responsKey }})">
+                                                                                                                                    <svg width="21"
+                                                                                                                                        height="21"
+                                                                                                                                        viewBox="0 0 14 14"
+                                                                                                                                        focusable="false">
+                                                                                                                                        <path
+                                                                                                                                            d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                                                                                            fill="#545f70"
+                                                                                                                                            fill-rule="nonzero">
+                                                                                                                                        </path>
+                                                                                                                                    </svg>
+                                                                                                                                </button>
+                                                                                                                            @endif
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -597,7 +614,7 @@
                                                                                             @endif
                                                                                             @if (!empty($title_page_question['multiple_choice']))
                                                                                                 <button role="button"
-                                                                                                    class="nyGSP"
+                                                                                                    class="btn nyGSP"
                                                                                                     wire:click.prevent="add_new_response({{ $qkey }})">
                                                                                                     +
                                                                                                     Add

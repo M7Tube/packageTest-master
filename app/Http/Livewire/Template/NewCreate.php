@@ -182,7 +182,7 @@ class NewCreate extends Component
         $this->title_page_questions[$this->activeone]['multiple_choice'] = $this->option[$option];
     }
 
-    public function pageEditMultipleChoiseOptionModal($pagekey,$questionkey,$option)
+    public function pageEditMultipleChoiseOptionModal($pagekey, $questionkey, $option)
     {
         unset($this->pages[$pagekey]['question'][$questionkey]);
         $this->pages[$pagekey]['question'][$questionkey]['response'] = 7;
@@ -532,10 +532,18 @@ class NewCreate extends Component
         $this->updating();
     }
 
+    public function title_page_delete_mc_choise($questionKey, $choiceKey)
+    {
+        // dd($this->title_page_questions[$questionKey]);
+        array_splice($this->title_page_questions[$questionKey]['multiple_choice'], $choiceKey, 1);
+        $this->updating();
+    }
+
     public function updating()
     {
         $this->check_for_exist->title = $this->title ?? '';
-        // $this->check_for_exist->icon = null;
+        if ($this->icon==null)
+            $this->check_for_exist->icon = null;
         $this->check_for_exist->desc = $this->desc ?? '';
         $this->check_for_exist->title_page = $this->title_page_questions ?? [];
         $this->check_for_exist->title_page_title = $this->title_page_title ?? null;

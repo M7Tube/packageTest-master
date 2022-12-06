@@ -571,7 +571,16 @@ textarea {
     -moz-box-align: center;
     align-items: center;
 }
-
+.nyGSP {
+    font-family: Roboto, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: rgb(31, 37, 51);
+    display: inline-block;
+    line-height: 1rem;
+    cursor: pointer;
+    padding: 1rem 1.5rem;
+  }
 .xXWzF {
     font-family: Roboto, sans-serif;
     font-size: 0.8rem;
