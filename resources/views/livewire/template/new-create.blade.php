@@ -2586,6 +2586,7 @@
                                                                                                     @endif
                                                                                                 </div>
                                                                                             </div>
+                                                                                            {{-- s --}}
                                                                                             <div class="fhTZet">
                                                                                                 <div class="fhTZet">
                                                                                                     @if (!empty($pageQuestion['multiple_choice'][0]['title']))
