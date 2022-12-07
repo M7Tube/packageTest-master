@@ -1,5 +1,5 @@
 <div id="myDiv">
-    {{-- <button wire:click.prevent="test">print test</button> --}}
+    <button wire:click.prevent="test">print test</button>
     {{-- <button wire:click.prevent="test2">delete</button>  --}}
     <div class="mt-5" style="margin-bottom: 100%;">
         <div class="container-fluid">
