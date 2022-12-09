@@ -8368,7 +8368,7 @@
                                     {{ $value->title ?? '' }}</h6>
                                 @endforeach
                             @endif
-                        @elseif ($record==11)
+                        @elseif ($record->response == 11)
                             @foreach ($record['value'] as $img)
                                 <img src="data:image/png;base64,{{$img->value}}" alt="">
                             @endforeach
