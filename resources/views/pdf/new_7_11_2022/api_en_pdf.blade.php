@@ -8383,7 +8383,6 @@
                     </div>
                 </div>
                 <div style="border-bottom: 1px solid #e0e0e0;"></div>
-                {{--  margin-bottom: 10px; --}}
             @empty
             @endforelse
         </div>
