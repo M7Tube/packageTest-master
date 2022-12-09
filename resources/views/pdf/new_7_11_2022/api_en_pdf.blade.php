@@ -8357,20 +8357,21 @@
             @forelse ($data['title_page'] as $record)
                 <div class="row">
                     <div class="col-xs-5" style="">
-                        <span class="" style="font-size: 15.4292px;">{{ $record->title ?? 'Untitled question' }}</span>
+                        <span class=""
+                            style="font-size: 15.4292px;">{{ $record->title ?? 'Untitled question' }}</span>
                     </div>
                     <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
                         @if ($record->response == 7)
                             @if (is_array($record->value))
                                 @foreach ($record->value as $value)
                                     <h6
-                                    style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ $value->color ?? '' }};">
-                                    {{ $value->title ?? '' }}</h6>
+                                        style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ $value->color ?? '' }};">
+                                        {{ $value->title ?? '' }}</h6>
                                 @endforeach
                             @endif
                         @elseif ($record->response == 11)
                             @foreach ($record->value as $img)
-                                <img src="data:image/png;base64,{{ $img->value }}" alt="">
+                                <img src="data:image/png;base64,{{ $img }}" alt="">
                             @endforeach
                         @else
                             <span class="" style="color:#7b7673; font-size: 12.4292px;">
