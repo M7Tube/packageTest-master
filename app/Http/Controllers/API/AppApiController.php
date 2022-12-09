@@ -346,7 +346,7 @@ class AppApiController extends Controller
             'title_page'=>json_decode($request['Template'])->data->title_page,
             'pages'=>json_decode($request['Template'])->data->pages
         ];
-        // return $data;
+        return $data;
         ini_set('max_execution_time', '300');
         ini_set("pcre.backtrack_limit", "50000000");
         view()->share('data', $data);

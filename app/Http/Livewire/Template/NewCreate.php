@@ -20,18 +20,22 @@ class NewCreate extends Component
     public $template_id;
     public $check;
     public $activeone;
+    public $pageactiveone;
+    public $pagequestionactiveone;
     public $option;
     public $check_for_exist;
     public $activechangingresponse;
     public $uploading;
     public $new_template;
-    protected $queryString = ['activeone', 'template_id', 'activechangingresponse', 'new_template'];
+    protected $queryString = ['activeone', 'pageactiveone' , 'pagequestionactiveone' , 'template_id', 'activechangingresponse', 'new_template'];
     protected $listeners = [
         'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex'
     ];
     public function boot()
     {
         $this->activeone = 0;
+        $this->pageactiveone = null;
+        $this->pagequestionactiveone = null;
         $this->option = [
             [
                 [
@@ -215,47 +219,48 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    public function PageSetResponseValue($pagekey, $questionkey, $response)
+    public function PageSetResponseValue($response)
     {
+        $arr = explode('_', $this->activeone);
         if ($response == 1) {
-            $oldtitle = $this->pages[$pagekey]['question'][$questionkey]['title'];
-            unset($this->pages[$pagekey]['question'][$questionkey]);
-            $this->pages[$pagekey]['question'][$questionkey]['title'] = $oldtitle;
-            $this->pages[$pagekey]['question'][$questionkey]['response'] = $response;
-            $this->pages[$pagekey]['question'][$questionkey]['is_required'] = false;
-            $this->pages[$pagekey]['question'][$questionkey]['text_answer_format'] = 0;
+            $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'];
+            unset($this->pages[$arr[1]]['question'][$arr[2]]);
+            $this->pages[$arr[1]]['question'][$arr[2]]['title'] = $oldtitle;
+            $this->pages[$arr[1]]['question'][$arr[2]]['response'] = $response;
+            $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
+            $this->pages[$arr[1]]['question'][$arr[2]]['text_answer_format'] = 0;
         } elseif ($response == 2) {
-            $oldtitle = $this->pages[$pagekey]['question'][$questionkey]['title'];
-            unset($this->pages[$pagekey]['question'][$questionkey]);
-            $this->pages[$pagekey]['question'][$questionkey]['title'] = $oldtitle;
-            $this->pages[$pagekey]['question'][$questionkey]['response'] = $response;
-            $this->pages[$pagekey]['question'][$questionkey]['is_required'] = false;
-            $this->pages[$pagekey]['question'][$questionkey]['docNum_format'] = '000001';
+            $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'];
+            unset($this->pages[$arr[1]]['question'][$arr[2]]);
+            $this->pages[$arr[1]]['question'][$arr[2]]['title'] = $oldtitle;
+            $this->pages[$arr[1]]['question'][$arr[2]]['response'] = $response;
+            $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
+            $this->pages[$arr[1]]['question'][$arr[2]]['docNum_format'] = '000001';
         } elseif ($response == 5) {
-            $oldtitle = $this->pages[$pagekey]['question'][$questionkey]['title'];
-            unset($this->pages[$pagekey]['question'][$questionkey]);
-            $this->pages[$pagekey]['question'][$questionkey]['title'] = $oldtitle;
-            $this->pages[$pagekey]['question'][$questionkey]['response'] = $response;
-            $this->pages[$pagekey]['question'][$questionkey]['is_required'] = false;
-            $this->pages[$pagekey]['question'][$questionkey]['is_date'] = false;
-            $this->pages[$pagekey]['question'][$questionkey]['is_time'] = false;
+            $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'];
+            unset($this->pages[$arr[1]]['question'][$arr[2]]);
+            $this->pages[$arr[1]]['question'][$arr[2]]['title'] = $oldtitle;
+            $this->pages[$arr[1]]['question'][$arr[2]]['response'] = $response;
+            $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
+            $this->pages[$arr[1]]['question'][$arr[2]]['is_date'] = false;
+            $this->pages[$arr[1]]['question'][$arr[2]]['is_time'] = false;
         } elseif ($response == 7) {
-            $oldtitle = $this->pages[$pagekey]['question'][$questionkey]['title'];
-            unset($this->pages[$pagekey]['question'][$questionkey]);
-            $this->pages[$pagekey]['question'][$questionkey]['title'] = $oldtitle;
-            $this->pages[$pagekey]['question'][$questionkey]['response'] = $response;
-            // dd(array_key_exists('multiple_choice', $this->pages[$pagekey]['question'][$questionkey]));
-            $this->pages[$pagekey]['question'][$questionkey]['is_required'] = false;
-            $this->pages[$pagekey]['question'][$questionkey]['multi_select_multiple_choise'] = false;
-            if (!array_key_exists('multiple_choice', $this->pages[$pagekey]['question'][$questionkey])) {
-                $this->pages[$pagekey]['question'][$questionkey]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
+            $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'];
+            unset($this->pages[$arr[1]]['question'][$arr[2]]);
+            $this->pages[$arr[1]]['question'][$arr[2]]['title'] = $oldtitle;
+            $this->pages[$arr[1]]['question'][$arr[2]]['response'] = $response;
+            // dd(array_key_exists('multiple_choice', $this->pages[$arr[1]]['question'][$arr[2]]));
+            $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
+            $this->pages[$arr[1]]['question'][$arr[2]]['multi_select_multiple_choise'] = false;
+            if (!array_key_exists('multiple_choice', $this->pages[$arr[1]]['question'][$arr[2]])) {
+                $this->pages[$arr[1]]['question'][$arr[2]]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
             }
         } else {
-            $oldtitle = $this->pages[$pagekey]['question'][$questionkey]['title'];
-            unset($this->pages[$pagekey]['question'][$questionkey]);
-            $this->pages[$pagekey]['question'][$questionkey]['title'] = $oldtitle;
-            $this->pages[$pagekey]['question'][$questionkey]['response'] = $response;
-            $this->pages[$pagekey]['question'][$questionkey]['is_required'] = false;
+            $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'];
+            unset($this->pages[$arr[1]]['question'][$arr[2]]);
+            $this->pages[$arr[1]]['question'][$arr[2]]['title'] = $oldtitle;
+            $this->pages[$arr[1]]['question'][$arr[2]]['response'] = $response;
+            $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
         }
         $this->updating();
     }
