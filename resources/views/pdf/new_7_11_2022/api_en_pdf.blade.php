@@ -8368,6 +8368,10 @@
                                     {{ $value->title ?? '' }}</h6>
                                 @endforeach
                             @endif
+                        @elseif ($record==11)
+                            @foreach ($record['value'] as $img)
+                                <img src="data:image/png;base64,{{$img->value}}" alt="">
+                            @endforeach
                         @else
                             <span class="" style="color:#7b7673; font-size: 12.4292px;">
                                 {{ $record->value ?? '' }}
