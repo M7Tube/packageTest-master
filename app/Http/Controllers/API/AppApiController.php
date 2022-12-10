@@ -338,14 +338,34 @@ class AppApiController extends Controller
     public function export(Request $request)
     {
         $request->validate([
-            'template_id'=>['required', 'integer', 'exists:new_templates,new_template_id'],
+            'template_id' => ['required', 'integer', 'exists:new_templates,new_template_id'],
         ]);
-        $data=[
-            'title'=>json_decode($request['Template'])->title,
-            'desc'=>json_decode($request['Template'])->desc,
-            'icon'=>json_decode($request['Template'])->icon,
-            'title_page'=>json_decode($request['Template'])->data->title_page,
-            'pages'=>json_decode($request['Template'])->data->pages
+        $listofimg=[];
+        foreach (json_decode($request['Template'])->data->title_page as $key => $value) {
+            if ($value->response == 11) {
+                $listofimg=[
+                    'question'.$key=>[]
+                ];
+                foreach ($value->value as $key2 => $img) {
+                    $image = $img->value;  // your base64 encoded
+                    $image = str_replace('data:image/png;base64,', '', $image);
+                    $image = str_replace(' ', '+', $image);
+                    $imageName = now() . $key2 . '.' . 'png';
+                    $imageName=str_replace(' ', '', $imageName);
+                    \File::put(storage_path('app/images/'). '/' . $imageName, base64_decode($image));
+                    array_push($listofimg['question'.$key],$imageName);
+                    // return $img->value;
+                }
+                // return $listofimg;
+            }
+        }
+        $data = [
+            'listofimg' => $listofimg,
+            'title' => json_decode($request['Template'])->title,
+            'desc' => json_decode($request['Template'])->desc,
+            'icon' => json_decode($request['Template'])->icon,
+            'title_page' => json_decode($request['Template'])->data->title_page,
+            'pages' => json_decode($request['Template'])->data->pages
         ];
         // return $data;
         ini_set('max_execution_time', '300');
@@ -354,7 +374,7 @@ class AppApiController extends Controller
         $pdf = PDF2::loadView('pdf.new_7_11_2022.api_en_pdf', $data);
         // return $pdf->download('pdf_file.pdf');
         $output = $pdf->output();
-        $name = 'file'. now() .'.pdf';
+        $name = 'file' . now() . '.pdf';
         //  storeAs($name, $output);
         Storage::put('pdf/' . $name, $pdf->output());
 

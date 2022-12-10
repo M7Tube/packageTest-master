@@ -8325,7 +8325,7 @@
         <div style="margin:18px;">
             <div class="row" style="">
                 <div class="col-xs-5" style="">
-                    <img src="data:image/png;base64, {!! base64_encode(file_get_contents('../storage/app/images/'.$data['icon'])) !!}"  width="83" height="69">
+                    <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/images/9AFFDA5C-044A-4C34-9932-A55F3F59C585.png')) !!}"  width="83" height="69">
                     {{-- {{$data['icon']}} --}}
                 </div>
                 <div class="col-xs-5">
@@ -8370,8 +8370,8 @@
                                 @endforeach
                             @endif
                         @elseif ($record->response == 11)
-                            @foreach ($record->value as $img)
-                                <img src="data:image/png;base64,{!! base64_encode({{ $img->value }}) !!}" alt="">
+                            @foreach ($data['listofimg']['question'.$loop->index] as $img)
+                                <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/images/'.$img)) !!}" style"transform: rotate(180deg);">
                             @endforeach
                         @else
                             <span class="" style="color:#7b7673; font-size: 12.4292px;">
