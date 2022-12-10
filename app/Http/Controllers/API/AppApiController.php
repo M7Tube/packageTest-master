@@ -343,6 +343,7 @@ class AppApiController extends Controller
         $data=[
             'title'=>json_decode($request['Template'])->title,
             'desc'=>json_decode($request['Template'])->desc,
+            'icon'=>json_decode($request['Template'])->icon,
             'title_page'=>json_decode($request['Template'])->data->title_page,
             'pages'=>json_decode($request['Template'])->data->pages
         ];
