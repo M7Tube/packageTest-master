@@ -1,5 +1,5 @@
 <div id="myDiv">
-    {{-- <button wire:click.prevent="test">print test</button> --}}
+    <button wire:click.prevent="test">print test</button>
     <div class="mt-5" style="margin-bottom: 100%;">
         <div class="container-fluid">
             <div class="row">
@@ -2363,7 +2363,7 @@
                                                                             <button type="button" class="jvZSBO"
                                                                                 wire:click.prevent="pageEditMultipleChoiseOptionModal({{ $pageactiveone }},{{ $pagequestionactiveone }},{{ $loop->index }})"
                                                                                 data-bs-toggle="modal"
-                                                                                data-bs-target="#pageEditMultipleChoiseOptionModal{{ $pageactiveone }}{{ $pagequestionactiveone }}">
+                                                                                data-bs-target="#pageEditMultipleChoiseOptionModal">
                                                                                 <svg width="20" height="20"
                                                                                     viewBox="0 0 14 14"
                                                                                     focusable="false">
@@ -2373,6 +2373,7 @@
                                                                                         fill="#545f70">
                                                                                     </path>
                                                                                 </svg>
+                                                                                fd
                                                                             </button>
                                                                         </div>
 
@@ -2399,15 +2400,15 @@
                 </div>
             </div>
             <div class="modal fade m-0 p-0"
-                id="#pageEditMultipleChoiseOptionModal{{ $pageactiveone }}{{ $pagequestionactiveone }}"
+                id="#pageEditMultipleChoiseOptionModal"
                 tabindex="-1"
-                aria-labelledby="#pageEditMultipleChoiseOptionModal{{ $pageactiveone }}{{ $pagequestionactiveone }}Label"
+                aria-labelledby="#pageEditMultipleChoiseOptionModalLabel"
                 aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog modal-fullscreen">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5"
-                                id="#pageEditMultipleChoiseOptionModal{{ $pageactiveone }}{{ $pagequestionactiveone }}Label">
+                                id="#pageEditMultipleChoiseOptionModalLabel">
                                 Response Options
                             </h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -2441,16 +2442,16 @@
                                         </div>
                                         <div style="background: transparent; border: medium none;" class="jkEVJ">
                                             <div class="multible_choise_wrapper">
-                                                @if (!empty($pageQuestion['response']))
-                                                    @if ($pageQuestion['response'] == 7)
-                                                        @if (!empty($pageQuestion['multiple_choice']))
-                                                            @forelse ($pageQuestion['multiple_choice'] as $responsKey => $respons)
-                                                                <div data-rbd-droppable-id="responses{{ $loop->parent->index }}{{ $responsKey }}"
-                                                                    data-rbd-droppable-context-id="{{ $loop->parent->index }}{{ $responsKey }}"
+                                                @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['response']))
+                                                    @if ($pages[$pageactiveone]['question'][$pagequestionactiveone]['response'] == 7)
+                                                        @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice']))
+                                                            @forelse ($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'] as $responsKey => $respons)
+                                                                <div data-rbd-droppable-id="responses{{ $pageactiveone }}{{ $responsKey }}"
+                                                                    data-rbd-droppable-context-id="{{ $pageactiveone }}{{ $responsKey }}"
                                                                     class="dragable">
-                                                                    <div data-rbd-draggable-context-id="{{ $loop->parent->index }}{{ $responsKey }}"
+                                                                    <div data-rbd-draggable-context-id="{{ $pageactiveone }}{{ $responsKey }}"
                                                                         class="kOpTns">
-                                                                        <div tabindex="{{ $loop->parent->index }}{{ $responsKey }}"
+                                                                        <div tabindex="{{ $pageactiveone }}{{ $responsKey }}"
                                                                             role="button"
                                                                             aria-describedby="rbd-hidden-text-1-hidden-text-8"
                                                                             draggable="false"
@@ -2487,7 +2488,7 @@
                                                         @endif
                                                     @endif
                                                 @endif
-                                                @if (!empty($pageQuestion['multiple_choice']))
+                                                @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice']))
                                                     <button role="button" class="nyGSP"
                                                         wire:click.prevent="page_add_new_response({{ $pageactiveone }},{{ $pagequestionactiveone }})">
                                                         +
@@ -2500,7 +2501,7 @@
                                         {{-- s --}}
                                         <div class="fhTZet">
                                             <div class="fhTZet">
-                                                @if (!empty($pageQuestion['multiple_choice'][0]['title']))
+                                                @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'][0]['title']))
                                                     <button color="#ffffff" font-size="0.875rem" type="button"
                                                         class="ggbIJY" style="margin-left:10px;"
                                                         data-bs-dismiss="modal">
@@ -2571,10 +2572,10 @@
                                         </div>
                                         <div style="background: transparent; border: medium none;" class="jkEVJ">
                                             <div class="multible_choise_wrapper">
-                                                @if (!empty($pageQuestion['response']))
-                                                    @if ($pageQuestion['response'] == 7)
-                                                        @if (!empty($pageQuestion['multiple_choice']))
-                                                            @forelse ($pageQuestion['multiple_choice'] as $responsKey => $respons)
+                                                @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['response']))
+                                                    @if ($pages[$pageactiveone]['question'][$pagequestionactiveone]['response'] == 7)
+                                                        @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice']))
+                                                            @forelse ($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'] as $responsKey => $respons)
                                                                 <div data-rbd-droppable-id="pageresponses{{ $pageactiveone }}{{ $responsKey }}"
                                                                     data-rbd-droppable-context-id="page{{ $pageactiveone }}{{ $responsKey }}"
                                                                     class="dragable">
@@ -2619,7 +2620,7 @@
                                                         @endif
                                                     @endif
                                                 @endif
-                                                @if (!empty($pageQuestion['multiple_choice']))
+                                                @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice']))
                                                     <button role="button" class="nyGSP"
                                                         wire:click.prevent="page_add_new_response({{ $pageactiveone }},{{ $pagequestionactiveone }})">
                                                         +
@@ -2630,7 +2631,7 @@
                                             </div>
                                         </div>
                                         <div class="fhTZet">
-                                            @if (!empty($pageQuestion['multiple_choice'][0]['title']))
+                                            @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'][0]['title']))
                                                 <button color="#ffffff" font-size="0.875rem" type="button"
                                                     class="ggbIJY" style="margin-left:10px;"
                                                     data-bs-dismiss="modal">

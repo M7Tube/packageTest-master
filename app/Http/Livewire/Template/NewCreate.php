@@ -145,7 +145,7 @@ class NewCreate extends Component
 
     public function test()
     {
-        dd($this->title_page_questions);
+        dd($this->pages);
     }
 
 
@@ -252,9 +252,9 @@ class NewCreate extends Component
             // dd(array_key_exists('multiple_choice', $this->pages[$arr[1]]['question'][$arr[2]]));
             $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
             $this->pages[$arr[1]]['question'][$arr[2]]['multi_select_multiple_choise'] = false;
-            if (!array_key_exists('multiple_choice', $this->pages[$arr[1]]['question'][$arr[2]])) {
-                $this->pages[$arr[1]]['question'][$arr[2]]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
-            }
+            // if (!array_key_exists('multiple_choice', $this->pages[$arr[1]]['question'][$arr[2]])) {
+                $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
+            // }
         } else {
             $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'];
             unset($this->pages[$arr[1]]['question'][$arr[2]]);
