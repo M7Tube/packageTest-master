@@ -494,7 +494,7 @@
 
                                                     </div>
                                                     <button class="bKqzym blqywb"
-                                                        wire:click.prevent="title_page_delete_question({{ $loop->index }})">
+                                                        wire:click.prevent="title_page_delete_question">
                                                         <svg width="21" height="21" viewBox="0 0 14 14"
                                                             focusable="false">
                                                             <path
@@ -2375,12 +2375,12 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade m-0 p-0" id="#pageEditMultipleChoiseOptionModal" tabindex="-1"
-            aria-labelledby="#pageEditMultipleChoiseOptionModalLabel" aria-hidden="true" wire:ignore.self>
+        <div class="modal fade m-0 p-0" id="pageEditMultipleChoiseOptionModal" tabindex="-1"
+            aria-labelledby="pageEditMultipleChoiseOptionModalLabel" aria-hidden="true" wire:ignore.self>
             <div class="modal-dialog modal-fullscreen">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="#pageEditMultipleChoiseOptionModalLabel">
+                        <h1 class="modal-title fs-5" id="pageEditMultipleChoiseOptionModalLabel">
                             Response Options
                         </h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"

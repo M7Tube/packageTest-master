@@ -27,7 +27,7 @@ class NewCreate extends Component
     public $activechangingresponse;
     public $uploading;
     public $new_template;
-    protected $queryString = ['activeone', 'pageactiveone' , 'pagequestionactiveone' , 'template_id', 'activechangingresponse', 'new_template'];
+    protected $queryString = ['activeone', 'pageactiveone', 'pagequestionactiveone', 'template_id', 'activechangingresponse', 'new_template'];
     protected $listeners = [
         'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex'
     ];
@@ -253,7 +253,7 @@ class NewCreate extends Component
             $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
             $this->pages[$arr[1]]['question'][$arr[2]]['multi_select_multiple_choise'] = false;
             // if (!array_key_exists('multiple_choice', $this->pages[$arr[1]]['question'][$arr[2]])) {
-                $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
             // }
         } else {
             $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'];
@@ -511,10 +511,11 @@ class NewCreate extends Component
         }
     }
 
-    public function title_page_delete_question($key)
+    public function title_page_delete_question()
     {
         if (count($this->title_page_questions) > 1) {
-            array_splice($this->title_page_questions, $key, 1);
+            array_splice($this->title_page_questions, $this->activeone, 1);
+            $this->activeone = 0;
             $this->updating();
         }
     }
@@ -566,7 +567,7 @@ class NewCreate extends Component
     public function normal_page_delete_question($pageKey, $questionKey)
     {
         if ($this->pages[$pageKey]['question'] > 1) {
-            unset($this->pages[$pageKey]['question'][$questionKey]);
+            array_splice($this->pages[$pageKey]['question'], $questionKey, 1);
             $this->updating();
         }
     }
