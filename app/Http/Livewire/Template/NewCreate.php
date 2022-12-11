@@ -196,7 +196,7 @@ class NewCreate extends Component
 
     public function EditMultipleChoiseOptionModal($option)
     {
-        dd($this->title_page_questions[$this->activeone]['response']);
+        // dd($this->title_page_questions[$this->activeone]['response']);
         $oldtitle = $this->title_page_questions[$this->activeone]['title'];
         unset($this->title_page_questions[$this->activeone]);
         $this->title_page_questions[$this->activeone]['title'] = $oldtitle;
@@ -207,15 +207,15 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    public function pageEditMultipleChoiseOptionModal($pagekey, $questionkey, $option)
+    public function pageEditMultipleChoiseOptionModal($option)
     {
-        $oldtitle = $this->pages[$pagekey]['question'][$questionkey]['title'];
-        unset($this->pages[$pagekey]['question'][$questionkey]);
-        $this->pages[$pagekey]['question'][$questionkey]['title'] = $oldtitle;
-        $this->pages[$pagekey]['question'][$questionkey]['response'] = 7;
-        $this->pages[$pagekey]['question'][$questionkey]['is_required'] = false;
-        $this->pages[$pagekey]['question'][$questionkey]['multi_select_multiple_choise'] = false;
-        $this->pages[$pagekey]['question'][$questionkey]['multiple_choice'] = $this->option[$option];
+        $oldtitle = $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'];
+        unset($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]);
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] = $oldtitle;
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['response'] = 7;
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['is_required'] = false;
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multi_select_multiple_choise'] = false;
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'] = $this->option[$option];
         $this->updating();
     }
 
