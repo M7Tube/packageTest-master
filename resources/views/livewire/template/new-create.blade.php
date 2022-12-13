@@ -1,5 +1,5 @@
 <div id="myDiv">
-    <button wire:click.prevent="test">print test</button>
+    {{-- <button wire:click.prevent="test">print test</button> --}}
     <div class="mt-5" style="margin-bottom: 100%;">
         <div class="container-fluid">
             <div class="row">
@@ -950,35 +950,13 @@
                                                                                                 Responses
                                                                                             </div>
                                                                                         </div>
-                                                                                        {{-- @if (!empty($common_multiple_choise_options))
-                                                                                            <div class="gupkBu eCBvzO">
-                                                                                                <div class="evLYbt"
-                                                                                                    wire:click.prevent="setResponseValueFromReadyOptions(7,1)"
-                                                                                                    data-bs-dismiss="modal">
-                                                                                                    <div
-                                                                                                        class="fyczhl">
-                                                                                                        @forelse ($common_multiple_choise_options as $common_multiple_choise_option)
-                                                                                                            @forelse ($common_multiple_choise_option as $record)
-                                                                                                                <div color=""
-                                                                                                                    class="xXWzF"
-                                                                                                                    style="background-color: {{ $record['color'] ?? '' }};">
-                                                                                                                    {{ $record['title'] ?? '' }}
-                                                                                                                </div>
-                                                                                                            @empty
-                                                                                                            @endforelse
-                                                                                                        @empty
-                                                                                                        @endforelse
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        @endif --}}
                                                                                         @if (!empty($common_multiple_choise_options))
-                                                                                            @forelse ($common_multiple_choise_options as $common_multiple_choise_option)
+                                                                                            @forelse ($common_multiple_choise_options as $rKey => $common_multiple_choise_option)
                                                                                                 <div
                                                                                                     class="gupkBu eCBvzO">
                                                                                                     <div class="evLYbt"
                                                                                                         {{-- Question key | response id | readyOption id --}}
-                                                                                                        wire:click.prevent="setResponseValueFromReadyOptions(7,{{ $loop->iteration }})"
+                                                                                                        wire:click.prevent="setResponseValueFromReadyOptions(7,{{ $loop->index }})"
                                                                                                         data-bs-dismiss="modal">
                                                                                                         <div
                                                                                                             class="fyczhl">
@@ -1182,7 +1160,7 @@
                                                                         <button color="#ffffff" font-size="0.875rem"
                                                                             type="button" class="ggbIJY"
                                                                             style="margin-left:10px;"
-                                                                            {{-- wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})" --}}
+                                                                            wire:click.prevent="save_multiple_choise({{ $activeone }})"
                                                                             data-bs-dismiss="modal">
                                                                             Save and
                                                                             apply
@@ -1320,7 +1298,7 @@
                                                                         <button color="#ffffff" font-size="0.875rem"
                                                                             type="button" class="ggbIJY"
                                                                             style="margin-left:10px;"
-                                                                            {{-- wire:click.prevent="save_multiple_choise(1,{{ $loop->index }})" --}}
+                                                                            wire:click.prevent="save_multiple_choise({{ $activeone }})"
                                                                             data-bs-dismiss="modal">
                                                                             Save and
                                                                             apply
@@ -2305,7 +2283,7 @@
                                                                 @forelse ($common_multiple_choise_options as $common_multiple_choise_option)
                                                                     <div class="gupkBu eCBvzO">
                                                                         <div class="evLYbt"
-                                                                            wire:click.prevent="PageSetResponseValueFromReadyOptions({{ $pageactiveone }},{{ $pagequestionactiveone }},7,{{ $loop->iteration }})"
+                                                                            wire:click.prevent="PageSetResponseValueFromReadyOptions({{ $pageactiveone }},{{ $pagequestionactiveone }},7,{{ $loop->index }})"
                                                                             data-bs-dismiss="modal">
                                                                             <div class="fyczhl">
                                                                                 @forelse ($common_multiple_choise_option as $record)
@@ -2476,6 +2454,7 @@
                                             @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'][0]['title']))
                                                 <button color="#ffffff" font-size="0.875rem" type="button"
                                                     class="ggbIJY" style="margin-left:10px;"
+                                                    wire:click.prevent="page_save_multiple_choise({{ $pageactiveone }},{{ $pagequestionactiveone }})"
                                                     data-bs-dismiss="modal">
                                                     Save and
                                                     apply
@@ -2603,6 +2582,7 @@
                                         @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'][0]['title']))
                                             <button color="#ffffff" font-size="0.875rem" type="button"
                                                 class="ggbIJY" style="margin-left:10px;"
+                                                wire:click.prevent="page_save_multiple_choise({{ $pageactiveone }},{{ $pagequestionactiveone }})"
                                                 data-bs-dismiss="modal">
                                                 Save and
                                                 apply
