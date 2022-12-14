@@ -143,15 +143,14 @@ class NewCreate extends Component
         }
     }
 
-    public function test()
-    {
-        dd($this->title_page_questions);
-    }
+    // public function test()
+    // {
+    //     dd($this->title_page_questions);
+    // }
 
 
     public function setResponseValue($response)
     {
-        // $this->title_page_questions[$this->activeone]['response'] = $response;
         if ($response == 1) {
             $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
             unset($this->title_page_questions[$this->activeone]);
@@ -196,7 +195,6 @@ class NewCreate extends Component
 
     public function EditMultipleChoiseOptionModal($option)
     {
-        // dd($this->title_page_questions[$this->activeone]['response']);
         $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
         unset($this->title_page_questions[$this->activeone]);
         $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
@@ -249,12 +247,9 @@ class NewCreate extends Component
             unset($this->pages[$arr[1]]['question'][$arr[2]]);
             $this->pages[$arr[1]]['question'][$arr[2]]['title'] = $oldtitle ?? null;
             $this->pages[$arr[1]]['question'][$arr[2]]['response'] = $response;
-            // dd(array_key_exists('multiple_choice', $this->pages[$arr[1]]['question'][$arr[2]]));
             $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
             $this->pages[$arr[1]]['question'][$arr[2]]['multi_select_multiple_choise'] = false;
-            // if (!array_key_exists('multiple_choice', $this->pages[$arr[1]]['question'][$arr[2]])) {
             $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'] = [['title' => null, 'color' => '#13855f']];
-            // }
         } else {
             $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'] ?? null;
             unset($this->pages[$arr[1]]['question'][$arr[2]]);
@@ -356,7 +351,6 @@ class NewCreate extends Component
             $arr = explode('_', $this->activeone);
             $string = implode('_', array_slice($arr, 0, 3));
             array_splice($this->pages[$arr[1]]['question'], $arr[2] + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
-            // dd($arr[0]);
         } else {
             array_splice($this->title_page_questions, $this->activeone + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
         }
@@ -387,7 +381,6 @@ class NewCreate extends Component
         $temp = $this->title_page_questions[$oldIndex];
         $this->title_page_questions[$oldIndex] = $this->title_page_questions[$newIndex];
         $this->title_page_questions[$newIndex] = $temp;
-        // $this->activeone = $newIndex;
         $this->updating();
     }
 
@@ -396,7 +389,6 @@ class NewCreate extends Component
         $temp = $this->title_page_questions[$this->activeone]['multiple_choice'][$oldIndex];
         $this->title_page_questions[$this->activeone]['multiple_choice'][$oldIndex] = $this->title_page_questions[$this->activeone]['multiple_choice'][$newIndex];
         $this->title_page_questions[$this->activeone]['multiple_choice'][$newIndex] = $temp;
-        // $this->activeone = $newIndex;
         $this->updating();
     }
 
@@ -405,7 +397,6 @@ class NewCreate extends Component
         $temp = $this->pages[$page]['question'][$oldIndex];
         $this->pages[$page]['question'][$oldIndex] = $this->pages[$page]['question'][$newIndex];
         $this->pages[$page]['question'][$newIndex] = $temp;
-        // $this->activeone = $newIndex;
         $this->updating();
     }
 
@@ -431,14 +422,12 @@ class NewCreate extends Component
 
     public function updatedIcon()
     {
-        // $this->icon=$this->icon->getClientOriginalName();
         $this->uploading = true;
         $this->updating();
     }
 
     public function title_page_delete_mc_choise($questionKey, $choiceKey)
     {
-        // dd($this->title_page_questions[$questionKey]);
         array_splice($this->title_page_questions[$questionKey]['multiple_choice'], $choiceKey, 1);
         $this->updating();
     }
@@ -462,6 +451,7 @@ class NewCreate extends Component
         $this->check_for_exist->save();
         $this->uploading = false;
     }
+
     // public function render()
     // {
     //     return view('livewire.template.new-create', [

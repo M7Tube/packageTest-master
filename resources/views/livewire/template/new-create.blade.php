@@ -91,7 +91,7 @@
                         <div class="cxbltl">
                             <div class="lgSfIY">
                                 The Title Page is the first page of your inspection report. You can
-                                <a target="_blank" class="fHfWNd">customize the Title Page</a>
+                                <span class="fHfWNd">customize the Title Page</span>
                                 below.
                             </div>
                             <div>
@@ -255,18 +255,6 @@
                                                                                             style="background-color:{{ $respons['color'] ?? '' }}; color:black;">
                                                                                             {{ $respons['title'] ?? '' }}
                                                                                         </div>
-                                                                                        {{-- <div color="#ffb000"
-                                                                                                    class="jZNie">
-                                                                                                    Fair
-                                                                                                </div>
-                                                                                                <div color="#c60022"
-                                                                                                    class="hcaARf">
-                                                                                                    Poor
-                                                                                                </div>
-                                                                                                <div color="#707070"
-                                                                                                    class="gOgMGu">
-                                                                                                    N/A
-                                                                                                </div> --}}
                                                                                     @empty
                                                                                     @endforelse
                                                                                 @endif
@@ -491,7 +479,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                     <button class="bKqzym blqywb"
                                                         wire:click.prevent="title_page_delete_question">

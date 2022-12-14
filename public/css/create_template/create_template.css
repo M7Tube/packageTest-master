@@ -1433,7 +1433,7 @@ textarea {
 .fHfWNd {
     font-size: 1rem;
     pointer-events: auto;
-    cursor: pointer;
+    /* cursor: pointer; */
     text-decoration: none;
     color: rgb(103, 93, 244);
 }
