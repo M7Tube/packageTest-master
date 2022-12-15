@@ -41,90 +41,90 @@ class NewCreate extends Component
                 [
                     'title' => 'Good',
                     'color' => '#e7f3ef',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
                 [
                     'title' => 'Fair',
                     'color' => '#f9f2e2',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
                 [
                     'title' => 'Poor',
                     'color' => '#f3e0e5',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
                 [
                     'title' => 'N/A',
                     'color' => '#eaebed',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
             ],
             [
                 [
                     'title' => 'Safe',
                     'color' => '#e7f3ef',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
                 [
                     'title' => 'At Risk',
                     'color' => '#f3e0e5',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
                 [
                     'title' => 'N/A',
                     'color' => '#eaebed',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
             ],
             [
                 [
                     'title' => 'Pass',
                     'color' => '#e7f3ef',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
                 [
                     'title' => 'Fail',
                     'color' => '#f3e0e5',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
                 [
                     'title' => 'N/A',
                     'color' => '#eaebed',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
             ],
             [
                 [
                     'title' => 'Yes',
                     'color' => '#e7f3ef',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
                 [
                     'title' => 'No',
                     'color' => '#f3e0e5',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
                 [
                     'title' => 'N/A',
                     'color' => '#eaebed',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
             ],
             [
                 [
                     'title' => 'Compliant',
                     'color' => '#e7f3ef',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
                 [
                     'title' => 'Non-Compliant',
                     'color' => '#f3e0e5',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
                 [
                     'title' => 'N/A',
                     'color' => '#eaebed',
-                    'font_color' => '#080808'
+                    'font_color' => '#000000'
                 ],
             ]
         ];
@@ -197,7 +197,7 @@ class NewCreate extends Component
             $this->title_page_questions[$this->activeone]['is_required'] = false;
             $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
             if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
-                $this->title_page_questions[$this->activeone]['multiple_choice'] = [['title' => null, 'color' => '#13855f','font_color' => '#080808']];
+                $this->title_page_questions[$this->activeone]['multiple_choice'] = [['title' => null, 'color' => '#13855f','font_color' => '#000000']];
             }
         } else {
             $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
@@ -265,7 +265,7 @@ class NewCreate extends Component
             $this->pages[$arr[1]]['question'][$arr[2]]['response'] = $response;
             $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
             $this->pages[$arr[1]]['question'][$arr[2]]['multi_select_multiple_choise'] = false;
-            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'] = [['title' => null, 'color' => '#13855f','font_color' => '#080808']];
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'] = [['title' => null, 'color' => '#13855f','font_color' => '#000000']];
         } else {
             $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'] ?? null;
             unset($this->pages[$arr[1]]['question'][$arr[2]]);
@@ -340,25 +340,25 @@ class NewCreate extends Component
     public function add_new_response($questionKey)
     {
         if (count($this->title_page_questions[$questionKey]['multiple_choice']) < 15)
-            $this->title_page_questions[$questionKey]['multiple_choice'][] = ['title' => null, 'color' => '#13855f','font_color' => '#080808'];
+            $this->title_page_questions[$questionKey]['multiple_choice'][] = ['title' => null, 'color' => '#13855f','font_color' => '#000000'];
     }
 
     public function page_add_new_response($pageKey, $questionKey)
     {
         if (count($this->pages[$pageKey]['question'][$questionKey]['multiple_choice']) < 15)
-            $this->pages[$pageKey]['question'][$questionKey]['multiple_choice'][] = ['title' => null, 'color' => '#13855f','font_color' => '#080808'];
+            $this->pages[$pageKey]['question'][$questionKey]['multiple_choice'][] = ['title' => null, 'color' => '#13855f','font_color' => '#000000'];
     }
 
     public function clear_new_response_option($questionKey)
     {
         if (count($this->title_page_questions[$questionKey]['multiple_choice']) > 0)
-            $this->title_page_questions[$questionKey]['multiple_choice'] = [['title' => null, 'color' => '#13855f','font_color' => '#080808']];
+            $this->title_page_questions[$questionKey]['multiple_choice'] = [['title' => null, 'color' => '#13855f','font_color' => '#000000']];
     }
 
     public function page_clear_new_response_option($pageKey, $questionKey)
     {
         if (count($this->pages[$pageKey]['question'][$questionKey]['multiple_choice']) > 0)
-            $this->pages[$pageKey]['question'][$questionKey]['multiple_choice'] = [['title' => null, 'color' => '#13855f','font_color' => '#080808']];
+            $this->pages[$pageKey]['question'][$questionKey]['multiple_choice'] = [['title' => null, 'color' => '#13855f','font_color' => '#000000']];
     }
 
     public function title_page_add_question()
