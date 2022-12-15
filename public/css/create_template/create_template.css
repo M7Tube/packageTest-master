@@ -1471,6 +1471,24 @@ textarea {
     line-height: 2.2rem;
 }
 
+.bgiTWR2 {
+    color: rgb(31, 37, 51);
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(248, 249, 252);
+    border: 1px solid rgb(191, 198, 212);
+    user-select: none;
+    border-radius: 0.5rem 0.5rem 0px 0px;
+    -moz-box-pack: justify;
+    justify-content: space-between;
+}
+
+.bgiTWR2 > div {
+    padding: 0px 0.875rem;
+    height: 2.2rem;
+    line-height: 2.2rem;
+}
+
 .LBNnk {
     font-family: Roboto, sans-serif;
     font-size: 0.8rem;
@@ -1487,7 +1505,15 @@ textarea {
     line-height: 1rem;
     display: none;
 }
-
+.bfshfO2 {
+    font-family: Roboto, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgb(84, 95, 112);
+    line-height: 1rem;
+    display: block;
+    text-align: right;
+}
 .cYnFsn {
     display: none;
     width: 100%;
@@ -1497,7 +1523,18 @@ textarea {
     border-radius: 0px 0px 0.3rem 0.3rem;
     flex-shrink: 0;
 }
-
+.cYnFsn2 {
+    display: flex;
+    flex: 0 0 auto;
+    width: 15rem;
+    height: auto;
+    border-top: medium none;
+    border-left: 1px solid rgb(191, 198, 212);
+    border-radius: 0px;
+    -moz-box-align: stretch;
+    align-items: stretch;
+    background: transparent;
+}
 [data-rbd-droppable-context-id="0"] {
     overflow-anchor: none;
 }
@@ -1595,7 +1632,20 @@ element {
     color: rgb(84, 95, 112);
     line-height: 1rem;
 }
-
+.kGgXUq2 {
+    -moz-box-pack: end;
+    justify-content: end;
+    -moz-box-align: center;
+    align-items: center;
+    display: flex;
+    min-width: 10rem;
+    width: 100%;
+    font-family: Roboto, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgb(84, 95, 112);
+    line-height: 1rem;
+}
 [data-rbd-drag-handle-context-id="0"] {
     cursor: -webkit-grab;
     cursor: grab;
@@ -2068,7 +2118,9 @@ input[type="checkbox"] {
 .cYnFsn > div {
     height: 100%;
 }
-
+.cYnFsn2 > div {
+    height: 100%;
+}
 .eWLEUv {
     font-family: Roboto, sans-serif;
     font-size: 0.8rem;
@@ -2115,7 +2167,9 @@ input[type="checkbox"] {
 .cYnFsn > div {
     height: 100%;
 }
-
+.cYnFsn2 > div {
+    height: 100%;
+}
 .bbb {
     position: unset;
     width: 100%;
@@ -3073,6 +3127,18 @@ input[type="checkbox"] {
         align-items: stretch;
         background: transparent;
     }
+    .cYnFsn2 {
+        display: flex;
+        flex: 0 0 auto;
+        width: 15rem;
+        height: auto;
+        border-top: medium none;
+        border-left: 1px solid rgb(191, 198, 212);
+        border-radius: 0px;
+        -moz-box-align: stretch;
+        align-items: stretch;
+        background: transparent;
+    }
 
     .jvZSBO svg {
         z-index: 2;
@@ -3151,6 +3217,16 @@ input[type="checkbox"] {
 
     .bfshfO {
         display: block;
+    }
+
+    .bfshfO2 {
+        font-family: Roboto, sans-serif;
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: rgb(84, 95, 112);
+        line-height: 1rem;
+        display: block;
+        text-align: right;
     }
 
     .bAJknk {

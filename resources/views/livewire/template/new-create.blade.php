@@ -1038,23 +1038,30 @@
                                                                     <div>
                                                                         <div class="kxrOmS eqGxMu">
                                                                             @if (!empty($title_page_questions[$activeone]['multiple_choice']))
-                                                                            <div class="cldFRc" wire:click.prevent="add_new_response({{ $activeone }})">
-                                                                                <svg viewBox="0 0 24 24" width="14" height="14"
-                                                                                    style="cursor: pointer;" class="gdPDbX2" focusable="false">
-                                                                                    <path d="M0 0h24v24H0z" fill="none"></path>
-                                                                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#545f70"></path>
-                                                                                </svg>
-                                                                            </div>
+                                                                                <div class="cldFRc"
+                                                                                    wire:click.prevent="add_new_response({{ $activeone }})">
+                                                                                    <svg viewBox="0 0 24 24"
+                                                                                        width="14" height="14"
+                                                                                        style="cursor: pointer;"
+                                                                                        class="gdPDbX2"
+                                                                                        focusable="false">
+                                                                                        <path d="M0 0h24v24H0z"
+                                                                                            fill="none"></path>
+                                                                                        <path
+                                                                                            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                                                                                            fill="#545f70"></path>
+                                                                                    </svg>
+                                                                                </div>
                                                                             @endif
 
-                                                                            <div class="bgiTWR">
+                                                                            <div class="bgiTWR2">
                                                                                 <div class="kGgXUq">
                                                                                     Response
                                                                                     <div class="bdOmts">
                                                                                         <span class="LBNnk"></span>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="cYnFsn bfshfO"
+                                                                                <div class="kGgXUq2"
                                                                                     style="border-left: none; text-align:right; color:blue;"
                                                                                     wire:click.prevent="clear_new_response_option({{ $activeone }})">
                                                                                     Reset
@@ -1065,7 +1072,8 @@
                                                                             @if ($title_page_questions[$activeone]['response'] == 7)
                                                                                 @if (!empty($title_page_questions[$activeone]['multiple_choice']))
                                                                                     @forelse ($title_page_questions[$activeone]['multiple_choice'] as $responsKey => $respons)
-                                                                                        <div class="kLpTzB multible_choise_wrapper">
+                                                                                        <div
+                                                                                            class="kLpTzB multible_choise_wrapper">
                                                                                             <div
                                                                                                 class="hkphPX dragable">
                                                                                                 <div class="REnvQ">
