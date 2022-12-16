@@ -1056,23 +1056,6 @@
                                                                     </div>
                                                                     <div>
                                                                         <div class="kxrOmS eqGxMu">
-                                                                            @if (!empty($title_page_questions[$activeone]['multiple_choice']))
-                                                                                <div class="cldFRc"
-                                                                                    wire:click.prevent="add_new_response({{ $activeone }})">
-                                                                                    <svg viewBox="0 0 24 24"
-                                                                                        width="14" height="14"
-                                                                                        style="cursor: pointer;"
-                                                                                        class="gdPDbX2"
-                                                                                        focusable="false">
-                                                                                        <path d="M0 0h24v24H0z"
-                                                                                            fill="none"></path>
-                                                                                        <path
-                                                                                            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
-                                                                                            fill="#545f70"></path>
-                                                                                    </svg>
-                                                                                </div>
-                                                                            @endif
-
                                                                             <div class="bgiTWR2">
                                                                                 <div class="kGgXUq">
                                                                                     Response
@@ -1264,6 +1247,10 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="fhTZet">
+                                                                    <button type="button" class="ggbIJY"
+                                                                        wire:click.prevent="add_new_response({{ $activeone }})">
+                                                                        + Add Response
+                                                                    </button>
                                                                     <button role="button" class="kDSJkL"
                                                                         style="margin-left:10px;"
                                                                         wire:click.prevent="clear_new_response_option({{ $activeone }})">
