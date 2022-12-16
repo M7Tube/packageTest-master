@@ -8375,6 +8375,7 @@
                             @endforeach
                         @elseif ($record->response == 6)
                             @foreach ($data['listofsign']['sign'.$loop->index] as $img)
+                            {{--  --}}
                                 {{$img->signName}}
                                 <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/signatures/'.$img->imgname)) !!}">
                             @endforeach
