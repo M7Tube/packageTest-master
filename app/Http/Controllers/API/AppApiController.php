@@ -369,7 +369,7 @@ class AppApiController extends Controller
                     $image = str_replace(' ', '+', $image);
                     $imageName = now() . $key2 . '.' . 'png';
                     $imageName=str_replace(' ', '', $imageName);
-                    \File::put(storage_path('app/signatures'). '/' . $imageName, base64_decode($image));
+                    \File::put(storage_path('app/signatures/'). '/' . $imageName, base64_decode($image));
                     array_push($listofsign['sign'.$key],$imageName);
                     // return $img->value;
                 }
