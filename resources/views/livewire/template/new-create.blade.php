@@ -1032,9 +1032,28 @@
                                                         <div class="bJfPHR hzzSzX">
                                                             <div>
                                                                 <div class="jOMNlj">
-                                                                    <h3 class="lhPVYY mb-5">
-                                                                        Multiple choice responses
-                                                                    </h3>
+                                                                    <div class="row mb-5">
+                                                                        <div class="col-8">
+                                                                            <h4 class="lhPVYY">
+                                                                                Multiple choice responses
+                                                                            </h4>
+                                                                        </div>
+                                                                        <div class="col-4">
+                                                                            @if (!empty($title_page_questions[$activeone]['multiple_choice'][0]['title']))
+                                                                                <a class="ggbIJY2 d-flex align-items-right justify-content-end"
+                                                                                    style="color: rgb(103, 93, 244);"
+                                                                                    wire:click.prevent="save_multiple_choise({{ $activeone }})"
+                                                                                    data-bs-dismiss="modal">
+                                                                                    Save
+                                                                                </a>
+                                                                            @else
+                                                                                <a class="ggbIJY2 d-flex align-items-right justify-content-end"
+                                                                                    style="color: gray;">
+                                                                                    Save
+                                                                                </a>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
                                                                     <div>
                                                                         <div class="kxrOmS eqGxMu">
                                                                             @if (!empty($title_page_questions[$activeone]['multiple_choice']))
@@ -1072,8 +1091,8 @@
                                                                             @if ($title_page_questions[$activeone]['response'] == 7)
                                                                                 @if (!empty($title_page_questions[$activeone]['multiple_choice']))
                                                                                     @forelse ($title_page_questions[$activeone]['multiple_choice'] as $responsKey => $respons)
-                                                                                        <div
-                                                                                            class="kLpTzB multible_choise_wrapper">
+                                                                                        <div class="kLpTzB multible_choise_wrapper"
+                                                                                            style="border-bottom: {{ !$loop->last ? '1px solid rgb(191, 198, 212)' : '' }};">
                                                                                             <div
                                                                                                 class="hkphPX dragable">
                                                                                                 <div class="REnvQ">
@@ -1113,6 +1132,7 @@
                                                                                                                                 <input
                                                                                                                                     class="eVpkze w-100 h-100 question-title"
                                                                                                                                     placeholder="Response title"
+                                                                                                                                    style="font-size: 12.5px;"
                                                                                                                                     id="response-title{{ $activeone }}{{ $responsKey }}"
                                                                                                                                     wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
                                                                                                                                     {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
@@ -1120,8 +1140,8 @@
                                                                                                                             <input
                                                                                                                                 type="color"
                                                                                                                                 wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
-                                                                                                                                class="mx-1 form-control form-control-color gocNNg kxrOmS"
-                                                                                                                                style="height: 25px; width:30px; border-radius: 300px;"
+                                                                                                                                class="form-control form-control-color22 gocNNg kxrOmS"
+                                                                                                                                style="margin-right: 5px; width:36.25px;"
                                                                                                                                 id="response-color{{ $activeone }}{{ $responsKey }}"
                                                                                                                                 title="Choose background color">
                                                                                                                             <div style="border-left: 1px solid rgb(191, 198, 212);"
@@ -1133,8 +1153,8 @@
                                                                                                                                     <button
                                                                                                                                         type="button"
                                                                                                                                         class="jvZSBO">
-                                                                                                                                        <svg width="24"
-                                                                                                                                            height="24"
+                                                                                                                                        <svg width="19"
+                                                                                                                                            height="19"
                                                                                                                                             viewBox="0 0 14 14"
                                                                                                                                             focusable="false">
                                                                                                                                             <g transform="translate(5.542 1.458)"
@@ -1230,18 +1250,20 @@
                                                                                 @endif
                                                                             @endif
                                                                         @endif
+                                                                        <div class="kxrOmS eqGxMu">
+                                                                            <div class="bgiTWR3">
+                                                                                <div class="kGgXUq">
+                                                                                    <div class="bdOmts">
+                                                                                        <span class="LBNnk"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="kGgXUq2">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="fhTZet">
-                                                                    @if (!empty($title_page_questions[$activeone]['multiple_choice'][0]['title']))
-                                                                        <button color="#ffffff" font-size="0.875rem"
-                                                                            type="button" class="ggbIJY"
-                                                                            wire:click.prevent="save_multiple_choise({{ $activeone }})"
-                                                                            data-bs-dismiss="modal">
-                                                                            Save and
-                                                                            apply
-                                                                        </button>
-                                                                    @endif
                                                                     <button role="button" class="kDSJkL"
                                                                         style="margin-left:10px;"
                                                                         wire:click.prevent="clear_new_response_option({{ $activeone }})">
@@ -1294,14 +1316,14 @@
                                                                                                         <input
                                                                                                             type="color"
                                                                                                             wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
-                                                                                                            class="mx-1 form-control form-control-color gocNNg kxrOmS"
+                                                                                                            class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
                                                                                                             style="height: 25px; width:30px; border-radius: 300px;"
                                                                                                             id="response-color{{ $activeone }}{{ $responsKey }}"
                                                                                                             title="Choose background color">
                                                                                                         <input
                                                                                                             type="color"
                                                                                                             wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.font_color"
-                                                                                                            class="mx-1 form-control form-control-color gocNNg kxrOmS"
+                                                                                                            class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
                                                                                                             style="height: 25px; width:30px; border-radius: 300px;"
                                                                                                             id="response-color{{ $activeone }}{{ $responsKey }}"
                                                                                                             title="Choose font color">
@@ -1457,14 +1479,14 @@
                                                                                                         <input
                                                                                                             type="color"
                                                                                                             wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
-                                                                                                            class="mx-1 form-control form-control-color gocNNg kxrOmS"
+                                                                                                            class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
                                                                                                             style="height: 25px; width:30px; border-radius: 300px;"
                                                                                                             id="response-color{{ $activeone }}{{ $responsKey }}"
                                                                                                             title="Choose background color">
                                                                                                         <input
                                                                                                             type="color"
                                                                                                             wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.font_color"
-                                                                                                            class="mx-1 form-control form-control-color gocNNg kxrOmS"
+                                                                                                            class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
                                                                                                             style="height: 25px; width:30px; border-radius: 300px;"
                                                                                                             id="response-color{{ $activeone }}{{ $responsKey }}"
                                                                                                             title="Choose font color">
@@ -2602,12 +2624,12 @@
                                                                             </div>
                                                                             <input type="color"
                                                                                 wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.color"
-                                                                                class="mx-1 form-control form-control-color gocNNg kxrOmS"
+                                                                                class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
                                                                                 style="height: 25px; width:30px; border-radius: 300px;"
                                                                                 title="Choose background color">
                                                                             <input type="color"
                                                                                 wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.font_color"
-                                                                                class="mx-1 form-control form-control-color gocNNg kxrOmS"
+                                                                                class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
                                                                                 style="height: 25px; width:30px; border-radius: 300px;"
                                                                                 title="Choose font color">
                                                                         </div>
@@ -2734,12 +2756,12 @@
                                                                             </div>
                                                                             <input type="color"
                                                                                 wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.color"
-                                                                                class="mx-1 form-control form-control-color gocNNg kxrOmS"
+                                                                                class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
                                                                                 style="height: 25px; width:30px; border-radius: 300px;"
                                                                                 title="Choose background color">
                                                                             <input type="color"
                                                                                 wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.font_color"
-                                                                                class="mx-1 form-control form-control-color gocNNg kxrOmS"
+                                                                                class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
                                                                                 style="height: 25px; width:30px; border-radius: 300px;"
                                                                                 title="Choose font color">
                                                                         </div>
