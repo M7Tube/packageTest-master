@@ -365,12 +365,13 @@ class AppApiController extends Controller
                 ];
                 foreach ($value->value as $key2 => $img) {
                     $image = $img->value;  // your base64 encoded
+                    $signName = $img->key;
                     $image = str_replace('data:image/png;base64,', '', $image);
                     $image = str_replace(' ', '+', $image);
                     $imageName = now() . $key2 . '.' . 'png';
                     $imageName=str_replace(' ', '', $imageName);
                     \File::put(storage_path('app/signatures/'). '/' . $imageName, base64_decode($image));
-                    array_push($listofsign['sign'.$key],$imageName);
+                    array_push($listofsign['sign'.$key],['imgname'=>$imageName,'signname'=>$signName]);
                     // return $img->value;
                 }
                 // return $listofimg;
