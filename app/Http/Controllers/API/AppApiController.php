@@ -341,6 +341,7 @@ class AppApiController extends Controller
             'template_id' => ['required', 'integer', 'exists:new_templates,new_template_id'],
         ]);
         $listofimg=[];
+        $listofsign=[];
         foreach (json_decode($request['Template'])->data->title_page as $key => $value) {
             if ($value->response == 11) {
                 $listofimg=[
@@ -358,9 +359,26 @@ class AppApiController extends Controller
                 }
                 // return $listofimg;
             }
+            if ($value->response == 6) {
+                $listofsign=[
+                    'sign'.$key=>[]
+                ];
+                foreach ($value->value as $key2 => $img) {
+                    $image = $img->value;  // your base64 encoded
+                    $image = str_replace('data:image/png;base64,', '', $image);
+                    $image = str_replace(' ', '+', $image);
+                    $imageName = now() . $key2 . '.' . 'png';
+                    $imageName=str_replace(' ', '', $imageName);
+                    \File::put(storage_path('app/signatures/'). '/' . $imageName, base64_decode($image));
+                    array_push($listofsign['sign'.$key],$imageName);
+                    // return $img->value;
+                }
+                // return $listofimg;
+            }
         }
         $data = [
             'listofimg' => $listofimg,
+            'listofsign' => $listofsign,
             'title' => json_decode($request['Template'])->title,
             'desc' => json_decode($request['Template'])->desc,
             'icon' => json_decode($request['Template'])->icon,

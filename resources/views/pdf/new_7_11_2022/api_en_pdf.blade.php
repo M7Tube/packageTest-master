@@ -8371,7 +8371,11 @@
                             @endif
                         @elseif ($record->response == 11)
                             @foreach ($data['listofimg']['question'.$loop->index] as $img)
-                                <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/images/'.$img)) !!}" style"transform: rotate(180deg);">
+                                <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/images/'.$img)) !!}">
+                            @endforeach
+                        @elseif ($record->response == 6)
+                            @foreach ($data['listofsign']['sign'.$loop->index] as $img)
+                                <img src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/signatures/'.$img)) !!}">
                             @endforeach
                         @else
                             <span class="" style="color:#7b7673; font-size: 12.4292px;">
