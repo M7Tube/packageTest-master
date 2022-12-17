@@ -197,7 +197,7 @@ class NewCreate extends Component
             $this->title_page_questions[$this->activeone]['is_required'] = false;
             $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
             if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
-                $this->title_page_questions[$this->activeone]['multiple_choice'] = [['title' => null, 'color' => '#13855f','font_color' => '#000000']];
+                $this->title_page_questions[$this->activeone]['multiple_choice'] = [['title' => null, 'color' => '#13855f', 'font_color' => '#000000']];
             }
         } else {
             $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
@@ -265,7 +265,7 @@ class NewCreate extends Component
             $this->pages[$arr[1]]['question'][$arr[2]]['response'] = $response;
             $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
             $this->pages[$arr[1]]['question'][$arr[2]]['multi_select_multiple_choise'] = false;
-            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'] = [['title' => null, 'color' => '#13855f','font_color' => '#000000']];
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'] = [['title' => null, 'color' => '#13855f', 'font_color' => '#000000']];
         } else {
             $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'] ?? null;
             unset($this->pages[$arr[1]]['question'][$arr[2]]);
@@ -340,25 +340,35 @@ class NewCreate extends Component
     public function add_new_response($questionKey)
     {
         if (count($this->title_page_questions[$questionKey]['multiple_choice']) < 15)
-            $this->title_page_questions[$questionKey]['multiple_choice'][] = ['title' => null, 'color' => '#13855f','font_color' => '#000000'];
+            $this->title_page_questions[$questionKey]['multiple_choice'][] = ['title' => null, 'color' => '#13855f', 'font_color' => '#000000'];
     }
 
-    public function page_add_new_response($pageKey, $questionKey)
+    public function page_add_new_response()
     {
-        if (count($this->pages[$pageKey]['question'][$questionKey]['multiple_choice']) < 15)
-            $this->pages[$pageKey]['question'][$questionKey]['multiple_choice'][] = ['title' => null, 'color' => '#13855f','font_color' => '#000000'];
+        if (count($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice']) < 15)
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'][] = ['title' => null, 'color' => '#13855f', 'font_color' => '#000000'];
     }
 
     public function clear_new_response_option($questionKey)
     {
-        if (count($this->title_page_questions[$questionKey]['multiple_choice']) > 0)
-            $this->title_page_questions[$questionKey]['multiple_choice'] = [['title' => null, 'color' => '#13855f','font_color' => '#000000']];
+        $oldtitle = $this->title_page_questions[$questionKey]['title'] ?? null;
+        unset($this->title_page_questions[$questionKey]);
+        $this->title_page_questions[$questionKey]['title'] = $oldtitle ?? null;
+        $this->title_page_questions[$questionKey]['is_required'] = false;
+        $this->title_page_questions[$questionKey]['response'] = 1;
+        $this->title_page_questions[$questionKey]['text_answer_format'] = 0;
+        $this->updating();
     }
 
-    public function page_clear_new_response_option($pageKey, $questionKey)
+    public function page_clear_new_response_option()
     {
-        if (count($this->pages[$pageKey]['question'][$questionKey]['multiple_choice']) > 0)
-            $this->pages[$pageKey]['question'][$questionKey]['multiple_choice'] = [['title' => null, 'color' => '#13855f','font_color' => '#000000']];
+        $oldtitle = $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] ?? null;
+        unset($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]);
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] = $oldtitle ?? null;
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['is_required'] = false;
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['response'] = 1;
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['text_answer_format'] = 0;
+        $this->updating();
     }
 
     public function title_page_add_question()
@@ -445,6 +455,12 @@ class NewCreate extends Component
     public function title_page_delete_mc_choise($questionKey, $choiceKey)
     {
         array_splice($this->title_page_questions[$questionKey]['multiple_choice'], $choiceKey, 1);
+        $this->updating();
+    }
+
+    public function page_delete_mc_choise($choiceKey)
+    {
+        array_splice($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'], $choiceKey, 1);
         $this->updating();
     }
 

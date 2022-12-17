@@ -8325,7 +8325,9 @@
         <div style="margin:18px;">
             <div class="row" style="">
                 <div class="col-xs-5" style="">
-                    <img src="data:image/png;base64, {!! base64_encode(file_get_contents('../storage/app/images/'.$data['icon'])) !!}"  width="83" height="69">
+                    @if (!empty($data['icon']))
+                        <img src="data:image/png;base64, {!! base64_encode(file_get_contents('../storage/app/images/'.$data['icon'])) !!}"  width="83" height="69">
+                    @endif
                     {{-- {{$data['icon']}} --}}
                 </div>
                 <div class="col-xs-5">
@@ -8398,67 +8400,68 @@
     </div>
     <pagebreak></pagebreak>
     {{-- fsd --}}
-    @forelse ($data['pages'] as $record2)
-        <div style="margin:20px;">
-            <div class="row"
-                style="background-color:#f5f5f5; padding-left: 0px; padding-top:2.5px; padding-bottom:5px;">
-                <div class="col-xs-10">
-                    <h3 class="text-left"><b>{{ $record2['pagetitle'] }}</b></h3>
-                </div>
-            </div>
-            @forelse ($record2['question'] as $record)
-                <div class="row">
-                    {{--  style="margin-bottom: {{ $record['response'] == 7 ? '0px' : '10px' }};" --}}
-                    <div class="col-xs-5" style="">
-                        <span class=""
-                            style="font-size: 15.4292px;">{{ $record['key'] ?? 'Untitled question' }}</span>
+    @if (!empty($data['pages']))
+        @forelse ($data['pages'] as $record2)
+            <div style="margin:20px;">
+                <div class="row"
+                    style="background-color:#f5f5f5; padding-left: 0px; padding-top:2.5px; padding-bottom:5px;">
+                    <div class="col-xs-10">
+                        <h3 class="text-left"><b>{{ $record2['pagetitle'] }}</b></h3>
                     </div>
-                    <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
-                        @if ($record['response'] == 7)
-                            @if (is_array($record['value']))
-                                @if (isset($record['value']['option']))
-                                    <h6
-                                        style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ $record['value']['value'] ?? '' }};">
-                                        {{ $record['value']['key'] ?? '' }}</h6>
-                                @else
-                                    @foreach ($record['value'] as $value)
+                </div>
+                @forelse ($record2['question'] as $record)
+                    <div class="row">
+                        {{--  style="margin-bottom: {{ $record['response'] == 7 ? '0px' : '10px' }};" --}}
+                        <div class="col-xs-5" style="">
+                            <span class=""
+                                style="font-size: 15.4292px;">{{ $record['key'] ?? 'Untitled question' }}</span>
+                        </div>
+                        <div class="col-xs-5" style="text-align: right; margin-left:25%; right:0%;">
+                            @if ($record['response'] == 7)
+                                @if (is_array($record['value']))
+                                    @if (isset($record['value']['option']))
                                         <h6
-                                            style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ explode('._.', $value ?? '')[1] ?? '' }};">
-                                            {{ explode('._.', $value ?? '')[0] ?? '' }}</h6>
-                                    @endforeach
+                                            style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ $record['value']['value'] ?? '' }};">
+                                            {{ $record['value']['key'] ?? '' }}</h6>
+                                    @else
+                                        @foreach ($record['value'] as $value)
+                                            <h6
+                                                style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ explode('._.', $value ?? '')[1] ?? '' }};">
+                                                {{ explode('._.', $value ?? '')[0] ?? '' }}</h6>
+                                        @endforeach
+                                    @endif
+                                @else
+                                    <h6
+                                        style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ explode('._.', $record['value'] ?? '')[1] ?? '' }};">
+                                        {{ explode('._.', $record['value'] ?? '')[0] ?? '' }}</h6>
+                                @endif
+                            @elseif ($record['response'] == 6)
+                                @if (!empty($record['signature']))
+                                <br>
+                                {{ $record['signature']['name'] }}
+                                    <img src="{{ $record['signature']['value'] }}" alt="test">
                                 @endif
                             @else
-                                <h6
-                                    style="text-align: center; padding: 5% 100% 5% 100%; margin:0%; background-color: {{ explode('._.', $record['value'] ?? '')[1] ?? '' }};">
-                                    {{ explode('._.', $record['value'] ?? '')[0] ?? '' }}</h6>
+                                <span class="" style="color:#7b7673; font-size: 12.4292px;">
+                                    {{ $record['value'] ?? '' }}
+                                </span>
                             @endif
-                        @elseif ($record['response'] == 6)
-                            @if (!empty($record['signature']))
-                            <br>
-                            {{ $record['signature']['name'] }}
-                                <img src="{{ $record['signature']['value'] }}" alt="test">
-                            @endif
-                        @else
-                            <span class="" style="color:#7b7673; font-size: 12.4292px;">
-                                {{ $record['value'] ?? '' }}
-                            </span>
-                        @endif
+                        </div>
+                        <div class="col-xs-5" style="color: gray;">
+                            {{ $record['note'] ?? '' }}
+                        </div>
                     </div>
-                    <div class="col-xs-5" style="color: gray;">
-                        {{ $record['note'] ?? '' }}
-                    </div>
-                </div>
-                <div style="border-bottom: 1px solid #e0e0e0;"></div>
-                {{--  margin-bottom: 10px; --}}
-            @empty
-            @endforelse
-        </div>
-        @if (!$loop->last)
-            <pagebreak></pagebreak>
-        @endif
-    @empty
-
-    @endforelse
+                    <div style="border-bottom: 1px solid #e0e0e0;"></div>
+                    {{--  margin-bottom: 10px; --}}
+                @empty
+                @endforelse
+            </div>
+            @if (!$loop->last)
+                <pagebreak></pagebreak>
+            @endif
+        @empty
+        @endforelse
+    @endif
 </body>
 
 </html>

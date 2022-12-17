@@ -365,7 +365,6 @@
                                                                                 <div class="ORzaJ knjhoD">
                                                                                     <select
                                                                                         wire:model.lazy="title_page_questions.{{ $qkey }}.text_answer_format"
-                                                                                        id="text_answer_format{{ $loop->index }}"
                                                                                         class="text_answer_format">
                                                                                         <option value="0">
                                                                                             {{ __('Short answer') }}
@@ -514,7 +513,6 @@
                                                                             <div class="ORzaJ knjhoD">
                                                                                 <select
                                                                                     wire:model.lazy="title_page_questions.{{ $qkey }}.text_answer_format"
-                                                                                    id="text_answer_format{{ $loop->index }}"
                                                                                     class="text_answer_format">
                                                                                     <option value="0">
                                                                                         {{ __('Short answer') }}
@@ -1063,11 +1061,11 @@
                                                                                         <span class="LBNnk"></span>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="kGgXUq2"
+                                                                                {{-- <div class="kGgXUq2"
                                                                                     style="border-left: none; text-align:right; color:blue;"
                                                                                     wire:click.prevent="clear_new_response_option({{ $activeone }})">
                                                                                     Reset
-                                                                                </div>
+                                                                                </div> --}}
                                                                             </div>
                                                                         </div>
                                                                         @if (!empty($title_page_questions[$activeone]['response']))
@@ -1183,7 +1181,6 @@
                                                                                                                                                 class="ORzaJ knjhoD">
                                                                                                                                                 <select
                                                                                                                                                     wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.font_color"
-                                                                                                                                                    id="text_answer_format{{ $loop->index }}"
                                                                                                                                                     class="text_answer_format">
                                                                                                                                                     <option
                                                                                                                                                         value="#ffffff">
@@ -1253,120 +1250,11 @@
                                                                     </button>
                                                                     <button role="button" class="kDSJkL"
                                                                         style="margin-left:10px;"
-                                                                        wire:click.prevent="clear_new_response_option({{ $activeone }})">
+                                                                        wire:click.prevent="clear_new_response_option({{ $activeone }})"
+                                                                        data-bs-dismiss="modal">
                                                                         Cancel
                                                                     </button>
                                                                 </div>
-                                                                {{-- <div style="background: transparent; border: medium none;"
-                                                                    class="jkEVJ">
-                                                                    <div class="multible_choise_wrapper">
-                                                                        @if (!empty($title_page_questions[$activeone]['response']))
-                                                                            @if ($title_page_questions[$activeone]['response'] == 7)
-                                                                                @if (!empty($title_page_questions[$activeone]['multiple_choice']))
-                                                                                    @forelse ($title_page_questions[$activeone]['multiple_choice'] as $responsKey => $respons)
-                                                                                        <div data-rbd-droppable-id="responses{{ $activeone }}{{ $responsKey }}"
-                                                                                            data-rbd-droppable-context-id="{{ $activeone }}{{ $responsKey }}"
-                                                                                            class="dragable">
-                                                                                            <div data-rbd-draggable-context-id="{{ $activeone }}{{ $responsKey }}"
-                                                                                                class="kOpTns">
-                                                                                                <div tabindex="{{ $activeone }}{{ $responsKey }}"
-                                                                                                    role="button"
-                                                                                                    aria-describedby="rbd-hidden-text-1-hidden-text-8"
-                                                                                                    draggable="false"
-                                                                                                    class="eCLrAf drag-icon">
-                                                                                                    <svg viewBox="0 0 24 24"
-                                                                                                        width="21"
-                                                                                                        height="21"
-                                                                                                        focusable="false">
-                                                                                                        <path
-                                                                                                            fill="none"
-                                                                                                            d="M0 0h24v24H0V0z">
-                                                                                                        </path>
-                                                                                                        <path
-                                                                                                            fill="#bfc6d4"
-                                                                                                            d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
-                                                                                                        </path>
-                                                                                                    </svg>
-                                                                                                </div>
-                                                                                                <div class="kxFgkR">
-                                                                                                    <div
-                                                                                                        class="iAngMj">
-                                                                                                        <div
-                                                                                                            class="bWxUpN">
-                                                                                                            <input
-                                                                                                                class="eVpkze w-100 h-100 question-title"
-                                                                                                                placeholder="Response title"
-                                                                                                                id="response-title{{ $activeone }}{{ $responsKey }}"
-                                                                                                                wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
-                                                                                                                style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}">
-                                                                                                        </div>
-                                                                                                        <input
-                                                                                                            type="color"
-                                                                                                            wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
-                                                                                                            class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
-                                                                                                            style="height: 25px; width:30px; border-radius: 300px;"
-                                                                                                            id="response-color{{ $activeone }}{{ $responsKey }}"
-                                                                                                            title="Choose background color">
-                                                                                                        <input
-                                                                                                            type="color"
-                                                                                                            wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.font_color"
-                                                                                                            class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
-                                                                                                            style="height: 25px; width:30px; border-radius: 300px;"
-                                                                                                            id="response-color{{ $activeone }}{{ $responsKey }}"
-                                                                                                            title="Choose font color">
-                                                                                                        @if (count($title_page_questions[$activeone]['multiple_choice']) > 1)
-                                                                                                            <button
-                                                                                                                class="gocNNg kxrOmS bKqzym"
-                                                                                                                style="margin-right: 0%;margin-left: 15px;"
-                                                                                                                wire:click.prevent="title_page_delete_mc_choise({{ $loop->index }},{{ $responsKey }})">
-                                                                                                                <svg width="21"
-                                                                                                                    height="21"
-                                                                                                                    viewBox="0 0 14 14"
-                                                                                                                    focusable="false">
-                                                                                                                    <path
-                                                                                                                        d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
-                                                                                                                        fill="#545f70"
-                                                                                                                        fill-rule="nonzero">
-                                                                                                                    </path>
-                                                                                                                </svg>
-                                                                                                            </button>
-                                                                                                        @endif
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    @empty
-                                                                                    @endforelse
-                                                                                @endif
-                                                                            @endif
-                                                                        @endif
-                                                                        @if (!empty($title_page_questions[$activeone]['multiple_choice']))
-                                                                            <button role="button" class="btn nyGSP"
-                                                                                wire:click.prevent="add_new_response({{ $activeone }})">
-                                                                                +
-                                                                                Add
-                                                                                Response
-                                                                            </button>
-                                                                        @endif
-                                                                    </div>
-                                                                </div> --}}
-                                                                {{-- <div class="fhTZet">
-                                                                    @if (!empty($title_page_questions[$activeone]['multiple_choice'][0]['title']))
-                                                                        <button color="#ffffff" font-size="0.875rem"
-                                                                            type="button" class="ggbIJY"
-                                                                            style="margin-left:10px;"
-                                                                            wire:click.prevent="save_multiple_choise({{ $activeone }})"
-                                                                            data-bs-dismiss="modal">
-                                                                            Save and
-                                                                            apply
-                                                                        </button>
-                                                                    @endif
-                                                                    <button role="button" class="kDSJkL"
-                                                                        style="margin-left:10px;"
-                                                                        wire:click.prevent="clear_new_response_option({{ $activeone }})">
-                                                                        Cancel
-                                                                    </button>
-                                                                </div> --}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1399,84 +1287,197 @@
                                                         <div class="bJfPHR hzzSzX">
                                                             <div>
                                                                 <div class="jOMNlj">
-                                                                    <h3 class="lhPVYY">Multiple
-                                                                        choice responses
-                                                                    </h3>
-                                                                    <div class="grGybe">
-                                                                        <div class="gEVyqy dZoNkv">
-                                                                            e.g.
-                                                                            Yes,
-                                                                            No, N/A
+                                                                    <div class="row mb-5">
+                                                                        <div class="col-8">
+                                                                            <h4 class="lhPVYY">
+                                                                                Multiple choice responses
+                                                                            </h4>
                                                                         </div>
-                                                                        <div class="eMiEgJ">
-                                                                            <button role="button"
-                                                                                style="color: rgb(71, 64, 212);"
-                                                                                wire:click.prevent="clear_new_response_option({{ $activeone }})">
-                                                                                Reset
-                                                                            </button>
+                                                                        <div class="col-4">
+                                                                            @if (!empty($title_page_questions[$activeone]['multiple_choice'][0]['title']))
+                                                                                <a class="ggbIJY2 d-flex align-items-right justify-content-end"
+                                                                                    style="color: rgb(103, 93, 244);"
+                                                                                    wire:click.prevent="save_multiple_choise({{ $activeone }})"
+                                                                                    data-bs-dismiss="modal">
+                                                                                    Save
+                                                                                </a>
+                                                                            @else
+                                                                                <a class="ggbIJY2 d-flex align-items-right justify-content-end"
+                                                                                    style="color: gray;">
+                                                                                    Save
+                                                                                </a>
+                                                                            @endif
                                                                         </div>
                                                                     </div>
-                                                                    <div class="dFFhJP">
-                                                                        <span>Response</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div style="background: transparent; border: medium none;"
-                                                                    class="jkEVJ">
-                                                                    <div class="multible_choise_wrapper">
+                                                                    <div>
+                                                                        <div class="kxrOmS eqGxMu">
+                                                                            <div class="bgiTWR2">
+                                                                                <div class="kGgXUq">
+                                                                                    Response
+                                                                                    <div class="bdOmts">
+                                                                                        <span class="LBNnk"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                {{-- <div class="kGgXUq2"
+                                                                                    style="border-left: none; text-align:right; color:blue;"
+                                                                                    wire:click.prevent="clear_new_response_option({{ $activeone }})">
+                                                                                    Reset
+                                                                                </div> --}}
+                                                                            </div>
+                                                                        </div>
                                                                         @if (!empty($title_page_questions[$activeone]['response']))
                                                                             @if ($title_page_questions[$activeone]['response'] == 7)
                                                                                 @if (!empty($title_page_questions[$activeone]['multiple_choice']))
                                                                                     @forelse ($title_page_questions[$activeone]['multiple_choice'] as $responsKey => $respons)
-                                                                                        <div data-rbd-droppable-id="responses{{ $activeone }}{{ $responsKey }}"
-                                                                                            data-rbd-droppable-context-id="{{ $activeone }}{{ $responsKey }}"
-                                                                                            class="dragable">
-                                                                                            <div data-rbd-draggable-context-id="{{ $activeone }}{{ $responsKey }}"
-                                                                                                class="kOpTns">
-                                                                                                <div tabindex="{{ $activeone }}{{ $responsKey }}"
-                                                                                                    role="button"
-                                                                                                    aria-describedby="rbd-hidden-text-1-hidden-text-8"
-                                                                                                    draggable="false"
-                                                                                                    class="eCLrAf drag-icon">
-                                                                                                    <svg viewBox="0 0 24 24"
-                                                                                                        width="21"
-                                                                                                        height="21"
-                                                                                                        focusable="false">
-                                                                                                        <path
-                                                                                                            fill="none"
-                                                                                                            d="M0 0h24v24H0V0z">
-                                                                                                        </path>
-                                                                                                        <path
-                                                                                                            fill="#bfc6d4"
-                                                                                                            d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
-                                                                                                        </path>
-                                                                                                    </svg>
-                                                                                                </div>
-                                                                                                <div class="kxFgkR">
+                                                                                        <div class="kLpTzB multible_choise_wrapper"
+                                                                                            style="border-bottom: {{ !$loop->last ? '1px solid rgb(191, 198, 212)' : '' }};">
+                                                                                            <div
+                                                                                                class="hkphPX dragable">
+                                                                                                <div class="REnvQ">
                                                                                                     <div
-                                                                                                        class="iAngMj">
+                                                                                                        class="kxrOmS cuypVQ">
                                                                                                         <div
-                                                                                                            class="bWxUpN">
-                                                                                                            <input
-                                                                                                                class="eVpkze w-100 h-100 question-title"
-                                                                                                                placeholder="Response title"
-                                                                                                                id="response-title{{ $activeone }}{{ $responsKey }}"
-                                                                                                                wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
-                                                                                                                style="{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}">
+                                                                                                            class="dBZFks">
                                                                                                         </div>
-                                                                                                        <input
-                                                                                                            type="color"
-                                                                                                            wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
-                                                                                                            class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
-                                                                                                            style="height: 25px; width:30px; border-radius: 300px;"
-                                                                                                            id="response-color{{ $activeone }}{{ $responsKey }}"
-                                                                                                            title="Choose background color">
-                                                                                                        <input
-                                                                                                            type="color"
-                                                                                                            wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.font_color"
-                                                                                                            class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
-                                                                                                            style="height: 25px; width:30px; border-radius: 300px;"
-                                                                                                            id="response-color{{ $activeone }}{{ $responsKey }}"
-                                                                                                            title="Choose font color">
+                                                                                                        <div
+                                                                                                            class="bAJknk">
+                                                                                                            <div
+                                                                                                                class="huXueT">
+                                                                                                                <div
+                                                                                                                    class="kGgXUq">
+                                                                                                                    <div
+                                                                                                                        class="haXfJL drag-icon">
+                                                                                                                        <svg viewBox="0 0 24 24"
+                                                                                                                            width="24"
+                                                                                                                            height="24"
+                                                                                                                            focusable="false">
+                                                                                                                            <path
+                                                                                                                                fill="none"
+                                                                                                                                d="M0 0h24v24H0V0z">
+                                                                                                                            </path>
+                                                                                                                            <path
+                                                                                                                                fill="#675df4"
+                                                                                                                                d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                                                                                                            </path>
+                                                                                                                        </svg>
+                                                                                                                    </div>
+                                                                                                                    <div class="bBjJyf"
+                                                                                                                        style="border: none;">
+                                                                                                                        <div
+                                                                                                                            style="display: flex; align-items: center;">
+                                                                                                                            <div
+                                                                                                                                class="eAfucY">
+                                                                                                                                <input
+                                                                                                                                    class="eVpkze w-100 h-100 question-title"
+                                                                                                                                    placeholder="Response title"
+                                                                                                                                    style="font-size: 12.5px;"
+                                                                                                                                    id="response-title{{ $activeone }}{{ $responsKey }}"
+                                                                                                                                    wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
+                                                                                                                                    {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
+                                                                                                                            </div>
+                                                                                                                            <input
+                                                                                                                                type="color"
+                                                                                                                                wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
+                                                                                                                                class="form-control form-control-color22 gocNNg kxrOmS"
+                                                                                                                                style="margin-right: 5px; width:36.25px;"
+                                                                                                                                id="response-color{{ $activeone }}{{ $responsKey }}"
+                                                                                                                                title="Choose background color">
+                                                                                                                            <div style="border-left: 1px solid rgb(191, 198, 212);"
+                                                                                                                                class="bdOmts2"
+                                                                                                                                data-bs-toggle="dropdown"
+                                                                                                                                aria-expanded="false">
+                                                                                                                                <div
+                                                                                                                                    class="hcjgmp">
+                                                                                                                                    <button
+                                                                                                                                        type="button"
+                                                                                                                                        class="jvZSBO">
+                                                                                                                                        <svg width="19"
+                                                                                                                                            height="19"
+                                                                                                                                            viewBox="0 0 14 14"
+                                                                                                                                            focusable="false">
+                                                                                                                                            <g transform="translate(5.542 1.458)"
+                                                                                                                                                fill="#545f70"
+                                                                                                                                                fill-rule="nonzero">
+                                                                                                                                                <circle
+                                                                                                                                                    transform="rotate(90 1.458 5.542)"
+                                                                                                                                                    cx="1.458"
+                                                                                                                                                    cy="5.542"
+                                                                                                                                                    r="1.458">
+                                                                                                                                                </circle>
+                                                                                                                                                <circle
+                                                                                                                                                    transform="rotate(90 1.458 9.625)"
+                                                                                                                                                    cx="1.458"
+                                                                                                                                                    cy="9.625"
+                                                                                                                                                    r="1.458">
+                                                                                                                                                </circle>
+                                                                                                                                                <circle
+                                                                                                                                                    transform="rotate(90 1.458 1.458)"
+                                                                                                                                                    cx="1.458"
+                                                                                                                                                    cy="1.458"
+                                                                                                                                                    r="1.458">
+                                                                                                                                                </circle>
+                                                                                                                                            </g>
+                                                                                                                                        </svg>
+                                                                                                                                    </button>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="tether-element dropdown-menu tether-element-attached-bottom tether-element-attached-right tether-target-attached-top tether-target-attached-center tether-enabled tether-out-of-bounds tether-out-of-bounds-bottom"
+                                                                                                                                style="z-index: 20; top: 0px; position: absolute; transform: translateX(375.733px) translateY(216.25px) translateZ(0px); left: 0px;"
+                                                                                                                                wire:ignore.self>
+                                                                                                                                <div
+                                                                                                                                    class="cKwbqr">
+                                                                                                                                    <div
+                                                                                                                                        class="epicTj">
+                                                                                                                                        <div
+                                                                                                                                            class="krtjey">
+                                                                                                                                            <span
+                                                                                                                                                style="margin-top:50px; "></span>
+                                                                                                                                            Font
+                                                                                                                                            Color
+                                                                                                                                            <div
+                                                                                                                                                class="ORzaJ knjhoD">
+                                                                                                                                                <select
+                                                                                                                                                    wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.font_color"
+                                                                                                                                                    class="text_answer_format">
+                                                                                                                                                    <option
+                                                                                                                                                        value="#ffffff">
+                                                                                                                                                        {{ __('White') }}
+                                                                                                                                                    </option>
+                                                                                                                                                    <option
+                                                                                                                                                        value="#000000">
+                                                                                                                                                        {{ __('Black') }}
+                                                                                                                                                    </option>
+                                                                                                                                                </select>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="epicTj"
+                                                                                                                                        wire:click.prevent="title_page_delete_mc_choise({{ $loop->index }},{{ $responsKey }})">
+                                                                                                                                        <div style="display: flex; align-items: center;"
+                                                                                                                                            class="iBzfYz">
+                                                                                                                                            <svg width="21"
+                                                                                                                                                height="21"
+                                                                                                                                                viewBox="0 0 14 14"
+                                                                                                                                                focusable="false">
+                                                                                                                                                <path
+                                                                                                                                                    d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                                                                                                    fill="#545f70"
+                                                                                                                                                    fill-rule="nonzero">
+                                                                                                                                                </path>
+                                                                                                                                            </svg>
+                                                                                                                                            <span
+                                                                                                                                                style="padding-left: 0.4rem; color: rgb(31, 37, 51);">
+                                                                                                                                                Delete
+                                                                                                                                            </span>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
@@ -1486,27 +1487,24 @@
                                                                                 @endif
                                                                             @endif
                                                                         @endif
-                                                                        @if (!empty($title_page_questions[$activeone]['multiple_choice']))
-                                                                            <button role="button" class="nyGSP"
-                                                                                wire:click.prevent="add_new_response({{ $activeone }})">
-                                                                                +
-                                                                                Add
-                                                                                Response
-                                                                            </button>
-                                                                        @endif
+                                                                        <div class="kxrOmS eqGxMu">
+                                                                            <div class="bgiTWR3">
+                                                                                <div class="kGgXUq">
+                                                                                    <div class="bdOmts">
+                                                                                        <span class="LBNnk"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="kGgXUq2">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="fhTZet">
-                                                                    @if (!empty($title_page_questions[$activeone]['multiple_choice'][0]['title']))
-                                                                        <button color="#ffffff" font-size="0.875rem"
-                                                                            type="button" class="ggbIJY"
-                                                                            style="margin-left:10px;"
-                                                                            wire:click.prevent="save_multiple_choise({{ $activeone }})"
-                                                                            data-bs-dismiss="modal">
-                                                                            Save and
-                                                                            apply
-                                                                        </button>
-                                                                    @endif
+                                                                    <button type="button" class="ggbIJY"
+                                                                        wire:click.prevent="add_new_response({{ $activeone }})">
+                                                                        + Add Response
+                                                                    </button>
                                                                     <button role="button" class="kDSJkL"
                                                                         style="margin-left:10px;"
                                                                         wire:click.prevent="clear_new_response_option({{ $activeone }})"
@@ -2554,71 +2552,184 @@
                             <div class="bJfPHR hzzSzX">
                                 <div>
                                     <div class="jOMNlj">
-                                        <h3 class="lhPVYY">
-                                            Multiple
-                                            choice responses
-                                        </h3>
-                                        <div class="grGybe">
-                                            <div class="gEVyqy dZoNkv">
-                                                e.g.
-                                                Yes,
-                                                No, N/A
+                                        <div class="row mb-5">
+                                            <div class="col-8">
+                                                <h4 class="lhPVYY">
+                                                    Multiple choice responses
+                                                </h4>
                                             </div>
-                                            <div class="eMiEgJ">
-                                                <button role="button" style="color: rgb(71, 64, 212);"
-                                                    wire:click.prevent="page_clear_new_response_option({{ $pageactiveone }},{{ $pagequestionactiveone }})">
-                                                    Reset
-                                                </button>
+                                            <div class="col-4">
+                                                @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'][0]['title']))
+                                                    <a class="ggbIJY2 d-flex align-items-right justify-content-end"
+                                                        style="color: rgb(103, 93, 244);"
+                                                        wire:click.prevent="page_save_multiple_choise({{ $pageactiveone }},{{ $pagequestionactiveone }})"
+                                                        data-bs-dismiss="modal">
+                                                        Save
+                                                    </a>
+                                                @else
+                                                    <a class="ggbIJY2 d-flex align-items-right justify-content-end"
+                                                        style="color: gray;">
+                                                        Save
+                                                    </a>
+                                                @endif
                                             </div>
                                         </div>
-                                        <div class="dFFhJP">
-                                            <span>Response</span>
-                                        </div>
-                                    </div>
-                                    <div style="background: transparent; border: medium none;" class="jkEVJ">
-                                        <div class="multible_choise_wrapper">
+                                        <div>
+                                            <div class="kxrOmS eqGxMu">
+                                                <div class="bgiTWR2">
+                                                    <div class="kGgXUq">
+                                                        Response
+                                                        <div class="bdOmts">
+                                                            <span class="LBNnk"></span>
+                                                        </div>
+                                                    </div>
+                                                    {{-- <div class="kGgXUq2"
+                                                        style="border-left: none; text-align:right; color:blue;"
+                                                        wire:click.prevent="clear_new_response_option({{ $activeone }})">
+                                                        Reset
+                                                    </div> --}}
+                                                </div>
+                                            </div>
                                             @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['response']))
                                                 @if ($pages[$pageactiveone]['question'][$pagequestionactiveone]['response'] == 7)
                                                     @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice']))
                                                         @forelse ($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'] as $responsKey => $respons)
-                                                            <div data-rbd-droppable-id="responses{{ $pageactiveone }}{{ $responsKey }}"
-                                                                data-rbd-droppable-context-id="{{ $pageactiveone }}{{ $responsKey }}"
-                                                                class="dragable">
-                                                                <div data-rbd-draggable-context-id="{{ $pageactiveone }}{{ $responsKey }}"
-                                                                    class="kOpTns">
-                                                                    <div tabindex="{{ $pageactiveone }}{{ $responsKey }}"
-                                                                        role="button"
-                                                                        aria-describedby="rbd-hidden-text-1-hidden-text-8"
-                                                                        draggable="false" class="eCLrAf drag-icon">
-                                                                        <svg viewBox="0 0 24 24" width="21"
-                                                                            height="21" focusable="false">
-                                                                            <path fill="none"
-                                                                                d="M0 0h24v24H0V0z">
-                                                                            </path>
-                                                                            <path fill="#bfc6d4"
-                                                                                d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
-                                                                            </path>
-                                                                        </svg>
-                                                                    </div>
-                                                                    <div class="kxFgkR">
-                                                                        <div class="iAngMj">
-                                                                            <div class="bWxUpN">
-                                                                                <input
-                                                                                    class="eVpkze w-100 h-100 question-title"
-                                                                                    placeholder="Response title"
-                                                                                    wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.title"
-                                                                                    style="color: {{ $pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'][$responsKey]['font_color'] }} ;">
+                                                            <div class="kLpTzB multible_choise_wrapper"
+                                                                style="border-bottom: {{ !$loop->last ? '1px solid rgb(191, 198, 212)' : '' }};">
+                                                                <div class="hkphPX dragable">
+                                                                    <div class="REnvQ">
+                                                                        <div class="kxrOmS cuypVQ">
+                                                                            <div class="dBZFks">
                                                                             </div>
-                                                                            <input type="color"
-                                                                                wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.color"
-                                                                                class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
-                                                                                style="height: 25px; width:30px; border-radius: 300px;"
-                                                                                title="Choose background color">
-                                                                            <input type="color"
-                                                                                wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.font_color"
-                                                                                class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
-                                                                                style="height: 25px; width:30px; border-radius: 300px;"
-                                                                                title="Choose font color">
+                                                                            <div class="bAJknk">
+                                                                                <div class="huXueT">
+                                                                                    <div class="kGgXUq">
+                                                                                        <div class="haXfJL drag-icon">
+                                                                                            <svg viewBox="0 0 24 24"
+                                                                                                width="24"
+                                                                                                height="24"
+                                                                                                focusable="false">
+                                                                                                <path fill="none"
+                                                                                                    d="M0 0h24v24H0V0z">
+                                                                                                </path>
+                                                                                                <path fill="#675df4"
+                                                                                                    d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                                                                                </path>
+                                                                                            </svg>
+                                                                                        </div>
+                                                                                        <div class="bBjJyf"
+                                                                                            style="border: none;">
+                                                                                            <div
+                                                                                                style="display: flex; align-items: center;">
+                                                                                                <div class="eAfucY">
+                                                                                                    <input
+                                                                                                        class="eVpkze w-100 h-100 question-title"
+                                                                                                        placeholder="Response title"
+                                                                                                        style="font-size: 12.5px;"
+                                                                                                        wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.title"
+                                                                                                        {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
+                                                                                                </div>
+                                                                                                <input type="color"
+                                                                                                    wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.color"
+                                                                                                    class="form-control form-control-color22 gocNNg kxrOmS"
+                                                                                                    style="margin-right: 5px; width:36.25px;"
+                                                                                                    title="Choose background color">
+                                                                                                <div style="border-left: 1px solid rgb(191, 198, 212);"
+                                                                                                    class="bdOmts2"
+                                                                                                    data-bs-toggle="dropdown"
+                                                                                                    aria-expanded="false">
+                                                                                                    <div
+                                                                                                        class="hcjgmp">
+                                                                                                        <button
+                                                                                                            type="button"
+                                                                                                            class="jvZSBO">
+                                                                                                            <svg width="19"
+                                                                                                                height="19"
+                                                                                                                viewBox="0 0 14 14"
+                                                                                                                focusable="false">
+                                                                                                                <g transform="translate(5.542 1.458)"
+                                                                                                                    fill="#545f70"
+                                                                                                                    fill-rule="nonzero">
+                                                                                                                    <circle
+                                                                                                                        transform="rotate(90 1.458 5.542)"
+                                                                                                                        cx="1.458"
+                                                                                                                        cy="5.542"
+                                                                                                                        r="1.458">
+                                                                                                                    </circle>
+                                                                                                                    <circle
+                                                                                                                        transform="rotate(90 1.458 9.625)"
+                                                                                                                        cx="1.458"
+                                                                                                                        cy="9.625"
+                                                                                                                        r="1.458">
+                                                                                                                    </circle>
+                                                                                                                    <circle
+                                                                                                                        transform="rotate(90 1.458 1.458)"
+                                                                                                                        cx="1.458"
+                                                                                                                        cy="1.458"
+                                                                                                                        r="1.458">
+                                                                                                                    </circle>
+                                                                                                                </g>
+                                                                                                            </svg>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="tether-element dropdown-menu tether-element-attached-bottom tether-element-attached-right tether-target-attached-top tether-target-attached-center tether-enabled tether-out-of-bounds tether-out-of-bounds-bottom"
+                                                                                                    style="z-index: 20; top: 0px; position: absolute; transform: translateX(375.733px) translateY(216.25px) translateZ(0px); left: 0px;"
+                                                                                                    wire:ignore.self>
+                                                                                                    <div
+                                                                                                        class="cKwbqr">
+                                                                                                        <div
+                                                                                                            class="epicTj">
+                                                                                                            <div
+                                                                                                                class="krtjey">
+                                                                                                                <span
+                                                                                                                    style="margin-top:50px; "></span>
+                                                                                                                Font
+                                                                                                                Color
+                                                                                                                <div
+                                                                                                                    class="ORzaJ knjhoD">
+                                                                                                                    <select
+                                                                                                                        wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.font_color"
+                                                                                                                        class="text_answer_format">
+                                                                                                                        <option
+                                                                                                                            value="#ffffff">
+                                                                                                                            {{ __('White') }}
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                            value="#000000">
+                                                                                                                            {{ __('Black') }}
+                                                                                                                        </option>
+                                                                                                                    </select>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="epicTj"
+                                                                                                            wire:click.prevent="page_delete_mc_choise({{ $responsKey }})">
+                                                                                                            <div style="display: flex; align-items: center;"
+                                                                                                                class="iBzfYz">
+                                                                                                                <svg width="21"
+                                                                                                                    height="21"
+                                                                                                                    viewBox="0 0 14 14"
+                                                                                                                    focusable="false">
+                                                                                                                    <path
+                                                                                                                        d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                                                                        fill="#545f70"
+                                                                                                                        fill-rule="nonzero">
+                                                                                                                    </path>
+                                                                                                                </svg>
+                                                                                                                <span
+                                                                                                                    style="padding-left: 0.4rem; color: rgb(31, 37, 51);">
+                                                                                                                    Delete
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -2628,34 +2739,29 @@
                                                     @endif
                                                 @endif
                                             @endif
-                                            @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice']))
-                                                <button role="button" class="nyGSP"
-                                                    wire:click.prevent="page_add_new_response({{ $pageactiveone }},{{ $pagequestionactiveone }})">
-                                                    +
-                                                    Add
-                                                    Response
-                                                </button>
-                                            @endif
+                                            <div class="kxrOmS eqGxMu">
+                                                <div class="bgiTWR3">
+                                                    <div class="kGgXUq">
+                                                        <div class="bdOmts">
+                                                            <span class="LBNnk"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="kGgXUq2">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    {{-- s --}}
                                     <div class="fhTZet">
-                                        <div class="fhTZet">
-                                            @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'][0]['title']))
-                                                <button color="#ffffff" font-size="0.875rem" type="button"
-                                                    class="ggbIJY" style="margin-left:10px;"
-                                                    wire:click.prevent="page_save_multiple_choise({{ $pageactiveone }},{{ $pagequestionactiveone }})"
-                                                    data-bs-dismiss="modal">
-                                                    Save and
-                                                    apply
-                                                </button>
-                                            @endif
-                                            <button role="button" class="kDSJkL" style="margin-left:10px;"
-                                                wire:click.prevent="page_clear_new_response_option({{ $pageactiveone }},{{ $pagequestionactiveone }})"
-                                                data-bs-dismiss="modal">
-                                                Cancel
-                                            </button>
-                                        </div>
+                                        <button type="button" class="ggbIJY"
+                                            wire:click.prevent="page_add_new_response()">
+                                            + Add Response
+                                        </button>
+                                        <button role="button" class="kDSJkL" style="margin-left:10px;"
+                                            wire:click.prevent="page_clear_new_response_option()"
+                                            data-bs-dismiss="modal">
+                                            Cancel
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -2686,71 +2792,184 @@
                             <div class="bJfPHR hzzSzX">
                                 <div>
                                     <div class="jOMNlj">
-                                        <h3 class="lhPVYY">
-                                            Multiple
-                                            choice responses
-                                        </h3>
-                                        <div class="grGybe">
-                                            <div class="gEVyqy dZoNkv">
-                                                e.g.
-                                                Yes,
-                                                No, N/A
+                                        <div class="row mb-5">
+                                            <div class="col-8">
+                                                <h4 class="lhPVYY">
+                                                    Multiple choice responses
+                                                </h4>
                                             </div>
-                                            <div class="eMiEgJ">
-                                                <button role="button" style="color: rgb(71, 64, 212);"
-                                                    wire:click.prevent="page_clear_new_response_option({{ $pageactiveone }},{{ $pagequestionactiveone }})">
-                                                    Reset
-                                                </button>
+                                            <div class="col-4">
+                                                @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'][0]['title']))
+                                                    <a class="ggbIJY2 d-flex align-items-right justify-content-end"
+                                                        style="color: rgb(103, 93, 244);"
+                                                        wire:click.prevent="page_save_multiple_choise({{ $pageactiveone }},{{ $pagequestionactiveone }})"
+                                                        data-bs-dismiss="modal">
+                                                        Save
+                                                    </a>
+                                                @else
+                                                    <a class="ggbIJY2 d-flex align-items-right justify-content-end"
+                                                        style="color: gray;">
+                                                        Save
+                                                    </a>
+                                                @endif
                                             </div>
                                         </div>
-                                        <div class="dFFhJP">
-                                            <span>Response</span>
-                                        </div>
-                                    </div>
-                                    <div style="background: transparent; border: medium none;" class="jkEVJ">
-                                        <div class="multible_choise_wrapper">
+                                        <div>
+                                            <div class="kxrOmS eqGxMu">
+                                                <div class="bgiTWR2">
+                                                    <div class="kGgXUq">
+                                                        Response
+                                                        <div class="bdOmts">
+                                                            <span class="LBNnk"></span>
+                                                        </div>
+                                                    </div>
+                                                    {{-- <div class="kGgXUq2"
+                                                        style="border-left: none; text-align:right; color:blue;"
+                                                        wire:click.prevent="clear_new_response_option({{ $activeone }})">
+                                                        Reset
+                                                    </div> --}}
+                                                </div>
+                                            </div>
                                             @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['response']))
                                                 @if ($pages[$pageactiveone]['question'][$pagequestionactiveone]['response'] == 7)
                                                     @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice']))
                                                         @forelse ($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'] as $responsKey => $respons)
-                                                            <div data-rbd-droppable-id="pageresponses{{ $pageactiveone }}{{ $responsKey }}"
-                                                                data-rbd-droppable-context-id="page{{ $pageactiveone }}{{ $responsKey }}"
-                                                                class="dragable">
-                                                                <div data-rbd-draggable-context-id="page{{ $pageactiveone }}{{ $responsKey }}"
-                                                                    class="kOpTns">
-                                                                    <div tabindex="page{{ $pageactiveone }}{{ $responsKey }}"
-                                                                        role="button"
-                                                                        aria-describedby="rbd-hidden-text-1-hidden-text-8"
-                                                                        draggable="false" class="eCLrAf drag-icon">
-                                                                        <svg viewBox="0 0 24 24" width="21"
-                                                                            height="21" focusable="false">
-                                                                            <path fill="none"
-                                                                                d="M0 0h24v24H0V0z">
-                                                                            </path>
-                                                                            <path fill="#bfc6d4"
-                                                                                d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
-                                                                            </path>
-                                                                        </svg>
-                                                                    </div>
-                                                                    <div class="kxFgkR">
-                                                                        <div class="iAngMj">
-                                                                            <div class="bWxUpN">
-                                                                                <input
-                                                                                    class="eVpkze w-100 h-100 question-title"
-                                                                                    placeholder="Response title"
-                                                                                    wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.title"
-                                                                                    style="color: {{ $pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'][$responsKey]['font_color'] }} ;">
+                                                            <div class="kLpTzB multible_choise_wrapper"
+                                                                style="border-bottom: {{ !$loop->last ? '1px solid rgb(191, 198, 212)' : '' }};">
+                                                                <div class="hkphPX dragable">
+                                                                    <div class="REnvQ">
+                                                                        <div class="kxrOmS cuypVQ">
+                                                                            <div class="dBZFks">
                                                                             </div>
-                                                                            <input type="color"
-                                                                                wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.color"
-                                                                                class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
-                                                                                style="height: 25px; width:30px; border-radius: 300px;"
-                                                                                title="Choose background color">
-                                                                            <input type="color"
-                                                                                wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.font_color"
-                                                                                class="mx-1 form-control form-control-color22 gocNNg kxrOmS"
-                                                                                style="height: 25px; width:30px; border-radius: 300px;"
-                                                                                title="Choose font color">
+                                                                            <div class="bAJknk">
+                                                                                <div class="huXueT">
+                                                                                    <div class="kGgXUq">
+                                                                                        <div class="haXfJL drag-icon">
+                                                                                            <svg viewBox="0 0 24 24"
+                                                                                                width="24"
+                                                                                                height="24"
+                                                                                                focusable="false">
+                                                                                                <path fill="none"
+                                                                                                    d="M0 0h24v24H0V0z">
+                                                                                                </path>
+                                                                                                <path fill="#675df4"
+                                                                                                    d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                                                                                </path>
+                                                                                            </svg>
+                                                                                        </div>
+                                                                                        <div class="bBjJyf"
+                                                                                            style="border: none;">
+                                                                                            <div
+                                                                                                style="display: flex; align-items: center;">
+                                                                                                <div class="eAfucY">
+                                                                                                    <input
+                                                                                                        class="eVpkze w-100 h-100 question-title"
+                                                                                                        placeholder="Response title"
+                                                                                                        style="font-size: 12.5px;"
+                                                                                                        wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.title"
+                                                                                                        {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
+                                                                                                </div>
+                                                                                                <input type="color"
+                                                                                                    wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.color"
+                                                                                                    class="form-control form-control-color22 gocNNg kxrOmS"
+                                                                                                    style="margin-right: 5px; width:36.25px;"
+                                                                                                    title="Choose background color">
+                                                                                                <div style="border-left: 1px solid rgb(191, 198, 212);"
+                                                                                                    class="bdOmts2"
+                                                                                                    data-bs-toggle="dropdown"
+                                                                                                    aria-expanded="false">
+                                                                                                    <div
+                                                                                                        class="hcjgmp">
+                                                                                                        <button
+                                                                                                            type="button"
+                                                                                                            class="jvZSBO">
+                                                                                                            <svg width="19"
+                                                                                                                height="19"
+                                                                                                                viewBox="0 0 14 14"
+                                                                                                                focusable="false">
+                                                                                                                <g transform="translate(5.542 1.458)"
+                                                                                                                    fill="#545f70"
+                                                                                                                    fill-rule="nonzero">
+                                                                                                                    <circle
+                                                                                                                        transform="rotate(90 1.458 5.542)"
+                                                                                                                        cx="1.458"
+                                                                                                                        cy="5.542"
+                                                                                                                        r="1.458">
+                                                                                                                    </circle>
+                                                                                                                    <circle
+                                                                                                                        transform="rotate(90 1.458 9.625)"
+                                                                                                                        cx="1.458"
+                                                                                                                        cy="9.625"
+                                                                                                                        r="1.458">
+                                                                                                                    </circle>
+                                                                                                                    <circle
+                                                                                                                        transform="rotate(90 1.458 1.458)"
+                                                                                                                        cx="1.458"
+                                                                                                                        cy="1.458"
+                                                                                                                        r="1.458">
+                                                                                                                    </circle>
+                                                                                                                </g>
+                                                                                                            </svg>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="tether-element dropdown-menu tether-element-attached-bottom tether-element-attached-right tether-target-attached-top tether-target-attached-center tether-enabled tether-out-of-bounds tether-out-of-bounds-bottom"
+                                                                                                    style="z-index: 20; top: 0px; position: absolute; transform: translateX(375.733px) translateY(216.25px) translateZ(0px); left: 0px;"
+                                                                                                    wire:ignore.self>
+                                                                                                    <div
+                                                                                                        class="cKwbqr">
+                                                                                                        <div
+                                                                                                            class="epicTj">
+                                                                                                            <div
+                                                                                                                class="krtjey">
+                                                                                                                <span
+                                                                                                                    style="margin-top:50px; "></span>
+                                                                                                                Font
+                                                                                                                Color
+                                                                                                                <div
+                                                                                                                    class="ORzaJ knjhoD">
+                                                                                                                    <select
+                                                                                                                        wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.font_color"
+                                                                                                                        class="text_answer_format">
+                                                                                                                        <option
+                                                                                                                            value="#ffffff">
+                                                                                                                            {{ __('White') }}
+                                                                                                                        </option>
+                                                                                                                        <option
+                                                                                                                            value="#000000">
+                                                                                                                            {{ __('Black') }}
+                                                                                                                        </option>
+                                                                                                                    </select>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="epicTj"
+                                                                                                            wire:click.prevent="page_delete_mc_choise({{ $responsKey }})">
+                                                                                                            <div style="display: flex; align-items: center;"
+                                                                                                                class="iBzfYz">
+                                                                                                                <svg width="21"
+                                                                                                                    height="21"
+                                                                                                                    viewBox="0 0 14 14"
+                                                                                                                    focusable="false">
+                                                                                                                    <path
+                                                                                                                        d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                                                                        fill="#545f70"
+                                                                                                                        fill-rule="nonzero">
+                                                                                                                    </path>
+                                                                                                                </svg>
+                                                                                                                <span
+                                                                                                                    style="padding-left: 0.4rem; color: rgb(31, 37, 51);">
+                                                                                                                    Delete
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -2760,28 +2979,26 @@
                                                     @endif
                                                 @endif
                                             @endif
-                                            @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice']))
-                                                <button role="button" class="nyGSP"
-                                                    wire:click.prevent="page_add_new_response({{ $pageactiveone }},{{ $pagequestionactiveone }})">
-                                                    +
-                                                    Add
-                                                    Response
-                                                </button>
-                                            @endif
+                                            <div class="kxrOmS eqGxMu">
+                                                <div class="bgiTWR3">
+                                                    <div class="kGgXUq">
+                                                        <div class="bdOmts">
+                                                            <span class="LBNnk"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="kGgXUq2">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="fhTZet">
-                                        @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'][0]['title']))
-                                            <button color="#ffffff" font-size="0.875rem" type="button"
-                                                class="ggbIJY" style="margin-left:10px;"
-                                                wire:click.prevent="page_save_multiple_choise({{ $pageactiveone }},{{ $pagequestionactiveone }})"
-                                                data-bs-dismiss="modal">
-                                                Save and
-                                                apply
-                                            </button>
-                                        @endif
+                                        <button type="button" class="ggbIJY"
+                                            wire:click.prevent="page_add_new_response()">
+                                            + Add Response
+                                        </button>
                                         <button role="button" class="kDSJkL" style="margin-left:10px;"
-                                            wire:click.prevent="page_clear_new_response_option({{ $pageactiveone }},{{ $pagequestionactiveone }})"
+                                            wire:click.prevent="page_clear_new_response_option()"
                                             data-bs-dismiss="modal">
                                             Cancel
                                         </button>
