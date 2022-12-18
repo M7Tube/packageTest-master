@@ -40,6 +40,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::view('/', 'NewPages.inspection.index')->name('index.inspection');
         Route::view('/start/id/{id}', 'NewPages.inspection.start')->name('start.inspection');
     });
+    Route::group(['prefix' => 'docuemnts'], function () {
+        Route::view('/', 'NewPages.docuemnts.index')->name('index.docuemnts');
+    });
 });
 require __DIR__ . '/auth.php';
 

@@ -47,6 +47,22 @@
                     </svg>
                     <span style="color:{{ request()->routeIs('index.template') ? '#4740d4' : '#212529' }};">Templates</span>
                 </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ route('index.docuemnts') }}">
+                    <svg width="18" height="18" viewBox="0 0 24 24">
+                        <g id="icons/nav/templates" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15.9130435,4.42105263 L15.9130435,19.5789474" id="Path" stroke="{{ request()->routeIs('index.docuemnts') ? '#4740d4' : '#212529' }}"
+                                stroke-width="1.5"></path>
+                            <path d="M3.39130435,9.47368421 L15.9130435,9.47368421" id="Path" stroke="{{ request()->routeIs('index.docuemnts') ? '#4740d4' : '#212529' }}"
+                                stroke-width="1.5"></path>
+                            <path d="M3.39130435,14.5263158 L15.9130435,14.5263158" id="Path" stroke="{{ request()->routeIs('index.docuemnts') ? '#4740d4' : '#212529' }}"
+                                stroke-width="1.5"></path>
+                            <rect id="Rectangle" stroke="{{ request()->routeIs('index.docuemnts') ? '#4740d4' : '#212529' }}" stroke-width="1.5" x="3.39130435" y="4.42105263"
+                                width="17.2173913" height="15.1578947" rx="2"></rect>
+                        </g>
+                    </svg>
+                    <span style="color:{{ request()->routeIs('index.docuemnts') ? '#4740d4' : '#212529' }};">{{__('PDF Reports Record')}}</span>
+                </a>
             </div>
         </div>
         <!-- Page content wrapper-->
