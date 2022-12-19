@@ -1878,9 +1878,9 @@
                                                                             </button>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="tether-element dropdown-menu tether-element-attached-bottom tether-element-attached-right tether-target-attached-top tether-target-attached-center tether-enabled tether-out-of-bounds tether-out-of-bounds-bottom"
-                                                                        style="z-index: 20; top: 0px; position: absolute; transform: translateX(375.733px) translateY(216.25px) translateZ(0px); left: 0px;"
-                                                                        wire:ignore.self>
+                                                                    <div wire:ignore.self
+                                                                        class="tether-element dropdown-menu tether-element-attached-bottom tether-element-attached-right tether-target-attached-top tether-target-attached-center tether-enabled tether-out-of-bounds tether-out-of-bounds-bottom"
+                                                                        style="z-index: 20; top: 0px; position: absolute; transform: translateX(375.733px) translateY(216.25px) translateZ(0px); left: 0px;">
                                                                         <div class="cKwbqr">
                                                                             @if ($pageQuestion['response'] == 2)
                                                                                 <div class="epicTj">

@@ -6,6 +6,7 @@ use App\Models\Document;
 use App\Models\Vat;
 use PDF2;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ExportController extends Controller
 {
@@ -28,25 +29,10 @@ class ExportController extends Controller
         ini_set('max_execution_time', '300');
         ini_set("pcre.backtrack_limit", "50000000");
         view()->share('data', $data);
-        $pdf = PDF2::chunkLoadView('<html-separator/>', 'pdf.new_7_11_2022.en_pdf', $data, [
-            'title' => 'PDF Title',
-            'author' => 'PDF Author',
-            'margin_left' => 20,
-            'margin_right' => 20,
-            'margin_top' => 40,
-            'margin_bottom' => 20,
-            'margin_header' => 10,
-            'margin_footer' => 10,
-            'showImageErrors' => true
-        ]);
-        $pdf->autoScriptToLang = true;
-        $pdf->autoLangToFont = true;
-        $pdf->useAdobeCJK = true;
-        // $pdf->SetAutoFont(AUTOFONT_ALL);
-        $pdf->showImageErrors = true;
-        $pdf->curlAllowUnsafeSslRequests = true;
-        $pdf->debug = true;
-        return $pdf->download('pdf_file.pdf');
+        $pdf = PDF2::chunkLoadView('<html-separator/>', 'pdf.new_7_11_2022.en_pdf', $data);
+        $name = 'file' . now() . '.pdf';
+        // Storage::put('pdf/' . str_replace(' ', '', $name), $pdf->output());
+        return $pdf->download(str_replace(' ', '', $name));
         // return $request['data'];
         // ini_set('max_execution_time', '300');
         // ini_set("pcre.backtrack_limit", "50000000");

@@ -335,18 +335,21 @@ class NewCreate extends Component
     public function increment()
     {
         $this->activeone = $this->activeone + 1;
+        $this->updating();
     }
 
     public function add_new_response($questionKey)
     {
         if (count($this->title_page_questions[$questionKey]['multiple_choice']) < 15)
             $this->title_page_questions[$questionKey]['multiple_choice'][] = ['title' => null, 'color' => '#13855f', 'font_color' => '#000000'];
+        $this->updating();
     }
 
     public function page_add_new_response()
     {
         if (count($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice']) < 15)
             $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'][] = ['title' => null, 'color' => '#13855f', 'font_color' => '#000000'];
+        $this->updating();
     }
 
     public function clear_new_response_option($questionKey)
@@ -380,6 +383,7 @@ class NewCreate extends Component
         } else {
             array_splice($this->title_page_questions, $this->activeone + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
         }
+        $this->updating();
     }
 
     public function title_page_delete_question()
@@ -394,6 +398,7 @@ class NewCreate extends Component
     public function add_page()
     {
         $this->pages[] = ['question' => [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]];
+        $this->updating();
     }
 
     public function delete_page($key)
@@ -434,7 +439,7 @@ class NewCreate extends Component
 
     public function normal_page_delete_question($pageKey, $questionKey)
     {
-        if ($this->pages[$pageKey]['question'] > 1) {
+        if (count($this->pages[$pageKey]['question']) > 1) {
             array_splice($this->pages[$pageKey]['question'], $questionKey, 1);
             $this->updating();
         }

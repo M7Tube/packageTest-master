@@ -297,7 +297,7 @@
                                                         </div> --}}
                                                     @elseif ($question['response'] == 8)
                                                         <textarea rows="5" cols="30" type="text" class="form-control" id="demo"></textarea>
-                                                        <script>
+                                                        {{-- <script>
                                                             function runFunction() {
                                                                 getLocation();
                                                             }
@@ -357,7 +357,7 @@
                                                                         break;
                                                                 }
                                                             }
-                                                        </script>
+                                                        </script> --}}
                                                     @elseif ($question['response'] == 11)
                                                         <div class="etYWGL cBEPSE fehvTc">
                                                             <button color="#ffffff" font-size="0.875rem"
@@ -829,7 +829,7 @@
                                                                 </div> --}}
                                                                 @elseif ($question['response'] == 8)
                                                                     <textarea rows="5" cols="30" type="text" class="form-control" id="demo"></textarea>
-                                                                    <script>
+                                                                    {{-- <script>
                                                                         function runFunction() {
                                                                             getLocation();
                                                                         }
@@ -890,7 +890,7 @@
                                                                                     break;
                                                                             }
                                                                         }
-                                                                    </script>
+                                                                    </script> --}}
                                                                 @elseif ($question['response'] == 11)
                                                                     <div class="etYWGL cBEPSE fehvTc">
                                                                         <button color="#ffffff" font-size="0.875rem"

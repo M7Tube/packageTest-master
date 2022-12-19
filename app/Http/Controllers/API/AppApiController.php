@@ -5,20 +5,12 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\StartInspectionResource;
 use App\Http\Resources\API\TemplateResource;
-use App\Http\Resources\CreateInspectionResource;
-use App\Http\Resources\HandOver as ResourcesHandOver;
-use App\Http\Resources\OneHandOver;
-use App\Models\Document;
-use App\Models\HandOver;
 use App\Models\NewTemplate;
 use PDF2;
 use PDF;
-use App\Models\VisitType;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Jenssegers\Agent\Agent;
 use App\Http\Traits\MessageTrait;
 
 class AppApiController extends Controller
@@ -340,28 +332,28 @@ class AppApiController extends Controller
         $request->validate([
             'template_id' => ['required', 'integer', 'exists:new_templates,new_template_id'],
         ]);
-        $listofimg=[];
-        $listofsign=[];
+        $listofimg = [];
+        $listofsign = [];
         foreach (json_decode($request['Template'])->data->title_page as $key => $value) {
             if ($value->response == 11) {
-                $listofimg=[
-                    'question'.$key=>[]
+                $listofimg = [
+                    'question' . $key => []
                 ];
                 foreach ($value->value as $key2 => $img) {
                     $image = $img->value;  // your base64 encoded
                     $image = str_replace('data:image/png;base64,', '', $image);
                     $image = str_replace(' ', '+', $image);
                     $imageName = now() . $key2 . '.' . 'png';
-                    $imageName=str_replace(' ', '', $imageName);
-                    \File::put(storage_path('app/images/'). '/' . $imageName, base64_decode($image));
-                    array_push($listofimg['question'.$key],$imageName);
+                    $imageName = str_replace(' ', '', $imageName);
+                    \File::put(storage_path('app/images/') . '/' . $imageName, base64_decode($image));
+                    array_push($listofimg['question' . $key], $imageName);
                     // return $img->value;
                 }
                 // return $listofimg;
             }
             if ($value->response == 6) {
-                $listofsign=[
-                    'sign'.$key=>[]
+                $listofsign = [
+                    'sign' . $key => []
                 ];
                 foreach ($value->value as $key2 => $img) {
                     $image = $img->value;  // your base64 encoded
@@ -369,9 +361,9 @@ class AppApiController extends Controller
                     $image = str_replace('data:image/png;base64,', '', $image);
                     $image = str_replace(' ', '+', $image);
                     $imageName = now() . $key2 . '.' . 'png';
-                    $imageName=str_replace(' ', '', $imageName);
-                    \File::put(storage_path('app/signatures/'). '/' . $imageName, base64_decode($image));
-                    array_push($listofsign['sign'.$key],['imgname'=>$imageName,'signname'=>$signName]);
+                    $imageName = str_replace(' ', '', $imageName);
+                    \File::put(storage_path('app/signatures/') . '/' . $imageName, base64_decode($image));
+                    array_push($listofsign['sign' . $key], ['imgname' => $imageName, 'signname' => $signName]);
                     // return $img->value;
                 }
                 // return $listofimg;
@@ -391,19 +383,9 @@ class AppApiController extends Controller
         ini_set("pcre.backtrack_limit", "50000000");
         view()->share('data', $data);
         $pdf = PDF2::loadView('pdf.new_7_11_2022.api_en_pdf', $data);
-        // return $pdf->download('pdf_file.pdf');
-        $output = $pdf->output();
         $name = 'file' . now() . '.pdf';
-        //  storeAs($name, $output);
-        Storage::put('pdf/' . $name, $pdf->output());
-
+        Storage::put('pdf/' . str_replace(' ', '', $name), $pdf->output());
         return $file = 'https://www.c-rpt.com/storage/app/pdf' . '/' . $name;
-        // $template = NewTemplate::find($request->template_id);
-        // if ($template) {
-        //     return $this->success(200, 'Successfull Request', 'data', [
-        //         'Template' => StartInspectionResource::collection([$template]),
-        //     ]);
-        // }
 
     }
 
