@@ -465,6 +465,12 @@ class NewCreate extends Component
         }
     }
 
+    public function delete_defualt_option($id)
+    {
+        array_splice($this->common_multiple_choise_options, $id, 1);
+        $this->updating();
+    }
+
     public function page_delete_mc_choise($choiceKey)
     {
         if (count($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice']) > 1) {

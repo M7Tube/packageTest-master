@@ -988,6 +988,21 @@
                                                                                                             </path>
                                                                                                         </svg>
                                                                                                     </button>
+                                                                                                    <button
+                                                                                                        type="button"
+                                                                                                        class="jvZSBO"
+                                                                                                        wire:click.prevent="delete_defualt_option({{ $rKey }})">
+                                                                                                        <svg width="21"
+                                                                                                            height="21"
+                                                                                                            viewBox="0 0 14 14"
+                                                                                                            focusable="false">
+                                                                                                            <path
+                                                                                                                d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                                                                fill="#545f70"
+                                                                                                                fill-rule="nonzero">
+                                                                                                            </path>
+                                                                                                        </svg>
+                                                                                                    </button>
                                                                                                 </div>
 
                                                                                             @empty
@@ -1029,7 +1044,8 @@
                                                     <div class="iVmibF cxbltl">
                                                         <div class="bJfPHR hzzSzX">
                                                             <div wire:loading wire:target="setResponseValue">
-                                                                <div class="la-ball-beat la-3x spinner" id="loader">
+                                                                <div class="la-ball-beat la-3x spinner"
+                                                                    id="loader">
                                                                     <div></div>
                                                                     <div></div>
                                                                     <div></div>
@@ -1292,14 +1308,17 @@
                                                 <div class="modal-body">
                                                     <div class="iVmibF cxbltl">
                                                         <div class="bJfPHR hzzSzX">
-                                                            <div wire:loading  wire:target="EditMultipleChoiseOptionModal">
-                                                                <div class="la-ball-beat la-3x spinner" id="loader">
+                                                            <div wire:loading
+                                                                wire:target="EditMultipleChoiseOptionModal">
+                                                                <div class="la-ball-beat la-3x spinner"
+                                                                    id="loader">
                                                                     <div></div>
                                                                     <div></div>
                                                                     <div></div>
                                                                 </div>
                                                             </div>
-                                                            <div  wire:loading.remove  wire:target="EditMultipleChoiseOptionModal">
+                                                            <div wire:loading.remove
+                                                                wire:target="EditMultipleChoiseOptionModal">
                                                                 <div class="jOMNlj">
                                                                     <div class="row mb-5">
                                                                         <div class="col-8">
@@ -2482,7 +2501,7 @@
                                                                 </div>
                                                             </div>
                                                             @if (!empty($common_multiple_choise_options))
-                                                                @forelse ($common_multiple_choise_options as $common_multiple_choise_option)
+                                                                @forelse ($common_multiple_choise_options as $rKey => $common_multiple_choise_option)
                                                                     <div class="gupkBu eCBvzO">
                                                                         <div class="evLYbt"
                                                                             wire:click.prevent="PageSetResponseValueFromReadyOptions({{ $pageactiveone }},{{ $pagequestionactiveone }},7,{{ $loop->index }})"
@@ -2528,6 +2547,18 @@
                                                                                 </path>
                                                                             </svg>
                                                                         </button>
+                                                                        <button type="button" class="jvZSBO"
+                                                                            wire:click.prevent="delete_defualt_option({{ $rKey }})">
+                                                                            <svg width="21" height="21"
+                                                                                viewBox="0 0 14 14"
+                                                                                focusable="false">
+                                                                                <path
+                                                                                    d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                                    fill="#545f70"
+                                                                                    fill-rule="nonzero">
+                                                                                </path>
+                                                                            </svg>
+                                                                        </button>
                                                                     </div>
                                                                 @empty
                                                                 @endforelse
@@ -2564,7 +2595,7 @@
                     <div class="modal-body">
                         <div class="iVmibF cxbltl">
                             <div class="bJfPHR hzzSzX">
-                                <div wire:loading  wire:target="pageEditMultipleChoiseOptionModal">
+                                <div wire:loading wire:target="pageEditMultipleChoiseOptionModal">
                                     <div class="la-ball-beat la-3x spinner" id="loader">
                                         <div></div>
                                         <div></div>
