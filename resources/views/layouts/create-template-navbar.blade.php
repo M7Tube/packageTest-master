@@ -39,7 +39,7 @@
         <div></div>
         <div></div>
     </div> --}}
-    <div style="color: #de89ac" class="la-ball-beat la-3x spinner" id="loader">
+    <div class="la-ball-beat la-3x spinner" id="loader">
         <div></div>
         <div></div>
         <div></div>

@@ -1028,7 +1028,14 @@
                                                 <div class="modal-body">
                                                     <div class="iVmibF cxbltl">
                                                         <div class="bJfPHR hzzSzX">
-                                                            <div>
+                                                            <div wire:loading wire:target="setResponseValue">
+                                                                <div class="la-ball-beat la-3x spinner" id="loader">
+                                                                    <div></div>
+                                                                    <div></div>
+                                                                    <div></div>
+                                                                </div>
+                                                            </div>
+                                                            <div wire:loading.remove wire:target="setResponseValue">
                                                                 <div class="jOMNlj">
                                                                     <div class="row mb-5">
                                                                         <div class="col-8">
@@ -1285,7 +1292,14 @@
                                                 <div class="modal-body">
                                                     <div class="iVmibF cxbltl">
                                                         <div class="bJfPHR hzzSzX">
-                                                            <div>
+                                                            <div wire:loading  wire:target="EditMultipleChoiseOptionModal">
+                                                                <div class="la-ball-beat la-3x spinner" id="loader">
+                                                                    <div></div>
+                                                                    <div></div>
+                                                                    <div></div>
+                                                                </div>
+                                                            </div>
+                                                            <div  wire:loading.remove  wire:target="EditMultipleChoiseOptionModal">
                                                                 <div class="jOMNlj">
                                                                     <div class="row mb-5">
                                                                         <div class="col-8">
@@ -2550,7 +2564,14 @@
                     <div class="modal-body">
                         <div class="iVmibF cxbltl">
                             <div class="bJfPHR hzzSzX">
-                                <div>
+                                <div wire:loading  wire:target="PageSetResponseValue">
+                                    <div class="la-ball-beat la-3x spinner" id="loader">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div wire:loading.remove wire:target="PageSetResponseValue">
                                     <div class="jOMNlj">
                                         <div class="row mb-5">
                                             <div class="col-8">
@@ -2790,7 +2811,14 @@
                     <div class="modal-body">
                         <div class="iVmibF cxbltl">
                             <div class="bJfPHR hzzSzX">
-                                <div>
+                                <div wire:loading wire:target="PageSetResponseValueFromReadyOptions">
+                                    <div class="la-ball-beat la-3x spinner" id="loader">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div wire:loading.remove wire:target="PageSetResponseValueFromReadyOptions">
                                     <div class="jOMNlj">
                                         <div class="row mb-5">
                                             <div class="col-8">
