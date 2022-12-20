@@ -1122,12 +1122,12 @@
                                                                                                                                     placeholder="Response title"
                                                                                                                                     style="font-size: 12.5px;"
                                                                                                                                     id="response-title{{ $activeone }}{{ $responsKey }}"
-                                                                                                                                    wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
+                                                                                                                                    wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
                                                                                                                                     {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
                                                                                                                             </div>
                                                                                                                             <input
                                                                                                                                 type="color"
-                                                                                                                                wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
+                                                                                                                                wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
                                                                                                                                 class="form-control form-control-color22 gocNNg kxrOmS"
                                                                                                                                 style="margin-right: 5px; width:36.25px;"
                                                                                                                                 id="response-color{{ $activeone }}{{ $responsKey }}"
@@ -1187,7 +1187,7 @@
                                                                                                                                             <div
                                                                                                                                                 class="ORzaJ knjhoD">
                                                                                                                                                 <select
-                                                                                                                                                    wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.font_color"
+                                                                                                                                                    wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.font_color"
                                                                                                                                                     class="text_answer_format">
                                                                                                                                                     <option
                                                                                                                                                         value="#ffffff">
@@ -1386,12 +1386,12 @@
                                                                                                                                     placeholder="Response title"
                                                                                                                                     style="font-size: 12.5px;"
                                                                                                                                     id="response-title{{ $activeone }}{{ $responsKey }}"
-                                                                                                                                    wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
+                                                                                                                                    wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
                                                                                                                                     {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
                                                                                                                             </div>
                                                                                                                             <input
                                                                                                                                 type="color"
-                                                                                                                                wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
+                                                                                                                                wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
                                                                                                                                 class="form-control form-control-color22 gocNNg kxrOmS"
                                                                                                                                 style="margin-right: 5px; width:36.25px;"
                                                                                                                                 id="response-color{{ $activeone }}{{ $responsKey }}"
@@ -1451,7 +1451,7 @@
                                                                                                                                             <div
                                                                                                                                                 class="ORzaJ knjhoD">
                                                                                                                                                 <select
-                                                                                                                                                    wire:model.lazy="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.font_color"
+                                                                                                                                                    wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.font_color"
                                                                                                                                                     class="text_answer_format">
                                                                                                                                                     <option
                                                                                                                                                         value="#ffffff">
@@ -2564,14 +2564,14 @@
                     <div class="modal-body">
                         <div class="iVmibF cxbltl">
                             <div class="bJfPHR hzzSzX">
-                                <div wire:loading  wire:target="PageSetResponseValue">
+                                <div wire:loading  wire:target="pageEditMultipleChoiseOptionModal">
                                     <div class="la-ball-beat la-3x spinner" id="loader">
                                         <div></div>
                                         <div></div>
                                         <div></div>
                                     </div>
                                 </div>
-                                <div wire:loading.remove wire:target="PageSetResponseValue">
+                                <div wire:loading.remove wire:target="pageEditMultipleChoiseOptionModal">
                                     <div class="jOMNlj">
                                         <div class="row mb-5">
                                             <div class="col-8">
@@ -2647,11 +2647,11 @@
                                                                                                         class="eVpkze w-100 h-100 question-title"
                                                                                                         placeholder="Response title"
                                                                                                         style="font-size: 12.5px;"
-                                                                                                        wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.title"
+                                                                                                        wire:model="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.title"
                                                                                                         {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
                                                                                                 </div>
                                                                                                 <input type="color"
-                                                                                                    wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.color"
+                                                                                                    wire:model="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.color"
                                                                                                     class="form-control form-control-color22 gocNNg kxrOmS"
                                                                                                     style="margin-right: 5px; width:36.25px;"
                                                                                                     title="Choose background color">
@@ -2710,7 +2710,7 @@
                                                                                                                 <div
                                                                                                                     class="ORzaJ knjhoD">
                                                                                                                     <select
-                                                                                                                        wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.font_color"
+                                                                                                                        wire:model="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.font_color"
                                                                                                                         class="text_answer_format">
                                                                                                                         <option
                                                                                                                             value="#ffffff">
@@ -2811,14 +2811,14 @@
                     <div class="modal-body">
                         <div class="iVmibF cxbltl">
                             <div class="bJfPHR hzzSzX">
-                                <div wire:loading wire:target="pageEditMultipleChoiseOptionModal">
+                                <div wire:loading wire:target="PageSetResponseValue">
                                     <div class="la-ball-beat la-3x spinner" id="loader">
                                         <div></div>
                                         <div></div>
                                         <div></div>
                                     </div>
                                 </div>
-                                <div wire:loading.remove wire:target="pageEditMultipleChoiseOptionModal">
+                                <div wire:loading.remove wire:target="PageSetResponseValue">
                                     <div class="jOMNlj">
                                         <div class="row mb-5">
                                             <div class="col-8">
@@ -2894,11 +2894,11 @@
                                                                                                         class="eVpkze w-100 h-100 question-title"
                                                                                                         placeholder="Response title"
                                                                                                         style="font-size: 12.5px;"
-                                                                                                        wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.title"
+                                                                                                        wire:model="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.title"
                                                                                                         {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
                                                                                                 </div>
                                                                                                 <input type="color"
-                                                                                                    wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.color"
+                                                                                                    wire:model="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.color"
                                                                                                     class="form-control form-control-color22 gocNNg kxrOmS"
                                                                                                     style="margin-right: 5px; width:36.25px;"
                                                                                                     title="Choose background color">
@@ -2957,7 +2957,7 @@
                                                                                                                 <div
                                                                                                                     class="ORzaJ knjhoD">
                                                                                                                     <select
-                                                                                                                        wire:model.lazy="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.font_color"
+                                                                                                                        wire:model="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.font_color"
                                                                                                                         class="text_answer_format">
                                                                                                                         <option
                                                                                                                             value="#ffffff">
