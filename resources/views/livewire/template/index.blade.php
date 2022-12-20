@@ -7,9 +7,9 @@
                         <h4>{{ __('Templates') }}</h4>
                         {{-- <p>(1 - 25 of 40)</p> --}}
                     </span>
-                    {{-- <div style="margin-bottom: 1rem;" class="cmmgBQ eOSHju">
+                    <div style="margin-bottom: 1rem;" class="cmmgBQ eOSHju">
                         <div class="eGgiUw">
-                            <div class="ixlcxv">
+                            {{-- <div class="ixlcxv">
                                 <div class="tcgHY">
                                     <div class="ldRzjU">
                                         <svg width="21" height="21" viewBox="0 0 24 24" color="currentColor"
@@ -32,9 +32,9 @@
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="BJtFb">
-                                <button type="button" class="immkQS">
+                                <a style="color: white; text-decoration: none;" href="{{route('create.template')}}" class="immkQS">
                                     <span class="jibPFy">
                                         <svg width="1rem" height="1rem" viewBox="0 0 24 24" color="currentColor"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -44,10 +44,10 @@
                                         </svg>
                                     </span>
                                     Create
-                                </button>
+                                </a>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="cxKRws kexDQG table-responsive">
                         <table class="dhuCxe">
                             <tbody>

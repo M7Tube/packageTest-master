@@ -457,16 +457,20 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    public function title_page_delete_mc_choise($questionKey, $choiceKey)
+    public function title_page_delete_mc_choise($choiceKey)
     {
-        array_splice($this->title_page_questions[$questionKey]['multiple_choice'], $choiceKey, 1);
-        $this->updating();
+        if (count($this->title_page_questions[$this->activeone]['multiple_choice']) > 1) {
+            array_splice($this->title_page_questions[$this->activeone]['multiple_choice'], $choiceKey, 1);
+            $this->updating();
+        }
     }
 
     public function page_delete_mc_choise($choiceKey)
     {
-        array_splice($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'], $choiceKey, 1);
-        $this->updating();
+        if (count($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice']) > 1) {
+            array_splice($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'], $choiceKey, 1);
+            $this->updating();
+        }
     }
 
     public function updating()

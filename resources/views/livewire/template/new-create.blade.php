@@ -1195,7 +1195,7 @@
                                                                                                                                         </div>
                                                                                                                                     </div>
                                                                                                                                     <div class="epicTj"
-                                                                                                                                        wire:click.prevent="title_page_delete_mc_choise({{ $loop->index }},{{ $responsKey }})">
+                                                                                                                                        wire:click.prevent="title_page_delete_mc_choise({{ $responsKey }})">
                                                                                                                                         <div style="display: flex; align-items: center;"
                                                                                                                                             class="iBzfYz">
                                                                                                                                             <svg width="21"
@@ -1452,7 +1452,7 @@
                                                                                                                                         </div>
                                                                                                                                     </div>
                                                                                                                                     <div class="epicTj"
-                                                                                                                                        wire:click.prevent="title_page_delete_mc_choise({{ $loop->index }},{{ $responsKey }})">
+                                                                                                                                        wire:click.prevent="title_page_delete_mc_choise({{ $responsKey }})">
                                                                                                                                         <div style="display: flex; align-items: center;"
                                                                                                                                             class="iBzfYz">
                                                                                                                                             <svg width="21"
