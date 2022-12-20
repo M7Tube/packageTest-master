@@ -2811,14 +2811,14 @@
                     <div class="modal-body">
                         <div class="iVmibF cxbltl">
                             <div class="bJfPHR hzzSzX">
-                                <div wire:loading wire:target="PageSetResponseValueFromReadyOptions">
+                                <div wire:loading wire:target="pageEditMultipleChoiseOptionModal">
                                     <div class="la-ball-beat la-3x spinner" id="loader">
                                         <div></div>
                                         <div></div>
                                         <div></div>
                                     </div>
                                 </div>
-                                <div wire:loading.remove wire:target="PageSetResponseValueFromReadyOptions">
+                                <div wire:loading.remove wire:target="pageEditMultipleChoiseOptionModal">
                                     <div class="jOMNlj">
                                         <div class="row mb-5">
                                             <div class="col-8">
