@@ -94,7 +94,7 @@
                                 <span class="fHfWNd">customize the Title Page</span>
                                 below.
                             </div>
-                            <div>
+                            <div style="padding: 0rem 1rem 0rem;">
                                 <div class="kxrOmS eqGxMu">
                                     <div class="cldFRc" wire:click.prevent="title_page_add_question">
                                         <svg viewBox="0 0 24 24" width="14" height="14"
@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="kLpTzB wrapper" onclick="focusOnTitlePage()" {{-- {{ str_contains($this->activeone, 'p_') ? 'wire:ignore' : 'wire:ignore.self' }}  --}}>
                                     @forelse ($title_page_questions as $qkey => $title_page_question)
-                                        <div class="hkphPX dragable {{ $activeone == $loop->index ? 'active-border' : '' }}"
+                                        <div class="hkphPX dragable"
                                             onclick="@this.set('activeone', {{ $loop->index }});">
                                             <div class="REnvQ">
                                                 <div class="kxrOmS cuypVQ">
@@ -605,6 +605,16 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @if ($activeone == $loop->index)
+                                                <div class="fyPxKd elTKUx"></div>
+                                                <div class="fmcVJh jIirFj"></div>
+                                                <div class="fmcVJh fPLdzz"></div>
+                                                <div class="fmcVJh iXxEYF"></div>
+                                                <div class="fmcVJh jIirFj iVHMfM"></div>
+                                                <div class="fyPxKd kklQix"></div>
+                                                <div class="fyecfK"></div>
+                                            @else
+                                            @endif
                                         </div>
                                     @empty
                                     @endforelse
@@ -949,14 +959,14 @@
                                                                                                                 <div color="#13855f"
                                                                                                                     class="xXWzF"
                                                                                                                     style="font-family: Roboto, sans-serif;
-                                                                                                                            font-size: 0.8rem;
-                                                                                                                            font-weight: 400;
+                                                                                                                            font-size: 0.9rem;
+                                                                                                                            font-weight: 500;
                                                                                                                             margin-right: 0.4rem;
                                                                                                                             display: inline-block;
                                                                                                                             vertical-align: inherit;
                                                                                                                             white-space: nowrap;
                                                                                                                             line-height: initial;
-                                                                                                                            padding: 0.2rem 0.4rem;
+                                                                                                                            padding: 0.3rem 0.5rem;
                                                                                                                             border-radius: 0.75rem;
                                                                                                                             max-width: 8.75rem;
                                                                                                                             overflow: hidden;
@@ -1642,7 +1652,7 @@
                             data-bs-parent="#accordionExample" wire:ignore.self>
                             <div class="gKLkhd">
                                 <div class="cxbltl">
-                                    <div>
+                                    <div style="padding: 0rem 1rem 0rem;">
                                         <div class="kxrOmS eqGxMu">
                                             <div class="cldFRc" wire:click.prevent="title_page_add_question">
                                                 <svg viewBox="0 0 24 24" width="14" height="14"
@@ -1667,7 +1677,7 @@
                                         <div class="kLpTzB pagewrapper{{ $loop->index }}" onclick="focusOnPage()"
                                             {{-- {{ str_contains($this->activeone, 'p_') ? 'wire:ignore.self' : 'wire:ignore' }} --}}>
                                             @forelse ($page['question'] as $pageQuestionkey => $pageQuestion)
-                                                <div class="hkphPX page_dragable {{ $activeone == 'p_' . $loop->parent->index . '_' . $loop->index ? 'active-border' : '' }}"
+                                                <div class="hkphPX page_dragable"
                                                     onclick="@this.set('activeone', 'p_' + {{ $loop->parent->index }} + '_' + {{ $loop->index }});@this.set('pageactiveone', {{ $loop->parent->index }});@this.set('pagequestionactiveone', {{ $loop->index }});">
                                                     <div class="REnvQ">
                                                         <div class="kxrOmS cuypVQ">
@@ -2194,6 +2204,16 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @if ($activeone == 'p_' . $loop->parent->index . '_' . $loop->index)
+                                                        <div class="fyPxKd elTKUx"></div>
+                                                        <div class="fmcVJh jIirFj"></div>
+                                                        <div class="fmcVJh fPLdzz"></div>
+                                                        <div class="fmcVJh iXxEYF"></div>
+                                                        <div class="fmcVJh jIirFj iVHMfM"></div>
+                                                        <div class="fyPxKd kklQix"></div>
+                                                        <div class="fyecfK"></div>
+                                                    @else
+                                                    @endif
                                                 </div>
                                             @empty
                                             @endforelse

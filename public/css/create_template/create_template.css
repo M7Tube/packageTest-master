@@ -1731,13 +1731,6 @@ input[type="checkbox"] {
     background: none;
 }
 
-.fmcVJh {
-    position: absolute;
-    background: rgb(103, 93, 244);
-    z-index: 1;
-    touch-action: none;
-}
-
 .kklQix {
     right: 0px;
     bottom: -0.35rem;
@@ -2881,7 +2874,7 @@ input[type="checkbox"] {
 }
 
 .active-border {
-    border: 2px solid rgb(71, 64, 212);
+    /* border: 2px solid rgb(71, 64, 212); */
 }
 
 .form-control-color22 {
