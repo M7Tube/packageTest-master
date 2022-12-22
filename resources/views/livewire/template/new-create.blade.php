@@ -1069,6 +1069,7 @@
                                                                                 Multiple choice responses
                                                                             </h4>
                                                                         </div>
+
                                                                         <div class="col-4">
                                                                             @if (!empty($title_page_questions[$activeone]['multiple_choice'][0]['title']))
                                                                                 <a class="ggbIJY2 d-flex align-items-right justify-content-end"
@@ -1083,6 +1084,11 @@
                                                                                     Save
                                                                                 </a>
                                                                             @endif
+                                                                        </div>
+                                                                        <div class="grGybe">
+                                                                            <div class="fDpeEn dZoNkv">
+                                                                                e.g. Yes, No, N/A
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                     <div>
