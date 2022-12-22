@@ -4,9 +4,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="d-flex align-items-left justify-content-start">
+                    <div class="d-flex align-items-left justify-content-center">
                         @if (!$icon)
-                            <div class="col-12 col-md-2">
+                            <div class="col-6 col-md-2">
                                 <input type="file" wire:model.lazy="icon" alt="template icon" style="display:none;"
                                     id="customefileupload" accept="image/*">
                                 <label for="customefileupload" class="customfileupload">
@@ -31,7 +31,7 @@
                                 </label>
                             </div>
                         @else
-                            <div class="col-12 col-md-2 position-relative">
+                            <div class="col-6 col-md-2 position-relative">
                                 <img type="image" src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents(storage_path('app/images/' . $icon))) !!}"
                                     alt="template icon" class="customfileupload" style="">
                                 <a style="cursor: pointer; text-decoration: none;" wire:click.prevent="delete_image">
@@ -42,6 +42,43 @@
                                 </a>
                             </div>
                         @endif
+                        {{-- @if (!$icon2) --}}
+                        {{-- <div class="col-6 col-md-2">
+                            <input type="file" wire:model.lazy="icon" alt="template icon" style="display:none;"
+                                id="customefileupload2" accept="image/*">
+                            <label for="customefileupload2" class="customfileupload2">
+                                <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M39,34 L36,34 L36,31 C36,30.44775 35.55273,30 35,30 C34.44727,30 34,30.44775 34,31 L34,34 L31,34 C30.44727,34 30,34.44775 30,35 C30,35.55225 30.44727,36 31,36 L34,36 L34,39 C34,39.55225 34.44727,40 35,40 C35.55273,40 36,39.55225 36,39 L36,36 L39,36 C39.55273,36 40,35.55225 40,35 C40,34.44775 39.55273,34 39,34 Z"
+                                        id="Shape" fill="#FFFFFF"></path>
+                                    <path
+                                        d="M42,37 L37,42 L2,42 C0.89543,42 0,41.10457 0,40 L0,2 C0,0.89543 0.89543,0 2,0 L40,0 C41.10457,0 42,0.89543 42,2 L42,37 Z"
+                                        id="Shape" fill="#EEF5FF"></path>
+                                    <circle id="Oval" fill="#5E9CFF" cx="18" cy="12" r="4">
+                                    </circle>
+                                    <path
+                                        d="M40.791103,32.3878833 L30.7918482,19.36966 C30.4139463,18.87678 29.5849081,18.87678 29.2070063,19.36966 L20.9649405,30.1001308 L14.7813214,22.3591948 C14.4024396,21.8839195 13.5987895,21.8839195 13.2199178,22.3591948 L5.22051392,32.3732128 C4.69807285,33.0261568 5.16230825,34 6.00121573,34 L39.998682,34 C40.8276403,34 41.2964253,33.0459845 40.791103,32.3878833 Z"
+                                        id="Shape" fill="#5E9CFF"></path>
+                                    <circle id="Oval" fill="#1ECF93" cx="38" cy="38" r="8">
+                                    </circle>
+                                    <path
+                                        d="M41,37 L39,37 L39,35 C39,34.44769 38.55231,34 38,34 C37.44769,34 37,34.44769 37,35 L37,37 L35,37 C34.44769,37 34,37.44769 34,38 C34,38.55225 34.44769,39 35,39 L37,39 L37,41 C37,41.55225 37.44769,42 38,42 C38.55231,42 39,41.55225 39,41 L39,39 L41,39 C41.55231,39 42,38.55225 42,38 C42,37.44769 41.55231,37 41,37 Z"
+                                        id="Shape" fill="#FFFFFF"></path>
+                                </svg>
+                            </label>
+                        </div> --}}
+                        {{-- @else --}}
+                        {{-- <div class="col-12 col-md-2 position-relative">
+                                <img type="image" src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents(storage_path('app/images/' . $icon))) !!}"
+                                    alt="template icon" class="customfileupload2" style="">
+                                <a style="cursor: pointer; text-decoration: none;" wire:click.prevent="delete_image">
+                                    <span
+                                        class="position-absolute top-0 translate-middle badge rounded-pill bg-danger small-delete-icon">
+                                        <i class="bi bi-trash"></i>
+                                    </span>
+                                </a>
+                            </div> --}}
+                        {{-- @endif --}}
                         <div class="col-12 col-md-10 mt-3 big-title-desc">
                             <div class="d-flex align-items-start justify-content-start"><input type="text"
                                     for="title" wire:model.lazy="title" class="title mt-2"
@@ -141,6 +178,7 @@
                                                                     {{ $title_page_question['is_required'] == 1 ? '*' : '' }}
                                                                 </span>
                                                                 <div class="bBjJyf">
+                                                                    <div class="eiFrFc" id="t{{$qkey}}"></div>
                                                                     <div style="display: flex; align-items: center;">
                                                                         <div class="eAfucY">
                                                                             @if ($title_page_question['response'] == 10)
@@ -155,6 +193,11 @@
                                                                             @endif
                                                                         </div>
                                                                     </div>
+                                                                    <script>
+                                                                        $(document).on("dblclick", "#t"+{{$qkey}}, function() {
+                                                                            $(this).remove();
+                                                                        });
+                                                                    </script>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1708,8 +1751,8 @@
                                                                             {{ $pageQuestion['is_required'] == 1 ? '*' : '' }}
                                                                         </span>
                                                                         <div class="bBjJyf">
-                                                                            <div
-                                                                                style="display: flex; align-items: center;">
+                                                                            <div class="eiFrFc" id="p{{$pagekey}}{{$pageQuestionkey}}"></div>
+                                                                            <div style="display: flex; align-items: center;">
                                                                                 @if ($pageQuestion['response'] == 10)
                                                                                     <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
                                                                                         wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"
@@ -1725,6 +1768,11 @@
                                                                                 @endif
 
                                                                             </div>
+                                                                            <script>
+                                                                                $(document).on("dblclick", "#p"+{{$pagekey}}+{{$pageQuestionkey}}, function() {
+                                                                                    $(this).remove();
+                                                                                });
+                                                                            </script>
                                                                         </div>
                                                                     </div>
                                                                 </div>

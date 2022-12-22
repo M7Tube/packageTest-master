@@ -146,7 +146,26 @@ body {
     color: rgb(103, 93, 244);
     /* position: relative; */
 }
-
+.customfileupload2 {
+    background-color: rgb(255, 255, 255);
+    border: 1px dashed rgb(103, 93, 244);
+    border-radius: 12px;
+    display: flex;
+    -moz-box-align: center;
+    align-items: center;
+    width: 80%;
+    height: 8rem;
+    font-size: 0.875rem;
+    /* flex-direction: row; */
+    align-self: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    /* padding: 0.5rem 2rem;/ */
+    font-weight: 500;
+    text-align: center;
+    color: rgb(103, 93, 244);
+    /* position: relative; */
+}
 .title {
     font-size: 2.5rem;
     font-family: Roboto, sans-serif;
@@ -1015,16 +1034,6 @@ textarea {
     display: block;
 }
 
-.hyJfGO {
-    display: flex;
-    width: 100%;
-    height: 2.9rem;
-    border-top: 1px solid rgb(191, 198, 212);
-    background: rgb(248, 249, 252);
-    border-radius: 0px 0px 0.3rem 0.3rem;
-    flex-shrink: 0;
-}
-
 .eWLEUv {
     font-family: Roboto, sans-serif;
     font-size: 0.8rem;
@@ -1752,6 +1761,7 @@ input[type="checkbox"] {
     background: rgb(248, 249, 252);
     border-radius: 0px 0px 0.3rem 0.3rem;
     flex-shrink: 0;
+    z-index: 0;
 }
 
 .hyJfGO > div {
@@ -1809,10 +1819,6 @@ input[type="checkbox"] {
 
 .hFCnYj path {
     fill: rgb(103, 93, 244);
-}
-
-.hyJfGO > div {
-    height: 100%;
 }
 
 .hcjgmp {
@@ -3087,7 +3093,7 @@ input[type="checkbox"] {
     }
 
     .bBjJyf {
-        border-color: rgb(103, 93, 244);
+        /* border-color: rgb(103, 93, 244); */
     }
 
     .hyJfGO {
@@ -3369,8 +3375,31 @@ input[type="checkbox"] {
         display: flex;
         -moz-box-align: center;
         align-items: center;
-        margin: auto;
-        width: 40%;
+        /* margin: auto; */
+        /* width: 40%; */
+        /* padding: 10px; */
+        /* margin-right: 50px; */
+        height: 8rem;
+        font-size: 0.875rem;
+        flex-direction: row;
+        align-self: center;
+        -moz-box-pack: center;
+        justify-content: center;
+        /* padding: 1.5rem 2rem; */
+        font-weight: 500;
+        text-align: center;
+        color: rgb(103, 93, 244);
+    }
+    .customfileupload2 {
+        background-color: rgb(255, 255, 255);
+        border: 1px dashed rgb(103, 93, 244);
+        border-radius: 12px;
+        display: flex;
+        -moz-box-align: center;
+        align-items: center;
+        /* margin: auto; */
+        right: 0%;
+        /* width: 40%; */
         /* padding: 10px; */
         /* margin-right: 50px; */
         height: 8rem;
