@@ -47,7 +47,7 @@
         const dragArea = document.querySelector(".wrapper");
         new Sortable(dragArea, {
             onEnd: function(evt) {
-                Livewire.emit('change_active_one', evt.newIndex);
+                // Livewire.emit('change_active_one', evt.newIndex);
                 Livewire.emit('changeindex', evt.oldIndex, evt.newIndex);
             },
             animation: 350,

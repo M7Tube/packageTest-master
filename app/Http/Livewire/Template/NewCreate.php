@@ -412,6 +412,8 @@ class NewCreate extends Component
         $temp = $this->title_page_questions[$oldIndex];
         $this->title_page_questions[$oldIndex] = $this->title_page_questions[$newIndex];
         $this->title_page_questions[$newIndex] = $temp;
+        // if ($oldIndex == $qKey)
+        //     $this->activeone = $newIndex;
         $this->updating();
     }
 
@@ -431,11 +433,11 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    public function change_active_one($newIndex)
-    {
-        $this->activeone = $newIndex;
-        $this->updating();
-    }
+    // public function change_active_one($newIndex)
+    // {
+    //     $this->activeone = $newIndex;
+    //     $this->updating();
+    // }
 
     public function normal_page_delete_question($pageKey, $questionKey)
     {
