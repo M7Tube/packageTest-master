@@ -54,9 +54,9 @@
             filter: ".last-section",
             draggable: ".dragable",
             handle: ".drag-icon",
-            dragClass: "sortable-chosen",
-            ghostClass: "sortable-chosen",
-            chosenClass: "sortable-chosen",
+            // dragClass: "sortable-chosen",
+            // ghostClass: "sortable-chosen",
+            // chosenClass: "sortable-chosen",
         });
         const dragArea2 = document.querySelector(".multible_choise_wrapper");
         new Sortable(dragArea2, {
@@ -68,9 +68,9 @@
             filter: ".last-section",
             draggable: ".dragable",
             handle: ".drag-icon",
-            dragClass: "sortable-chosen",
-            ghostClass: "sortable-chosen",
-            chosenClass: "sortable-chosen",
+            // dragClass: "sortable-chosen",
+            // ghostClass: "sortable-chosen",
+            // chosenClass: "sortable-chosen",
         });
     </script>
 @endsection

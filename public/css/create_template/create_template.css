@@ -391,14 +391,14 @@ textarea {
     border-radius: 5px;
 }
 
-.sortable-chosen {
+/* .sortable-chosen {
     border-left: 2px solid rgb(103, 93, 244);
     border-right: 2px solid rgb(103, 93, 244);
     border-bottom: 2px solid rgb(103, 93, 244);
     border-top: 2px solid rgb(103, 93, 244);
     border-radius: 5px;
-    /* border-color: rgb(103, 93, 244); */
-}
+    border-color: rgb(103, 93, 244);
+} */
 
 .section-main-title {
     -moz-box-pack: justify;

@@ -412,8 +412,8 @@ class NewCreate extends Component
         $temp = $this->title_page_questions[$oldIndex];
         $this->title_page_questions[$oldIndex] = $this->title_page_questions[$newIndex];
         $this->title_page_questions[$newIndex] = $temp;
-        // if ($oldIndex == $qKey)
-        //     $this->activeone = $newIndex;
+        if ($oldIndex == $this->activeone)
+            $this->activeone = $newIndex;
         $this->updating();
     }
 
