@@ -2908,7 +2908,7 @@ input[type="checkbox"] {
     cursor: pointer;
     width: 1.5rem;
     height: 1.5rem;
-    /* background-color: rgb(19, 133, 95); */
+    background-color: rgb(19, 133, 95);
     border-radius: 50%;
       border-top-left-radius: 50%;
       border-top-right-radius: 50%;

@@ -1196,16 +1196,26 @@
                                                                                                                                     wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
                                                                                                                                     {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
                                                                                                                             </div>
-                                                                                                                            {{-- <div class="popover__Wrapper-sc-cb9u88-0 GvAgP color-editor__Container-sc-kdtz0f-0 iiszyV">
-                                                                                                                                <div color="#13855f" role="button" class="cTkvNJ"></div>
-                                                                                                                            </div> --}}
-                                                                                                                            <input
+                                                                                                                            <div
+                                                                                                                                class="popover__Wrapper-sc-cb9u88-0 GvAgP color-editor__Container-sc-kdtz0f-0 iiszyV">
+                                                                                                                                <label for="response-color{{ $activeone }}{{ $responsKey }}" color="#13855f"
+                                                                                                                                    role="button" style="margin-right: 5px; background-color: {{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['color'] }}"
+                                                                                                                                    class="cTkvNJ">
+                                                                                                                                </label>
+                                                                                                                                <input
+                                                                                                                                    type="color"
+                                                                                                                                    wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
+                                                                                                                                    class="form-control form-control-color cTkvNJ d-none"
+                                                                                                                                    id="response-color{{ $activeone }}{{ $responsKey }}"
+                                                                                                                                    title="Choose background color">
+                                                                                                                            </div>
+                                                                                                                            {{-- <input
                                                                                                                                 type="color"
                                                                                                                                 wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
                                                                                                                                 class="form-control form-control-color cTkvNJ"
-                                                                                                                                style="margin-right: 5px; background-color: {{$title_page_questions[$activeone]['multiple_choice'][$responsKey]['color'];}}"
+                                                                                                                                style="margin-right: 5px; border: 0; background-color: {{$title_page_questions[$activeone]['multiple_choice'][$responsKey]['color'];}}"
                                                                                                                                 id="response-color{{ $activeone }}{{ $responsKey }}"
-                                                                                                                                title="Choose background color">
+                                                                                                                                title="Choose background color"> --}}
                                                                                                                             <div style="border-left: 1px solid rgb(191, 198, 212);"
                                                                                                                                 class="bdOmts2"
                                                                                                                                 data-bs-toggle="dropdown"
@@ -1315,7 +1325,9 @@
                                                                     <a style="text-decoration: none;
                                                                                 color: rgb(103, 93, 244);font-size: 12.5px;"
                                                                         wire:click.prevent="add_new_response({{ $activeone }})">
-                                                                        <span style="font-size: 14px;font-weight: 800;">+</span> Response
+                                                                        <span
+                                                                            style="font-size: 14px;font-weight: 800;">+</span>
+                                                                        Response
                                                                     </a>
                                                                 </div>
                                                                 <div class="fhTZet" style="margin-left: 5px">
@@ -1569,7 +1581,9 @@
                                                                     <a style="text-decoration: none;
                                                                                 color: rgb(103, 93, 244);font-size: 12.5px;"
                                                                         wire:click.prevent="add_new_response({{ $activeone }})">
-                                                                        <span style="font-size: 14px;font-weight: 800;">+</span> Response
+                                                                        <span
+                                                                            style="font-size: 14px;font-weight: 800;">+</span>
+                                                                        Response
                                                                     </a>
                                                                 </div>
                                                                 <div class="fhTZet" style="margin-left: 5px">
