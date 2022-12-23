@@ -1196,11 +1196,14 @@
                                                                                                                                     wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
                                                                                                                                     {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
                                                                                                                             </div>
+                                                                                                                            {{-- <div class="popover__Wrapper-sc-cb9u88-0 GvAgP color-editor__Container-sc-kdtz0f-0 iiszyV">
+                                                                                                                                <div color="#13855f" role="button" class="cTkvNJ"></div>
+                                                                                                                            </div> --}}
                                                                                                                             <input
                                                                                                                                 type="color"
                                                                                                                                 wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
-                                                                                                                                class="form-control form-control-color22 kxrOmS"
-                                                                                                                                style="margin-right: 5px;"
+                                                                                                                                class="form-control form-control-color cTkvNJ"
+                                                                                                                                style="margin-right: 5px; background-color: {{$title_page_questions[$activeone]['multiple_choice'][$responsKey]['color'];}}"
                                                                                                                                 id="response-color{{ $activeone }}{{ $responsKey }}"
                                                                                                                                 title="Choose background color">
                                                                                                                             <div style="border-left: 1px solid rgb(191, 198, 212);"
