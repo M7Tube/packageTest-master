@@ -178,7 +178,8 @@
                                                                     {{ $title_page_question['is_required'] == 1 ? '*' : '' }}
                                                                 </span>
                                                                 <div class="bBjJyf">
-                                                                    <div class="eiFrFc" id="t{{$qkey}}"></div>
+                                                                    <div class="eiFrFc" id="t{{ $qkey }}">
+                                                                    </div>
                                                                     <div style="display: flex; align-items: center;">
                                                                         <div class="eAfucY">
                                                                             @if ($title_page_question['response'] == 10)
@@ -194,7 +195,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <script>
-                                                                        $(document).on("dblclick", "#t"+{{$qkey}}, function() {
+                                                                        $(document).on("dblclick", "#t" + {{ $qkey }}, function() {
                                                                             $(this).remove();
                                                                         });
                                                                     </script>
@@ -294,7 +295,7 @@
                                                                             <div class="fyczhl">
                                                                                 @if (!empty($title_page_questions[$loop->index]['multiple_choice']))
                                                                                     @forelse ($title_page_questions[$loop->index]['multiple_choice'] as $responsKey => $respons)
-                                                                                        <div class="badge mx-1"
+                                                                                        <div class="nDePA mx-1"
                                                                                             style="background-color:{{ $respons['color'] ?? '' }}; color:{{ $respons['font_color'] }};">
                                                                                             {{ $respons['title'] ?? '' }}
                                                                                         </div>
@@ -302,6 +303,17 @@
                                                                                     @endforelse
                                                                                 @endif
                                                                             </div>
+                                                                            {{-- <div class="fyczhl">
+                                                                                @if (!empty($title_page_questions[$loop->index]['multiple_choice']))
+                                                                                    @forelse ($title_page_questions[$loop->index]['multiple_choice'] as $responsKey => $respons)
+                                                                                        <div class="badge mx-1"
+                                                                                            style="background-color:{{ $respons['color'] ?? '' }}; color:{{ $respons['font_color'] }};">
+                                                                                            {{ $respons['title'] ?? '' }}
+                                                                                        </div>
+                                                                                    @empty
+                                                                                    @endforelse
+                                                                                @endif
+                                                                            </div> --}}
                                                                         @elseif($title_page_question['response'] == 8)
                                                                             <div class="iWJCbx">
                                                                                 <svg width="15" height="15"
@@ -1106,15 +1118,15 @@
                                                             </div>
                                                             <div wire:loading.remove wire:target="setResponseValue">
                                                                 <div class="jOMNlj">
-                                                                    <div class="row mb-5">
-                                                                        <div class="col-8">
+                                                                    <div class="row mb-2">
+                                                                        <div class="col-12">
                                                                             <h4 class="lhPVYY">
                                                                                 Multiple choice responses
                                                                             </h4>
                                                                         </div>
 
                                                                         <div class="col-4">
-                                                                            @if (!empty($title_page_questions[$activeone]['multiple_choice'][0]['title']))
+                                                                            {{-- @if (!empty($title_page_questions[$activeone]['multiple_choice'][0]['title']))
                                                                                 <a class="ggbIJY2 d-flex align-items-right justify-content-end"
                                                                                     style="color: rgb(103, 93, 244);"
                                                                                     wire:click.prevent="save_multiple_choise({{ $activeone }})"
@@ -1126,7 +1138,7 @@
                                                                                     style="color: gray;">
                                                                                     Save
                                                                                 </a>
-                                                                            @endif
+                                                                            @endif --}}
                                                                         </div>
                                                                         <div class="grGybe">
                                                                             <div class="fDpeEn dZoNkv">
@@ -1312,7 +1324,7 @@
                                                                                 @endif
                                                                             @endif
                                                                         @endif
-                                                                        <div class="kxrOmS eqGxMu">
+                                                                        {{-- <div class="kxrOmS eqGxMu">
                                                                             <div class="bgiTWR3">
                                                                                 <div class="kGgXUq">
                                                                                     <div class="bdOmts">
@@ -1322,13 +1334,20 @@
                                                                                 <div class="kGgXUq2">
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
+                                                                        </div> --}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="fhTZet">
-                                                                    <button type="button" class="ggbIJY"
+                                                                    {{-- <button type="button" class="ggbIJY"
                                                                         wire:click.prevent="add_new_response({{ $activeone }})">
                                                                         + Add Response
+                                                                    </button> --}}
+                                                                    <button role="button" class="kDSJkL"
+                                                                        style="color: rgb(255, 255, 255);
+                                                                                background-color: rgb(103, 93, 244);"
+                                                                        wire:click.prevent="save_multiple_choise({{ $activeone }})"
+                                                                        data-bs-dismiss="modal">
+                                                                        Save
                                                                     </button>
                                                                     <button role="button" class="kDSJkL"
                                                                         style="margin-left:10px;"
@@ -1751,8 +1770,11 @@
                                                                             {{ $pageQuestion['is_required'] == 1 ? '*' : '' }}
                                                                         </span>
                                                                         <div class="bBjJyf">
-                                                                            <div class="eiFrFc" id="p{{$pagekey}}{{$pageQuestionkey}}"></div>
-                                                                            <div style="display: flex; align-items: center;">
+                                                                            <div class="eiFrFc"
+                                                                                id="p{{ $pagekey }}{{ $pageQuestionkey }}">
+                                                                            </div>
+                                                                            <div
+                                                                                style="display: flex; align-items: center;">
                                                                                 @if ($pageQuestion['response'] == 10)
                                                                                     <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
                                                                                         wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"
@@ -1769,7 +1791,7 @@
 
                                                                             </div>
                                                                             <script>
-                                                                                $(document).on("dblclick", "#p"+{{$pagekey}}+{{$pageQuestionkey}}, function() {
+                                                                                $(document).on("dblclick", "#p" + {{ $pagekey }} + {{ $pageQuestionkey }}, function() {
                                                                                     $(this).remove();
                                                                                 });
                                                                             </script>
