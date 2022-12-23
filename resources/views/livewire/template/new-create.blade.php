@@ -1199,8 +1199,8 @@
                                                                                                                             <input
                                                                                                                                 type="color"
                                                                                                                                 wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
-                                                                                                                                class="form-control form-control-color22 gocNNg kxrOmS"
-                                                                                                                                style="margin-right: 5px; width:36.25px;"
+                                                                                                                                class="form-control form-control-color22 kxrOmS"
+                                                                                                                                style="margin-right: 5px;"
                                                                                                                                 id="response-color{{ $activeone }}{{ $responsKey }}"
                                                                                                                                 title="Choose background color">
                                                                                                                             <div style="border-left: 1px solid rgb(191, 198, 212);"
