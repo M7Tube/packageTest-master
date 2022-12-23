@@ -1146,7 +1146,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div>
+                                                                    <div class="mb-3">
                                                                         <div class="kxrOmS eqGxMu">
                                                                             <div class="bgiTWR2">
                                                                                 <div class="kGgXUq">
@@ -1167,7 +1167,7 @@
                                                                                 @if (!empty($title_page_questions[$activeone]['multiple_choice']))
                                                                                     @forelse ($title_page_questions[$activeone]['multiple_choice'] as $responsKey => $respons)
                                                                                         <div class="kLpTzB multible_choise_wrapper"
-                                                                                            style="border-bottom: {{ !$loop->last ? '1px solid rgb(191, 198, 212)' : '' }};">
+                                                                                            style="border-bottom: 1px solid rgb(191, 198, 212);">
                                                                                             <div
                                                                                                 class="hkphPX dragable">
                                                                                                 <div class="REnvQ">
@@ -1336,15 +1336,16 @@
                                                                             </div>
                                                                         </div> --}}
                                                                     </div>
+                                                                    <a style="text-decoration: none;
+                                                                                color: rgb(103, 93, 244);font-size: 12.5px;"
+                                                                        wire:click.prevent="add_new_response({{ $activeone }})">
+                                                                        <span style="font-size: 14px;font-weight: 800;">+</span> Response
+                                                                    </a>
                                                                 </div>
                                                                 <div class="fhTZet">
-                                                                    {{-- <button type="button" class="ggbIJY"
-                                                                        wire:click.prevent="add_new_response({{ $activeone }})">
-                                                                        + Add Response
-                                                                    </button> --}}
                                                                     <button role="button" class="kDSJkL"
                                                                         style="color: rgb(255, 255, 255);
-                                                                                background-color: rgb(103, 93, 244);"
+                                                                                background-color: rgb(103, 93, 244); width: 85.75px"
                                                                         wire:click.prevent="save_multiple_choise({{ $activeone }})"
                                                                         data-bs-dismiss="modal">
                                                                         Save
