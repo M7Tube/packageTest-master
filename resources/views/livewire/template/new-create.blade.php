@@ -1124,21 +1124,259 @@
                                                                                 Multiple choice responses
                                                                             </h4>
                                                                         </div>
-
-                                                                        <div class="col-4">
-                                                                            {{-- @if (!empty($title_page_questions[$activeone]['multiple_choice'][0]['title']))
-                                                                                <a class="ggbIJY2 d-flex align-items-right justify-content-end"
-                                                                                    style="color: rgb(103, 93, 244);"
-                                                                                    wire:click.prevent="save_multiple_choise({{ $activeone }})"
-                                                                                    data-bs-dismiss="modal">
-                                                                                    Save
-                                                                                </a>
-                                                                            @else
-                                                                                <a class="ggbIJY2 d-flex align-items-right justify-content-end"
-                                                                                    style="color: gray;">
-                                                                                    Save
-                                                                                </a>
-                                                                            @endif --}}
+                                                                        <div class="grGybe">
+                                                                            <div class="fDpeEn dZoNkv">
+                                                                                e.g. Yes, No, N/A
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <div class="kxrOmS eqGxMu">
+                                                                            <div class="bgiTWR2">
+                                                                                <div class="kGgXUq">
+                                                                                    Response
+                                                                                    <div class="bdOmts">
+                                                                                        <span class="LBNnk"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                {{-- <div class="kGgXUq2"
+                                                                                    style="border-left: none; text-align:right; color:blue;"
+                                                                                    wire:click.prevent="clear_new_response_option({{ $activeone }})">
+                                                                                    Reset
+                                                                                </div> --}}
+                                                                            </div>
+                                                                        </div>
+                                                                        @if (!empty($title_page_questions[$activeone]['response']))
+                                                                            @if ($title_page_questions[$activeone]['response'] == 7)
+                                                                                @if (!empty($title_page_questions[$activeone]['multiple_choice']))
+                                                                                    @forelse ($title_page_questions[$activeone]['multiple_choice'] as $responsKey => $respons)
+                                                                                        <div class="kLpTzB multible_choise_wrapper"
+                                                                                            style="border-bottom: 1px solid rgb(191, 198, 212);">
+                                                                                            <div
+                                                                                                class="hkphPX dragable">
+                                                                                                <div class="REnvQ">
+                                                                                                    <div
+                                                                                                        class="kxrOmS cuypVQ">
+                                                                                                        <div
+                                                                                                            class="dBZFks">
+                                                                                                        </div>
+                                                                                                        <div
+                                                                                                            class="bAJknk">
+                                                                                                            <div
+                                                                                                                class="huXueT">
+                                                                                                                <div
+                                                                                                                    class="kGgXUq">
+                                                                                                                    <div
+                                                                                                                        class="haXfJL drag-icon">
+                                                                                                                        <svg viewBox="0 0 24 24"
+                                                                                                                            width="24"
+                                                                                                                            height="24"
+                                                                                                                            focusable="false">
+                                                                                                                            <path
+                                                                                                                                fill="none"
+                                                                                                                                d="M0 0h24v24H0V0z">
+                                                                                                                            </path>
+                                                                                                                            <path
+                                                                                                                                fill="#675df4"
+                                                                                                                                d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                                                                                                            </path>
+                                                                                                                        </svg>
+                                                                                                                    </div>
+                                                                                                                    <div class="bBjJyf"
+                                                                                                                        style="border: none;">
+                                                                                                                        <div
+                                                                                                                            style="display: flex; align-items: center;">
+                                                                                                                            <div
+                                                                                                                                class="eAfucY">
+                                                                                                                                <input
+                                                                                                                                    class="eVpkze w-100 h-100 question-title"
+                                                                                                                                    placeholder="Response title"
+                                                                                                                                    style="font-size: 12.5px;"
+                                                                                                                                    id="response-title{{ $activeone }}{{ $responsKey }}"
+                                                                                                                                    wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
+                                                                                                                                    {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
+                                                                                                                            </div>
+                                                                                                                            <input
+                                                                                                                                type="color"
+                                                                                                                                wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
+                                                                                                                                class="form-control form-control-color22 gocNNg kxrOmS"
+                                                                                                                                style="margin-right: 5px; width:36.25px;"
+                                                                                                                                id="response-color{{ $activeone }}{{ $responsKey }}"
+                                                                                                                                title="Choose background color">
+                                                                                                                            <div style="border-left: 1px solid rgb(191, 198, 212);"
+                                                                                                                                class="bdOmts2"
+                                                                                                                                data-bs-toggle="dropdown"
+                                                                                                                                aria-expanded="false">
+                                                                                                                                <div
+                                                                                                                                    class="hcjgmp">
+                                                                                                                                    <button
+                                                                                                                                        type="button"
+                                                                                                                                        class="jvZSBO">
+                                                                                                                                        <svg width="19"
+                                                                                                                                            height="19"
+                                                                                                                                            viewBox="0 0 14 14"
+                                                                                                                                            focusable="false">
+                                                                                                                                            <g transform="translate(5.542 1.458)"
+                                                                                                                                                fill="#545f70"
+                                                                                                                                                fill-rule="nonzero">
+                                                                                                                                                <circle
+                                                                                                                                                    transform="rotate(90 1.458 5.542)"
+                                                                                                                                                    cx="1.458"
+                                                                                                                                                    cy="5.542"
+                                                                                                                                                    r="1.458">
+                                                                                                                                                </circle>
+                                                                                                                                                <circle
+                                                                                                                                                    transform="rotate(90 1.458 9.625)"
+                                                                                                                                                    cx="1.458"
+                                                                                                                                                    cy="9.625"
+                                                                                                                                                    r="1.458">
+                                                                                                                                                </circle>
+                                                                                                                                                <circle
+                                                                                                                                                    transform="rotate(90 1.458 1.458)"
+                                                                                                                                                    cx="1.458"
+                                                                                                                                                    cy="1.458"
+                                                                                                                                                    r="1.458">
+                                                                                                                                                </circle>
+                                                                                                                                            </g>
+                                                                                                                                        </svg>
+                                                                                                                                    </button>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="tether-element dropdown-menu tether-element-attached-bottom tether-element-attached-right tether-target-attached-top tether-target-attached-center tether-enabled tether-out-of-bounds tether-out-of-bounds-bottom"
+                                                                                                                                style="z-index: 20; top: 0px; position: absolute; transform: translateX(375.733px) translateY(216.25px) translateZ(0px); left: 0px;"
+                                                                                                                                wire:ignore.self>
+                                                                                                                                <div
+                                                                                                                                    class="cKwbqr">
+                                                                                                                                    <div
+                                                                                                                                        class="epicTj">
+                                                                                                                                        <div
+                                                                                                                                            class="krtjey">
+                                                                                                                                            <span
+                                                                                                                                                style="margin-top:50px; "></span>
+                                                                                                                                            Font
+                                                                                                                                            Color
+                                                                                                                                            <div
+                                                                                                                                                class="ORzaJ knjhoD">
+                                                                                                                                                <select
+                                                                                                                                                    wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.font_color"
+                                                                                                                                                    class="text_answer_format">
+                                                                                                                                                    <option
+                                                                                                                                                        value="#ffffff">
+                                                                                                                                                        {{ __('White') }}
+                                                                                                                                                    </option>
+                                                                                                                                                    <option
+                                                                                                                                                        value="#000000">
+                                                                                                                                                        {{ __('Black') }}
+                                                                                                                                                    </option>
+                                                                                                                                                </select>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="epicTj"
+                                                                                                                                        wire:click.prevent="title_page_delete_mc_choise({{ $responsKey }})">
+                                                                                                                                        <div style="display: flex; align-items: center;"
+                                                                                                                                            class="iBzfYz">
+                                                                                                                                            <svg width="21"
+                                                                                                                                                height="21"
+                                                                                                                                                viewBox="0 0 14 14"
+                                                                                                                                                focusable="false">
+                                                                                                                                                <path
+                                                                                                                                                    d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                                                                                                    fill="#545f70"
+                                                                                                                                                    fill-rule="nonzero">
+                                                                                                                                                </path>
+                                                                                                                                            </svg>
+                                                                                                                                            <span
+                                                                                                                                                style="padding-left: 0.4rem; color: rgb(31, 37, 51);">
+                                                                                                                                                Delete
+                                                                                                                                            </span>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @empty
+                                                                                    @endforelse
+                                                                                @endif
+                                                                            @endif
+                                                                        @endif
+                                                                    </div>
+                                                                    <a style="text-decoration: none;
+                                                                                color: rgb(103, 93, 244);font-size: 12.5px;"
+                                                                        wire:click.prevent="add_new_response({{ $activeone }})">
+                                                                        <span style="font-size: 14px;font-weight: 800;">+</span> Response
+                                                                    </a>
+                                                                </div>
+                                                                <div class="fhTZet" style="margin-left: 5px">
+                                                                    <button role="button" class="kDSJkL"
+                                                                        style="color: rgb(255, 255, 255);
+                                                                                background-color: rgb(103, 93, 244); width: 85.75px"
+                                                                        wire:click.prevent="save_multiple_choise({{ $activeone }})"
+                                                                        data-bs-dismiss="modal">
+                                                                        Save
+                                                                    </button>
+                                                                    <button role="button" class="kDSJkL"
+                                                                        style="margin-left:10px;"
+                                                                        wire:click.prevent="clear_new_response_option({{ $activeone }})"
+                                                                        data-bs-dismiss="modal">
+                                                                        Cancel
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">
+                                                        Save changes
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade m-0 p-0" id="EditMultipleChoiseOptionModal" tabindex="-1"
+                                        aria-labelledby="EditMultipleChoiseOptionModalLabel" aria-hidden="true"
+                                        wire:ignore.self>
+                                        <div class="modal-dialog modal-fullscreen">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5"
+                                                        id="EditMultipleChoiseOptionModalLabel">
+                                                        Response Options
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="iVmibF cxbltl">
+                                                        <div class="bJfPHR hzzSzX">
+                                                            <div wire:loading
+                                                                wire:target="EditMultipleChoiseOptionModal">
+                                                                <div class="la-ball-beat la-3x spinner"
+                                                                    id="loader">
+                                                                    <div></div>
+                                                                    <div></div>
+                                                                    <div></div>
+                                                                </div>
+                                                            </div>
+                                                            <div wire:loading.remove
+                                                                wire:target="EditMultipleChoiseOptionModal">
+                                                                <div class="jOMNlj">
+                                                                    <div class="row mb-2">
+                                                                        <div class="col-12">
+                                                                            <h4 class="lhPVYY">
+                                                                                Multiple choice responses
+                                                                            </h4>
                                                                         </div>
                                                                         <div class="grGybe">
                                                                             <div class="fDpeEn dZoNkv">
@@ -1324,17 +1562,6 @@
                                                                                 @endif
                                                                             @endif
                                                                         @endif
-                                                                        {{-- <div class="kxrOmS eqGxMu">
-                                                                            <div class="bgiTWR3">
-                                                                                <div class="kGgXUq">
-                                                                                    <div class="bdOmts">
-                                                                                        <span class="LBNnk"></span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="kGgXUq2">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div> --}}
                                                                     </div>
                                                                     <a style="text-decoration: none;
                                                                                 color: rgb(103, 93, 244);font-size: 12.5px;"
@@ -1342,280 +1569,13 @@
                                                                         <span style="font-size: 14px;font-weight: 800;">+</span> Response
                                                                     </a>
                                                                 </div>
-                                                                <div class="fhTZet">
+                                                                <div class="fhTZet" style="margin-left: 5px">
                                                                     <button role="button" class="kDSJkL"
                                                                         style="color: rgb(255, 255, 255);
                                                                                 background-color: rgb(103, 93, 244); width: 85.75px"
                                                                         wire:click.prevent="save_multiple_choise({{ $activeone }})"
                                                                         data-bs-dismiss="modal">
                                                                         Save
-                                                                    </button>
-                                                                    <button role="button" class="kDSJkL"
-                                                                        style="margin-left:10px;"
-                                                                        wire:click.prevent="clear_new_response_option({{ $activeone }})"
-                                                                        data-bs-dismiss="modal">
-                                                                        Cancel
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">
-                                                        Save changes
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal fade m-0 p-0" id="EditMultipleChoiseOptionModal" tabindex="-1"
-                                        aria-labelledby="EditMultipleChoiseOptionModalLabel" aria-hidden="true"
-                                        wire:ignore.self>
-                                        <div class="modal-dialog modal-fullscreen">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5"
-                                                        id="EditMultipleChoiseOptionModalLabel">
-                                                        Response Options
-                                                    </h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="iVmibF cxbltl">
-                                                        <div class="bJfPHR hzzSzX">
-                                                            <div wire:loading
-                                                                wire:target="EditMultipleChoiseOptionModal">
-                                                                <div class="la-ball-beat la-3x spinner"
-                                                                    id="loader">
-                                                                    <div></div>
-                                                                    <div></div>
-                                                                    <div></div>
-                                                                </div>
-                                                            </div>
-                                                            <div wire:loading.remove
-                                                                wire:target="EditMultipleChoiseOptionModal">
-                                                                <div class="jOMNlj">
-                                                                    <div class="row mb-5">
-                                                                        <div class="col-8">
-                                                                            <h4 class="lhPVYY">
-                                                                                Multiple choice responses
-                                                                            </h4>
-                                                                        </div>
-                                                                        <div class="col-4">
-                                                                            @if (!empty($title_page_questions[$activeone]['multiple_choice'][0]['title']))
-                                                                                <a class="ggbIJY2 d-flex align-items-right justify-content-end"
-                                                                                    style="color: rgb(103, 93, 244);"
-                                                                                    wire:click.prevent="save_multiple_choise({{ $activeone }})"
-                                                                                    data-bs-dismiss="modal">
-                                                                                    Save
-                                                                                </a>
-                                                                            @else
-                                                                                <a class="ggbIJY2 d-flex align-items-right justify-content-end"
-                                                                                    style="color: gray;">
-                                                                                    Save
-                                                                                </a>
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div class="kxrOmS eqGxMu">
-                                                                            <div class="bgiTWR2">
-                                                                                <div class="kGgXUq">
-                                                                                    Response
-                                                                                    <div class="bdOmts">
-                                                                                        <span class="LBNnk"></span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                {{-- <div class="kGgXUq2"
-                                                                                    style="border-left: none; text-align:right; color:blue;"
-                                                                                    wire:click.prevent="clear_new_response_option({{ $activeone }})">
-                                                                                    Reset
-                                                                                </div> --}}
-                                                                            </div>
-                                                                        </div>
-                                                                        @if (!empty($title_page_questions[$activeone]['response']))
-                                                                            @if ($title_page_questions[$activeone]['response'] == 7)
-                                                                                @if (!empty($title_page_questions[$activeone]['multiple_choice']))
-                                                                                    @forelse ($title_page_questions[$activeone]['multiple_choice'] as $responsKey => $respons)
-                                                                                        <div class="kLpTzB multible_choise_wrapper"
-                                                                                            style="border-bottom: {{ !$loop->last ? '1px solid rgb(191, 198, 212)' : '' }};">
-                                                                                            <div
-                                                                                                class="hkphPX dragable">
-                                                                                                <div class="REnvQ">
-                                                                                                    <div
-                                                                                                        class="kxrOmS cuypVQ">
-                                                                                                        <div
-                                                                                                            class="dBZFks">
-                                                                                                        </div>
-                                                                                                        <div
-                                                                                                            class="bAJknk">
-                                                                                                            <div
-                                                                                                                class="huXueT">
-                                                                                                                <div
-                                                                                                                    class="kGgXUq">
-                                                                                                                    <div
-                                                                                                                        class="haXfJL drag-icon">
-                                                                                                                        <svg viewBox="0 0 24 24"
-                                                                                                                            width="24"
-                                                                                                                            height="24"
-                                                                                                                            focusable="false">
-                                                                                                                            <path
-                                                                                                                                fill="none"
-                                                                                                                                d="M0 0h24v24H0V0z">
-                                                                                                                            </path>
-                                                                                                                            <path
-                                                                                                                                fill="#675df4"
-                                                                                                                                d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
-                                                                                                                            </path>
-                                                                                                                        </svg>
-                                                                                                                    </div>
-                                                                                                                    <div class="bBjJyf"
-                                                                                                                        style="border: none;">
-                                                                                                                        <div
-                                                                                                                            style="display: flex; align-items: center;">
-                                                                                                                            <div
-                                                                                                                                class="eAfucY">
-                                                                                                                                <input
-                                                                                                                                    class="eVpkze w-100 h-100 question-title"
-                                                                                                                                    placeholder="Response title"
-                                                                                                                                    style="font-size: 12.5px;"
-                                                                                                                                    id="response-title{{ $activeone }}{{ $responsKey }}"
-                                                                                                                                    wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
-                                                                                                                                    {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
-                                                                                                                            </div>
-                                                                                                                            <input
-                                                                                                                                type="color"
-                                                                                                                                wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
-                                                                                                                                class="form-control form-control-color22 gocNNg kxrOmS"
-                                                                                                                                style="margin-right: 5px; width:36.25px;"
-                                                                                                                                id="response-color{{ $activeone }}{{ $responsKey }}"
-                                                                                                                                title="Choose background color">
-                                                                                                                            <div style="border-left: 1px solid rgb(191, 198, 212);"
-                                                                                                                                class="bdOmts2"
-                                                                                                                                data-bs-toggle="dropdown"
-                                                                                                                                aria-expanded="false">
-                                                                                                                                <div
-                                                                                                                                    class="hcjgmp">
-                                                                                                                                    <button
-                                                                                                                                        type="button"
-                                                                                                                                        class="jvZSBO">
-                                                                                                                                        <svg width="19"
-                                                                                                                                            height="19"
-                                                                                                                                            viewBox="0 0 14 14"
-                                                                                                                                            focusable="false">
-                                                                                                                                            <g transform="translate(5.542 1.458)"
-                                                                                                                                                fill="#545f70"
-                                                                                                                                                fill-rule="nonzero">
-                                                                                                                                                <circle
-                                                                                                                                                    transform="rotate(90 1.458 5.542)"
-                                                                                                                                                    cx="1.458"
-                                                                                                                                                    cy="5.542"
-                                                                                                                                                    r="1.458">
-                                                                                                                                                </circle>
-                                                                                                                                                <circle
-                                                                                                                                                    transform="rotate(90 1.458 9.625)"
-                                                                                                                                                    cx="1.458"
-                                                                                                                                                    cy="9.625"
-                                                                                                                                                    r="1.458">
-                                                                                                                                                </circle>
-                                                                                                                                                <circle
-                                                                                                                                                    transform="rotate(90 1.458 1.458)"
-                                                                                                                                                    cx="1.458"
-                                                                                                                                                    cy="1.458"
-                                                                                                                                                    r="1.458">
-                                                                                                                                                </circle>
-                                                                                                                                            </g>
-                                                                                                                                        </svg>
-                                                                                                                                    </button>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                            <div class="tether-element dropdown-menu tether-element-attached-bottom tether-element-attached-right tether-target-attached-top tether-target-attached-center tether-enabled tether-out-of-bounds tether-out-of-bounds-bottom"
-                                                                                                                                style="z-index: 20; top: 0px; position: absolute; transform: translateX(375.733px) translateY(216.25px) translateZ(0px); left: 0px;"
-                                                                                                                                wire:ignore.self>
-                                                                                                                                <div
-                                                                                                                                    class="cKwbqr">
-                                                                                                                                    <div
-                                                                                                                                        class="epicTj">
-                                                                                                                                        <div
-                                                                                                                                            class="krtjey">
-                                                                                                                                            <span
-                                                                                                                                                style="margin-top:50px; "></span>
-                                                                                                                                            Font
-                                                                                                                                            Color
-                                                                                                                                            <div
-                                                                                                                                                class="ORzaJ knjhoD">
-                                                                                                                                                <select
-                                                                                                                                                    wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.font_color"
-                                                                                                                                                    class="text_answer_format">
-                                                                                                                                                    <option
-                                                                                                                                                        value="#ffffff">
-                                                                                                                                                        {{ __('White') }}
-                                                                                                                                                    </option>
-                                                                                                                                                    <option
-                                                                                                                                                        value="#000000">
-                                                                                                                                                        {{ __('Black') }}
-                                                                                                                                                    </option>
-                                                                                                                                                </select>
-                                                                                                                                            </div>
-                                                                                                                                        </div>
-                                                                                                                                    </div>
-                                                                                                                                    <div class="epicTj"
-                                                                                                                                        wire:click.prevent="title_page_delete_mc_choise({{ $responsKey }})">
-                                                                                                                                        <div style="display: flex; align-items: center;"
-                                                                                                                                            class="iBzfYz">
-                                                                                                                                            <svg width="21"
-                                                                                                                                                height="21"
-                                                                                                                                                viewBox="0 0 14 14"
-                                                                                                                                                focusable="false">
-                                                                                                                                                <path
-                                                                                                                                                    d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
-                                                                                                                                                    fill="#545f70"
-                                                                                                                                                    fill-rule="nonzero">
-                                                                                                                                                </path>
-                                                                                                                                            </svg>
-                                                                                                                                            <span
-                                                                                                                                                style="padding-left: 0.4rem; color: rgb(31, 37, 51);">
-                                                                                                                                                Delete
-                                                                                                                                            </span>
-                                                                                                                                        </div>
-                                                                                                                                    </div>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    @empty
-                                                                                    @endforelse
-                                                                                @endif
-                                                                            @endif
-                                                                        @endif
-                                                                        <div class="kxrOmS eqGxMu">
-                                                                            <div class="bgiTWR3">
-                                                                                <div class="kGgXUq">
-                                                                                    <div class="bdOmts">
-                                                                                        <span class="LBNnk"></span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="kGgXUq2">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="fhTZet">
-                                                                    <button type="button" class="ggbIJY"
-                                                                        wire:click.prevent="add_new_response({{ $activeone }})">
-                                                                        + Add Response
                                                                     </button>
                                                                     <button role="button" class="kDSJkL"
                                                                         style="margin-left:10px;"
