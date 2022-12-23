@@ -1199,7 +1199,7 @@
                                                                                                                             <div
                                                                                                                                 class="popover__Wrapper-sc-cb9u88-0 GvAgP color-editor__Container-sc-kdtz0f-0 iiszyV">
                                                                                                                                 <label for="response-color{{ $activeone }}{{ $responsKey }}" color="#13855f"
-                                                                                                                                    role="button" style="margin-right: 5px; background-color: {{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['color'] }}"
+                                                                                                                                    role="button" style="margin-top: 4px; margin-right: 10px; background-color: {{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['color'] }}"
                                                                                                                                     class="cTkvNJ">
                                                                                                                                 </label>
                                                                                                                                 <input
