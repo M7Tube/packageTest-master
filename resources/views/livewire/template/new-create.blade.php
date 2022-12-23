@@ -296,7 +296,7 @@
                                                                                 @if (!empty($title_page_questions[$loop->index]['multiple_choice']))
                                                                                     @forelse ($title_page_questions[$loop->index]['multiple_choice'] as $responsKey => $respons)
                                                                                         <div class="nDePA mx-1"
-                                                                                            style="background-color:{{ $respons['color'] ?? '' }}; color:{{ $respons['font_color'] }};">
+                                                                                            style="color:{{ $respons['color'] ?? '' }}; background-color:{{ $this->adjustBrightness($respons['color'],-0.5); }}; ">
                                                                                             {{ $respons['title'] ?? '' }}
                                                                                         </div>
                                                                                     @empty
@@ -1198,8 +1198,11 @@
                                                                                                                             </div>
                                                                                                                             <div
                                                                                                                                 class="popover__Wrapper-sc-cb9u88-0 GvAgP color-editor__Container-sc-kdtz0f-0 iiszyV">
-                                                                                                                                <label for="response-color{{ $activeone }}{{ $responsKey }}" color="#13855f"
-                                                                                                                                    role="button" style="margin-top: 4px; margin-right: 10px; background-color: {{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['color'] }}"
+                                                                                                                                <label
+                                                                                                                                    for="response-color{{ $activeone }}{{ $responsKey }}"
+                                                                                                                                    color="#13855f"
+                                                                                                                                    role="button"
+                                                                                                                                    style="margin-top: 4px; margin-right: 10px; background-color: {{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['color'] }}"
                                                                                                                                     class="cTkvNJ">
                                                                                                                                 </label>
                                                                                                                                 <input
