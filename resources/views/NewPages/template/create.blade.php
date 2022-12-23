@@ -48,7 +48,7 @@
         new Sortable(dragArea, {
             onEnd: function(evt) {
                 // Livewire.emit('change_active_one', evt.newIndex);
-                Livewire.emit('changeindex', evt.oldIndex, evt.newIndex);
+                Livewire.emit('changeindex', evt.oldDraggableIndex, evt.newDraggableIndex);
             },
             animation: 350,
             filter: ".last-section",
