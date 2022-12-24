@@ -125,7 +125,9 @@ body {
     -webkit-appearance: none;
     box-shadow: none !important;
 }
-
+.kSUFwR {
+    display: block;
+  }
 .customfileupload {
     background-color: rgb(255, 255, 255);
     border: 1px dashed rgb(103, 93, 244);

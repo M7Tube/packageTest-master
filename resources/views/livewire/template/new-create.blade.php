@@ -30,9 +30,12 @@
                                             d="M41,37 L39,37 L39,35 C39,34.44769 38.55231,34 38,34 C37.44769,34 37,34.44769 37,35 L37,37 L35,37 C34.44769,37 34,37.44769 34,38 C34,38.55225 34.44769,39 35,39 L37,39 L37,41 C37,41.55225 37.44769,42 38,42 C38.55231,42 39,41.55225 39,41 L39,39 L41,39 C41.55231,39 42,38.55225 42,38 C42,37.44769 41.55231,37 41,37 Z"
                                             id="Shape" fill="#FFFFFF"></path>
                                     </svg>
-                                    <a style="cursor: pointer; text-decoration: none;" wire:click.prevent="delete_image">
-                                        <span class="position-absolute translate-middle badge rounded-pill" style="">
-                                            <h1 class="text-danger" style="margin-bottom: 35px; margin-right: 10px; font-size: 25px;">*</h1>
+                                    <a style="cursor: pointer; text-decoration: none;"
+                                        wire:click.prevent="delete_image">
+                                        <span class="position-absolute translate-middle badge rounded-pill"
+                                            style="">
+                                            <h1 class="text-danger"
+                                                style="margin-bottom: 35px; margin-right: 10px; font-size: 25px;">*</h1>
                                         </span>
                                     </a>
                                 </label>
@@ -174,8 +177,7 @@
                                 </div>
                                 <div class="kLpTzB wrapper" onclick="focusOnTitlePage()" {{-- {{ str_contains($this->activeone, 'p_') ? 'wire:ignore' : 'wire:ignore.self' }}  --}}>
                                     @forelse ($title_page_questions as $qkey => $title_page_question)
-                                        <div class="hkphPX dragable"
-                                            onclick="@this.set('activeone', {{ $loop->index }});">
+                                        <div class="hkphPX dragable">
                                             <div class="REnvQ">
                                                 <div class="kxrOmS cuypVQ">
                                                     <div class="dBZFks">
@@ -201,7 +203,8 @@
                                                                     {{-- <div class="eiFrFc" id="t{{ $qkey }}">
                                                                     </div> --}}
                                                                     <div style="display: flex; align-items: center;">
-                                                                        <div class="eAfucY">
+                                                                        <div class="eAfucY"
+                                                                            onclick="@this.set('activeone', {{ $loop->index }});">
                                                                             @if ($title_page_question['response'] == 10)
                                                                                 <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
                                                                                     wire:model.lazy="title_page_questions.{{ $qkey }}.title" id="question-title-input-{{ $loop->index }}"></textarea>
@@ -213,6 +216,22 @@
                                                                                     id="question-title-input-{{ $loop->index }}">
                                                                             @endif
                                                                         </div>
+                                                                        @if ($activeone == $qkey)
+                                                                            <div style="z-index: 1;" class="kSUFwR"
+                                                                                wire:click="give_active_one('null')">
+                                                                                <button type="button" class="jvZSBO">
+                                                                                    <svg viewBox="0 0 24 24"
+                                                                                        width="24" height="24"
+                                                                                        class="hFCnYj"
+                                                                                        focusable="false">
+                                                                                        <path fill="#545f70"
+                                                                                            fill-rule="nonzero"
+                                                                                            d="M8.364 16.075L3.59 11.687 2 13.149 8.364 19 22 6.463 20.41 5z">
+                                                                                        </path>
+                                                                                    </svg>
+                                                                                </button>
+                                                                            </div>
+                                                                        @endif
                                                                     </div>
                                                                     {{-- <script>
                                                                         $(document).on("click", "#t" + {{ $qkey }}, function() {

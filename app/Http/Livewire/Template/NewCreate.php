@@ -31,7 +31,7 @@ class NewCreate extends Component
     public $new_template;
     protected $queryString = ['activeone', 'pageactiveone', 'pagequestionactiveone', 'template_id', 'activechangingresponse', 'new_template'];
     protected $listeners = [
-        'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex'
+        'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex',
     ];
 
     public function mount()
@@ -466,6 +466,12 @@ class NewCreate extends Component
         $this->updating();
     }
 
+    public function give_active_one($value)
+    {
+        $this->activeone=$value;
+    }
+
+
     public function delete_optional_image()
     {
         $this->optional_icon = null;
@@ -561,8 +567,6 @@ class NewCreate extends Component
 
     // public function render()
     // {
-    //     return view('livewire.template.new-create', [
-    //         'data' => $this->check,
-    //     ]);
+    //     return view('livewire.template.new-create');
     // }
 }
