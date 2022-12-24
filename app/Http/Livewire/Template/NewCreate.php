@@ -488,23 +488,29 @@ class NewCreate extends Component
     public function adjustBrightness($hexCode, $adjustPercent)
     {
         $hexCode = ltrim($hexCode, '#');
-
         if (strlen($hexCode) == 3) {
             $hexCode = $hexCode[0] . $hexCode[0] . $hexCode[1] . $hexCode[1] . $hexCode[2] . $hexCode[2];
         }
-
         $hexCode = array_map('hexdec', str_split($hexCode, 2));
-
         foreach ($hexCode as &$color) {
             $adjustableLimit = $adjustPercent < 0 ? $color : 255 - $color;
             $adjustAmount = ceil($adjustableLimit * $adjustPercent);
-
             $color = str_pad(dechex($color + $adjustAmount), 2, '0', STR_PAD_LEFT);
         }
-
         return '#' . implode($hexCode);
     }
-    
+
+    function color_blend_by_opacity($passedcolor)
+    {
+        // $split = str_split($passedcolor, 2);
+        list($r, $g, $b) = sscanf($passedcolor, "#%02x%02x%02x");
+        // $r = hexdec($split[0]);
+        // $g = hexdec($split[1]);
+        // $b = hexdec($split[2]);
+        // return "rgba(" . $r . ", " . $g . ", " . $b . ", ".255.")";
+        return "rgba(" . $r . ", " . $g . ", " . $b . ", " . 55 . ")";
+    }
+
     public function updating()
     {
         $this->check_for_exist->title = $this->title ?? '';

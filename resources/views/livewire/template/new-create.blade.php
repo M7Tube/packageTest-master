@@ -296,7 +296,7 @@
                                                                                 @if (!empty($title_page_questions[$loop->index]['multiple_choice']))
                                                                                     @forelse ($title_page_questions[$loop->index]['multiple_choice'] as $responsKey => $respons)
                                                                                         <div class="nDePA mx-1"
-                                                                                            style="color:{{ $respons['color'] ?? '' }}; background-color:{{ $this->adjustBrightness($respons['color'],-0.5); }}; opacity:0.75;">
+                                                                                            style="color:{{ $this->adjustBrightness($respons['color'],-0.5); }}; background-color:{{$respons['color']}};">
                                                                                             {{ $respons['title'] ?? '' }}
                                                                                         </div>
                                                                                     @empty
