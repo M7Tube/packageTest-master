@@ -384,12 +384,16 @@ class NewCreate extends Component
 
     public function title_page_add_question()
     {
-        if (str_contains($this->activeone, 'p_')) {
-            $arr = explode('_', $this->activeone);
-            $string = implode('_', array_slice($arr, 0, 3));
-            array_splice($this->pages[$arr[1]]['question'], $arr[2] + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+        if ($this->activeone != null && $this->activeone != 'null') {
+            if (str_contains($this->activeone, 'p_')) {
+                $arr = explode('_', $this->activeone);
+                $string = implode('_', array_slice($arr, 0, 3));
+                array_splice($this->pages[$arr[1]]['question'], $arr[2] + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+            } else {
+                array_splice($this->title_page_questions, $this->activeone + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+            }
         } else {
-            array_splice($this->title_page_questions, $this->activeone + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+            array_splice($this->title_page_questions, 0, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
         }
         $this->updating();
     }
@@ -468,7 +472,7 @@ class NewCreate extends Component
 
     public function give_active_one($value)
     {
-        $this->activeone=$value;
+        $this->activeone = $value;
     }
 
 
