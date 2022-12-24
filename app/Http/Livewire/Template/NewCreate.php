@@ -473,6 +473,7 @@ class NewCreate extends Component
     public function give_active_one($value)
     {
         $this->activeone = $value;
+        $this->updating();
     }
 
 
