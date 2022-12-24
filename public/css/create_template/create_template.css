@@ -223,9 +223,6 @@ body {
     position: relative;
 }
 
-.small-title-desc {
-    display: none;
-}
 
 .small-create-button {
     display: none;
@@ -3216,11 +3213,6 @@ input[type="checkbox"] {
         border-radius: 10px;
     }
 
-    .small-delete-icon {
-        margin-left: 30%;
-        /* left: 25%; */
-    }
-
     .small-delete-question-icon {
         left: 98%;
     }
@@ -3348,9 +3340,6 @@ input[type="checkbox"] {
         color: black;
     }
 
-    .small-title-desc {
-        display: block;
-    }
 
     .big-title-desc {
         display: none;
@@ -3855,6 +3844,11 @@ body {
     left: 45%;
     z-index: 1;
     margin: -50px 0 0 -50px;
+}
+.static-spinner {
+    color: #9988cd;
+    position: absolute;
+    z-index: 1;
 }
 .nonactivetoplink {
     border-bottom: 0.25rem solid transparent;

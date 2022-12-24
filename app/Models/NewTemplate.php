@@ -15,6 +15,7 @@ class NewTemplate extends Model
     protected $primaryKey = 'new_template_id';
     protected $fillable = [
         'icon',
+        'optional_icon',
         'title',
         'desc',
         'title_page',

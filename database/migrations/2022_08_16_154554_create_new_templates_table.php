@@ -16,6 +16,7 @@ class CreateNewTemplatesTable extends Migration
         Schema::create('new_templates', function (Blueprint $table) {
             $table->id('new_template_id');
             $table->text('icon')->nullable();
+            $table->text('optional_icon')->nullable();
             $table->text('title');
             $table->text('desc');
             $table->json('title_page');

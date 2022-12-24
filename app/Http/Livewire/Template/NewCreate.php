@@ -13,6 +13,7 @@ class NewCreate extends Component
     public $title;
     public $desc;
     public $icon;
+    public $optional_icon;
     public $pages = [];
     public $common_multiple_choise_options;
     public $title_page_questions;
@@ -26,12 +27,14 @@ class NewCreate extends Component
     public $check_for_exist;
     public $activechangingresponse;
     public $uploading;
+    public $optional_uploading;
     public $new_template;
     protected $queryString = ['activeone', 'pageactiveone', 'pagequestionactiveone', 'template_id', 'activechangingresponse', 'new_template'];
     protected $listeners = [
         'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex'
     ];
-    public function boot()
+
+    public function mount()
     {
         $this->activeone = 0;
         $this->pageactiveone = null;
@@ -130,7 +133,9 @@ class NewCreate extends Component
         ];
         $this->new_template = 0;
         $this->uploading = false;
+        $this->optional_uploading = false;
         $this->title_page_questions[] = ['response' => 1, 'is_required' => false, 'text_answer_format' => 0];
+        $this->common_multiple_choise_options = $this->option;
         $last = NewTemplate::all()->last();
         if ($last) {
             $this->template_id = $last['new_template_id'];
@@ -138,6 +143,7 @@ class NewCreate extends Component
             $this->desc = $last->desc;
             // if ($last->icon)
             $this->icon = $last->icon;
+            $this->optional_icon = $last->optional_icon;
             $this->title_page_questions = $last->title_page;
             $this->title_page_title = $last->title_page_title;
             $this->pages = $last->pages;
@@ -146,17 +152,19 @@ class NewCreate extends Component
         } else {
             $template = NewTemplate::Create([
                 'icon' => null,
+                'optional_icon' => null,
                 'title' => $this->title ?? '',
                 'desc' => $this->desc ?? '',
                 'title_page' => $this->title_page_questions ?? [],
                 'title_page_title' => $this->title_page_title ?? null,
                 'pages' => $this->pages ?? [],
-                'common_multiple_choise_options' => $this->option ?? null,
+                'common_multiple_choise_options' => $this->option,
                 'user_id' => 1,
             ]);
             $this->template_id = $template->new_template_id;
             $this->check_for_exist = NewTemplate::find($template->new_template_id);
         }
+        $this->updating();
     }
 
     // public function test()
@@ -458,9 +466,21 @@ class NewCreate extends Component
         $this->updating();
     }
 
+    public function delete_optional_image()
+    {
+        $this->optional_icon = null;
+        $this->updating();
+    }
+
     public function updatedIcon()
     {
         $this->uploading = true;
+        $this->updating();
+    }
+
+    public function updatedOptionalIcon()
+    {
+        $this->optional_uploading = true;
         $this->updating();
     }
 
@@ -516,6 +536,8 @@ class NewCreate extends Component
         $this->check_for_exist->title = $this->title ?? '';
         if ($this->icon == null)
             $this->check_for_exist->icon = null;
+        if ($this->optional_icon == null)
+            $this->check_for_exist->optional_icon = null;
         $this->check_for_exist->desc = $this->desc ?? '';
         $this->check_for_exist->title_page = $this->title_page_questions ?? [];
         $this->check_for_exist->title_page_title = $this->title_page_title ?? null;
@@ -527,8 +549,14 @@ class NewCreate extends Component
             $this->check_for_exist->icon = $this->icon->getClientOriginalName();
             $this->icon = $this->icon->getClientOriginalName();
         }
+        if ($this->optional_uploading == true) {
+            $this->optional_icon->storeAs('images', $this->optional_icon->getClientOriginalName());
+            $this->check_for_exist->optional_icon = $this->optional_icon->getClientOriginalName();
+            $this->optional_icon = $this->optional_icon->getClientOriginalName();
+        }
         $this->check_for_exist->save();
         $this->uploading = false;
+        $this->optional_uploading = false;
     }
 
     // public function render()
