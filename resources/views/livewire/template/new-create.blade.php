@@ -5,10 +5,10 @@
             <div class="row">
                 <div class="col-6" wire:loading.remove wire:target="icon">
                     @if (!$icon)
-                        <div class="col-12 col-md-3">
+                        <div class="col-12 col-md-3" style="margin-left: 22.5%;">
                             <div class="position-relative">
-                                <input type="file" wire:model.lazy="icon" alt="template icon" style="display:none;"
-                                    id="customefileupload" accept="image/*">
+                                <input type="file" wire:model.lazy="icon" alt="template icon"
+                                    style="display:none;" id="customefileupload" accept="image/*">
                                 <label for="customefileupload" class="customfileupload">
                                     <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -30,19 +30,22 @@
                                             d="M41,37 L39,37 L39,35 C39,34.44769 38.55231,34 38,34 C37.44769,34 37,34.44769 37,35 L37,37 L35,37 C34.44769,37 34,37.44769 34,38 C34,38.55225 34.44769,39 35,39 L37,39 L37,41 C37,41.55225 37.44769,42 38,42 C38.55231,42 39,41.55225 39,41 L39,39 L41,39 C41.55231,39 42,38.55225 42,38 C42,37.44769 41.55231,37 41,37 Z"
                                             id="Shape" fill="#FFFFFF"></path>
                                     </svg>
-                                    <a style="cursor: pointer; text-decoration: none;"
+                                    {{-- <a style="cursor: pointer; text-decoration: none;"
                                         wire:click.prevent="delete_image">
                                         <span class="position-absolute translate-middle badge rounded-pill"
                                             style="">
                                             <h1 class="text-danger"
                                                 style="margin-bottom: 35px; margin-right: 10px; font-size: 25px;">*</h1>
                                         </span>
-                                    </a>
+                                    </a> --}}
+                                </label>
+                                <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem;">
+                                    Company logo
                                 </label>
                             </div>
                         </div>
                     @else
-                        <div class="col-12 col-md-3 position-relative">
+                        <div class="col-12 col-md-3 position-relative" style="margin-left: 22.5%;">
                             <img type="image" src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents(storage_path('app/images/' . $icon))) !!}"
                                 alt="template icon" class="customfileupload" style="">
                             <a style="cursor: pointer; text-decoration: none;" wire:click.prevent="delete_image">
@@ -50,11 +53,14 @@
                                     <i class="bi bi-trash"></i>
                                 </span>
                             </a>
+                            <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem;">
+                                Company logo
+                            </label>
                         </div>
                     @endif
                 </div>
                 <div class="col-6" wire:loading wire:target="icon">
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4" style="margin-left: 22.5%;">
                         <label for="customefileupload3" class="customfileupload">
                             <div class="la-ball-beat static-spinner">
                                 <div></div>
@@ -62,11 +68,14 @@
                                 <div></div>
                             </div>
                         </label>
+                        <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem;">
+                            Company logo
+                        </label>
                     </div>
                 </div>
                 <div class="col-6" wire:loading.remove wire:target="optional_icon">
                     @if (!$optional_icon)
-                        <div class="col-12 col-md-3">
+                        <div class="col-12 col-md-3" style="margin-left: 12.5%;">
                             <input type="file" wire:model.lazy="optional_icon" alt="template icon"
                                 style="display:none;" id="customefileupload2" accept="image/*">
                             <label for="customefileupload2" class="customfileupload">
@@ -82,16 +91,20 @@
                                     <path
                                         d="M40.791103,32.3878833 L30.7918482,19.36966 C30.4139463,18.87678 29.5849081,18.87678 29.2070063,19.36966 L20.9649405,30.1001308 L14.7813214,22.3591948 C14.4024396,21.8839195 13.5987895,21.8839195 13.2199178,22.3591948 L5.22051392,32.3732128 C4.69807285,33.0261568 5.16230825,34 6.00121573,34 L39.998682,34 C40.8276403,34 41.2964253,33.0459845 40.791103,32.3878833 Z"
                                         id="Shape" fill="#5E9CFF"></path>
-                                    <circle id="Oval" fill="#1ECF93" cx="38" cy="38" r="8">
+                                    <circle id="Oval" fill="#1ECF93" cx="38" cy="38"
+                                        r="8">
                                     </circle>
                                     <path
                                         d="M41,37 L39,37 L39,35 C39,34.44769 38.55231,34 38,34 C37.44769,34 37,34.44769 37,35 L37,37 L35,37 C34.44769,37 34,37.44769 34,38 C34,38.55225 34.44769,39 35,39 L37,39 L37,41 C37,41.55225 37.44769,42 38,42 C38.55231,42 39,41.55225 39,41 L39,39 L41,39 C41.55231,39 42,38.55225 42,38 C42,37.44769 41.55231,37 41,37 Z"
                                         id="Shape" fill="#FFFFFF"></path>
                                 </svg>
                             </label>
+                            <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem;">
+                                Additional logo
+                            </label>
                         </div>
                     @else
-                        <div class="col-12 col-md-3 position-relative">
+                        <div class="col-12 col-md-3 position-relative" style="margin-left: 12.5%;">
                             <img type="image" src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents(storage_path('app/images/' . $optional_icon))) !!}"
                                 alt="template icon" class="customfileupload" style="">
                             <a style="cursor: pointer; text-decoration: none;"
@@ -100,11 +113,14 @@
                                     <i class="bi bi-trash"></i>
                                 </span>
                             </a>
+                            <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem;">
+                                Additional logo
+                            </label>
                         </div>
                     @endif
                 </div>
                 <div class="col-6" wire:loading wire:target="optional_icon">
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4" style="margin-left: 12.5%;">
                         <label for="customefileupload4" class="customfileupload">
                             <div class="la-ball-beat static-spinner">
                                 <div></div>
@@ -112,12 +128,15 @@
                                 <div></div>
                             </div>
                         </label>
+                        <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem;">
+                            Additional logo
+                        </label>
                     </div>
                 </div>
-                <div class="col-12 mt-3">
+                <div class="col-12 mt-4" style="margin-left:1.6rem!important;margin-right:1.6rem!important;">
                     <div class="d-flex align-items-start justify-content-start">
                         <input type="text" style="font-family: sans-serif, 'Font Awesome 5 Free'" for="title"
-                            wire:model.lazy="title" class="title w-100 mt-2" placeholder="Untitled template" />
+                            wire:model.lazy="title" class="title w-100 mt-2" placeholder="Your template title" />
                     </div>
                     <div class="d-flex align-items-start justify-content-start">
                         <input type="text" style="color:gray;" for="title" wire:model.lazy="desc"
@@ -129,7 +148,7 @@
         <div id="accordionExample" wire:ignore.self>
             <div class="accordion-item title_page">
                 <div class="kVgydw" class="accordion-button collapsed" type="button">
-                    <div class="Ceqkm" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                    <div class="Ceqkm" style="margin-left:1.2rem!important" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                         aria-expanded="false" aria-controls="collapseTwo">
                         <svg viewBox="0 0 24 24" width="16" height="16" focusable="false">
                             <path
@@ -149,7 +168,7 @@
                     wire:ignore.self>
                     <div class="gKLkhd">
                         <div class="cxbltl">
-                            <div class="lgSfIY">
+                            <div class="lgSfIY mx-3">
                                 The Title Page is the first page of your inspection report. You can
                                 <span class="fHfWNd">customize the Title Page</span>
                                 below.
