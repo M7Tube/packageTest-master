@@ -111,7 +111,7 @@ body {
     font-size: 1rem;
     font-family: Roboto, sans-serif;
     line-height: 1.5rem;
-    width: inherit;
+    width: 75%;
     border-radius: 0.3rem;
     color: #8c9097;
     padding: 0px;
@@ -173,7 +173,7 @@ body {
     font-weight: 500;
     font-family: Roboto, sans-serif;
     line-height: 1.5rem;
-    width: inherit;
+    width: 75%;
     border-radius: 0.3rem;
     color: #5c5f65;
     padding: 0px;
@@ -193,7 +193,7 @@ body {
     line-height: 1.5rem;
     width: inherit;
     border-radius: 0.3rem;
-    color: #5c5f65;
+    color: #8c9097;
     padding: 0px;
     border: 1px solid transparent;
     background: transparent none repeat scroll 0% 0%;
@@ -201,7 +201,7 @@ body {
 }
 
 .page-title::placeholder {
-    color: #5c5f65;
+    color: #8c9097;
 }
 
 .photo-preview {
@@ -2824,7 +2824,7 @@ input[type="checkbox"] {
     text-align: center;
     align-items: flex-end;
     width: auto;
-    color: rgb(84, 95, 112);
+    color: #8c9097;
     font-weight: 520;
     border-bottom: 0.25rem solid transparent;
 }
@@ -3319,7 +3319,7 @@ input[type="checkbox"] {
         font-weight: bold;
         font-family: Roboto, sans-serif;
         line-height: 1.5rem;
-        width: inherit;
+        width: 75%;
         border-radius: 0.3rem;
         color: #5c5f65;
         padding: 0px;
@@ -3349,7 +3349,7 @@ input[type="checkbox"] {
         font-size: 1rem;
         font-family: Roboto, sans-serif;
         line-height: 1.5rem;
-        width: inherit;
+        width: 75%;
         border-radius: 0.3rem;
         color: #8c9097;
         padding: 0px;
@@ -3359,7 +3359,7 @@ input[type="checkbox"] {
     }
 
     .page-title::placeholder {
-        color: #5c5f65;
+        color: #8c9097;
     }
 
     .big-title-desc {

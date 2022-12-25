@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-6" wire:loading.remove wire:target="icon">
                     @if (!$icon)
-                        <div class="col-12 col-md-3" style="margin-left: 22.5%;">
+                        <div class="col-12 col-md-3" style="margin-left: 35%;">
                             <div class="position-relative">
                                 <input type="file" wire:model.lazy="icon" alt="template icon"
                                     style="display:none;" id="customefileupload" accept="image/*">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     @else
-                        <div class="col-12 col-md-3 position-relative" style="margin-left: 22.5%;">
+                        <div class="col-12 col-md-3 position-relative" style="margin-left: 35%;">
                             <img type="image" src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents(storage_path('app/images/' . $icon))) !!}"
                                 alt="template icon" class="customfileupload" style="">
                             <a style="cursor: pointer; text-decoration: none;" wire:click.prevent="delete_image">
@@ -60,7 +60,7 @@
                     @endif
                 </div>
                 <div class="col-6" wire:loading wire:target="icon">
-                    <div class="col-12 col-md-4" style="margin-left: 22.5%;">
+                    <div class="col-12 col-md-4" style="margin-left: 35%;">
                         <label for="customefileupload3" class="customfileupload">
                             <div class="la-ball-beat static-spinner">
                                 <div></div>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-6" wire:loading.remove wire:target="optional_icon">
                     @if (!$optional_icon)
-                        <div class="col-12 col-md-3" style="margin-left: 12.5%;">
+                        <div class="col-12 col-md-3">
                             <input type="file" wire:model.lazy="optional_icon" alt="template icon"
                                 style="display:none;" id="customefileupload2" accept="image/*">
                             <label for="customefileupload2" class="customfileupload">
@@ -104,7 +104,7 @@
                             </label>
                         </div>
                     @else
-                        <div class="col-12 col-md-3 position-relative" style="margin-left: 12.5%;">
+                        <div class="col-12 col-md-3 position-relative">
                             <img type="image" src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents(storage_path('app/images/' . $optional_icon))) !!}"
                                 alt="template icon" class="customfileupload" style="">
                             <a style="cursor: pointer; text-decoration: none;"
@@ -120,7 +120,7 @@
                     @endif
                 </div>
                 <div class="col-6" wire:loading wire:target="optional_icon">
-                    <div class="col-12 col-md-4" style="margin-left: 12.5%;">
+                    <div class="col-12 col-md-4">
                         <label for="customefileupload4" class="customfileupload">
                             <div class="la-ball-beat static-spinner">
                                 <div></div>
@@ -136,11 +136,11 @@
                 <div class="col-12 mt-4" style="margin-left:1.6rem!important;margin-right:1.6rem!important;">
                     <div class="d-flex align-items-start justify-content-start">
                         <input type="text" style="font-family: sans-serif, 'Font Awesome 5 Free'" for="title"
-                            wire:model.lazy="title" class="title w-100 mt-2" placeholder="Your template title" />
+                            wire:model.lazy="title" class="title mt-2" placeholder="Your template title" />
                     </div>
                     <div class="d-flex align-items-start justify-content-start">
                         <input type="text" style="color:gray;" for="title" wire:model.lazy="desc"
-                            class="w-100 mt-2 desc" placeholder="Add a description" id="desc" />
+                            class="mt-2 desc" placeholder="Add a description" id="desc" />
                     </div>
                 </div>
             </div>
@@ -159,7 +159,7 @@
                     </div>
                     <div>
                         <div class="fceloL mt-1">
-                            <input type="text" class="page-title" placeholder="Title Page"
+                            <input type="text" class="desc" style="font-size: 1.2rem;" placeholder="Title Page"
                                 wire:model.lazy="title_page_title">
                         </div>
                     </div>
