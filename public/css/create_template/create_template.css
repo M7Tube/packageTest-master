@@ -168,6 +168,7 @@ body {
     color: rgb(103, 93, 244);
     /* position: relative; */
 }
+
 .title {
     font-size: 1.8rem;
     font-weight: 500;
@@ -2955,7 +2956,6 @@ input[type="checkbox"] {
         margin-bottom: 1rem;
         line-height: 1.4;
     }
-
     .fHfWNd {
         font-size: 1rem;
         pointer-events: auto;
@@ -3218,7 +3218,12 @@ input[type="checkbox"] {
     .response-model {
         display: block;
     }
-
+    .logo-alignment{
+        margin-left: 15%;
+    }
+    .second-logo-alignment{
+        margin-left: 20%;
+    }
     /* .bottom-section{
         display: none;
     } */
@@ -3457,12 +3462,19 @@ input[type="checkbox"] {
     }
 }
 
-/* @media only screen and (min-width: 768px) {
-}s
+@media only screen and (min-width: 768px) {
+    /* .logo-alignment{
+        margin-left: 50%;
+    } */
+}
 @media only screen and (min-width: 992px) {
 }
 @media only screen and (min-width: 1200px) {
-} */
+    .logo-alignment{
+        margin-left:85%;
+    }
+
+}
 /*!
 * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
 * Copyright 2015 Daniel Cardoso <@DanielCardoso>

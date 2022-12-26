@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-6" wire:loading.remove wire:target="icon">
                     @if (!$icon)
-                        <div class="col-12 col-md-3" style="margin-left: 35%;">
+                        <div class="col-12 col-md-3 logo-alignment" >
                             <div class="position-relative">
                                 <input type="file" wire:model.lazy="icon" alt="template icon"
                                     style="display:none;" id="customefileupload" accept="image/*">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     @else
-                        <div class="col-12 col-md-3 position-relative" style="margin-left: 35%;">
+                        <div class="col-12 col-md-3 position-relative logo-alignment" >
                             <img type="image" src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents(storage_path('app/images/' . $icon))) !!}"
                                 alt="template icon" class="customfileupload" style="">
                             <a style="cursor: pointer; text-decoration: none;" wire:click.prevent="delete_image">
@@ -60,7 +60,7 @@
                     @endif
                 </div>
                 <div class="col-6" wire:loading wire:target="icon">
-                    <div class="col-12 col-md-4" style="margin-left: 35%;">
+                    <div class="col-12 col-md-4 logo-alignment" >
                         <label for="customefileupload3" class="customfileupload">
                             <div class="la-ball-beat static-spinner">
                                 <div></div>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-6" wire:loading.remove wire:target="optional_icon">
                     @if (!$optional_icon)
-                        <div class="col-12 col-md-3">
+                        <div class="col-12 col-md-3 second-logo-alignment">
                             <input type="file" wire:model.lazy="optional_icon" alt="template icon"
                                 style="display:none;" id="customefileupload2" accept="image/*">
                             <label for="customefileupload2" class="customfileupload">
@@ -104,7 +104,7 @@
                             </label>
                         </div>
                     @else
-                        <div class="col-12 col-md-3 position-relative">
+                        <div class="col-12 col-md-3 position-relative second-logo-alignment">
                             <img type="image" src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents(storage_path('app/images/' . $optional_icon))) !!}"
                                 alt="template icon" class="customfileupload" style="">
                             <a style="cursor: pointer; text-decoration: none;"
@@ -120,7 +120,7 @@
                     @endif
                 </div>
                 <div class="col-6" wire:loading wire:target="optional_icon">
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-4 second-logo-alignment">
                         <label for="customefileupload4" class="customfileupload">
                             <div class="la-ball-beat static-spinner">
                                 <div></div>
