@@ -139,7 +139,7 @@
                             wire:model.lazy="title" class="title mt-2" placeholder="Your template title" />
                     </div>
                     <div class="d-flex align-items-start justify-content-start">
-                        <input type="text" style="color:gray;" for="title" wire:model.lazy="desc"
+                        <input type="text" for="title" wire:model.lazy="desc"
                             class="mt-2 desc" placeholder="Add a description" id="desc" />
                     </div>
                 </div>

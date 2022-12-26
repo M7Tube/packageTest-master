@@ -119,7 +119,9 @@ body {
     background: transparent none repeat scroll 0% 0%;
     margin-bottom: 3px;
 }
-
+.desc::placeholder {
+    color: #8c9097;
+}
 .withoutBorder {
     outline: 0px !important;
     -webkit-appearance: none;
@@ -176,7 +178,7 @@ body {
     line-height: 1.5rem;
     width: 75%;
     border-radius: 0.3rem;
-    color: #5c5f65;
+    color: #313235;
     padding: 0px;
     border: 1px solid transparent;
     background: transparent none repeat scroll 0% 0%;
@@ -185,7 +187,7 @@ body {
 
 .title::placeholder {
     font-weight: 500;
-    color: #5c5f65;
+    color: #313235;
 }
 
 .page-title {
@@ -3218,10 +3220,10 @@ input[type="checkbox"] {
     .response-model {
         display: block;
     }
-    .logo-alignment{
+    .logo-alignment {
         margin-left: 15%;
     }
-    .second-logo-alignment{
+    .second-logo-alignment {
         margin-left: 20%;
     }
     /* .bottom-section{
@@ -3326,7 +3328,7 @@ input[type="checkbox"] {
         line-height: 1.5rem;
         width: 75%;
         border-radius: 0.3rem;
-        color: #5c5f65;
+        color: #313235;
         padding: 0px;
         border: 1px solid transparent;
         background: transparent none repeat scroll 0% 0%;
@@ -3335,7 +3337,7 @@ input[type="checkbox"] {
 
     .title::placeholder {
         font-weight: bold;
-        color: #5c5f65;
+        color: #313235;
     }
     .page-title {
         /* font-size: 1.5rem; */
@@ -3362,7 +3364,9 @@ input[type="checkbox"] {
         background: transparent none repeat scroll 0% 0%;
         margin-bottom: 3px;
     }
-
+    .desc::placeholder {
+        color: #8c9097;
+    }
     .page-title::placeholder {
         color: #8c9097;
     }
@@ -3470,10 +3474,9 @@ input[type="checkbox"] {
 @media only screen and (min-width: 992px) {
 }
 @media only screen and (min-width: 1200px) {
-    .logo-alignment{
-        margin-left:85%;
+    .logo-alignment {
+        margin-left: 85%;
     }
-
 }
 /*!
 * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
