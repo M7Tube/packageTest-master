@@ -1785,7 +1785,7 @@ input[type="checkbox"] {
     background: rgb(248, 249, 252);
     border-radius: 0px 0px 0.3rem 0.3rem;
     flex-shrink: 0;
-    z-index: 0;
+    /* z-index: 0; */
 }
 
 .hyJfGO > div {

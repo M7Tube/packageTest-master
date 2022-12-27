@@ -8327,10 +8327,18 @@
                 <div class="col-xs-5" style="">
                     @if (!empty($data['icon']))
                         <img src="data:image/png;base64, {!! base64_encode(file_get_contents('../storage/app/images/'.$data['icon'])) !!}"  width="83" height="69">
+                    @else
+                        <img src="" width="83" height="69">
                     @endif
                     {{-- {{$data['icon']}} --}}
                 </div>
                 <div class="col-xs-5">
+                    @if (!empty($data['optional_icon']))
+                        <img src="data:image/png;base64, {!! base64_encode(file_get_contents('../storage/app/images/'.$data['optional_icon'])) !!}"  width="83" height="69">
+                    @else
+
+                        <img src="" width="83" height="69">
+                    @endif
                 </div>
             </div>
             <div class="row" style="margin-bottom: 5px;">
@@ -8344,7 +8352,7 @@
                 <div class="col-xs-5">
                     @forelse ($data['title_page'] as $record)
                         <span
-                            style="color:gray;">{{ $data['desc'] }}{{ $record['response'] == 2 ? $record['value'] : '' }}</span>
+                            style="color:gray;">{{ $data['desc'] ?? '' }}{{ $record['response'] == 2 ? $record['value'] : '' }}</span>
                     @break
 
                     @empty

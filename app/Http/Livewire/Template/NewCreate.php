@@ -36,7 +36,7 @@ class NewCreate extends Component
 
     public function mount()
     {
-        $this->activeone = null;
+        $this->activeone = 6;
         $this->pageactiveone = null;
         $this->pagequestionactiveone = null;
         $this->option = [

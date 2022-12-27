@@ -5,10 +5,10 @@
             <div class="row">
                 <div class="col-6" wire:loading.remove wire:target="icon">
                     @if (!$icon)
-                        <div class="col-12 col-md-3 logo-alignment" >
+                        <div class="col-12 col-md-3 logo-alignment">
                             <div class="position-relative">
-                                <input type="file" wire:model.lazy="icon" alt="template icon"
-                                    style="display:none;" id="customefileupload" accept="image/*">
+                                <input type="file" wire:model.lazy="icon" alt="template icon" style="display:none;"
+                                    id="customefileupload" accept="image/*">
                                 <label for="customefileupload" class="customfileupload">
                                     <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     @else
-                        <div class="col-12 col-md-3 position-relative logo-alignment" >
+                        <div class="col-12 col-md-3 position-relative logo-alignment">
                             <img type="image" src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents(storage_path('app/images/' . $icon))) !!}"
                                 alt="template icon" class="customfileupload" style="">
                             <a style="cursor: pointer; text-decoration: none;" wire:click.prevent="delete_image">
@@ -60,7 +60,7 @@
                     @endif
                 </div>
                 <div class="col-6" wire:loading wire:target="icon">
-                    <div class="col-12 col-md-4 logo-alignment" >
+                    <div class="col-12 col-md-4 logo-alignment">
                         <label for="customefileupload3" class="customfileupload">
                             <div class="la-ball-beat static-spinner">
                                 <div></div>
@@ -91,8 +91,7 @@
                                     <path
                                         d="M40.791103,32.3878833 L30.7918482,19.36966 C30.4139463,18.87678 29.5849081,18.87678 29.2070063,19.36966 L20.9649405,30.1001308 L14.7813214,22.3591948 C14.4024396,21.8839195 13.5987895,21.8839195 13.2199178,22.3591948 L5.22051392,32.3732128 C4.69807285,33.0261568 5.16230825,34 6.00121573,34 L39.998682,34 C40.8276403,34 41.2964253,33.0459845 40.791103,32.3878833 Z"
                                         id="Shape" fill="#5E9CFF"></path>
-                                    <circle id="Oval" fill="#1ECF93" cx="38" cy="38"
-                                        r="8">
+                                    <circle id="Oval" fill="#1ECF93" cx="38" cy="38" r="8">
                                     </circle>
                                     <path
                                         d="M41,37 L39,37 L39,35 C39,34.44769 38.55231,34 38,34 C37.44769,34 37,34.44769 37,35 L37,37 L35,37 C34.44769,37 34,37.44769 34,38 C34,38.55225 34.44769,39 35,39 L37,39 L37,41 C37,41.55225 37.44769,42 38,42 C38.55231,42 39,41.55225 39,41 L39,39 L41,39 C41.55231,39 42,38.55225 42,38 C42,37.44769 41.55231,37 41,37 Z"
@@ -139,8 +138,8 @@
                             wire:model.lazy="title" class="title mt-2" placeholder="Your template title" />
                     </div>
                     <div class="d-flex align-items-start justify-content-start">
-                        <input type="text" for="title" wire:model.lazy="desc"
-                            class="mt-2 desc" placeholder="Add a description" id="desc" />
+                        <input type="text" for="title" wire:model.lazy="desc" class="mt-2 desc"
+                            placeholder="Add a description" id="desc" />
                     </div>
                 </div>
             </div>
@@ -148,8 +147,8 @@
         <div id="accordionExample" wire:ignore.self>
             <div class="accordion-item title_page">
                 <div class="kVgydw" class="accordion-button collapsed" type="button">
-                    <div class="Ceqkm" style="margin-left:1.2rem!important" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                        aria-expanded="false" aria-controls="collapseTwo">
+                    <div class="Ceqkm" style="margin-left:1.2rem!important" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         <svg viewBox="0 0 24 24" width="16" height="16" focusable="false">
                             <path
                                 d="M17.633 11.181l-9.52-8.866a1.323 1.323 0 0 0-1.745.028 1.113 1.113 0 0 0-.03 1.625l8.228 7.663a.509.509 0 0 1 0 .755l-8.212 7.646c-.461.461-.448 1.18.03 1.625.479.446 1.25.458 1.745.028l9.504-8.85c.235-.22.368-.517.367-.827a1.12 1.12 0 0 0-.367-.827z"
@@ -226,13 +225,12 @@
                                                                             onclick="@this.set('activeone', {{ $loop->index }});">
                                                                             @if ($title_page_question['response'] == 10)
                                                                                 <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
-                                                                                    wire:model.lazy="title_page_questions.{{ $qkey }}.title" id="question-title-input-{{ $loop->index }}"></textarea>
+                                                                                    wire:model.lazy="title_page_questions.{{ $qkey }}.title"></textarea>
                                                                             @else
                                                                                 <input
                                                                                     class="question-title-focus eVpkze w-100 h-100 question-title"
                                                                                     placeholder="Write a Question ..."
-                                                                                    wire:model.lazy="title_page_questions.{{ $qkey }}.title"
-                                                                                    id="question-title-input-{{ $loop->index }}">
+                                                                                    wire:model.lazy="title_page_questions.{{ $qkey }}.title">
                                                                             @endif
                                                                         </div>
                                                                         @if ($activeone == $qkey)
@@ -260,8 +258,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="response-select-and-options hyJfGO {{ $activeone == $loop->index ? 'd-flex' : 'd-none' }}"
-                                                            id="response-select-and-options-{{ $loop->index }}">
+                                                        <div
+                                                            class="response-select-and-options hyJfGO {{ $activeone == $loop->index ? 'd-flex' : 'd-none' }}">
                                                             <div style="width: 100%;" data-bs-toggle="modal"
                                                                 data-bs-target="#TitlePageResponseModal"
                                                                 onclick="@this.set('activechangingresponse',{{ $loop->index }})">
@@ -426,7 +424,7 @@
                                                                 </div>
                                                             </div>
                                                             <div style="border-left: 1px solid rgb(191, 198, 212);"
-                                                                class="bdOmts" data-bs-toggle="dropdown"
+                                                                class="dropdown-toggle" data-bs-toggle="dropdown"
                                                                 aria-expanded="false">
                                                                 <div class="hcjgmp">
                                                                     <button type="button" class="jvZSBO">
@@ -454,8 +452,88 @@
                                                                     </button>
                                                                 </div>
                                                             </div>
-                                                            <div class="tether-element dropdown-menu tether-element-attached-bottom tether-element-attached-right tether-target-attached-top tether-target-attached-center tether-enabled tether-out-of-bounds tether-out-of-bounds-bottom"
-                                                                style="z-index: 20; top: 0px; position: absolute; transform: translateX(375.733px) translateY(216.25px) translateZ(0px); left: 0px;"
+                                                            <ul class="dropdown-menu">
+                                                                @if ($title_page_question['response'] == 2)
+                                                                    <li>
+                                                                        <a class="dropdown-item">
+                                                                            <span style="margin-top:50px; "></span>
+                                                                            Format:
+                                                                            <div class="ORzaJ knjhoD">
+                                                                                <input type="text"
+                                                                                    class="docNum_format"
+                                                                                    wire:model.lazy="title_page_questions.{{ $qkey }}.docNum_format" />
+                                                                            </div>
+                                                                        </a>
+                                                                    </li>
+                                                                @elseif($title_page_question['response'] == 1)
+                                                                    <li>
+                                                                        <a class="dropdown-item">
+                                                                            Format:
+                                                                            <select
+                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.text_answer_format"
+                                                                                class="text_answer_format">
+                                                                                <option value="0">
+                                                                                    {{ __('Short answer') }}
+                                                                                </option>
+                                                                                <option value="1">
+                                                                                    {{ __('Long answer') }}
+                                                                                </option>
+                                                                            </select>
+                                                                        </a>
+                                                                    </li>
+                                                                @elseif($title_page_question['response'] == 5)
+                                                                    <li>
+                                                                        <a class="dropdown-item">
+                                                                            <input id="is_date{{ $loop->index }}"
+                                                                                aria-hidden="false" type="checkbox"
+                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.is_date">
+                                                                            Date
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a class="dropdown-item">
+                                                                            <input id="is_time{{ $loop->index }}"
+                                                                                aria-hidden="false" type="checkbox"
+                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.is_time">
+                                                                            Time
+                                                                        </a>
+                                                                    </li>
+                                                                @elseif($title_page_question['response'] == 7)
+                                                                    <li>
+                                                                        <a class="dropdown-item">
+                                                                            <input
+                                                                                id="multi_select_multiple_choise{{ $loop->index }}"
+                                                                                aria-hidden="false" type="checkbox"
+                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.multi_select_multiple_choise">
+                                                                            Multiple Selection
+                                                                        </a>
+                                                                    </li>
+                                                                @endif
+                                                                @if ($title_page_question['response'] != 10)
+                                                                    <li>
+                                                                        <a class="dropdown-item">
+                                                                            <input id="is_required{{ $loop->index }}"
+                                                                                aria-hidden="false" type="checkbox"
+                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.is_required">
+                                                                            Required
+                                                                        </a>
+                                                                    </li>
+                                                                @endif
+                                                                <li>
+                                                                    <a class="dropdown-item" wire:click.prevent="title_page_delete_question({{ $loop->index }})">
+                                                                        <svg width="21" height="21"
+                                                                            viewBox="0 0 14 14" focusable="false">
+                                                                            <path
+                                                                                d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                                fill="#545f70" fill-rule="nonzero">
+                                                                            </path>
+                                                                        </svg>
+                                                                        Delete
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                            {{-- <div class="tether-element dropdown-menu tether-element-attached-bottom tether-element-attached-right tether-target-attached-top tether-target-attached-center tether-enabled tether-out-of-bounds tether-out-of-bounds-bottom"
+                                                                style="z-index: auto; top: 0px; position: absolute; transform: translateX(375.733px) translateY(216.25px) translateZ(0px); left: 0px;"
                                                                 wire:ignore.self>
                                                                 <div class="cKwbqr">
                                                                     @if ($title_page_question['response'] == 2)
@@ -589,7 +667,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
+
                                                         </div>
                                                     </div>
                                                     <button class="bKqzym blqywb"
@@ -1721,8 +1800,8 @@
                                     aria-expanded="false">
                                     <svg width="24" height="24" viewBox="0 0 14 14" focusable="false">
                                         <g transform="translate(5.542 1.458)" fill="#545f70" fill-rule="nonzero">
-                                            <circle transform="rotate(90 1.458 5.542)" cx="1.458"
-                                                cy="5.542" r="1.458">
+                                            <circle transform="rotate(90 1.458 5.542)" cx="1.458" cy="5.542"
+                                                r="1.458">
                                             </circle>
                                             <circle transform="rotate(90 1.458 9.625)" cx="1.458"
                                                 cy="9.625" r="1.458">

@@ -19,6 +19,7 @@ class Start extends Component
     public $title;
     public $desc;
     public $icon;
+    public $optional_icon;
     public $list = [];
     public $pictures = [];
     protected $queryString = ['page'];
@@ -32,6 +33,7 @@ class Start extends Component
         $this->title = $this->data->title ?? null;
         $this->desc = $this->data->desc ?? null;
         $this->icon = $this->data->icon ?? null;
+        $this->optional_icon = $this->data->optional_icon ?? null;
         foreach ($this->data['title_page'] as $key => $value) {
             $this->title_page_result[$key]['key'] = $value['title'] ?? null;
             $this->title_page_result[$key]['response'] = $value['response'] ?? null;
@@ -85,9 +87,9 @@ class Start extends Component
 
     public function test()
     {
-        $data=[
-            'title_page'=>$this->title_page_result,
-            'pages'=>$this->page_result,
+        $data = [
+            'title_page' => $this->title_page_result,
+            'pages' => $this->page_result,
         ];
         dd($data);
     }
@@ -97,7 +99,7 @@ class Start extends Component
         $this->title_page_result[$questionKey]['value'] = ['option' => $optionKey, 'key' => $title, 'value' => $color];
     }
 
-    public function page_set_multiple_choice_value($pageKey,$questionKey, $optionKey, $title, $color)
+    public function page_set_multiple_choice_value($pageKey, $questionKey, $optionKey, $title, $color)
     {
         $this->page_result[$pageKey]['question'][$questionKey]['value'] = ['option' => $optionKey, 'key' => $title, 'value' => $color];
     }
@@ -105,7 +107,7 @@ class Start extends Component
     public function export()
     {
         // dd($this->page_result);
-        return redirect()->route('new_export', ['title' => $this->title, 'desc' => $this->desc, 'icon' => $this->icon, 'title_page' => $this->title_page_result, 'pages' => $this->page_result]);
+        return redirect()->route('new_export', ['title' => $this->title, 'desc' => $this->desc, 'icon' => $this->icon, 'optional_icon' => $this->optional_icon, 'title_page' => $this->title_page_result, 'pages' => $this->page_result]);
     }
 
     public function next_page()
