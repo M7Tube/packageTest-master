@@ -486,7 +486,7 @@
                                                                         <a class="dropdown-item">
                                                                             <input id="is_date{{ $loop->index }}"
                                                                                 aria-hidden="false" type="checkbox"
-                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.is_date">
+                                                                                wire:model.defer="title_page_questions.{{ $qkey }}.is_date">
                                                                             Date
                                                                         </a>
                                                                     </li>
@@ -494,7 +494,7 @@
                                                                         <a class="dropdown-item">
                                                                             <input id="is_time{{ $loop->index }}"
                                                                                 aria-hidden="false" type="checkbox"
-                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.is_time">
+                                                                                wire:model.defer="title_page_questions.{{ $qkey }}.is_time">
                                                                             Time
                                                                         </a>
                                                                     </li>
@@ -504,7 +504,7 @@
                                                                             <input
                                                                                 id="multi_select_multiple_choise{{ $loop->index }}"
                                                                                 aria-hidden="false" type="checkbox"
-                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.multi_select_multiple_choise">
+                                                                                wire:model.defer="title_page_questions.{{ $qkey }}.multi_select_multiple_choise">
                                                                             Multiple Selection
                                                                         </a>
                                                                     </li>
@@ -514,7 +514,7 @@
                                                                         <a class="dropdown-item">
                                                                             <input id="is_required{{ $loop->index }}"
                                                                                 aria-hidden="false" type="checkbox"
-                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.is_required">
+                                                                                wire:model.defer="title_page_questions.{{ $qkey }}.is_required">
                                                                             Required
                                                                         </a>
                                                                     </li>
