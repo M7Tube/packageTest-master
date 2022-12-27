@@ -259,7 +259,7 @@
                                                             </div>
                                                         </div>
                                                         <div
-                                                            class="response-select-and-options hyJfGO {{ $activeone == $loop->index ? 'd-flex' : 'd-none' }}">
+                                                            class="response-select-and-options hyJfGO  {{ $activeone == $loop->index ? 'un-hide' : 'hide' }}">
                                                             <div style="width: 100%;" data-bs-toggle="modal"
                                                                 data-bs-target="#TitlePageResponseModal"
                                                                 onclick="@this.set('activechangingresponse',{{ $loop->index }})">
@@ -424,7 +424,7 @@
                                                                 </div>
                                                             </div>
                                                             <div style="border-left: 1px solid rgb(191, 198, 212);"
-                                                                class="dropdown-toggle" data-bs-toggle="dropdown"
+                                                                class="" data-bs-toggle="dropdown"
                                                                 aria-expanded="false">
                                                                 <div class="hcjgmp">
                                                                     <button type="button" class="jvZSBO">
