@@ -2044,20 +2044,6 @@ input[type="checkbox"] {
     touch-action: manipulation;
 }
 
-.haXfJL {
-    outline: currentcolor none medium;
-    cursor: grab;
-    margin-left: 0.5rem;
-    display: flex;
-    -moz-box-align: center;
-    align-items: center;
-    -moz-box-pack: center;
-    justify-content: center;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    z-index: 1;
-}
 
 .eSpMaC {
     width: 1rem;
@@ -3140,18 +3126,6 @@ input[type="checkbox"] {
     .eWLEUv > div:first-child {
         width: 100%;
         flex: initial;
-    }
-
-    .haXfJL svg {
-        z-index: 3;
-        position: relative;
-    }
-
-    .haXfJL {
-        cursor: grab;
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
     }
 
     .bBjJyf {
