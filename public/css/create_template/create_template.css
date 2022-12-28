@@ -842,7 +842,9 @@ textarea {
     overflow: auto;
     padding: 0px;
 }
-
+.three-dots-small-show {
+    display: none;
+}
 .iOxrxx {
     appearance: none;
     font-size: 1rem;
@@ -1443,9 +1445,9 @@ textarea {
     color: rgb(103, 93, 244);
 }
 
-.kxrOmS {
+/* .kxrOmS {
     position: relative;
-}
+} */
 
 .eqGxMu > .popover_element {
     z-index: 20;
@@ -1778,19 +1780,9 @@ input[type="checkbox"] {
 }
 .un-hide {
     display: flex;
-    animation: fade_in_show 0.5s ease;
 }
 .hide {
-    display: none;
-    animation: fade_in_show 0.5s ease;
-}
-@keyframes fade_in_show {
-    0% {
-        opacity: 25%;
-    }
-    100% {
-        opacity: 100%;
-    }
+    display: flex;
 }
 /*  */
 .hyJfGO {
@@ -2015,14 +2007,15 @@ input[type="checkbox"] {
 
 .REnvQ {
     display: flex;
+    border-bottom: 1px solid rgb(191, 198, 212);
     flex-direction: column;
     -moz-box-flex: 1;
     flex: 1 0 0px;
 }
 
-.kxrOmS {
+/* .kxrOmS {
     position: relative;
-}
+} */
 
 .cOGOfF {
     display: flex;
@@ -3233,6 +3226,28 @@ input[type="checkbox"] {
 }
 
 @media all and (max-width: 600px) {
+    .REnvQ {
+        border-bottom: none;
+    }
+    .un-hide {
+        display: flex;
+        animation: fade_in_show 0.5s ease;
+    }
+    .hide {
+        display: none;
+        animation: fade_in_show 0.5s ease;
+    }
+    @keyframes fade_in_show {
+        0% {
+            opacity: 25%;
+        }
+        100% {
+            opacity: 100%;
+        }
+    }
+    .three-dots-small-show {
+        display: flex;
+    }
     .response-model {
         display: block;
     }

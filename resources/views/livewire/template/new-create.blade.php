@@ -139,7 +139,7 @@
                     </div>
                     <div class="d-flex align-items-start justify-content-start">
                         <input type="text" for="title" wire:model.lazy="desc" class="mt-2 desc"
-                            placeholder="Add a description" id="desc" />
+                            placeholder="Add a description" />
                     </div>
                 </div>
             </div>
@@ -215,7 +215,7 @@
                                                                 </div>
                                                                 <span style="padding-left: 0.3rem;"
                                                                     class="eSpMaC text-danger">
-                                                                    {{ $title_page_question['is_required'] == 1 ? '*' : '' }}
+                                                                    {{ !empty($title_page_question['is_required']) ? ($title_page_question['is_required'] == 1 ? '*' : '') : '' }}
                                                                 </span>
                                                                 <div class="bBjJyf">
                                                                     {{-- <div class="eiFrFc" id="t{{ $qkey }}">
@@ -258,8 +258,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div
-                                                            class="response-select-and-options hyJfGO  {{ $activeone == $loop->index ? 'un-hide' : 'hide' }}">
+                                                        <div class="response-select-and-options hyJfGO  {{ $activeone == $loop->index ? 'un-hide' : 'hide' }}">
                                                             <div style="width: 100%;" data-bs-toggle="modal"
                                                                 data-bs-target="#TitlePageResponseModal"
                                                                 onclick="@this.set('activechangingresponse',{{ $loop->index }})">
@@ -424,7 +423,7 @@
                                                                 </div>
                                                             </div>
                                                             <div style="border-left: 1px solid rgb(191, 198, 212);"
-                                                                class="" data-bs-toggle="dropdown"
+                                                                class="three-dots-small-show" data-bs-toggle="dropdown"
                                                                 aria-expanded="false">
                                                                 <div class="hcjgmp">
                                                                     <button type="button" class="jvZSBO">
@@ -484,7 +483,7 @@
                                                                 @elseif($title_page_question['response'] == 5)
                                                                     <li>
                                                                         <a class="dropdown-item">
-                                                                            <input id="is_date{{ $loop->index }}"
+                                                                            <input
                                                                                 aria-hidden="false" type="checkbox"
                                                                                 wire:model.defer="title_page_questions.{{ $qkey }}.is_date">
                                                                             Date
@@ -492,7 +491,7 @@
                                                                     </li>
                                                                     <li>
                                                                         <a class="dropdown-item">
-                                                                            <input id="is_time{{ $loop->index }}"
+                                                                            <input
                                                                                 aria-hidden="false" type="checkbox"
                                                                                 wire:model.defer="title_page_questions.{{ $qkey }}.is_time">
                                                                             Time
@@ -502,7 +501,6 @@
                                                                     <li>
                                                                         <a class="dropdown-item">
                                                                             <input
-                                                                                id="multi_select_multiple_choise{{ $loop->index }}"
                                                                                 aria-hidden="false" type="checkbox"
                                                                                 wire:model.defer="title_page_questions.{{ $qkey }}.multi_select_multiple_choise">
                                                                             Multiple Selection
@@ -512,7 +510,7 @@
                                                                 @if ($title_page_question['response'] != 10)
                                                                     <li>
                                                                         <a class="dropdown-item">
-                                                                            <input id="is_required{{ $loop->index }}"
+                                                                            <input
                                                                                 aria-hidden="false" type="checkbox"
                                                                                 wire:model.defer="title_page_questions.{{ $qkey }}.is_required">
                                                                             Required
@@ -688,7 +686,7 @@
                                                                 @if ($title_page_question['response'] == 2)
                                                                     <div class="epicTj">
                                                                         <div class="krtjey">
-                                                                            <span style="margin-top:50px; "></span>
+                                                                            <span style="margin-top:50px;"></span>
                                                                             Format:
                                                                             <div class="ORzaJ knjhoD">
                                                                                 <input type="text"
@@ -700,7 +698,7 @@
                                                                 @elseif($title_page_question['response'] == 1)
                                                                     <div class="epicTj">
                                                                         <div class="krtjey">
-                                                                            <span style="margin-top:50px; "></span>
+                                                                            <span style="margin-top:50px;"></span>
                                                                             Format:
                                                                             <div class="ORzaJ knjhoD">
                                                                                 <select
@@ -721,7 +719,7 @@
                                                                         <div class="eMiEgJ">
                                                                             <div role="checkbox" aria-checked="true"
                                                                                 class="xxrKk">
-                                                                                <input id="is_date{{ $loop->index }}"
+                                                                                <input
                                                                                     aria-hidden="false"
                                                                                     type="checkbox"
                                                                                     wire:model="title_page_questions.{{ $qkey }}.is_date">
@@ -738,7 +736,7 @@
                                                                         <div class="eMiEgJ">
                                                                             <div role="checkbox" aria-checked="true"
                                                                                 class="xxrKk">
-                                                                                <input id="is_time{{ $loop->index }}"
+                                                                                <input
                                                                                     aria-hidden="false"
                                                                                     type="checkbox"
                                                                                     wire:model="title_page_questions.{{ $qkey }}.is_time">
@@ -756,15 +754,11 @@
                                                                         <div class="eMiEgJ">
                                                                             <div role="checkbox" aria-checked="true"
                                                                                 class="xxrKk">
-                                                                                <input
-                                                                                    id="multi_select_multiple_choise{{ $loop->index }}"
-                                                                                    aria-hidden="false"
+                                                                                <input aria-hidden="false"
                                                                                     type="checkbox"
                                                                                     wire:model="title_page_questions.{{ $qkey }}.multi_select_multiple_choise">
                                                                             </div>
-                                                                            <label
-                                                                                for="9ea156a4-4105-43e5-9bcc-686d413e9961-input"
-                                                                                class="fJJVDV">
+                                                                            <label class="fJJVDV">
                                                                                 <div class="fDpeEn">
                                                                                     Multiple Selection
                                                                                 </div>
@@ -778,7 +772,6 @@
                                                                             <div role="checkbox" aria-checked="false"
                                                                                 class="xxrKk">
                                                                                 <input
-                                                                                    id="is_required{{ $loop->index }}"
                                                                                     aria-hidden="false"
                                                                                     type="checkbox"
                                                                                     wire:model="title_page_questions.{{ $qkey }}.is_required">
@@ -838,7 +831,8 @@
                                                                             <path
                                                                                 d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z">
                                                                             </path>
-                                                                        </svg></button>
+                                                                        </svg>
+                                                                    </button>
                                                                     <h4 class="eXEpbc ddvElQ">
                                                                         Type of
                                                                         response
@@ -874,8 +868,9 @@
                                                                                                 </g>
                                                                                             </svg>
                                                                                         </div>
-                                                                                        <span>Document
-                                                                                            number</span>
+                                                                                        <span>
+                                                                                            Document number
+                                                                                        </span>
                                                                                     </div>
                                                                                 </a>
                                                                             </div>
@@ -903,8 +898,9 @@
                                                                                                 </path>
                                                                                             </svg>
                                                                                         </div>
-                                                                                        <span>Text
-                                                                                            answer</span>
+                                                                                        <span>
+                                                                                            Text answer
+                                                                                        </span>
                                                                                     </div>
                                                                                 </a>
                                                                                 <a wire:click.prevent="setResponseValue(4)"
@@ -925,7 +921,9 @@
                                                                                                 </g>
                                                                                             </svg>
                                                                                         </div>
-                                                                                        <span>Number</span>
+                                                                                        <span>
+                                                                                            Number
+                                                                                        </span>
                                                                                     </div>
                                                                                 </a>
                                                                                 <a wire:click.prevent="setResponseValue(3)"
@@ -992,66 +990,6 @@
                                                                                     </div>
                                                                                     <span>Media</span>
                                                                                 </div>
-                                                                                {{-- <a wire:click.prevent="setResponseValue(9)"
-                                                                                                            data-bs-dismiss="modal"
-                                                                                                            style="text-decoration: none;">
-                                                                                                            <div style="display: flex;"
-                                                                                                                class="gupkBu iDhWfr">
-                                                                                                                <div
-                                                                                                                    class="dkfwqD">
-                                                                                                                    <svg viewBox="0 0 14 14"
-                                                                                                                        width="15"
-                                                                                                                        height="15"
-                                                                                                                        focusable="false">
-                                                                                                                        <g id="icon_slider_v2"
-                                                                                                                            fill="none"
-                                                                                                                            fill-rule="evenodd">
-                                                                                                                            <g id="Group"
-                                                                                                                                transform="translate(1.5 1)"
-                                                                                                                                fill="#1ecf93">
-                                                                                                                                <g
-                                                                                                                                    id="Group-3">
-                                                                                                                                    <g
-                                                                                                                                        id="Group-2">
-                                                                                                                                        <path
-                                                                                                                                            d="M1.75 2v2H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 2h1.25zm4 0h4.75a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H5.75V2z"
-                                                                                                                                            id="Combined-Shape">
-                                                                                                                                        </path>
-                                                                                                                                        <rect
-                                                                                                                                            id="Rectangle-Copy-2"
-                                                                                                                                            x="2.25"
-                                                                                                                                            y="0.5"
-                                                                                                                                            width="3"
-                                                                                                                                            height="5"
-                                                                                                                                            rx="0.5">
-                                                                                                                                        </rect>
-                                                                                                                                    </g>
-                                                                                                                                </g>
-                                                                                                                                <g id="Group-3-Copy"
-                                                                                                                                    transform="matrix(-1 0 0 1 11 6)">
-                                                                                                                                    <g
-                                                                                                                                        id="Group-2">
-                                                                                                                                        <path
-                                                                                                                                            d="M1.75 2v2H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 2h1.25zm4 0h4.75a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H5.75V2z"
-                                                                                                                                            id="Combined-Shape">
-                                                                                                                                        </path>
-                                                                                                                                        <rect
-                                                                                                                                            id="Rectangle-Copy-2"
-                                                                                                                                            x="2.25"
-                                                                                                                                            y="0.5"
-                                                                                                                                            width="3"
-                                                                                                                                            height="5"
-                                                                                                                                            rx="0.5">
-                                                                                                                                        </rect>
-                                                                                                                                    </g>
-                                                                                                                                </g>
-                                                                                                                            </g>
-                                                                                                                        </g>
-                                                                                                                    </svg>
-                                                                                                                </div>
-                                                                                                                <span>Slider</span>
-                                                                                                            </div>
-                                                                                                        </a> --}}
                                                                                 <a wire:click.prevent="setResponseValue(6)"
                                                                                     data-bs-dismiss="modal"
                                                                                     style="text-decoration: none;">
@@ -1329,7 +1267,6 @@
                                                                                                                                     class="eVpkze w-100 h-100 question-title"
                                                                                                                                     placeholder="Response title"
                                                                                                                                     style="font-size: 12.5px;"
-                                                                                                                                    id="response-title{{ $activeone }}{{ $responsKey }}"
                                                                                                                                     wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
                                                                                                                                     {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
                                                                                                                             </div>
@@ -1346,7 +1283,6 @@
                                                                                                                                     type="color"
                                                                                                                                     wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
                                                                                                                                     class="form-control form-control-color cTkvNJ d-none"
-                                                                                                                                    id="response-color{{ $activeone }}{{ $responsKey }}"
                                                                                                                                     title="Choose background color">
                                                                                                                             </div>
                                                                                                                             {{-- <input
@@ -1601,7 +1537,6 @@
                                                                                                                                     class="eVpkze w-100 h-100 question-title"
                                                                                                                                     placeholder="Response title"
                                                                                                                                     style="font-size: 12.5px;"
-                                                                                                                                    id="response-title{{ $activeone }}{{ $responsKey }}"
                                                                                                                                     wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.title"
                                                                                                                                     {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
                                                                                                                             </div>
@@ -1610,7 +1545,6 @@
                                                                                                                                 wire:model="title_page_questions.{{ $activeone }}.multiple_choice.{{ $responsKey }}.color"
                                                                                                                                 class="form-control form-control-color22 gocNNg kxrOmS"
                                                                                                                                 style="margin-right: 5px; width:36.25px;"
-                                                                                                                                id="response-color{{ $activeone }}{{ $responsKey }}"
                                                                                                                                 title="Choose background color">
                                                                                                                             <div style="border-left: 1px solid rgb(191, 198, 212);"
                                                                                                                                 class="bdOmts2"
@@ -1896,14 +1830,14 @@
                                                                                 @if ($pageQuestion['response'] == 10)
                                                                                     <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
                                                                                         wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"
-                                                                                        id="question-title-input-{{ $loop->parent->index }}{{ $loop->index }}"></textarea>
+                                                                                        ></textarea>
                                                                                 @else
                                                                                     <div class="eAfucY">
                                                                                         <input
                                                                                             class="question-title-focus eVpkze w-100 h-100 question-title"
                                                                                             placeholder="Write a Question ..."
                                                                                             wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"
-                                                                                            id="question-title-input-{{ $loop->parent->index }}{{ $loop->index }}">
+                                                                                            >
                                                                                     </div>
                                                                                 @endif
 
@@ -1917,7 +1851,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="response-select-and-options hyJfGO {{ $activeone == 'p_' . $loop->parent->index . '_' . $loop->index ? 'd-flex' : 'd-none' }}"
-                                                                    id="response-select-and-options-{{ $loop->parent->index }}{{ $loop->index }}">
+                                                                    >
                                                                     <div style="width: 100%;" data-bs-toggle="modal"
                                                                         data-bs-target="#PageResponseModal">
                                                                         <div class="eWLEUv">
@@ -2141,7 +2075,7 @@
                                                                                         <div class="ORzaJ knjhoD">
                                                                                             <select
                                                                                                 wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.text_answer_format"
-                                                                                                id="text_answer_format{{ $loop->parent->index }}{{ $loop->index }}"
+
                                                                                                 class="text_answer_format">
                                                                                                 <option
                                                                                                     value="0">
@@ -2162,7 +2096,6 @@
                                                                                             aria-checked="true"
                                                                                             class="xxrKk">
                                                                                             <input
-                                                                                                id="is_date{{ $loop->parent->index }}{{ $loop->index }}"
                                                                                                 aria-hidden="false"
                                                                                                 type="checkbox"
                                                                                                 wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_date">
@@ -2181,7 +2114,6 @@
                                                                                             aria-checked="true"
                                                                                             class="xxrKk">
                                                                                             <input
-                                                                                                id="is_time{{ $loop->parent->index }}{{ $loop->index }}"
                                                                                                 aria-hidden="false"
                                                                                                 type="checkbox"
                                                                                                 wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_time">
@@ -2201,7 +2133,6 @@
                                                                                             aria-checked="true"
                                                                                             class="xxrKk">
                                                                                             <input
-                                                                                                id="multi_select_multiple_choise{{ $loop->parent->index }}{{ $loop->index }}"
                                                                                                 aria-hidden="false"
                                                                                                 type="checkbox"
                                                                                                 wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.multi_select_multiple_choise">
@@ -2224,7 +2155,6 @@
                                                                                             aria-checked="false"
                                                                                             class="xxrKk">
                                                                                             <input
-                                                                                                id="is_required{{ $loop->parent->index }}{{ $loop->index }}"
                                                                                                 aria-hidden="false"
                                                                                                 type="checkbox"
                                                                                                 wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_required">
@@ -2299,7 +2229,6 @@
                                                                                     <div class="ORzaJ knjhoD">
                                                                                         <select
                                                                                             wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.text_answer_format"
-                                                                                            id="text_answer_format{{ $loop->parent->index }}{{ $loop->index }}"
                                                                                             class="text_answer_format">
                                                                                             <option value="0">
                                                                                                 {{ __('Short answer') }}
@@ -2318,7 +2247,6 @@
                                                                                         aria-checked="true"
                                                                                         class="xxrKk">
                                                                                         <input
-                                                                                            id="is_date{{ $loop->parent->index }}{{ $loop->index }}"
                                                                                             aria-hidden="false"
                                                                                             type="checkbox"
                                                                                             wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_date">
@@ -2337,7 +2265,6 @@
                                                                                         aria-checked="true"
                                                                                         class="xxrKk">
                                                                                         <input
-                                                                                            id="is_time{{ $loop->parent->index }}{{ $loop->index }}"
                                                                                             aria-hidden="false"
                                                                                             type="checkbox"
                                                                                             wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_time">
@@ -2357,7 +2284,6 @@
                                                                                         aria-checked="true"
                                                                                         class="xxrKk">
                                                                                         <input
-                                                                                            id="multi_select_multiple_choise{{ $loop->parent->index }}{{ $loop->index }}"
                                                                                             aria-hidden="false"
                                                                                             type="checkbox"
                                                                                             wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.multi_select_multiple_choise">
@@ -2380,7 +2306,6 @@
                                                                                         aria-checked="false"
                                                                                         class="xxrKk">
                                                                                         <input
-                                                                                            id="is_required{{ $loop->parent->index }}{{ $loop->index }}"
                                                                                             aria-hidden="false"
                                                                                             type="checkbox"
                                                                                             wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_required">
