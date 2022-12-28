@@ -158,7 +158,7 @@
                     </div>
                     <div>
                         <div class="fceloL mt-1">
-                            <input type="text" class="desc" style="font-size: 1.2rem; width: 100%;"
+                            <input type="text" class="desc" style="font-size: 1.2rem; width: 110%;"
                                 placeholder="Title Page" wire:model.lazy="title_page_title">
                         </div>
                     </div>

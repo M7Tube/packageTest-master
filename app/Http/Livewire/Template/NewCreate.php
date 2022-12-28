@@ -446,6 +446,35 @@ class NewCreate extends Component
         $this->updating();
     }
 
+    public function page_changeindex($oldIndex, $newIndex, $page)
+    {
+        $temp = $this->pages[$page]['question'][$oldIndex];
+        // $this->pages[$page]['question'][$oldIndex] = $this->pages[$page]['question'][$newIndex];
+        // $this->pages[$page]['question'][$newIndex] = $temp;
+        array_splice($this->pages[$page]['question'], $oldIndex, 1);
+        array_splice($this->pages[$page]['question'], $newIndex, 0, [$temp]);
+        $arr = explode('_', $this->activeone);
+        switch ($arr[2]) {
+            case $oldIndex:
+                $this->activeone = 'p_' . $arr[1] . '_' . $newIndex;
+                break;
+            case $newIndex:
+                if ($oldIndex > $arr[2])
+                    $this->activeone = 'p_' . $arr[1] . '_' . $newIndex + 1;
+                if ($oldIndex < $arr[2])
+                    $this->activeone = 'p_' . $arr[1] . '_' . $newIndex - 1;
+                break;
+            default:
+                if (($oldIndex > $arr[2]) && ($newIndex > $arr[2])) {
+                } elseif (($oldIndex < $arr[2]) && ($newIndex < $arr[2])) {
+                } elseif ($oldIndex > $arr[2])
+                    $this->activeone = 'p_' . $arr[1] . '_' . $arr[2] + 1;
+                elseif ($oldIndex < $arr[2])
+                    $this->activeone = 'p_' . $arr[1] . '_' . $arr[2] - 1;
+                break;
+        }
+        $this->updating();
+    }
     public function multiple_choise_changeindex($oldIndex, $newIndex)
     {
         $temp = $this->title_page_questions[$this->activeone]['multiple_choice'][$oldIndex];
@@ -454,13 +483,6 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    public function page_changeindex($oldIndex, $newIndex, $page)
-    {
-        $temp = $this->pages[$page]['question'][$oldIndex];
-        $this->pages[$page]['question'][$oldIndex] = $this->pages[$page]['question'][$newIndex];
-        $this->pages[$page]['question'][$newIndex] = $temp;
-        $this->updating();
-    }
 
     // public function change_active_one($newIndex)
     // {
