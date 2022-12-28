@@ -158,8 +158,8 @@
                     </div>
                     <div>
                         <div class="fceloL mt-1">
-                            <input type="text" class="desc" style="font-size: 1.2rem; width: 100%;" placeholder="Title Page"
-                                wire:model.lazy="title_page_title">
+                            <input type="text" class="desc" style="font-size: 1.2rem; width: 100%;"
+                                placeholder="Title Page" wire:model.lazy="title_page_title">
                         </div>
                     </div>
                 </div>
@@ -258,7 +258,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="response-select-and-options hyJfGO  {{ $activeone == $loop->index ? 'un-hide' : 'hide' }}">
+                                                        <div
+                                                            class="response-select-and-options hyJfGO  {{ $activeone == $loop->index ? 'un-hide' : 'hide' }}">
                                                             <div style="width: 100%;" data-bs-toggle="modal"
                                                                 data-bs-target="#TitlePageResponseModal"
                                                                 onclick="@this.set('activeone',{{ $loop->index }})">
@@ -423,8 +424,8 @@
                                                                 </div>
                                                             </div>
                                                             <div style="border-left: 1px solid rgb(191, 198, 212);"
-                                                                class="three-dots-small-show" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
+                                                                class="three-dots-small-show"
+                                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <div class="hcjgmp">
                                                                     <button type="button" class="jvZSBO">
                                                                         <svg width="24" height="24"
@@ -453,82 +454,133 @@
                                                             </div>
                                                             <ul class="dropdown-menu">
                                                                 @if ($title_page_question['response'] == 2)
+                                                                    <div class="epicTj" style="margin-left: 5px;">
+                                                                        <div class="iBzfYz">
+                                                                            <li>
+                                                                                <a class="dropdown-item">
+                                                                                    <span
+                                                                                        style="margin-top:50px; "></span>
+                                                                                    Format:
+                                                                                    <div class="ORzaJ knjhoD">
+                                                                                        <input type="text"
+                                                                                            class="docNum_format"
+                                                                                            wire:model.lazy="title_page_questions.{{ $qkey }}.docNum_format" />
+                                                                                    </div>
+                                                                                </a>
+                                                                            </li>
+                                                                        </div>
+                                                                    </div>
                                                                     <li>
-                                                                        <a class="dropdown-item">
-                                                                            <span style="margin-top:50px; "></span>
-                                                                            Format:
-                                                                            <div class="ORzaJ knjhoD">
-                                                                                <input type="text"
-                                                                                    class="docNum_format"
-                                                                                    wire:model.lazy="title_page_questions.{{ $qkey }}.docNum_format" />
-                                                                            </div>
-                                                                        </a>
+                                                                        <hr class="dropdown-divider">
                                                                     </li>
                                                                 @elseif($title_page_question['response'] == 1)
+                                                                    <div class="epicTj" style="margin-left: 5px;">
+                                                                        <div class="iBzfYz">
+                                                                            <li>
+                                                                                <a class="dropdown-item">
+                                                                                    Format:
+                                                                                    <select
+                                                                                        wire:model.lazy="title_page_questions.{{ $qkey }}.text_answer_format"
+                                                                                        class="text_answer_format">
+                                                                                        <option value="0">
+                                                                                            {{ __('Short answer') }}
+                                                                                        </option>
+                                                                                        <option value="1">
+                                                                                            {{ __('Long answer') }}
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </a>
+                                                                            </li>
+                                                                        </div>
+                                                                    </div>
                                                                     <li>
-                                                                        <a class="dropdown-item">
-                                                                            Format:
-                                                                            <select
-                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.text_answer_format"
-                                                                                class="text_answer_format">
-                                                                                <option value="0">
-                                                                                    {{ __('Short answer') }}
-                                                                                </option>
-                                                                                <option value="1">
-                                                                                    {{ __('Long answer') }}
-                                                                                </option>
-                                                                            </select>
-                                                                        </a>
+                                                                        <hr class="dropdown-divider">
                                                                     </li>
                                                                 @elseif($title_page_question['response'] == 5)
+                                                                    <div class="epicTj" style="margin-left: 5px;">
+                                                                        <div class="iBzfYz">
+                                                                            <li>
+                                                                                <a class="dropdown-item">
+                                                                                    <input aria-hidden="false"
+                                                                                        type="checkbox"
+                                                                                        wire:model.defer="title_page_questions.{{ $qkey }}.is_date">
+                                                                                    Date
+                                                                                </a>
+                                                                            </li>
+                                                                        </div>
+                                                                    </div>
                                                                     <li>
-                                                                        <a class="dropdown-item">
-                                                                            <input
-                                                                                aria-hidden="false" type="checkbox"
-                                                                                wire:model.defer="title_page_questions.{{ $qkey }}.is_date">
-                                                                            Date
-                                                                        </a>
+                                                                        <hr class="dropdown-divider">
                                                                     </li>
+
+                                                                    <div class="epicTj" style="margin-left: 5px;">
+                                                                        <div class="iBzfYz">
+                                                                            <li>
+                                                                                <a class="dropdown-item">
+                                                                                    <input aria-hidden="false"
+                                                                                        type="checkbox"
+                                                                                        wire:model.defer="title_page_questions.{{ $qkey }}.is_time">
+                                                                                    Time
+                                                                                </a>
+                                                                            </li>
+                                                                        </div>
+                                                                    </div>
                                                                     <li>
-                                                                        <a class="dropdown-item">
-                                                                            <input
-                                                                                aria-hidden="false" type="checkbox"
-                                                                                wire:model.defer="title_page_questions.{{ $qkey }}.is_time">
-                                                                            Time
-                                                                        </a>
+                                                                        <hr class="dropdown-divider">
                                                                     </li>
                                                                 @elseif($title_page_question['response'] == 7)
+                                                                    <div class="epicTj" style="margin-left: 5px;">
+                                                                        <div class="iBzfYz">
+                                                                            <li>
+                                                                                <a class="dropdown-item">
+                                                                                    <input aria-hidden="false"
+                                                                                        type="checkbox"
+                                                                                        wire:model.defer="title_page_questions.{{ $qkey }}.multi_select_multiple_choise">
+                                                                                    Multiple Selection
+                                                                                </a>
+                                                                            </li>
+                                                                        </div>
+                                                                    </div>
                                                                     <li>
-                                                                        <a class="dropdown-item">
-                                                                            <input
-                                                                                aria-hidden="false" type="checkbox"
-                                                                                wire:model.defer="title_page_questions.{{ $qkey }}.multi_select_multiple_choise">
-                                                                            Multiple Selection
-                                                                        </a>
+                                                                        <hr class="dropdown-divider">
                                                                     </li>
                                                                 @endif
                                                                 @if ($title_page_question['response'] != 10)
+                                                                    <div class="epicTj" style="margin-left: 5px;">
+                                                                        <div class="iBzfYz">
+                                                                            <li>
+                                                                                <a class="dropdown-item">
+                                                                                    <input aria-hidden="false"
+                                                                                        type="checkbox"
+                                                                                        wire:model.defer="title_page_questions.{{ $qkey }}.is_required">
+                                                                                    Required
+                                                                                </a>
+                                                                            </li>
+                                                                        </div>
+                                                                    </div>
                                                                     <li>
-                                                                        <a class="dropdown-item">
-                                                                            <input
-                                                                                aria-hidden="false" type="checkbox"
-                                                                                wire:model.defer="title_page_questions.{{ $qkey }}.is_required">
-                                                                            Required
-                                                                        </a>
+                                                                        <hr class="dropdown-divider">
                                                                     </li>
                                                                 @endif
-                                                                <li>
-                                                                    <a class="dropdown-item" wire:click.prevent="title_page_delete_question({{ $loop->index }})">
-                                                                        <svg width="21" height="21"
-                                                                            viewBox="0 0 14 14" focusable="false">
-                                                                            <path
-                                                                                d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
-                                                                                fill="#545f70" fill-rule="nonzero">
-                                                                            </path>
-                                                                        </svg>
-                                                                        Delete
-                                                                    </a>
-                                                                </li>
+                                                                <div class="epicTj">
+                                                                    <div class="iBzfYz">
+                                                                        <li>
+                                                                            <a class="dropdown-item"
+                                                                                wire:click.prevent="title_page_delete_question({{ $loop->index }})">
+                                                                                <svg width="21" height="21"
+                                                                                    viewBox="0 0 14 14"
+                                                                                    focusable="false">
+                                                                                    <path
+                                                                                        d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                                        fill="#545f70"
+                                                                                        fill-rule="nonzero">
+                                                                                    </path>
+                                                                                </svg>
+                                                                                Delete
+                                                                            </a>
+                                                                        </li>
+                                                                    </div>
+                                                                </div>
                                                             </ul>
                                                             {{-- <div class="tether-element dropdown-menu tether-element-attached-bottom tether-element-attached-right tether-target-attached-top tether-target-attached-center tether-enabled tether-out-of-bounds tether-out-of-bounds-bottom"
                                                                 style="z-index: auto; top: 0px; position: absolute; transform: translateX(375.733px) translateY(216.25px) translateZ(0px); left: 0px;"
@@ -719,8 +771,7 @@
                                                                         <div class="eMiEgJ">
                                                                             <div role="checkbox" aria-checked="true"
                                                                                 class="xxrKk">
-                                                                                <input
-                                                                                    aria-hidden="false"
+                                                                                <input aria-hidden="false"
                                                                                     type="checkbox"
                                                                                     wire:model="title_page_questions.{{ $qkey }}.is_date">
                                                                             </div>
@@ -736,8 +787,7 @@
                                                                         <div class="eMiEgJ">
                                                                             <div role="checkbox" aria-checked="true"
                                                                                 class="xxrKk">
-                                                                                <input
-                                                                                    aria-hidden="false"
+                                                                                <input aria-hidden="false"
                                                                                     type="checkbox"
                                                                                     wire:model="title_page_questions.{{ $qkey }}.is_time">
                                                                             </div>
@@ -771,8 +821,7 @@
                                                                         <div class="eMiEgJ">
                                                                             <div role="checkbox" aria-checked="false"
                                                                                 class="xxrKk">
-                                                                                <input
-                                                                                    aria-hidden="false"
+                                                                                <input aria-hidden="false"
                                                                                     type="checkbox"
                                                                                     wire:model="title_page_questions.{{ $qkey }}.is_required">
                                                                             </div>
@@ -1664,7 +1713,7 @@
                                                                     <button role="button" class="kDSJkL"
                                                                         style="color: rgb(255, 255, 255);
                                                                                 background-color: rgb(103, 93, 244); width: 85.75px"
-                                                                        wire:click.prevent="save_multiple_choise({{ $activeone }})"
+                                                                        {{-- wire:click.prevent="save_multiple_choise({{ $activeone }})" --}}
                                                                         data-bs-dismiss="modal">
                                                                         Save
                                                                     </button>
@@ -1734,8 +1783,8 @@
                                     aria-expanded="false">
                                     <svg width="24" height="24" viewBox="0 0 14 14" focusable="false">
                                         <g transform="translate(5.542 1.458)" fill="#545f70" fill-rule="nonzero">
-                                            <circle transform="rotate(90 1.458 5.542)" cx="1.458" cy="5.542"
-                                                r="1.458">
+                                            <circle transform="rotate(90 1.458 5.542)" cx="1.458"
+                                                cy="5.542" r="1.458">
                                             </circle>
                                             <circle transform="rotate(90 1.458 9.625)" cx="1.458"
                                                 cy="9.625" r="1.458">
@@ -1829,15 +1878,13 @@
                                                                                 style="display: flex; align-items: center;">
                                                                                 @if ($pageQuestion['response'] == 10)
                                                                                     <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
-                                                                                        wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"
-                                                                                        ></textarea>
+                                                                                        wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"></textarea>
                                                                                 @else
                                                                                     <div class="eAfucY">
                                                                                         <input
                                                                                             class="question-title-focus eVpkze w-100 h-100 question-title"
                                                                                             placeholder="Write a Question ..."
-                                                                                            wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"
-                                                                                            >
+                                                                                            wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title">
                                                                                     </div>
                                                                                 @endif
 
@@ -1850,10 +1897,11 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="response-select-and-options hyJfGO {{ $activeone == 'p_' . $loop->parent->index . '_' . $loop->index ? 'd-flex' : 'd-none' }}"
-                                                                    >
+                                                                <div
+                                                                    class="response-select-and-options hyJfGO {{ $activeone == 'p_' . $loop->parent->index . '_' . $loop->index ? 'd-flex' : 'd-none' }}">
                                                                     <div style="width: 100%;" data-bs-toggle="modal"
-                                                                        data-bs-target="#PageResponseModal" onclick="@this.set('activechangingresponse',{{ $loop->index }})">
+                                                                        data-bs-target="#PageResponseModal"
+                                                                        onclick="@this.set('activechangingresponse',{{ $loop->index }})">
                                                                         <div class="eWLEUv">
                                                                             <div>
                                                                                 @if ($pageQuestion['response'] == 2)
@@ -2075,7 +2123,6 @@
                                                                                         <div class="ORzaJ knjhoD">
                                                                                             <select
                                                                                                 wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.text_answer_format"
-
                                                                                                 class="text_answer_format">
                                                                                                 <option
                                                                                                     value="0">
@@ -2095,8 +2142,7 @@
                                                                                         <div role="checkbox"
                                                                                             aria-checked="true"
                                                                                             class="xxrKk">
-                                                                                            <input
-                                                                                                aria-hidden="false"
+                                                                                            <input aria-hidden="false"
                                                                                                 type="checkbox"
                                                                                                 wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_date">
                                                                                         </div>
@@ -2113,8 +2159,7 @@
                                                                                         <div role="checkbox"
                                                                                             aria-checked="true"
                                                                                             class="xxrKk">
-                                                                                            <input
-                                                                                                aria-hidden="false"
+                                                                                            <input aria-hidden="false"
                                                                                                 type="checkbox"
                                                                                                 wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_time">
                                                                                         </div>
@@ -2132,8 +2177,7 @@
                                                                                         <div role="checkbox"
                                                                                             aria-checked="true"
                                                                                             class="xxrKk">
-                                                                                            <input
-                                                                                                aria-hidden="false"
+                                                                                            <input aria-hidden="false"
                                                                                                 type="checkbox"
                                                                                                 wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.multi_select_multiple_choise">
                                                                                         </div>
@@ -2154,8 +2198,7 @@
                                                                                         <div role="checkbox"
                                                                                             aria-checked="false"
                                                                                             class="xxrKk">
-                                                                                            <input
-                                                                                                aria-hidden="false"
+                                                                                            <input aria-hidden="false"
                                                                                                 type="checkbox"
                                                                                                 wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_required">
                                                                                         </div>
@@ -2246,8 +2289,7 @@
                                                                                     <div role="checkbox"
                                                                                         aria-checked="true"
                                                                                         class="xxrKk">
-                                                                                        <input
-                                                                                            aria-hidden="false"
+                                                                                        <input aria-hidden="false"
                                                                                             type="checkbox"
                                                                                             wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_date">
                                                                                     </div>
@@ -2264,8 +2306,7 @@
                                                                                     <div role="checkbox"
                                                                                         aria-checked="true"
                                                                                         class="xxrKk">
-                                                                                        <input
-                                                                                            aria-hidden="false"
+                                                                                        <input aria-hidden="false"
                                                                                             type="checkbox"
                                                                                             wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_time">
                                                                                     </div>
@@ -2283,8 +2324,7 @@
                                                                                     <div role="checkbox"
                                                                                         aria-checked="true"
                                                                                         class="xxrKk">
-                                                                                        <input
-                                                                                            aria-hidden="false"
+                                                                                        <input aria-hidden="false"
                                                                                             type="checkbox"
                                                                                             wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.multi_select_multiple_choise">
                                                                                     </div>
@@ -2305,8 +2345,7 @@
                                                                                     <div role="checkbox"
                                                                                         aria-checked="false"
                                                                                         class="xxrKk">
-                                                                                        <input
-                                                                                            aria-hidden="false"
+                                                                                        <input aria-hidden="false"
                                                                                             type="checkbox"
                                                                                             wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_required">
                                                                                     </div>

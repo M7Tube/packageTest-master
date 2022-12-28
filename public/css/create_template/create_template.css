@@ -2445,7 +2445,7 @@ input[type="checkbox"] {
     color: rgb(31, 37, 51);
     line-height: 1.25rem;
     cursor: pointer;
-    padding: 0.6rem 0.875rem;
+    /* padding: 0.6rem 0.875rem; */
     min-height: 2rem;
     white-space: nowrap;
     user-select: none;

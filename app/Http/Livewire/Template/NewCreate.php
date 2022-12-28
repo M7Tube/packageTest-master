@@ -422,15 +422,27 @@ class NewCreate extends Component
     public function changeindex($oldIndex, $newIndex)
     {
         $temp = $this->title_page_questions[$oldIndex];
-        // $this->title_page_questions[$oldIndex] = $this->title_page_questions[$newIndex];
-        // $this->title_page_questions[$newIndex] = $temp;
         array_splice($this->title_page_questions, $oldIndex, 1);
         array_splice($this->title_page_questions, $newIndex, 0, [$temp]);
-        // dd($this->title_page_questions);
-        if ($oldIndex == $this->activeone)
-            $this->activeone = $newIndex;
-        if ($newIndex == $this->activeone)
-            $this->activeone = $oldIndex;
+        switch ($this->activeone) {
+            case $oldIndex:
+                $this->activeone = $newIndex;
+                break;
+            case $newIndex:
+                if ($oldIndex > $this->activeone)
+                    $this->activeone = $newIndex + 1;
+                if ($oldIndex < $this->activeone)
+                    $this->activeone = $newIndex - 1;
+                break;
+            default:
+                if (($oldIndex > $this->activeone) && ($newIndex > $this->activeone)) {
+                } elseif (($oldIndex < $this->activeone) && ($newIndex < $this->activeone)) {
+                } elseif ($oldIndex > $this->activeone)
+                    $this->activeone = $this->activeone + 1;
+                elseif ($oldIndex < $this->activeone)
+                    $this->activeone = $this->activeone - 1;
+                break;
+        }
         $this->updating();
     }
 
