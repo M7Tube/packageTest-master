@@ -158,7 +158,7 @@
                     </div>
                     <div>
                         <div class="fceloL mt-1">
-                            <input type="text" class="desc" style="font-size: 1.2rem;" placeholder="Title Page"
+                            <input type="text" class="desc" style="font-size: 1.2rem; width: 100%;" placeholder="Title Page"
                                 wire:model.lazy="title_page_title">
                         </div>
                     </div>
@@ -261,7 +261,7 @@
                                                         <div class="response-select-and-options hyJfGO  {{ $activeone == $loop->index ? 'un-hide' : 'hide' }}">
                                                             <div style="width: 100%;" data-bs-toggle="modal"
                                                                 data-bs-target="#TitlePageResponseModal"
-                                                                onclick="@this.set('activechangingresponse',{{ $loop->index }})">
+                                                                onclick="@this.set('activeone',{{ $loop->index }})">
                                                                 <div class="eWLEUv">
                                                                     <div>
                                                                         @if ($title_page_question['response'] == 2)
@@ -1853,7 +1853,7 @@
                                                                 <div class="response-select-and-options hyJfGO {{ $activeone == 'p_' . $loop->parent->index . '_' . $loop->index ? 'd-flex' : 'd-none' }}"
                                                                     >
                                                                     <div style="width: 100%;" data-bs-toggle="modal"
-                                                                        data-bs-target="#PageResponseModal">
+                                                                        data-bs-target="#PageResponseModal" onclick="@this.set('activechangingresponse',{{ $loop->index }})">
                                                                         <div class="eWLEUv">
                                                                             <div>
                                                                                 @if ($pageQuestion['response'] == 2)

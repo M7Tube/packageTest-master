@@ -176,43 +176,43 @@ class NewCreate extends Component
     public function setResponseValue($response)
     {
         if ($response == 1) {
-            $oldtitle = $this->title_page_questions[$this->activechangingresponse]['title'] ?? null;
-            unset($this->title_page_questions[$this->activechangingresponse]);
-            $this->title_page_questions[$this->activechangingresponse]['title'] = $oldtitle ?? null;
-            $this->title_page_questions[$this->activechangingresponse]['response'] = $response;
-            $this->title_page_questions[$this->activechangingresponse]['is_required'] = false;
-            $this->title_page_questions[$this->activechangingresponse]['text_answer_format'] = 0;
+            $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
+            unset($this->title_page_questions[$this->activeone]);
+            $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
+            $this->title_page_questions[$this->activeone]['response'] = $response;
+            $this->title_page_questions[$this->activeone]['is_required'] = false;
+            $this->title_page_questions[$this->activeone]['text_answer_format'] = 0;
         } elseif ($response == 2) {
-            $oldtitle = $this->title_page_questions[$this->activechangingresponse]['title'] ?? null;
-            unset($this->title_page_questions[$this->activechangingresponse]);
-            $this->title_page_questions[$this->activechangingresponse]['title'] = $oldtitle ?? null;
-            $this->title_page_questions[$this->activechangingresponse]['response'] = $response;
-            $this->title_page_questions[$this->activechangingresponse]['is_required'] = false;
-            $this->title_page_questions[$this->activechangingresponse]['docNum_format'] = '000001';
+            $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
+            unset($this->title_page_questions[$this->activeone]);
+            $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
+            $this->title_page_questions[$this->activeone]['response'] = $response;
+            $this->title_page_questions[$this->activeone]['is_required'] = false;
+            $this->title_page_questions[$this->activeone]['docNum_format'] = '000001';
         } elseif ($response == 5) {
-            $oldtitle = $this->title_page_questions[$this->activechangingresponse]['title'] ?? null;
-            unset($this->title_page_questions[$this->activechangingresponse]);
-            $this->title_page_questions[$this->activechangingresponse]['title'] = $oldtitle ?? null;
-            $this->title_page_questions[$this->activechangingresponse]['response'] = $response;
-            $this->title_page_questions[$this->activechangingresponse]['is_required'] = false;
-            $this->title_page_questions[$this->activechangingresponse]['is_date'] = false;
-            $this->title_page_questions[$this->activechangingresponse]['is_time'] = false;
+            $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
+            unset($this->title_page_questions[$this->activeone]);
+            $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
+            $this->title_page_questions[$this->activeone]['response'] = $response;
+            $this->title_page_questions[$this->activeone]['is_required'] = false;
+            $this->title_page_questions[$this->activeone]['is_date'] = false;
+            $this->title_page_questions[$this->activeone]['is_time'] = false;
         } elseif ($response == 7) {
-            $oldtitle = $this->title_page_questions[$this->activechangingresponse]['title'] ?? null;
-            unset($this->title_page_questions[$this->activechangingresponse]);
-            $this->title_page_questions[$this->activechangingresponse]['title'] = $oldtitle ?? null;
-            $this->title_page_questions[$this->activechangingresponse]['response'] = $response;
-            $this->title_page_questions[$this->activechangingresponse]['is_required'] = false;
-            $this->title_page_questions[$this->activechangingresponse]['multi_select_multiple_choise'] = false;
-            if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activechangingresponse])) {
-                $this->title_page_questions[$this->activechangingresponse]['multiple_choice'] = [['title' => null, 'color' => '#13855f', 'font_color' => '#000000']];
+            $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
+            unset($this->title_page_questions[$this->activeone]);
+            $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
+            $this->title_page_questions[$this->activeone]['response'] = $response;
+            $this->title_page_questions[$this->activeone]['is_required'] = false;
+            $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
+            if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
+                $this->title_page_questions[$this->activeone]['multiple_choice'] = [['title' => null, 'color' => '#13855f', 'font_color' => '#000000']];
             }
         } else {
-            $oldtitle = $this->title_page_questions[$this->activechangingresponse]['title'] ?? null;
-            unset($this->title_page_questions[$this->activechangingresponse]);
-            $this->title_page_questions[$this->activechangingresponse]['title'] = $oldtitle ?? null;
-            $this->title_page_questions[$this->activechangingresponse]['response'] = $response;
-            $this->title_page_questions[$this->activechangingresponse]['is_required'] = false;
+            $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
+            unset($this->title_page_questions[$this->activeone]);
+            $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
+            $this->title_page_questions[$this->activeone]['response'] = $response;
+            $this->title_page_questions[$this->activeone]['is_required'] = false;
         }
         $this->updating();
     }
