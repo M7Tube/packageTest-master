@@ -225,7 +225,13 @@
                                                                             onclick="@this.set('activeone', {{ $loop->index }});">
                                                                             @if ($title_page_question['response'] == 10)
                                                                                 <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
-                                                                                    wire:model.lazy="title_page_questions.{{ $qkey }}.title"></textarea>
+                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.title" oninput="auto_grow(this);"></textarea>
+                                                                                <script>
+                                                                                    function auto_grow(element) {
+                                                                                        element.style.height = "1px";
+                                                                                        element.style.height = (element.scrollHeight) + "px";
+                                                                                    }
+                                                                                </script>
                                                                             @else
                                                                                 <input
                                                                                     class="question-title-focus eVpkze w-100 h-100 question-title"
@@ -352,7 +358,8 @@
                                                                                 @if (!empty($title_page_questions[$loop->index]['multiple_choice']))
                                                                                     @forelse ($title_page_questions[$loop->index]['multiple_choice'] as $responsKey => $respons)
                                                                                         <div class="nDePA mx-1"
-                                                                                            style="color:{{ $this->adjustBrightness($respons['color'], -0.5) }}; background-color:{{ $respons['color'] }};">
+                                                                                            style="color:{{ $respons['font_color'] }}; background-color:{{ $respons['color'] }};"
+                                                                                            {{-- style="color:{{ $this->adjustBrightness($respons['color'], -0.5) }}; background-color:{{ $respons['color'] }};" --}}>
                                                                                             {{ $respons['title'] ?? '' }}
                                                                                         </div>
                                                                                     @empty
@@ -1713,8 +1720,7 @@
                                                                     <button role="button" class="kDSJkL"
                                                                         style="color: rgb(255, 255, 255);
                                                                                 background-color: rgb(103, 93, 244); width: 85.75px"
-                                                                        {{-- wire:click.prevent="save_multiple_choise({{ $activeone }})" --}}
-                                                                        data-bs-dismiss="modal">
+                                                                        {{-- wire:click.prevent="save_multiple_choise({{ $activeone }})" --}} data-bs-dismiss="modal">
                                                                         Save
                                                                     </button>
                                                                     <button role="button" class="kDSJkL"
