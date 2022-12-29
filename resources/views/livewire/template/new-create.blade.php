@@ -268,7 +268,7 @@
                                                             class="response-select-and-options hyJfGO  {{ $activeone == $loop->index ? 'un-hide' : 'hide' }}">
                                                             <div style="width: 100%;" data-bs-toggle="modal"
                                                                 data-bs-target="#TitlePageResponseModal"
-                                                                onclick="@this.set('activeone',{{ $loop->index }})">
+                                                                onclick="@this.set('activechangingresponse',{{ $loop->index }})">
                                                                 <div class="eWLEUv">
                                                                     <div>
                                                                         @if ($title_page_question['response'] == 2)
@@ -1720,7 +1720,7 @@
                                                                     <button role="button" class="kDSJkL"
                                                                         style="color: rgb(255, 255, 255);
                                                                                 background-color: rgb(103, 93, 244); width: 85.75px"
-                                                                        {{-- wire:click.prevent="save_multiple_choise({{ $activeone }})" --}} data-bs-dismiss="modal">
+                                                                        wire:click.prevent="edit_save_multiple_choise({{ $activeone }})" data-bs-dismiss="modal">
                                                                         Save
                                                                     </button>
                                                                     <button role="button" class="kDSJkL"

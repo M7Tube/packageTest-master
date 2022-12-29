@@ -29,6 +29,7 @@ class NewCreate extends Component
     public $uploading;
     public $optional_uploading;
     public $new_template;
+    public $current_multiple_choise;
     protected $queryString = ['activeone', 'pageactiveone', 'pagequestionactiveone', 'template_id', 'activechangingresponse', 'new_template'];
     protected $listeners = [
         'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex',
@@ -226,6 +227,7 @@ class NewCreate extends Component
         $this->title_page_questions[$this->activeone]['is_required'] = false;
         $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
         $this->title_page_questions[$this->activeone]['multiple_choice'] = $this->common_multiple_choise_options[$option];
+        $this->current_multiple_choise = $this->title_page_questions[$this->activeone]['multiple_choice'];
         $this->updating();
     }
 
@@ -322,6 +324,13 @@ class NewCreate extends Component
                 break;
             }
         }
+    }
+
+    public function edit_save_multiple_choise($questionKey)
+    {
+        $key = array_search($this->current_multiple_choise, $this->common_multiple_choise_options);
+        $this->common_multiple_choise_options[$key] = $this->title_page_questions[$questionKey]['multiple_choice'];
+        $this->updating();
     }
 
     public function page_save_multiple_choise($pageKey, $questionKey)
