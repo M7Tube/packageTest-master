@@ -225,7 +225,7 @@
                                                                             onclick="@this.set('activeone', {{ $loop->index }});">
                                                                             @if ($title_page_question['response'] == 10)
                                                                                 <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
-                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.title" oninput="auto_grow(this);"></textarea>
+                                                                                    wire:model.lazy="title_page_questions.{{ $qkey }}.title" oninput="auto_grow(this);"></textarea>
                                                                                 <script>
                                                                                     function auto_grow(element) {
                                                                                         element.style.height = "1px";
@@ -1720,7 +1720,8 @@
                                                                     <button role="button" class="kDSJkL"
                                                                         style="color: rgb(255, 255, 255);
                                                                                 background-color: rgb(103, 93, 244); width: 85.75px"
-                                                                        wire:click.prevent="edit_save_multiple_choise({{ $activeone }})" data-bs-dismiss="modal">
+                                                                        wire:click.prevent="edit_save_multiple_choise({{ $activeone }})"
+                                                                        data-bs-dismiss="modal">
                                                                         Save
                                                                     </button>
                                                                     <button role="button" class="kDSJkL"
@@ -1781,7 +1782,8 @@
                             <div style="flex: 2 1 0%;">
                                 <div class="fceloL mt-1">
                                     <input type="text" class="page-title" placeholder="Untitled page"
-                                        wire:model.lazy="pages.{{ $loop->index }}.title">
+                                        wire:model="pages.{{ $loop->index }}.title">
+                                    {{-- .lazy --}}
                                 </div>
                             </div>
                             <div>
@@ -1852,8 +1854,7 @@
                                         <div class="kLpTzB pagewrapper{{ $loop->index }}" onclick="focusOnPage()"
                                             {{-- {{ str_contains($this->activeone, 'p_') ? 'wire:ignore.self' : 'wire:ignore' }} --}}>
                                             @forelse ($page['question'] as $pageQuestionkey => $pageQuestion)
-                                                <div class="hkphPX page_dragable"
-                                                    onclick="@this.set('activeone', 'p_' + {{ $loop->parent->index }} + '_' + {{ $loop->index }});@this.set('pageactiveone', {{ $loop->parent->index }});@this.set('pagequestionactiveone', {{ $loop->index }});">
+                                                <div class="hkphPX page_dragable">
                                                     <div class="REnvQ">
                                                         <div class="kxrOmS cuypVQ">
                                                             <div class="dBZFks">
@@ -1877,23 +1878,47 @@
                                                                             {{ $pageQuestion['is_required'] == 1 ? '*' : '' }}
                                                                         </span>
                                                                         <div class="bBjJyf">
-                                                                            {{-- <div class="eiFrFc"
-                                                                                id="p{{ $pagekey }}{{ $pageQuestionkey }}">
-                                                                            </div> --}}
                                                                             <div
                                                                                 style="display: flex; align-items: center;">
-                                                                                @if ($pageQuestion['response'] == 10)
-                                                                                    <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
-                                                                                        wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"></textarea>
-                                                                                @else
-                                                                                    <div class="eAfucY">
+                                                                                <div class="eAfucY"
+                                                                                    onclick="@this.set('pageactiveone', {{ $loop->parent->index }});@this.set('pagequestionactiveone', {{ $loop->index }});">
+                                                                                    {{-- @this.set('activeone', 'p_' + {{ $loop->parent->index }} + '_' + {{ $loop->index }}); --}}
+                                                                                    @if ($pageQuestion['response'] == 10)
+                                                                                        <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
+                                                                                            wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"
+                                                                                            oninput="auto_grow2(this);"></textarea>
+                                                                                        <script>
+                                                                                            function auto_grow2(element) {
+                                                                                                element.style.height = "1px";
+                                                                                                element.style.height = (element.scrollHeight) + "px";
+                                                                                            }
+                                                                                        </script>
+                                                                                    @else
                                                                                         <input
                                                                                             class="question-title-focus eVpkze w-100 h-100 question-title"
                                                                                             placeholder="Write a Question ..."
                                                                                             wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title">
+                                                                                    @endif
+                                                                                </div>
+                                                                                @if ($pagequestionactiveone == $pageQuestionkey)
+                                                                                    <div style="z-index: 1;"
+                                                                                        class="kSUFwR"
+                                                                                        wire:click="page_give_active_one('null')">
+                                                                                        <button type="button"
+                                                                                            class="jvZSBO">
+                                                                                            <svg viewBox="0 0 24 24"
+                                                                                                width="24"
+                                                                                                height="24"
+                                                                                                class="hFCnYj"
+                                                                                                focusable="false">
+                                                                                                <path fill="#545f70"
+                                                                                                    fill-rule="nonzero"
+                                                                                                    d="M8.364 16.075L3.59 11.687 2 13.149 8.364 19 22 6.463 20.41 5z">
+                                                                                                </path>
+                                                                                            </svg>
+                                                                                        </button>
                                                                                     </div>
                                                                                 @endif
-
                                                                             </div>
                                                                             {{-- <script>
                                                                                 $(document).on("dblclick", "#p" + {{ $pagekey }} + {{ $pageQuestionkey }}, function() {
@@ -1904,10 +1929,10 @@
                                                                     </div>
                                                                 </div>
                                                                 <div
-                                                                    class="response-select-and-options hyJfGO {{ $activeone == 'p_' . $loop->parent->index . '_' . $loop->index ? 'd-flex' : 'd-none' }}">
+                                                                    class="response-select-and-options hyJfGO {{ $pagequestionactiveone == $loop->index ? 'un-hide' : 'hide' }}">
                                                                     <div style="width: 100%;" data-bs-toggle="modal"
                                                                         data-bs-target="#PageResponseModal"
-                                                                        onclick="@this.set('activechangingresponse',{{ $loop->index }})">
+                                                                        onclick="@this.set('pageactiveone', {{ $loop->parent->index }});@this.set('pagequestionactiveone', {{ $loop->index }});">
                                                                         <div class="eWLEUv">
                                                                             <div>
                                                                                 @if ($pageQuestion['response'] == 2)
@@ -2103,7 +2128,146 @@
                                                                             </button>
                                                                         </div>
                                                                     </div>
-                                                                    <div wire:ignore.self
+                                                                    <ul class="dropdown-menu">
+                                                                        @if ($pageQuestion['response'] == 2)
+                                                                            <div class="epicTj"
+                                                                                style="margin-left: 5px;">
+                                                                                <div class="iBzfYz">
+                                                                                    <li>
+                                                                                        <a class="dropdown-item">
+                                                                                            <span
+                                                                                                style="margin-top:50px; "></span>
+                                                                                            Format:
+                                                                                            <div class="ORzaJ knjhoD">
+                                                                                                <input type="text"
+                                                                                                    class="docNum_format"
+                                                                                                    wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.docNum_format" />
+                                                                                            </div>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </div>
+                                                                            </div>
+                                                                            <li>
+                                                                                <hr class="dropdown-divider">
+                                                                            </li>
+                                                                        @elseif($pageQuestion['response'] == 1)
+                                                                            <div class="epicTj"
+                                                                                style="margin-left: 5px;">
+                                                                                <div class="iBzfYz">
+                                                                                    <li>
+                                                                                        <a class="dropdown-item">
+                                                                                            Format:
+                                                                                            <select
+                                                                                                wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.text_answer_format"
+                                                                                                class="text_answer_format">
+                                                                                                <option
+                                                                                                    value="0">
+                                                                                                    {{ __('Short answer') }}
+                                                                                                </option>
+                                                                                                <option
+                                                                                                    value="1">
+                                                                                                    {{ __('Long answer') }}
+                                                                                                </option>
+                                                                                            </select>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </div>
+                                                                            </div>
+                                                                            <li>
+                                                                                <hr class="dropdown-divider">
+                                                                            </li>
+                                                                        @elseif($pageQuestion['response'] == 5)
+                                                                            <div class="epicTj"
+                                                                                style="margin-left: 5px;">
+                                                                                <div class="iBzfYz">
+                                                                                    <li>
+                                                                                        <a class="dropdown-item">
+                                                                                            <input aria-hidden="false"
+                                                                                                type="checkbox"
+                                                                                                wire:model.defer="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_date">
+                                                                                            Date
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </div>
+                                                                            </div>
+                                                                            <li>
+                                                                                <hr class="dropdown-divider">
+                                                                            </li>
+
+                                                                            <div class="epicTj"
+                                                                                style="margin-left: 5px;">
+                                                                                <div class="iBzfYz">
+                                                                                    <li>
+                                                                                        <a class="dropdown-item">
+                                                                                            <input aria-hidden="false"
+                                                                                                type="checkbox"
+                                                                                                wire:model.defer="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_time">
+                                                                                            Time
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </div>
+                                                                            </div>
+                                                                            <li>
+                                                                                <hr class="dropdown-divider">
+                                                                            </li>
+                                                                        @elseif($pageQuestion['response'] == 7)
+                                                                            <div class="epicTj"
+                                                                                style="margin-left: 5px;">
+                                                                                <div class="iBzfYz">
+                                                                                    <li>
+                                                                                        <a class="dropdown-item">
+                                                                                            <input aria-hidden="false"
+                                                                                                type="checkbox"
+                                                                                                wire:model.defer="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.multi_select_multiple_choise">
+                                                                                            Multiple Selection
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </div>
+                                                                            </div>
+                                                                            <li>
+                                                                                <hr class="dropdown-divider">
+                                                                            </li>
+                                                                        @endif
+                                                                        @if ($pageQuestion['response'] != 10)
+                                                                            <div class="epicTj"
+                                                                                style="margin-left: 5px;">
+                                                                                <div class="iBzfYz">
+                                                                                    <li>
+                                                                                        <a class="dropdown-item">
+                                                                                            <input aria-hidden="false"
+                                                                                                type="checkbox"
+                                                                                                wire:model.defer="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_required">
+                                                                                            Required
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </div>
+                                                                            </div>
+                                                                            <li>
+                                                                                <hr class="dropdown-divider">
+                                                                            </li>
+                                                                        @endif
+                                                                        <div class="epicTj">
+                                                                            <div class="iBzfYz">
+                                                                                <li>
+                                                                                    <a class="dropdown-item"
+                                                                                        wire:click.prevent="normal_page_delete_question({{ $loop->parent->index }},{{ $loop->index }})">
+                                                                                        <svg width="21"
+                                                                                            height="21"
+                                                                                            viewBox="0 0 14 14"
+                                                                                            focusable="false">
+                                                                                            <path
+                                                                                                d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                                                fill="#545f70"
+                                                                                                fill-rule="nonzero">
+                                                                                            </path>
+                                                                                        </svg>
+                                                                                        Delete
+                                                                                    </a>
+                                                                                </li>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ul>
+                                                                    {{-- <div wire:ignore.self
                                                                         class="tether-element dropdown-menu tether-element-attached-bottom tether-element-attached-right tether-target-attached-top tether-target-attached-center tether-enabled tether-out-of-bounds tether-out-of-bounds-bottom"
                                                                         style="z-index: 20; top: 0px; position: absolute; transform: translateX(375.733px) translateY(216.25px) translateZ(0px); left: 0px;">
                                                                         <div class="cKwbqr">
@@ -2237,7 +2401,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> --}}
                                                                 </div>
 
                                                             </div>
@@ -2368,7 +2532,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @if ($activeone == 'p_' . $loop->parent->index . '_' . $loop->index)
+                                                    @if ($pagequestionactiveone == $loop->index)
                                                         <div class="fyPxKd elTKUx"></div>
                                                         <div class="fmcVJh jIirFj"></div>
                                                         <div class="fmcVJh fPLdzz"></div>
@@ -2688,7 +2852,7 @@
                                                                 @forelse ($common_multiple_choise_options as $rKey => $common_multiple_choise_option)
                                                                     <div class="gupkBu eCBvzO">
                                                                         <div class="evLYbt"
-                                                                            wire:click.prevent="PageSetResponseValueFromReadyOptions({{ $pageactiveone }},{{ $pagequestionactiveone }},7,{{ $loop->index }})"
+                                                                            wire:click.prevent="PageSetResponseValueFromReadyOptions(7,{{ $loop->index }})"
                                                                             data-bs-dismiss="modal">
                                                                             <div class="fyczhl">
                                                                                 @forelse ($common_multiple_choise_option as $record)
@@ -2765,6 +2929,7 @@
                 </div>
             </div>
         </div>
+
         <div class="modal fade m-0 p-0" id="pageEditMultipleChoiseOptionModal" tabindex="-1"
             aria-labelledby="pageEditMultipleChoiseOptionModalLabel" aria-hidden="true" wire:ignore.self>
             <div class="modal-dialog modal-fullscreen">
@@ -2788,29 +2953,19 @@
                                 </div>
                                 <div wire:loading.remove wire:target="pageEditMultipleChoiseOptionModal">
                                     <div class="jOMNlj">
-                                        <div class="row mb-5">
-                                            <div class="col-8">
+                                        <div class="row mb-2">
+                                            <div class="col-12">
                                                 <h4 class="lhPVYY">
                                                     Multiple choice responses
                                                 </h4>
                                             </div>
-                                            <div class="col-4">
-                                                @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'][0]['title']))
-                                                    <a class="ggbIJY2 d-flex align-items-right justify-content-end"
-                                                        style="color: rgb(103, 93, 244);"
-                                                        wire:click.prevent="page_save_multiple_choise({{ $pageactiveone }},{{ $pagequestionactiveone }})"
-                                                        data-bs-dismiss="modal">
-                                                        Save
-                                                    </a>
-                                                @else
-                                                    <a class="ggbIJY2 d-flex align-items-right justify-content-end"
-                                                        style="color: gray;">
-                                                        Save
-                                                    </a>
-                                                @endif
+                                            <div class="grGybe">
+                                                <div class="fDpeEn dZoNkv">
+                                                    e.g. Yes, No, N/A
+                                                </div>
                                             </div>
                                         </div>
-                                        <div>
+                                        <div class="mb-3">
                                             <div class="kxrOmS eqGxMu">
                                                 <div class="bgiTWR2">
                                                     <div class="kGgXUq">
@@ -2819,11 +2974,6 @@
                                                             <span class="LBNnk"></span>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="kGgXUq2"
-                                                        style="border-left: none; text-align:right; color:blue;"
-                                                        wire:click.prevent="clear_new_response_option({{ $activeone }})">
-                                                        Reset
-                                                    </div> --}}
                                                 </div>
                                             </div>
                                             @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['response']))
@@ -2831,7 +2981,7 @@
                                                     @if (!empty($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice']))
                                                         @forelse ($pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'] as $responsKey => $respons)
                                                             <div class="kLpTzB multible_choise_wrapper"
-                                                                style="border-bottom: {{ !$loop->last ? '1px solid rgb(191, 198, 212)' : '' }};">
+                                                                style="border-bottom: 1px solid rgb(191, 198, 212);">
                                                                 <div class="hkphPX dragable">
                                                                     <div class="REnvQ">
                                                                         <div class="kxrOmS cuypVQ">
@@ -2862,8 +3012,7 @@
                                                                                                         class="eVpkze w-100 h-100 question-title"
                                                                                                         placeholder="Response title"
                                                                                                         style="font-size: 12.5px;"
-                                                                                                        wire:model="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.title"
-                                                                                                        {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
+                                                                                                        wire:model="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.title">
                                                                                                 </div>
                                                                                                 <input type="color"
                                                                                                     wire:model="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.color"
@@ -2975,26 +3124,22 @@
                                                     @endif
                                                 @endif
                                             @endif
-                                            <div class="kxrOmS eqGxMu">
-                                                <div class="bgiTWR3">
-                                                    <div class="kGgXUq">
-                                                        <div class="bdOmts">
-                                                            <span class="LBNnk"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="kGgXUq2">
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
+                                        <a style="text-decoration: none; color: rgb(103, 93, 244);font-size: 12.5px;"
+                                            wire:click.prevent="page_add_new_response">
+                                            <span style="font-size: 14px;font-weight: 800;">+</span>
+                                            Response
+                                        </a>
                                     </div>
-                                    <div class="fhTZet">
-                                        <button type="button" class="ggbIJY"
-                                            wire:click.prevent="page_add_new_response()">
-                                            + Add Response
+                                    <div class="fhTZet" style="margin-left: 5px">
+                                        <button role="button" class="kDSJkL"
+                                            style="color: rgb(255, 255, 255); background-color: rgb(103, 93, 244); width: 85.75px"
+                                            wire:click.prevent="page_edit_save_multiple_choise"
+                                            data-bs-dismiss="modal">
+                                            Save
                                         </button>
                                         <button role="button" class="kDSJkL" style="margin-left:10px;"
-                                            wire:click.prevent="page_clear_new_response_option()"
+                                            wire:click.prevent="page_clear_new_response_option"
                                             data-bs-dismiss="modal">
                                             Cancel
                                         </button>

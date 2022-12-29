@@ -38,8 +38,8 @@ class NewCreate extends Component
     public function mount()
     {
         $this->activeone = 'null';
-        $this->pageactiveone = null;
-        $this->pagequestionactiveone = null;
+        $this->pageactiveone = 'null';
+        $this->pagequestionactiveone = 'null';
         $this->option = [
             [
                 [
@@ -240,48 +240,48 @@ class NewCreate extends Component
         $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['is_required'] = false;
         $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multi_select_multiple_choise'] = false;
         $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'] = $this->common_multiple_choise_options[$option];
+        $this->current_multiple_choise = $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'];
         $this->updating();
     }
 
     public function PageSetResponseValue($response)
     {
-        $arr = explode('_', $this->activeone);
         if ($response == 1) {
-            $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'] ?? null;
-            unset($this->pages[$arr[1]]['question'][$arr[2]]);
-            $this->pages[$arr[1]]['question'][$arr[2]]['title'] = $oldtitle ?? null;
-            $this->pages[$arr[1]]['question'][$arr[2]]['response'] = $response;
-            $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
-            $this->pages[$arr[1]]['question'][$arr[2]]['text_answer_format'] = 0;
+            $oldtitle = $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] ?? null;
+            unset($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]);
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] = $oldtitle ?? null;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['response'] = $response;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['is_required'] = false;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['text_answer_format'] = 0;
         } elseif ($response == 2) {
-            $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'] ?? null;
-            unset($this->pages[$arr[1]]['question'][$arr[2]]);
-            $this->pages[$arr[1]]['question'][$arr[2]]['title'] = $oldtitle ?? null;
-            $this->pages[$arr[1]]['question'][$arr[2]]['response'] = $response;
-            $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
-            $this->pages[$arr[1]]['question'][$arr[2]]['docNum_format'] = '000001';
+            $oldtitle = $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] ?? null;
+            unset($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]);
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] = $oldtitle ?? null;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['response'] = $response;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['is_required'] = false;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['docNum_format'] = '000001';
         } elseif ($response == 5) {
-            $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'] ?? null;
-            unset($this->pages[$arr[1]]['question'][$arr[2]]);
-            $this->pages[$arr[1]]['question'][$arr[2]]['title'] = $oldtitle ?? null;
-            $this->pages[$arr[1]]['question'][$arr[2]]['response'] = $response;
-            $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
-            $this->pages[$arr[1]]['question'][$arr[2]]['is_date'] = false;
-            $this->pages[$arr[1]]['question'][$arr[2]]['is_time'] = false;
+            $oldtitle = $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] ?? null;
+            unset($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]);
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] = $oldtitle ?? null;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['response'] = $response;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['is_required'] = false;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['is_date'] = false;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['is_time'] = false;
         } elseif ($response == 7) {
-            $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'] ?? null;
-            unset($this->pages[$arr[1]]['question'][$arr[2]]);
-            $this->pages[$arr[1]]['question'][$arr[2]]['title'] = $oldtitle ?? null;
-            $this->pages[$arr[1]]['question'][$arr[2]]['response'] = $response;
-            $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
-            $this->pages[$arr[1]]['question'][$arr[2]]['multi_select_multiple_choise'] = false;
+            $oldtitle = $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] ?? null;
+            unset($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]);
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] = $oldtitle ?? null;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['response'] = $response;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['is_required'] = false;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multi_select_multiple_choise'] = false;
             $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'] = [['title' => null, 'color' => '#13855f', 'font_color' => '#000000']];
         } else {
-            $oldtitle = $this->pages[$arr[1]]['question'][$arr[2]]['title'] ?? null;
-            unset($this->pages[$arr[1]]['question'][$arr[2]]);
-            $this->pages[$arr[1]]['question'][$arr[2]]['title'] = $oldtitle ?? null;
-            $this->pages[$arr[1]]['question'][$arr[2]]['response'] = $response;
-            $this->pages[$arr[1]]['question'][$arr[2]]['is_required'] = false;
+            $oldtitle = $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] ?? null;
+            unset($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]);
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] = $oldtitle ?? null;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['response'] = $response;
+            $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['is_required'] = false;
         }
         $this->updating();
     }
@@ -298,15 +298,15 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    public function PageSetResponseValueFromReadyOptions($pageSKey, $questionSKey, $responseid, $optionid)
+    public function PageSetResponseValueFromReadyOptions($responseid, $optionid)
     {
-        $oldtitle = $this->pages[$pageSKey]['question'][$questionSKey]['title'] ?? null;
-        unset($this->pages[$pageSKey]['question'][$questionSKey]);
-        $this->pages[$pageSKey]['question'][$questionSKey]['title'] = $oldtitle ?? null;
-        $this->pages[$pageSKey]['question'][$questionSKey]['is_required'] = false;
-        $this->pages[$pageSKey]['question'][$questionSKey]['multi_select_multiple_choise'] = false;
-        $this->pages[$pageSKey]['question'][$questionSKey]['response'] = $responseid;
-        $this->pages[$pageSKey]['question'][$questionSKey]['multiple_choice'] = $this->common_multiple_choise_options[$optionid];
+        $oldtitle = $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] ?? null;
+        unset($this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]);
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['title'] = $oldtitle ?? null;
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['is_required'] = false;
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multi_select_multiple_choise'] = false;
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['response'] = $responseid;
+        $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'] = $this->common_multiple_choise_options[$optionid];
         $this->updating();
     }
 
@@ -347,6 +347,13 @@ class NewCreate extends Component
                 break;
             }
         }
+    }
+
+    public function page_edit_save_multiple_choise()
+    {
+        $key = array_search($this->current_multiple_choise, $this->common_multiple_choise_options);
+        $this->common_multiple_choise_options[$key] = $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice'];
+        $this->updating();
     }
 
     public function increment()
@@ -519,6 +526,13 @@ class NewCreate extends Component
         $this->updating();
     }
 
+    public function page_give_active_one($value)
+    {
+        $this->activeone = $value;
+        $this->pageactiveone = $value;
+        $this->pagequestionactiveone = $value;
+        $this->updating();
+    }
 
     public function delete_optional_image()
     {
