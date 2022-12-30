@@ -3388,9 +3388,11 @@ input[type="checkbox"] {
         border: 1px solid transparent;
         background: transparent none repeat scroll 0% 0%;
         margin-bottom: 3px;
+        font-weight: bold;
     }
     .desc::placeholder {
         color: #313235;
+        font-weight: bold;
     }
 
     .big-title-desc {

@@ -3,6 +3,7 @@
     <div class="mt-5" style="margin-bottom: 100%;">
         <div class="container-fluid">
             <div class="row">
+                {{-- icon section --}}
                 <div class="col-6" wire:loading.remove wire:target="icon">
                     @if (!$icon)
                         <div class="col-12 col-md-3 logo-alignment">
@@ -132,14 +133,15 @@
                         </label>
                     </div>
                 </div>
+                {{-- title&desc section --}}
                 <div class="col-12 mt-4" style="margin-left:1.6rem!important;margin-right:1.6rem!important;">
                     <div class="d-flex align-items-start justify-content-start">
                         <input type="text" style="font-family: sans-serif, 'Font Awesome 5 Free'" for="title"
                             wire:model.lazy="title" class="title mt-2" placeholder="Your template title" />
                     </div>
                     <div class="d-flex align-items-start justify-content-start">
-                        <input type="text" for="title" wire:model.lazy="desc" class="mt-2 desc"
-                            placeholder="Add a description" />
+                        <input type="text" style="font-family: sans-serif, 'Font Awesome 5 Free'" for="title"
+                            wire:model.lazy="desc" class="mt-2 desc" placeholder="Add a description" />
                     </div>
                 </div>
             </div>
@@ -158,7 +160,8 @@
                     </div>
                     <div>
                         <div class="fceloL mt-1">
-                            <input type="text" class="desc" style="font-size: 1.2rem; width: 110%;"
+                            <input type="text" class="desc"
+                                style="font-size: 1.2rem; width: 110%; font-family: sans-serif, 'Font Awesome 5 Free"
                                 placeholder="Title Page" wire:model.lazy="title_page_title">
                         </div>
                     </div>
@@ -193,6 +196,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- titlepage section --}}
                                 <div class="kLpTzB wrapper" {{-- onclick="focusOnTitlePage()" {{ str_contains($this->activeone, 'p_') ? 'wire:ignore' : 'wire:ignore.self' }}  --}}>
                                     @forelse ($title_page_questions as $qkey => $title_page_question)
                                         <div class="hkphPX dragable">
@@ -264,6 +268,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        {{-- responseview section --}}
                                                         <div
                                                             class="response-select-and-options hyJfGO  {{ $activeone == $loop->index ? 'un-hide' : 'hide' }}">
                                                             <div style="width: 100%;" data-bs-toggle="modal"
@@ -448,6 +453,7 @@
                                                                     </button>
                                                                 </div>
                                                             </div>
+                                                            {{-- mobiledropdown section --}}
                                                             <ul class="dropdown-menu">
                                                                 @if ($title_page_question['response'] == 2)
                                                                     <div class="epicTj" style="margin-left: 5px;">
@@ -455,7 +461,7 @@
                                                                             <li>
                                                                                 <a class="dropdown-item">
                                                                                     <span
-                                                                                        style="margin-top:50px; "></span>
+                                                                                        style="margin-top:50px;"></span>
                                                                                     Format:
                                                                                     <div class="ORzaJ knjhoD">
                                                                                         <input type="text"
@@ -532,7 +538,7 @@
                                                                                 <a class="dropdown-item">
                                                                                     <input aria-hidden="false"
                                                                                         type="checkbox"
-                                                                                        wire:model.defer="title_page_questions.{{ $qkey }}.is_required">
+                                                                                        wire:model.lazy="title_page_questions.{{ $qkey }}.is_required">
                                                                                     Required
                                                                                 </a>
                                                                             </li>
@@ -677,7 +683,6 @@
                                                                         </div>
                                                                     </div>
                                                                 @endif
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1610,13 +1615,20 @@
                                     </path>
                                 </svg>
                             </div>
-                            <div style="flex: 2 1 0%;">
+                            {{-- <div style="flex: 2 1 0%;">
                                 <div class="fceloL mt-1">
-                                    <input type="text" class="page-title" placeholder="Untitled page"
+                                    <input type="text" class="desc" style="font-family: sans-serif, 'Font Awesome 5 Free'" placeholder="Untitled page"
                                         wire:model="pages.{{ $loop->index }}.title">
-                                    {{-- .lazy --}}
-                                </div>
+                                    </div>
+                                </div> --}}
+                            {{-- .lazy --}}
+                            {{-- <div> --}}
+                            <div class="fceloL mt-1 flex: 2 1 0%;">
+                                <input type="text" class="desc"
+                                    style="font-size: 1.2rem; width: 100%; font-family: sans-serif, 'Font Awesome 5 Free"
+                                    placeholder="Untitled page" wire:model.lazy="pages.{{ $loop->index }}.title">
                             </div>
+                            {{-- </div> --}}
                             <div>
                                 <button type="button" class="jvZSBO" data-bs-toggle="dropdown"
                                     aria-expanded="false">
