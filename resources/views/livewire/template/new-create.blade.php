@@ -2423,9 +2423,9 @@
                                                 filter: ".last-section",
                                                 draggable: ".page_dragable",
                                                 handle: ".page_drag-icon",
-                                                dragClass: "sortable-chosen",
-                                                ghostClass: "sortable-chosen",
-                                                chosenClass: "sortable-chosen",
+                                                // dragClass: "sortable-chosen",
+                                                // ghostClass: "sortable-chosen",
+                                                // chosenClass: "sortable-chosen",
                                             });
                                         </script>
                                     </div>

@@ -463,28 +463,25 @@ class NewCreate extends Component
     public function page_changeindex($oldIndex, $newIndex, $page)
     {
         $temp = $this->pages[$page]['question'][$oldIndex];
-        // $this->pages[$page]['question'][$oldIndex] = $this->pages[$page]['question'][$newIndex];
-        // $this->pages[$page]['question'][$newIndex] = $temp;
         array_splice($this->pages[$page]['question'], $oldIndex, 1);
         array_splice($this->pages[$page]['question'], $newIndex, 0, [$temp]);
-        $arr = explode('_', $this->activeone);
-        switch ($arr[2]) {
+        switch ($this->pagequestionactiveone) {
             case $oldIndex:
-                $this->activeone = 'p_' . $arr[1] . '_' . $newIndex;
+                $this->pagequestionactiveone =$newIndex;
                 break;
             case $newIndex:
-                if ($oldIndex > $arr[2])
-                    $this->activeone = 'p_' . $arr[1] . '_' . $newIndex + 1;
-                if ($oldIndex < $arr[2])
-                    $this->activeone = 'p_' . $arr[1] . '_' . $newIndex - 1;
+                if ($oldIndex > $this->pagequestionactiveone)
+                    $this->pagequestionactiveone =$newIndex + 1;
+                if ($oldIndex < $this->pagequestionactiveone)
+                    $this->pagequestionactiveone =$newIndex - 1;
                 break;
             default:
-                if (($oldIndex > $arr[2]) && ($newIndex > $arr[2])) {
-                } elseif (($oldIndex < $arr[2]) && ($newIndex < $arr[2])) {
-                } elseif ($oldIndex > $arr[2])
-                    $this->activeone = 'p_' . $arr[1] . '_' . $arr[2] + 1;
-                elseif ($oldIndex < $arr[2])
-                    $this->activeone = 'p_' . $arr[1] . '_' . $arr[2] - 1;
+                if (($oldIndex > $this->pagequestionactiveone) && ($newIndex > $this->pagequestionactiveone)) {
+                } elseif (($oldIndex < $this->pagequestionactiveone) && ($newIndex < $this->pagequestionactiveone)) {
+                } elseif ($oldIndex > $this->pagequestionactiveone)
+                    $this->pagequestionactiveone =$this->pagequestionactiveone + 1;
+                elseif ($oldIndex < $this->pagequestionactiveone)
+                    $this->pagequestionactiveone =$this->pagequestionactiveone - 1;
                 break;
         }
         $this->updating();
