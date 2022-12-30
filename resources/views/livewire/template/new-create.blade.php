@@ -1730,7 +1730,7 @@
                                                                                             wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title">
                                                                                     @endif
                                                                                 </div>
-                                                                                @if ($pagequestionactiveone == $loop->index)
+                                                                                @if ($pagequestionactiveone == $loop->index && $pageactiveone == $loop->parent->index)
                                                                                     <div style="z-index: 1;"
                                                                                         class="kSUFwR"
                                                                                         wire:click="page_give_active_one('null')">
@@ -1754,10 +1754,10 @@
                                                                     </div>
                                                                 </div>
                                                                 <div
-                                                                    class="response-select-and-options hyJfGO {{ $pagequestionactiveone == $loop->index ? 'un-hide' : 'hide' }}">
+                                                                    class="response-select-and-options hyJfGO {{ $pageactiveone == $loop->parent->index && $pagequestionactiveone == $loop->index ? 'un-hide' : 'hide' }}">
                                                                     <div style="width: 100%;" data-bs-toggle="modal"
                                                                         data-bs-target="#PageResponseModal"
-                                                                        onclick="@this.set('pageactiveone', {{ $loop->parent->index }});@this.set('pagequestionactiveone', {{ $loop->index }});">
+                                                                        onclick="@this.set('activeone', 'null');@this.set('pageactiveone', {{ $loop->parent->index }});@this.set('pagequestionactiveone', {{ $loop->index }});">
                                                                         <div class="eWLEUv">
                                                                             <div>
                                                                                 @if ($pageQuestion['response'] == 2)
@@ -2202,7 +2202,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @if ($pagequestionactiveone == $loop->index)
+                                                    @if ($pagequestionactiveone == $loop->index && $pageactiveone == $loop->parent->index)
                                                         <div class="fyPxKd elTKUx"></div>
                                                         <div class="fmcVJh jIirFj"></div>
                                                         <div class="fmcVJh fPLdzz"></div>
