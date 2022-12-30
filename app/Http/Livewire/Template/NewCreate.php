@@ -25,12 +25,11 @@ class NewCreate extends Component
     public $pagequestionactiveone;
     public $option;
     public $check_for_exist;
-    public $activechangingresponse;
     public $uploading;
     public $optional_uploading;
     public $new_template;
     public $current_multiple_choise;
-    protected $queryString = ['activeone', 'pageactiveone', 'pagequestionactiveone', 'template_id', 'activechangingresponse', 'new_template'];
+    protected $queryString = ['activeone', 'pageactiveone', 'pagequestionactiveone', 'template_id', 'new_template'];
     protected $listeners = [
         'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex',
     ];
@@ -288,13 +287,13 @@ class NewCreate extends Component
 
     public function setResponseValueFromReadyOptions($responseid, $optionid)
     {
-        $oldtitle = $this->title_page_questions[$this->activechangingresponse]['title'] ?? null;
-        unset($this->title_page_questions[$this->activechangingresponse]);
-        $this->title_page_questions[$this->activechangingresponse]['title'] = $oldtitle ?? null;
-        $this->title_page_questions[$this->activechangingresponse]['is_required'] = false;
-        $this->title_page_questions[$this->activechangingresponse]['multi_select_multiple_choise'] = false;
-        $this->title_page_questions[$this->activechangingresponse]['response'] = $responseid;
-        $this->title_page_questions[$this->activechangingresponse]['multiple_choice'] = $this->common_multiple_choise_options[$optionid];
+        $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
+        unset($this->title_page_questions[$this->activeone]);
+        $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
+        $this->title_page_questions[$this->activeone]['is_required'] = false;
+        $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
+        $this->title_page_questions[$this->activeone]['response'] = $responseid;
+        $this->title_page_questions[$this->activeone]['multiple_choice'] = $this->common_multiple_choise_options[$optionid];
         $this->updating();
     }
 
@@ -326,6 +325,22 @@ class NewCreate extends Component
         }
     }
 
+    public function page_save_multiple_choise()
+    {
+        foreach ($this->common_multiple_choise_options as $key => $value) {
+            if ($value === $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice']) {
+                array_splice($this->common_multiple_choise_options, $key, 1);
+                array_push($this->common_multiple_choise_options, $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice']);
+                $this->updating();
+                break;
+            } else {
+                array_push($this->common_multiple_choise_options, $this->pages[$this->pageactiveone]['question'][$this->pagequestionactiveone]['multiple_choice']);
+                $this->updating();
+                break;
+            }
+        }
+    }
+
     public function edit_save_multiple_choise($questionKey)
     {
         $key = array_search($this->current_multiple_choise, $this->common_multiple_choise_options);
@@ -333,21 +348,6 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    public function page_save_multiple_choise($pageKey, $questionKey)
-    {
-        foreach ($this->common_multiple_choise_options as $key => $value) {
-            if ($value === $this->pages[$pageKey]['question'][$questionKey]['multiple_choice']) {
-                array_splice($this->common_multiple_choise_options, $key, 1);
-                array_push($this->common_multiple_choise_options, $this->pages[$pageKey]['question'][$questionKey]['multiple_choice']);
-                $this->updating();
-                break;
-            } else {
-                array_push($this->common_multiple_choise_options, $this->pages[$pageKey]['question'][$questionKey]['multiple_choice']);
-                $this->updating();
-                break;
-            }
-        }
-    }
 
     public function page_edit_save_multiple_choise()
     {
@@ -401,15 +401,13 @@ class NewCreate extends Component
     public function title_page_add_question()
     {
         if ($this->activeone != null && $this->activeone != 'null') {
-            if (str_contains($this->activeone, 'p_')) {
-                $arr = explode('_', $this->activeone);
-                $string = implode('_', array_slice($arr, 0, 3));
-                array_splice($this->pages[$arr[1]]['question'], $arr[2] + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
-            } else {
-                array_splice($this->title_page_questions, $this->activeone + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
-            }
+            array_splice($this->title_page_questions, $this->activeone + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
         } else {
-            array_splice($this->title_page_questions, 0, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+            if ($this->pageactiveone != 'null' &&  $this->pagequestionactiveone != 'null') {
+                array_splice($this->pages[$this->pageactiveone]['question'], $this->pagequestionactiveone  + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+            } else {
+                array_splice($this->title_page_questions, 0, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+            }
         }
         $this->updating();
     }
