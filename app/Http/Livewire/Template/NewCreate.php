@@ -412,10 +412,10 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    public function title_page_delete_question()
+    public function title_page_delete_question($question_key)
     {
         if (count($this->title_page_questions) > 1) {
-            array_splice($this->title_page_questions, $this->activeone, 1);
+            array_splice($this->title_page_questions, $question_key, 1);
             $this->activeone = 0;
             $this->updating();
         }
