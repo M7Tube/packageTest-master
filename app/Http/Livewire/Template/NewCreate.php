@@ -398,6 +398,12 @@ class NewCreate extends Component
         $this->updating();
     }
 
+    public function focus_on_this_question($question_key,$pageactiveone,$pagequestionactiveone)
+    {
+            $this->activeone=$question_key;
+            $this->pageactiveone=$pageactiveone;
+            $this->pagequestionactiveone=$pagequestionactiveone;
+    }
     public function title_page_add_question()
     {
         if ($this->activeone != null && $this->activeone != 'null') {

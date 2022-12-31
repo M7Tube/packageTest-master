@@ -207,7 +207,9 @@
                                                     <div class="bAJknk">
                                                         <div class="huXueT">
                                                             <div class="kGgXUq">
-                                                                <span style="padding-left: 0.75rem; padding-top: 0.45rem; padding-right:0rem; margin: 0%;" class="eSpMaC">
+                                                                <span
+                                                                    style="padding-left: 0.75rem; padding-top: 0.45rem; padding-right:0rem; margin: 0%;"
+                                                                    class="eSpMaC">
                                                                     {{ !empty($title_page_question['is_required']) ? ($title_page_question['is_required'] == 1 ? '*' : '') : '' }}
                                                                 </span>
                                                                 <div class="haXfJL drag-icon">
@@ -215,7 +217,8 @@
                                                                         height="24" focusable="false">
                                                                         <path fill="none" d="M0 0h24v24H0V0z">
                                                                         </path>
-                                                                        <path fill="{{$this->activeone==$loop->index ? '#313235' : '#8c9097'}}"
+                                                                        <path
+                                                                            fill="{{ $this->activeone == $loop->index ? '#313235' : '#8c9097' }}"
                                                                             d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
                                                                         </path>
                                                                     </svg>
@@ -225,7 +228,7 @@
                                                                     </div> --}}
                                                                     <div style="display: flex; align-items: center;">
                                                                         <div class="eAfucY"
-                                                                            onclick="@this.set('activeone', {{ $loop->index }});@this.set('pageactiveone', 'null');@this.set('pagequestionactiveone', 'null');">
+                                                                            wire:click.prevent="{{ $activeone != $loop->index ? "focus_on_this_question($loop->index,'null','null')" : '' }}">
                                                                             @if ($title_page_question['response'] == 10)
                                                                                 <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
                                                                                     wire:model.lazy="title_page_questions.{{ $qkey }}.title" oninput="auto_grow(this);"></textarea>
@@ -272,7 +275,7 @@
                                                             class="response-select-and-options hyJfGO  {{ $activeone == $loop->index ? 'un-hide' : 'hide' }}">
                                                             <div style="width: 100%;" data-bs-toggle="modal"
                                                                 data-bs-target="#TitlePageResponseModal"
-                                                                onclick="@this.set('activeone',{{ $loop->index }})">
+                                                                wire:click.prevent="$set('activeone',{{ $loop->index }})">
                                                                 <div class="eWLEUv">
                                                                     <div>
                                                                         @if ($title_page_question['response'] == 2)
@@ -1722,7 +1725,7 @@
                                                                             <div
                                                                                 style="display: flex; align-items: center;">
                                                                                 <div class="eAfucY"
-                                                                                    onclick="@this.set('activeone', 'null');@this.set('pageactiveone', {{ $loop->parent->index }});@this.set('pagequestionactiveone', {{ $loop->index }});">
+                                                                                    wire:click.prevent="{{ $pagequestionactiveone != $loop->index ? "focus_on_this_question('null',$pagekey,$loop->index)" : '' }}">
                                                                                     {{-- @this.set('activeone', 'p_' + {{ $loop->parent->index }} + '_' + {{ $loop->index }}); --}}
                                                                                     @if ($pageQuestion['response'] == 10)
                                                                                         <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
