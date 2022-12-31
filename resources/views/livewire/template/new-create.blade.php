@@ -207,8 +207,7 @@
                                                     <div class="bAJknk">
                                                         <div class="huXueT">
                                                             <div class="kGgXUq">
-                                                                <span style="padding-left: 0.3rem;"
-                                                                    class="eSpMaC text-danger">
+                                                                <span style="padding-left: 0.75rem; padding-top: 0.45rem; padding-right:0rem; margin: 0%;" class="eSpMaC">
                                                                     {{ !empty($title_page_question['is_required']) ? ($title_page_question['is_required'] == 1 ? '*' : '') : '' }}
                                                                 </span>
                                                                 <div class="haXfJL drag-icon">

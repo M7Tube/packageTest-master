@@ -1703,7 +1703,7 @@ input[type="checkbox"] {
 .haXfJL {
     outline: currentcolor none medium;
     cursor: grab;
-    margin-left: 0.5rem;
+    /* margin-left: 0.5rem; */
     display: flex;
     -moz-box-align: center;
     align-items: center;
@@ -2063,7 +2063,7 @@ input[type="checkbox"] {
 
 .eSpMaC {
     width: 1rem;
-    font-size: 0.875rem;
+    font-size: 1rem;
 }
 
 .fTJQmL {
