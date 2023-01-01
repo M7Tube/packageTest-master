@@ -135,7 +135,7 @@ class NewCreate extends Component
         $this->new_template = 0;
         $this->uploading = false;
         $this->optional_uploading = false;
-        $this->title_page_questions[] = ['title' => null,'response' => 1, 'is_required' => false, 'text_answer_format' => 0];
+        $this->title_page_questions[] = ['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0];
         $this->common_multiple_choise_options = $this->option;
         $last = NewTemplate::all()->last();
         if ($last) {
@@ -187,7 +187,19 @@ class NewCreate extends Component
                 'value' => $this->title_page_questions[$title_page_key]['title']
             ];
         }
-        // $set('inspection_title_format.{{$key}}',{{ $title_page_question['title'] ?? '' }});$set('inspection_title_format[]','['']')
+        $this->updating();
+    }
+
+    public function delete_inspection_title_format($inspection_title_format_key)
+    {
+        if (count($this->inspection_title_format) > 1)
+            array_splice($this->inspection_title_format, $inspection_title_format_key, 1);
+        $this->updating();
+    }
+
+    public function empty_inspection_title_format()
+    {
+        $this->inspection_title_format = [['key' => null, 'value' => null]];
     }
 
     public function setResponseValue($response)
@@ -446,7 +458,7 @@ class NewCreate extends Component
 
     public function add_page()
     {
-        $this->pages[] = ['question' => [['title' => null,'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]];
+        $this->pages[] = ['question' => [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]];
         $this->updating();
     }
 

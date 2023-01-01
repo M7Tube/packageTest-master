@@ -189,10 +189,19 @@
                                                             $title_page_question['response'] == 2 ||
                                                             $title_page_question['response'] == 4 ||
                                                             $title_page_question['response'] == 5)
-                                                            <li>
-                                                                <a class="dropdown-item"
-                                                                    wire:click.prevent="set_inspection_title_format({{ $loop->parent->index }},{{ $loop->index }})">{{ $title_page_question['title'] != '' && $title_page_question['title'] != null ? $title_page_question['title'] : 'Question Number ' .$key2+1 }}</a>
-                                                            </li>
+                                                            @if (!(array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)))
+                                                                {{-- {{ array_search(['key' => $loop->index, 'value' => $title_page_question['title']], $inspection_title_format) }} --}}
+                                                                <li>
+                                                                    <a class="dropdown-item"
+                                                                        wire:click.prevent="set_inspection_title_format({{ $loop->parent->index }},{{ $loop->index }})">{{ $title_page_question['title'] != '' && $title_page_question['title'] != null ? $title_page_question['title'] : 'Question Number ' . $key2 + 1 }}</a>
+                                                                </li>
+                                                            @endif
+                                                            @if ($loop->last && !$loop->parent->last)
+                                                                <li>
+                                                                    <a class="dropdown-item"
+                                                                        wire:click.prevent="delete_inspection_title_format({{ $loop->parent->index }})">Delete</a>
+                                                                </li>
+                                                            @endif
                                                         @endif
                                                     @empty
                                                     @endforelse
@@ -214,8 +223,10 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
+                                            wire:click.prevent="empty_inspection_title_format"
                                             data-bs-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn btn-primary">Save and apply</button>
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save
+                                            and apply</button>
                                     </div>
                                 </div>
                             </div>
