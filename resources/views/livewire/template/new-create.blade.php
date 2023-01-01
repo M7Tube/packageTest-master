@@ -191,9 +191,10 @@
                                                             $title_page_question['response'] == 5)
                                                             <li>
                                                                 <a class="dropdown-item"
-                                                                    wire:click.prevent="set_inspection_title_format({{ $loop->parent->index }},{{ $loop->index }})">{{ $title_page_question['title'] ?? '' }}</a>
+                                                                    wire:click.prevent="set_inspection_title_format({{ $loop->parent->index }},{{ $loop->index }})">{{ $title_page_question['title'] != '' && $title_page_question['title'] != null ? $title_page_question['title'] : 'Question Number ' .$key2+1 }}</a>
                                                             </li>
-                                                        @endif @empty
+                                                        @endif
+                                                    @empty
                                                     @endforelse
                                                 </ul>
                                             @empty

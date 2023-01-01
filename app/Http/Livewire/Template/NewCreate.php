@@ -135,7 +135,7 @@ class NewCreate extends Component
         $this->new_template = 0;
         $this->uploading = false;
         $this->optional_uploading = false;
-        $this->title_page_questions[] = ['response' => 1, 'is_required' => false, 'text_answer_format' => 0];
+        $this->title_page_questions[] = ['title' => null,'response' => 1, 'is_required' => false, 'text_answer_format' => 0];
         $this->common_multiple_choise_options = $this->option;
         $last = NewTemplate::all()->last();
         if ($last) {
@@ -175,13 +175,13 @@ class NewCreate extends Component
 
     public function set_inspection_title_format($inspection_title_format_key, $title_page_key)
     {
-        if ($this->inspection_title_format[$inspection_title_format_key]['key'] == null && $this->inspection_title_format[$inspection_title_format_key]['value'] == null){
+        if ($this->inspection_title_format[$inspection_title_format_key]['key'] == null && $this->inspection_title_format[$inspection_title_format_key]['value'] == null) {
             $this->inspection_title_format[$inspection_title_format_key] = [
                 'key' => $title_page_key,
                 'value' => $this->title_page_questions[$title_page_key]['title']
             ];
             $this->inspection_title_format[] = ['key' => null, 'value' => null];
-        }else{
+        } else {
             $this->inspection_title_format[$inspection_title_format_key] = [
                 'key' => $title_page_key,
                 'value' => $this->title_page_questions[$title_page_key]['title']
@@ -424,12 +424,12 @@ class NewCreate extends Component
     public function title_page_add_question()
     {
         if ($this->activeone != null && $this->activeone != 'null') {
-            array_splice($this->title_page_questions, $this->activeone + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+            array_splice($this->title_page_questions, $this->activeone + 1, 0, [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
         } else {
             if ($this->pageactiveone != 'null' &&  $this->pagequestionactiveone != 'null') {
-                array_splice($this->pages[$this->pageactiveone]['question'], $this->pagequestionactiveone  + 1, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+                array_splice($this->pages[$this->pageactiveone]['question'], $this->pagequestionactiveone  + 1, 0, [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
             } else {
-                array_splice($this->title_page_questions, 0, 0, [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+                array_splice($this->title_page_questions, 0, 0, [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
             }
         }
         $this->updating();
@@ -446,7 +446,7 @@ class NewCreate extends Component
 
     public function add_page()
     {
-        $this->pages[] = ['question' => [['response' => 1, 'is_required' => false, 'text_answer_format' => 0]]];
+        $this->pages[] = ['question' => [['title' => null,'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]];
         $this->updating();
     }
 
