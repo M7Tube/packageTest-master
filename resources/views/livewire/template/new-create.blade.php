@@ -153,9 +153,10 @@
                     <div class="mt-2">
                         <label for="inspection-title-format">
                             <span class="prevent-select">
-                            Inspection title format
-                        </span>
-                            <span style="margin-left: 25px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#inspection-title-format">
+                                Inspection title format
+                            </span>
+                            <span style="margin-left: 25px; cursor: pointer;" data-bs-toggle="modal"
+                                data-bs-target="#inspection-title-format">
                                 <svg width="20" height="20" viewBox="0 0 14 14" focusable="false">
                                     <path
                                         d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
@@ -164,22 +165,34 @@
                                 </svg>
                             </span>
                         </label>
-                        <div class="modal fade" id="inspection-title-format" tabindex="-1" aria-labelledby="inspection-title-formatLabel"
-                            aria-hidden="true">
+                        <div class="modal fade" id="inspection-title-format" tabindex="-1"
+                            aria-labelledby="inspection-title-formatLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="inspection-title-formatLabel">Inspection title format</h1>
+                                        <h1 class="modal-title fs-5" id="inspection-title-formatLabel">Inspection
+                                            title format</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <label class="text-secondary">Inspeection title is used to name your inspections and reports.</label>
+                                        <label class="text-secondary">Inspeection title is used to name your
+                                            inspections and reports.</label>
                                         <label class="mt-2 text-secondary">Preview</label><br>
                                         <label class="">Preview-Preview-Preview</label>
-                                        <label class="mt-4 text-secondary">Title format (Pick up from key information that helps you identify the inspections)</label>
-                                        <select name="" class="form-control w-50 mt-1">
-                                            <option value=""></option>
+                                        <label class="mt-4 text-secondary">Title format (Pick up from key information
+                                            that helps you identify the inspections)</label>
+                                        <select name="" class="form-control w-50 mt-2">
+                                            @forelse ($title_page_questions as $key => $title_page_question)
+                                                @if ($title_page_question['response'] == 1 ||
+                                                    $title_page_question['response'] == 2 ||
+                                                    $title_page_question['response'] == 4 ||
+                                                    $title_page_question['response'] == 5)
+                                                    <option value="{{ $key }}">
+                                                        {{ $title_page_question['title'] ?? '' }}</option>
+                                                @endif
+                                            @empty
+                                            @endforelse
                                         </select>
                                     </div>
                                     <div class="modal-footer">
