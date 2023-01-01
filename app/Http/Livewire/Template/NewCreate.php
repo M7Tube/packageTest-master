@@ -29,6 +29,7 @@ class NewCreate extends Component
     public $optional_uploading;
     public $new_template;
     public $current_multiple_choise;
+    public $inspection_title_format = [['key' => null, 'value' => null]];
     protected $queryString = ['activeone', 'pageactiveone', 'pagequestionactiveone', 'template_id', 'new_template'];
     protected $listeners = [
         'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex',
@@ -167,11 +168,27 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    // public function test()
-    // {
-    //     dd($this->title_page_questions);
-    // }
+    public function test()
+    {
+        dd($this->inspection_title_format);
+    }
 
+    public function set_inspection_title_format($inspection_title_format_key, $title_page_key)
+    {
+        if ($this->inspection_title_format[$inspection_title_format_key]['key'] == null && $this->inspection_title_format[$inspection_title_format_key]['value'] == null){
+            $this->inspection_title_format[$inspection_title_format_key] = [
+                'key' => $title_page_key,
+                'value' => $this->title_page_questions[$title_page_key]['title']
+            ];
+            $this->inspection_title_format[] = ['key' => null, 'value' => null];
+        }else{
+            $this->inspection_title_format[$inspection_title_format_key] = [
+                'key' => $title_page_key,
+                'value' => $this->title_page_questions[$title_page_key]['title']
+            ];
+        }
+        // $set('inspection_title_format.{{$key}}',{{ $title_page_question['title'] ?? '' }});$set('inspection_title_format[]','['']')
+    }
 
     public function setResponseValue($response)
     {
@@ -398,11 +415,11 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    public function focus_on_this_question($question_key,$pageactiveone,$pagequestionactiveone)
+    public function focus_on_this_question($question_key, $pageactiveone, $pagequestionactiveone)
     {
-            $this->activeone=$question_key;
-            $this->pageactiveone=$pageactiveone;
-            $this->pagequestionactiveone=$pagequestionactiveone;
+        $this->activeone = $question_key;
+        $this->pageactiveone = $pageactiveone;
+        $this->pagequestionactiveone = $pagequestionactiveone;
     }
     public function title_page_add_question()
     {
@@ -473,21 +490,21 @@ class NewCreate extends Component
         array_splice($this->pages[$page]['question'], $newIndex, 0, [$temp]);
         switch ($this->pagequestionactiveone) {
             case $oldIndex:
-                $this->pagequestionactiveone =$newIndex;
+                $this->pagequestionactiveone = $newIndex;
                 break;
             case $newIndex:
                 if ($oldIndex > $this->pagequestionactiveone)
-                    $this->pagequestionactiveone =$newIndex + 1;
+                    $this->pagequestionactiveone = $newIndex + 1;
                 if ($oldIndex < $this->pagequestionactiveone)
-                    $this->pagequestionactiveone =$newIndex - 1;
+                    $this->pagequestionactiveone = $newIndex - 1;
                 break;
             default:
                 if (($oldIndex > $this->pagequestionactiveone) && ($newIndex > $this->pagequestionactiveone)) {
                 } elseif (($oldIndex < $this->pagequestionactiveone) && ($newIndex < $this->pagequestionactiveone)) {
                 } elseif ($oldIndex > $this->pagequestionactiveone)
-                    $this->pagequestionactiveone =$this->pagequestionactiveone + 1;
+                    $this->pagequestionactiveone = $this->pagequestionactiveone + 1;
                 elseif ($oldIndex < $this->pagequestionactiveone)
-                    $this->pagequestionactiveone =$this->pagequestionactiveone - 1;
+                    $this->pagequestionactiveone = $this->pagequestionactiveone - 1;
                 break;
         }
         $this->updating();

@@ -1,5 +1,5 @@
 <div id="myDiv">
-    {{-- <button wire:click.prevent="test">print test</button> --}}
+    <button wire:click.prevent="test">print test</button>
     <div class="mt-5" style="margin-bottom: 100%;">
         <div class="container-fluid">
             <div class="row">
@@ -8,8 +8,8 @@
                     @if (!$icon)
                         <div class="col-12 col-md-3 logo-alignment">
                             <div class="position-relative">
-                                <input type="file" wire:model.lazy="icon" alt="template icon" style="display:none;"
-                                    id="customefileupload" accept="image/*">
+                                <input type="file" wire:model.lazy="icon" alt="template icon"
+                                    style="display:none;" id="customefileupload" accept="image/*">
                                 <label for="customefileupload" class="customfileupload">
                                     <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -166,7 +166,7 @@
                             </span>
                         </label>
                         <div class="modal fade" id="inspection-title-format" tabindex="-1"
-                            aria-labelledby="inspection-title-formatLabel" aria-hidden="true">
+                            aria-labelledby="inspection-title-formatLabel" aria-hidden="true" wire:ignore.self>
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -179,21 +179,37 @@
                                         <label class="text-secondary">Inspeection title is used to name your
                                             inspections and reports.</label>
                                         <label class="mt-2 text-secondary">Preview</label><br>
-                                        <label class="">Preview-Preview-Preview</label>
+                                        <label class="inspection-title-format-preview">
+                                            @forelse ($inspection_title_format as $key => $inspection_title_format_record)
+                                                <span
+                                                    data-bs-toggle="dropdown">{{ $inspection_title_format_record['value'] != null ? $inspection_title_format_record['value'] . ' /' : 'Add item /' }}</span>
+                                                <ul class="dropdown-menu">
+                                                    @forelse ($title_page_questions as $key2 => $title_page_question)
+                                                        @if ($title_page_question['response'] == 1 ||
+                                                            $title_page_question['response'] == 2 ||
+                                                            $title_page_question['response'] == 4 ||
+                                                            $title_page_question['response'] == 5)
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    wire:click.prevent="set_inspection_title_format({{ $loop->parent->index }},{{ $loop->index }})">{{ $title_page_question['title'] ?? '' }}</a>
+                                                            </li>
+                                                        @endif @empty
+                                                    @endforelse
+                                                </ul>
+                                            @empty
+                                            @endforelse
+                                        </label>
                                         <label class="mt-4 text-secondary">Title format (Pick up from key information
                                             that helps you identify the inspections)</label>
-                                        <select name="" class="form-control w-50 mt-2">
+                                        {{-- <select name="" class="form-control w-50 mt-2">
                                             @forelse ($title_page_questions as $key => $title_page_question)
-                                                @if ($title_page_question['response'] == 1 ||
-                                                    $title_page_question['response'] == 2 ||
-                                                    $title_page_question['response'] == 4 ||
-                                                    $title_page_question['response'] == 5)
+                                                @if ($title_page_question['response'] == 1 || $title_page_question['response'] == 2 || $title_page_question['response'] == 4 || $title_page_question['response'] == 5)
                                                     <option value="{{ $key }}">
                                                         {{ $title_page_question['title'] ?? '' }}</option>
                                                 @endif
                                             @empty
                                             @endforelse
-                                        </select>
+                                        </select> --}}
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"

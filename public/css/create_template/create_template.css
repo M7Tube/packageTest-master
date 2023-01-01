@@ -2983,6 +2983,9 @@ input[type="checkbox"] {
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
 }
+.inspection-title-format-preview{
+    color: rgb(103, 93, 244);
+}
 @media (min-width: 36em) {
     .lgSfIY {
         color: rgb(84, 95, 112);
