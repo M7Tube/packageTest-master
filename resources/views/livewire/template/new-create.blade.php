@@ -143,7 +143,7 @@
                         <input type="text" style="font-family: sans-serif, 'Font Awesome 5 Free'" for="title"
                             wire:model.lazy="desc" class="mt-2 desc" placeholder="Add a description" />
                     </div>
-                    <div class="mt-2" wire:ignore.self>
+                    <div class="mt-2" wire:ignore>
                         <select class="selectpicker inspection-title-format"
                             data-live-search="true" multiple title="Inspection title format">
                             @forelse ($title_page_questions as $key => $title_page_question)
