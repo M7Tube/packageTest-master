@@ -122,6 +122,21 @@ body {
 .desc::placeholder {
     color: #313235;
 }
+.real-desc {
+    font-size: 1rem;
+    font-family: Roboto, sans-serif;
+    line-height: 1.5rem;
+    width: 75%;
+    border-radius: 0.3rem;
+    color:rgba(128, 128, 128, 0.608);
+    padding: 0px;
+    border: 1px solid transparent;
+    background: transparent none repeat scroll 0% 0%;
+    margin-bottom: 3px;
+}
+.real-desc::placeholder {
+    color:rgba(128, 128, 128, 0.608);
+}
 .withoutBorder {
     outline: 0px !important;
     -webkit-appearance: none;
@@ -3399,6 +3414,24 @@ input[type="checkbox"] {
     .desc::placeholder {
         color: #313235;
         font-weight: bold;
+    }
+
+    .real-desc {
+        font-size: 1rem;
+        font-family: Roboto, sans-serif;
+        line-height: 1.5rem;
+        width: 85%;
+        border-radius: 0.3rem;
+        color:rgba(128, 128, 128, 0.608);
+        padding: 0px;
+        border: 1px solid transparent;
+        background: transparent none repeat scroll 0% 0%;
+        margin-bottom: 3px;
+        /* font-weight: bold; */
+    }
+    .real-desc::placeholder {
+        color:rgba(128, 128, 128, 0.608);
+        /* font-weight: bold; */
     }
 
     .big-title-desc {

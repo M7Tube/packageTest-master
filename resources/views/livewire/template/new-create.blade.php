@@ -40,7 +40,7 @@
                                         </span>
                                     </a> --}}
                                 </label>
-                                <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: gray;">
+                                <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
                                     Company logo
                                 </label>
                             </div>
@@ -54,7 +54,7 @@
                                     <i class="bi bi-trash"></i>
                                 </span>
                             </a>
-                            <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: gray;">
+                            <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
                                 Company logo
                             </label>
                         </div>
@@ -69,7 +69,7 @@
                                 <div></div>
                             </div>
                         </label>
-                        <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: gray;">
+                        <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
                             Company logo
                         </label>
                     </div>
@@ -99,7 +99,7 @@
                                         id="Shape" fill="#FFFFFF"></path>
                                 </svg>
                             </label>
-                            <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: gray;">
+                            <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
                                 Additional logo
                             </label>
                         </div>
@@ -113,7 +113,7 @@
                                     <i class="bi bi-trash"></i>
                                 </span>
                             </a>
-                            <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: gray;">
+                            <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
                                 Additional logo
                             </label>
                         </div>
@@ -128,7 +128,7 @@
                                 <div></div>
                             </div>
                         </label>
-                        <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: gray;">
+                        <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
                             Additional logo
                         </label>
                     </div>
@@ -140,8 +140,8 @@
                             wire:model.lazy="title" class="title mt-2" placeholder="Your template title" />
                     </div>
                     <div class="d-flex align-items-start justify-content-start">
-                        <input type="text" style="font-family: sans-serif, 'Font Awesome 5 Free'" for="title"
-                            wire:model.lazy="desc" class="mt-2 desc" placeholder="Add a description" />
+                        <input type="text" for="title"
+                            wire:model.lazy="desc" class="mt-2 real-desc" placeholder="Add a description" />
                     </div>
                     <div class="mt-2" wire:ignore>
                         <select class="selectpicker inspection-title-format"
