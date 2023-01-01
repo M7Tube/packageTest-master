@@ -189,8 +189,10 @@
                                                             $title_page_question['response'] == 2 ||
                                                             $title_page_question['response'] == 4 ||
                                                             $title_page_question['response'] == 5)
-                                                            @if (!(array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)))
+                                                            @if (empty(array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)))
+                                                            {{-- @if ($inspection_title_format_record!=$title_page_question) --}}
                                                                 {{-- {{ array_search(['key' => $loop->index, 'value' => $title_page_question['title']], $inspection_title_format) }} --}}
+                                                                {{-- {{array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)}} --}}
                                                                 <li>
                                                                     <a class="dropdown-item"
                                                                         wire:click.prevent="set_inspection_title_format({{ $loop->parent->index }},{{ $loop->index }})">{{ $title_page_question['title'] != '' && $title_page_question['title'] != null ? $title_page_question['title'] : 'Question Number ' . $key2 + 1 }}</a>
