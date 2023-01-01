@@ -40,7 +40,8 @@
                                         </span>
                                     </a> --}}
                                 </label>
-                                <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
+                                <label class="desc"
+                                    style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
                                     Company logo
                                 </label>
                             </div>
@@ -54,7 +55,8 @@
                                     <i class="bi bi-trash"></i>
                                 </span>
                             </a>
-                            <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
+                            <label class="desc"
+                                style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
                                 Company logo
                             </label>
                         </div>
@@ -69,7 +71,8 @@
                                 <div></div>
                             </div>
                         </label>
-                        <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
+                        <label class="desc"
+                            style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
                             Company logo
                         </label>
                     </div>
@@ -99,7 +102,8 @@
                                         id="Shape" fill="#FFFFFF"></path>
                                 </svg>
                             </label>
-                            <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
+                            <label class="desc"
+                                style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
                                 Additional logo
                             </label>
                         </div>
@@ -113,7 +117,8 @@
                                     <i class="bi bi-trash"></i>
                                 </span>
                             </a>
-                            <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
+                            <label class="desc"
+                                style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
                                 Additional logo
                             </label>
                         </div>
@@ -128,30 +133,74 @@
                                 <div></div>
                             </div>
                         </label>
-                        <label class="desc" style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
+                        <label class="desc"
+                            style="margin: 12.5px; margin-top:0%; font-size: 0.9rem; color: rgba(128, 128, 128, 0.608);">
                             Additional logo
                         </label>
                     </div>
                 </div>
                 {{-- title&desc section --}}
                 <div class="col-12 mt-4" style="margin-left:1.6rem!important;margin-right:1.6rem!important;">
+
                     <div class="d-flex align-items-start justify-content-start">
                         <input type="text" style="font-family: sans-serif, 'Font Awesome 5 Free'" for="title"
                             wire:model.lazy="title" class="title mt-2" placeholder="Your template title" />
                     </div>
                     <div class="d-flex align-items-start justify-content-start">
-                        <input type="text" for="title"
-                            wire:model.lazy="desc" class="mt-2 real-desc" placeholder="Add a description" />
+                        <input type="text" for="title" wire:model.lazy="desc" class="mt-2 real-desc"
+                            placeholder="Add a description" />
                     </div>
-                    <div class="mt-2" wire:ignore>
-                        <select class="selectpicker inspection-title-format"
+                    <div class="mt-2">
+                        <label for="inspection-title-format">
+                            <span class="prevent-select">
+                            Inspection title format
+                        </span>
+                            <span style="margin-left: 25px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#inspection-title-format">
+                                <svg width="20" height="20" viewBox="0 0 14 14" focusable="false">
+                                    <path
+                                        d="M2.313 9.734v1.954h1.953l5.76-5.761-1.953-1.953-5.76 5.76zm9.223-5.318a.519.519 0 0 0 0-.734l-1.218-1.219a.519.519 0 0 0-.735 0l-.953.953 1.953 1.953.953-.953z"
+                                        fill-rule="nonzero" fill="#545f70">
+                                    </path>
+                                </svg>
+                            </span>
+                        </label>
+                        <div class="modal fade" id="inspection-title-format" tabindex="-1" aria-labelledby="inspection-title-formatLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="inspection-title-formatLabel">Inspection title format</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label class="text-secondary">Inspeection title is used to name your inspections and reports.</label>
+                                        <label class="mt-2 text-secondary">Preview</label><br>
+                                        <label class="">Preview-Preview-Preview</label>
+                                        <label class="mt-4 text-secondary">Title format (Pick up from key information that helps you identify the inspections)</label>
+                                        <select name="" class="form-control w-50 mt-1">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary">Save and apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <div class="mt-2" wire:ignore>
+                        <select class="selectpicker inspection-title-format text_answer_format"
                             data-live-search="true" multiple title="Inspection title format">
                             @forelse ($title_page_questions as $key => $title_page_question)
                                 <option value="{{$key}}">{{$title_page_question['title'] ?? ''}}</option>
                             @empty
                             @endforelse
                         </select>
-                    </div>
+                    </div> --}}
+
                 </div>
             </div>
         </div>

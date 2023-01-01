@@ -128,14 +128,14 @@ body {
     line-height: 1.5rem;
     width: 75%;
     border-radius: 0.3rem;
-    color:rgba(128, 128, 128, 0.608);
+    color: rgba(128, 128, 128, 0.608);
     padding: 0px;
     border: 1px solid transparent;
     background: transparent none repeat scroll 0% 0%;
     margin-bottom: 3px;
 }
 .real-desc::placeholder {
-    color:rgba(128, 128, 128, 0.608);
+    color: rgba(128, 128, 128, 0.608);
 }
 .withoutBorder {
     outline: 0px !important;
@@ -331,7 +331,6 @@ body {
     -moz-box-pack: justify;
     justify-content: space-between;
 }
-
 
 .required {
     border-left: 4px solid rgb(197, 19, 19);
@@ -2075,7 +2074,6 @@ input[type="checkbox"] {
     touch-action: manipulation;
 }
 
-
 .eSpMaC {
     width: 1rem;
     font-size: 1rem;
@@ -2977,8 +2975,13 @@ input[type="checkbox"] {
 .was-validated .form-control-color22:invalid {
     width: 1.5rem;
 }
-.inspection-title-format{
+.inspection-title-format {
     width: 25%;
+}
+.prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 @media (min-width: 36em) {
     .lgSfIY {
@@ -3165,7 +3168,7 @@ input[type="checkbox"] {
     .bBjJyf {
         /* border-color: rgb(103, 93, 244); */
     }
-/*  */
+    /*  */
     .hyJfGO {
         /* display: flex; */
         flex: 0 0 auto;
@@ -3235,7 +3238,7 @@ input[type="checkbox"] {
 }
 
 @media all and (max-width: 600px) {
-    .inspection-title-format{
+    .inspection-title-format {
         width: 75%;
     }
     .REnvQ {
@@ -3422,7 +3425,7 @@ input[type="checkbox"] {
         line-height: 1.5rem;
         width: 85%;
         border-radius: 0.3rem;
-        color:rgba(128, 128, 128, 0.608);
+        color: rgba(128, 128, 128, 0.608);
         padding: 0px;
         border: 1px solid transparent;
         background: transparent none repeat scroll 0% 0%;
@@ -3430,7 +3433,7 @@ input[type="checkbox"] {
         /* font-weight: bold; */
     }
     .real-desc::placeholder {
-        color:rgba(128, 128, 128, 0.608);
+        color: rgba(128, 128, 128, 0.608);
         /* font-weight: bold; */
     }
 
