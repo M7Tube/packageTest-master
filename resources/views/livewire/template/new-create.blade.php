@@ -190,7 +190,7 @@
                                                             $title_page_question['response'] == 4 ||
                                                             $title_page_question['response'] == 5)
                                                             @if (empty(array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)))
-                                                            {{-- @if ($inspection_title_format_record!=$title_page_question) --}}
+                                                                {{-- @if ($inspection_title_format_record != $title_page_question) --}}
                                                                 {{-- {{ array_search(['key' => $loop->index, 'value' => $title_page_question['title']], $inspection_title_format) }} --}}
                                                                 {{-- {{array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)}} --}}
                                                                 <li>
@@ -1221,7 +1221,7 @@
                                                                             @if ($title_page_questions[$activeone]['response'] == 7)
                                                                                 @if (!empty($title_page_questions[$activeone]['multiple_choice']))
                                                                                     @forelse ($title_page_questions[$activeone]['multiple_choice'] as $responsKey => $respons)
-                                                                                        <div class="kLpTzB multible_choise_wrapper"
+                                                                                        <div class="kLpTzB add_response_multible_choise_wrapper"
                                                                                             style="border-bottom: 1px solid rgb(191, 198, 212);">
                                                                                             <div
                                                                                                 class="hkphPX dragable">
@@ -1387,6 +1387,9 @@
                                                                                 @endif
                                                                             @endif
                                                                         @endif
+                                                                        {{-- <script>
+
+                                                                        </script> --}}
                                                                     </div>
                                                                     <a style="text-decoration: none;
                                                                                 color: rgb(103, 93, 244);font-size: 12.5px;"
@@ -2339,16 +2342,12 @@
                                             const page{{ $loop->index }} = document.querySelector(".pagewrapper" + {{ $loop->index }});
                                             new Sortable(page{{ $loop->index }}, {
                                                 onEnd: function(evt) {
-                                                    // Livewire.emit('change_active_one', evt.newIndex);
                                                     Livewire.emit('page_changeindex', evt.oldIndex, evt.newIndex, {{ $loop->index }});
                                                 },
                                                 animation: 350,
                                                 filter: ".last-section",
                                                 draggable: ".page_dragable",
                                                 handle: ".page_drag-icon",
-                                                // dragClass: "sortable-chosen",
-                                                // ghostClass: "sortable-chosen",
-                                                // chosenClass: "sortable-chosen",
                                             });
                                         </script>
                                     </div>
