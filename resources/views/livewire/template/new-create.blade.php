@@ -1,5 +1,5 @@
 <div id="myDiv">
-    <button wire:click.prevent="test">print test</button>
+    {{-- <button wire:click.prevent="test">print test</button> --}}
     <div class="mt-5" style="margin-bottom: 100%;">
         <div class="container-fluid">
             <div class="row">
@@ -8,8 +8,8 @@
                     @if (!$icon)
                         <div class="col-12 col-md-3 logo-alignment">
                             <div class="position-relative">
-                                <input type="file" wire:model.lazy="icon" alt="template icon"
-                                    style="display:none;" id="customefileupload" accept="image/*">
+                                <input type="file" wire:model.lazy="icon" alt="template icon" style="display:none;"
+                                    id="customefileupload" accept="image/*">
                                 <label for="customefileupload" class="customfileupload">
                                     <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -182,7 +182,7 @@
                                         <label class="inspection-title-format-preview">
                                             @forelse ($inspection_title_format as $key => $inspection_title_format_record)
                                                 <span
-                                                    data-bs-toggle="dropdown">{{ $inspection_title_format_record['value'] != null ? ($title_page_questions[$inspection_title_format_record['key']]['response'] == 5 ? date_format(now(), 'd , M , y') . ' /' : $inspection_title_format_record['value'] . ' /') : 'Add item /' }}</span>
+                                                    data-bs-toggle="dropdown">{{ $inspection_title_format_record['value'] != null ? ($title_page_questions[$inspection_title_format_record['key']]['response'] == 5 ? date_format(now(), 'd , M , y') . ' /' : $inspection_title_format_record['value'] . ' /') : (!$loop->last ? 'Question Number ' . $inspection_title_format_record['key'] + 1 . ' /' : 'Add item /') }}</span>
                                                 <ul class="dropdown-menu">
                                                     @forelse ($title_page_questions as $key2 => $title_page_question)
                                                         @if ($title_page_question['response'] == 1 ||
