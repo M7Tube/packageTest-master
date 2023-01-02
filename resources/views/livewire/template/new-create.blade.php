@@ -1829,7 +1829,7 @@
                                                                                     wire:click.prevent="{{ $pagequestionactiveone != $loop->index ? "focus_on_this_question('null',$pagekey,$loop->index)" : '' }}">
                                                                                     {{-- @this.set('activeone', 'p_' + {{ $loop->parent->index }} + '_' + {{ $loop->index }}); --}}
                                                                                     @if ($pageQuestion['response'] == 10)
-                                                                                        <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
+                                                                                        <textarea enterkeyhint="enter" onkeydown = "if(event.keyCode == 13) @this.title_page_add_question();" class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
                                                                                             wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"
                                                                                             oninput="auto_grow2(this);"></textarea>
                                                                                         <script>
@@ -1839,7 +1839,7 @@
                                                                                             }
                                                                                         </script>
                                                                                     @else
-                                                                                        <input
+                                                                                        <input enterkeyhint="enter" onkeydown = "if(event.keyCode == 13) @this.title_page_add_question();"
                                                                                             class="question-title-focus eVpkze w-100 h-100 question-title"
                                                                                             placeholder="Write a Question ..."
                                                                                             wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title">
