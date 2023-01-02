@@ -439,7 +439,7 @@ class NewCreate extends Component
 
     public function title_page_add_question()
     {
-        if ($this->activeone != null && $this->activeone != 'null') {
+        if ($this->activeone != null && $this->activeone != 'null' || $this->activeone == 0) {
             array_splice($this->title_page_questions, $this->activeone + 1, 0, [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
             $this->activeone = $this->activeone + 1;
         } else {
