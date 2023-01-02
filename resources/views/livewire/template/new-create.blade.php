@@ -182,7 +182,7 @@
                                         <label class="inspection-title-format-preview">
                                             @forelse ($inspection_title_format as $key => $inspection_title_format_record)
                                                 <span
-                                                    data-bs-toggle="dropdown">{{ $inspection_title_format_record['value'] != null ? $inspection_title_format_record['value'] . ' /' : 'Add item /' }}</span>
+                                                    data-bs-toggle="dropdown">{{ $inspection_title_format_record['value'] != null ? ($title_page_questions[$inspection_title_format_record['key']]['response'] == 5 ? date_format(now(), 'd , M , y') . ' /' : $inspection_title_format_record['value'] . ' /') : 'Add item /' }}</span>
                                                 <ul class="dropdown-menu">
                                                     @forelse ($title_page_questions as $key2 => $title_page_question)
                                                         @if ($title_page_question['response'] == 1 ||
@@ -190,9 +190,6 @@
                                                             $title_page_question['response'] == 4 ||
                                                             $title_page_question['response'] == 5)
                                                             @if (empty(array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)))
-                                                                {{-- @if ($inspection_title_format_record != $title_page_question) --}}
-                                                                {{-- {{ array_search(['key' => $loop->index, 'value' => $title_page_question['title']], $inspection_title_format) }} --}}
-                                                                {{-- {{array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)}} --}}
                                                                 <li>
                                                                     <a class="dropdown-item"
                                                                         wire:click.prevent="set_inspection_title_format({{ $loop->parent->index }},{{ $loop->index }})">{{ $title_page_question['title'] != '' && $title_page_question['title'] != null ? $title_page_question['title'] : 'Question Number ' . $key2 + 1 }}</a>
@@ -200,7 +197,7 @@
                                                             @endif
                                                             @if ($loop->last && !$loop->parent->last)
                                                                 <li>
-                                                                    <a class="dropdown-item"
+                                                                    <a class="dropdoawn-item"
                                                                         wire:click.prevent="delete_inspection_title_format({{ $loop->parent->index }})">Delete</a>
                                                                 </li>
                                                             @endif

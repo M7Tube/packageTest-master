@@ -19,6 +19,7 @@ class NewTemplate extends Model
         'title',
         'desc',
         'title_page',
+        'inspection_title_format',
         'title_page_title',
         'pages',
         'common_multiple_choise_options',
@@ -29,6 +30,7 @@ class NewTemplate extends Model
         'title_page' => 'json',
         'pages' => 'json',
         'common_multiple_choise_options' => 'json',
+        'inspection_title_format' => 'json',
     ];
 
     public function user()

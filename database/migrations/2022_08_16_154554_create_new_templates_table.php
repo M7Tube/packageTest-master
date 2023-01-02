@@ -20,6 +20,7 @@ class CreateNewTemplatesTable extends Migration
             $table->text('title');
             $table->text('desc');
             $table->json('title_page');
+            $table->json('inspection_title_format')->nullable();
             $table->text('title_page_title')->nullable();
             $table->json('pages');
             $table->json('common_multiple_choise_options')->nullable();

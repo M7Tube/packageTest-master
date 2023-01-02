@@ -146,6 +146,7 @@ class NewCreate extends Component
             $this->icon = $last->icon;
             $this->optional_icon = $last->optional_icon;
             $this->title_page_questions = $last->title_page;
+            $this->inspection_title_format = $last->inspection_title_format;
             $this->title_page_title = $last->title_page_title;
             $this->pages = $last->pages;
             $this->common_multiple_choise_options = $last->common_multiple_choise_options;
@@ -157,6 +158,7 @@ class NewCreate extends Component
                 'title' => $this->title ?? '',
                 'desc' => $this->desc ?? '',
                 'title_page' => $this->title_page_questions ?? [],
+                'inspection_title_format' => $this->inspection_title_format ?? [['key' => null, 'value' => null]],
                 'title_page_title' => $this->title_page_title ?? null,
                 'pages' => $this->pages ?? [],
                 'common_multiple_choise_options' => $this->option,
@@ -180,6 +182,7 @@ class NewCreate extends Component
                 'key' => $title_page_key,
                 'value' => $this->title_page_questions[$title_page_key]['title']
             ];
+            // if(count($this->inspection_title_format)!=count($this->title_page_questions))
             $this->inspection_title_format[] = ['key' => null, 'value' => null];
         } else {
             $this->inspection_title_format[$inspection_title_format_key] = [
@@ -377,7 +380,6 @@ class NewCreate extends Component
         $this->updating();
     }
 
-
     public function page_edit_save_multiple_choise()
     {
         $key = array_search($this->current_multiple_choise, $this->common_multiple_choise_options);
@@ -433,15 +435,19 @@ class NewCreate extends Component
         $this->pageactiveone = $pageactiveone;
         $this->pagequestionactiveone = $pagequestionactiveone;
     }
+
     public function title_page_add_question()
     {
         if ($this->activeone != null && $this->activeone != 'null') {
             array_splice($this->title_page_questions, $this->activeone + 1, 0, [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+            $this->activeone = $this->activeone + 1;
         } else {
             if ($this->pageactiveone != 'null' &&  $this->pagequestionactiveone != 'null') {
                 array_splice($this->pages[$this->pageactiveone]['question'], $this->pagequestionactiveone  + 1, 0, [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+                $this->pagequestionactiveone = $this->pagequestionactiveone  + 1;
             } else {
                 array_splice($this->title_page_questions, 0, 0, [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+                $this->activeone = 0;
             }
         }
         $this->updating();
@@ -521,6 +527,7 @@ class NewCreate extends Component
         }
         $this->updating();
     }
+
     public function multiple_choise_changeindex($oldIndex, $newIndex)
     {
         $temp = $this->title_page_questions[$this->activeone]['multiple_choice'][$oldIndex];
@@ -528,7 +535,6 @@ class NewCreate extends Component
         $this->title_page_questions[$this->activeone]['multiple_choice'][$newIndex] = $temp;
         $this->updating();
     }
-
 
     // public function change_active_one($newIndex)
     // {
@@ -638,6 +644,7 @@ class NewCreate extends Component
             $this->check_for_exist->optional_icon = null;
         $this->check_for_exist->desc = $this->desc ?? '';
         $this->check_for_exist->title_page = $this->title_page_questions ?? [];
+        $this->check_for_exist->inspection_title_format = $this->inspection_title_format ?? [['key' => null, 'value' => null]];
         $this->check_for_exist->title_page_title = $this->title_page_title ?? null;
         $this->check_for_exist->pages = $this->pages ?? [];
         $this->check_for_exist->common_multiple_choise_options = $this->common_multiple_choise_options ?? null;
