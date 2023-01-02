@@ -189,7 +189,7 @@
                                                             $title_page_question['response'] == 2 ||
                                                             $title_page_question['response'] == 4 ||
                                                             $title_page_question['response'] == 5)
-                                                            @if (empty(array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)))
+                                                            @if (empty(array_search(['key' => $key, 'value' => $title_page_question['title']], $inspection_title_format)))
                                                                 <li>
                                                                     <a class="dropdown-item"
                                                                         wire:click.prevent="set_inspection_title_format({{ $loop->parent->index }},{{ $loop->index }})">{{ $title_page_question['title'] != '' && $title_page_question['title'] != null ? $title_page_question['title'] : 'Question Number ' . $key2 + 1 }}</a>
@@ -337,7 +337,7 @@
                                                                                     }
                                                                                 </script>
                                                                             @else
-                                                                                <input
+                                                                                <input onkeydown = "if(event.keyCode == 13) @this.title_page_add_question();"
                                                                                     class="question-title-focus eVpkze w-100 h-100 question-title"
                                                                                     placeholder="Write a Question ..."
                                                                                     wire:model.lazy="title_page_questions.{{ $qkey }}.title">

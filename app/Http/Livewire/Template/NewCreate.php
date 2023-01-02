@@ -203,6 +203,7 @@ class NewCreate extends Component
     public function empty_inspection_title_format()
     {
         $this->inspection_title_format = [['key' => null, 'value' => null]];
+        $this->updating();
     }
 
     public function setResponseValue($response)
