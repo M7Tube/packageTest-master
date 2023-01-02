@@ -328,7 +328,7 @@
                                                                         <div class="eAfucY"
                                                                             wire:click.prevent="{{ $activeone != $loop->index ? "focus_on_this_question($loop->index,'null','null')" : '' }}">
                                                                             @if ($title_page_question['response'] == 10)
-                                                                                <textarea class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
+                                                                                <textarea enterkeyhint="enter" onkeydown = "if(event.keyCode == 13) @this.title_page_add_question();" class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
                                                                                     wire:model.lazy="title_page_questions.{{ $qkey }}.title" oninput="auto_grow(this);"></textarea>
                                                                                 <script>
                                                                                     function auto_grow(element) {
@@ -337,7 +337,7 @@
                                                                                     }
                                                                                 </script>
                                                                             @else
-                                                                                <input onkeydown = "if(event.keyCode == 13) @this.title_page_add_question();"
+                                                                                <input  enterkeyhint="enter" onkeydown = "if(event.keyCode == 13) @this.title_page_add_question();"
                                                                                     class="question-title-focus eVpkze w-100 h-100 question-title"
                                                                                     placeholder="Write a Question ..."
                                                                                     wire:model.lazy="title_page_questions.{{ $qkey }}.title">
