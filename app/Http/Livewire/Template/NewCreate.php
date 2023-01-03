@@ -472,6 +472,8 @@ class NewCreate extends Component
     public function delete_page($key)
     {
         array_splice($this->pages, $key, 1);
+        $this->pageactiveone='null';
+        $this->pagequestionactiveone='null';
         $this->updating();
     }
 

@@ -328,7 +328,8 @@
                                                                         <div class="eAfucY"
                                                                             wire:click.prevent="{{ $activeone != $loop->index ? "focus_on_this_question($loop->index,'null','null')" : '' }}">
                                                                             @if ($title_page_question['response'] == 10)
-                                                                                <textarea enterkeyhint="enter" onkeydown = "if(event.keyCode == 13) @this.title_page_add_question();" class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
+                                                                                <textarea enterkeyhint="enter" onkeydown="if(event.keyCode == 13) @this.title_page_add_question();"
+                                                                                    class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
                                                                                     wire:model.lazy="title_page_questions.{{ $qkey }}.title" oninput="auto_grow(this);"></textarea>
                                                                                 <script>
                                                                                     function auto_grow(element) {
@@ -337,7 +338,8 @@
                                                                                     }
                                                                                 </script>
                                                                             @else
-                                                                                <input  enterkeyhint="enter" onkeydown = "if(event.keyCode == 13) @this.title_page_add_question();"
+                                                                                <input enterkeyhint="enter"
+                                                                                    onkeydown="if(event.keyCode == 13) @this.title_page_add_question();"
                                                                                     class="question-title-focus eVpkze w-100 h-100 question-title"
                                                                                     placeholder="Write a Question ..."
                                                                                     wire:model.lazy="title_page_questions.{{ $qkey }}.title">
@@ -1685,6 +1687,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="kxBwiI">
+                                    <div class="ijlOct cGmsts" wire:click.prevent="add_page()">
+                                        Add page
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1749,26 +1756,20 @@
                                         </g>
                                     </svg>
                                 </button>
-                                <div class="tether-element dropdown-menu tether-element-attached-bottom tether-element-attached-right tether-target-attached-top tether-target-attached-center tether-enabled tether-out-of-bounds tether-out-of-bounds-bottom"
-                                    style="z-index: 20; top: 0px; position: absolute; transform: translateX(375.733px) translateY(216.25px) translateZ(0px); left: 0px;"
-                                    wire:ignore.self>
-                                    <div class="cKwbqr">
-                                        <div class="epicTj" wire:click.prevent="delete_page({{ $loop->index }})">
-                                            <div style="display: flex; align-items: center;" class="iBzfYz">
-                                                <svg width="21" height="21" viewBox="0 0 14 14"
-                                                    focusable="false">
-                                                    <path
-                                                        d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
-                                                        fill="#545f70" fill-rule="nonzero">
-                                                    </path>
-                                                </svg>
-                                                <span style="padding-left: 0.4rem; color: rgb(31, 37, 51);">
-                                                    Delete
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item"
+                                            wire:click.prevent="delete_page({{ $loop->index }})">
+                                            <svg width="21" height="21" viewBox="0 0 14 14"
+                                                focusable="false">
+                                                <path
+                                                    d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                    fill="#545f70" fill-rule="nonzero">
+                                                </path>
+                                            </svg> Delete
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <div id="collapseTwo{{ $loop->index }}" aria-labelledby="headingTwo"
@@ -1829,7 +1830,8 @@
                                                                                     wire:click.prevent="{{ $pagequestionactiveone != $loop->index ? "focus_on_this_question('null',$pagekey,$loop->index)" : '' }}">
                                                                                     {{-- @this.set('activeone', 'p_' + {{ $loop->parent->index }} + '_' + {{ $loop->index }}); --}}
                                                                                     @if ($pageQuestion['response'] == 10)
-                                                                                        <textarea enterkeyhint="enter" onkeydown = "if(event.keyCode == 13) @this.title_page_add_question();" class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
+                                                                                        <textarea enterkeyhint="enter" onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();}"
+                                                                                            class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
                                                                                             wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"
                                                                                             oninput="auto_grow2(this);"></textarea>
                                                                                         <script>
@@ -1839,7 +1841,8 @@
                                                                                             }
                                                                                         </script>
                                                                                     @else
-                                                                                        <input enterkeyhint="enter" onkeydown = "if(event.keyCode == 13) @this.title_page_add_question();"
+                                                                                        <input enterkeyhint="enter"
+                                                                                            onkeydown="if(event.keyCode == 13) @this.title_page_add_question();"
                                                                                             class="question-title-focus eVpkze w-100 h-100 question-title"
                                                                                             placeholder="Write a Question ..."
                                                                                             wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title">
@@ -2334,6 +2337,11 @@
                                                 </div>
                                             @empty
                                             @endforelse
+                                        </div>
+                                        <div class="kxBwiI">
+                                            <div class="ijlOct cGmsts" wire:click.prevent="add_page()">
+                                                Add page
+                                            </div>
                                         </div>
                                         <script>
                                             const page{{ $loop->index }} = document.querySelector(".pagewrapper" + {{ $loop->index }});
@@ -3140,8 +3148,8 @@
     @if ((new \Jenssegers\Agent\Agent())->isMobile())
         <div class="mt-5 under-1">
             <div class="under-2">
-                <div class="under-3">
-                    <a wire:click.prevent="title_page_add_question">
+                <div class="under-3" wire:click.prevent="title_page_add_question">
+                    <a>
                         <div class="under-4">
                             <svg viewBox="0 0 24 24" width="21" height="21" focusable="false"
                                 data-anchor="plus-svg">
@@ -3169,8 +3177,8 @@
                         Section
                     </div>
                 </div>
-                <div class="under-9">
-                    <a wire:click.prevent="add_page()">
+                <div class="under-9" wire:click.prevent="add_page()">
+                    <a>
                         <div class="under-10">
                             <svg width="21" height="21" viewBox="0 0 14 14" focusable="false">
                                 <g fill="#675df4" fill-rule="nonzero">
