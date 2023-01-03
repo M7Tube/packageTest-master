@@ -458,7 +458,10 @@ class NewCreate extends Component
     {
         if (count($this->title_page_questions) > 1) {
             array_splice($this->title_page_questions, $question_key, 1);
-            $this->activeone = 0;
+            if ($question_key == 0)
+                $this->activeone = 0;
+            else
+                $this->activeone = $question_key - 1;
             $this->updating();
         }
     }
@@ -472,8 +475,8 @@ class NewCreate extends Component
     public function delete_page($key)
     {
         array_splice($this->pages, $key, 1);
-        $this->pageactiveone='null';
-        $this->pagequestionactiveone='null';
+        $this->pageactiveone = 'null';
+        $this->pagequestionactiveone = 'null';
         $this->updating();
     }
 
@@ -549,6 +552,10 @@ class NewCreate extends Component
     {
         if (count($this->pages[$pageKey]['question']) > 1) {
             array_splice($this->pages[$pageKey]['question'], $questionKey, 1);
+            if ($questionKey == 0)
+                $this->pagequestionactiveone = 0;
+            else
+                $this->pagequestionactiveone = $questionKey - 1;
             $this->updating();
         }
     }
