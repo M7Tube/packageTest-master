@@ -14,6 +14,7 @@ class StartInspectionResource extends JsonResource
      */
     public function toArray($request)
     {
+        // $title_page_array=['question'=>$this->title_page];
         return [
             'id' => $this->new_template_id ?? 0,
             'title' => $this->title == "" ? 'Untitled Template' : $this->title,
@@ -21,8 +22,8 @@ class StartInspectionResource extends JsonResource
             'icon' => 'https://c-rpt.com/storage/app/public/images/' . $this->icon,
             'title_page_title' => $this->title_page_title ?? null,
             'data' => [
-                'title_page'=>$this->title_page ?? [],
-                'pages'=>$this->pages ?? [],
+                // 'title_page' => $this->title_page ?? [],
+                'pages' => array_merge([['question'=>$this->title_page]],$this->pages ?? []),
             ],
             'user' => $this->user->first_name ?? 'Unknown',
             'created_at' => $this->created_at,

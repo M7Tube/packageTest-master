@@ -189,7 +189,8 @@
                                                             $title_page_question['response'] == 2 ||
                                                             $title_page_question['response'] == 4 ||
                                                             $title_page_question['response'] == 5)
-                                                            @if (empty(array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)))
+                                                            @if (array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)==0)
+                                                            {{array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)}}
                                                             {{-- @if (['key' => $key2, 'value' => $title_page_question['title']] !== $inspection_title_format_record) --}}
                                                                 <li>
                                                                     <a class="dropdown-item"
