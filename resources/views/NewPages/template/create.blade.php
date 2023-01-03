@@ -1,7 +1,7 @@
 @extends('layouts.create-template-navbar')
 @section('body')
     <div id="myDiv" style="display: none;">
-        <div class="hgfTTj sticky-top">
+        <div class="hgfTTj">
             <nav class="cSQsdR">
                 <div class="gZDClP">
                     <a href="{{ route('index.template') }}" class="jvZSBO ldzCUn">
@@ -32,6 +32,10 @@
                             </span>
                         </a>
                     </div>
+                </div>
+                <div class="gZDClP kFKVjj">
+                    <div class="jzVVFK"></div>
+                    <div class="bzDJqY"></div>
                 </div>
             </nav>
         </div>
