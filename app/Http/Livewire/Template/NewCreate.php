@@ -647,7 +647,6 @@ class NewCreate extends Component
 
     public function updating()
     {
-        $this->dispatchBrowserEvent('updatedstart');
         $this->check_for_exist->title = $this->title ?? '';
         if ($this->icon == null)
             $this->check_for_exist->icon = null;
@@ -673,6 +672,8 @@ class NewCreate extends Component
         $this->check_for_exist->save();
         $this->uploading = false;
         $this->optional_uploading = false;
+        $this->dispatchBrowserEvent('updatedstart');
+
     }
 
     // public function render()
