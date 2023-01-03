@@ -20,7 +20,6 @@ class StartInspectionResource extends JsonResource
             'title' => $this->title == "" ? 'Untitled Template' : $this->title,
             'desc' => $this->desc == "" ? 'Empty Description' : $this->desc,
             'icon' => 'https://c-rpt.com/storage/app/public/images/' . $this->icon,
-            'title_page_title' => $this->title_page_title ?? null,
             'data' => array_merge([['question'=>$this->title_page,'title'=>$this->title_page_title ?? null]],$this->pages ?? []),
             'user' => $this->user->first_name ?? 'Unknown',
             'created_at' => $this->created_at,

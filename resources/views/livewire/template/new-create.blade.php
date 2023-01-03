@@ -1,5 +1,5 @@
 <div id="myDiv">
-    {{-- <button wire:click.prevent="test">print test</button> --}}
+    <button wire:click.prevent="test">print test</button>
     <div class="mt-5" style="margin-bottom: 100%;">
         <div class="container-fluid">
             <div class="row">
@@ -8,8 +8,8 @@
                     @if (!$icon)
                         <div class="col-12 col-md-3 logo-alignment">
                             <div class="position-relative">
-                                <input type="file" wire:model.lazy="icon" alt="template icon" style="display:none;"
-                                    id="customefileupload" accept="image/*">
+                                <input type="file" wire:model.lazy="icon" alt="template icon"
+                                    style="display:none;" id="customefileupload" accept="image/*">
                                 <label for="customefileupload" class="customfileupload">
                                     <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -189,9 +189,9 @@
                                                             $title_page_question['response'] == 2 ||
                                                             $title_page_question['response'] == 4 ||
                                                             $title_page_question['response'] == 5)
-                                                            @if (array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)==0)
-                                                            {{array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)}}
-                                                            {{-- @if (['key' => $key2, 'value' => $title_page_question['title']] !== $inspection_title_format_record) --}}
+                                                            @if (!array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format))
+                                                                {{-- {{array_search(['key' => $key2, 'value' => $title_page_question['title']], $inspection_title_format)}} --}}
+                                                                {{-- @if (['key' => $key2, 'value' => $title_page_question['title']] !== $inspection_title_format_record) --}}
                                                                 <li>
                                                                     <a class="dropdown-item"
                                                                         wire:click.prevent="set_inspection_title_format({{ $loop->parent->index }},{{ $loop->index }})">{{ $title_page_question['title'] != '' && $title_page_question['title'] != null ? $title_page_question['title'] : 'Question Number ' . $key2 + 1 }}</a>
@@ -330,9 +330,11 @@
                                                                         <div class="eAfucY"
                                                                             wire:click.prevent="{{ $activeone != $loop->index ? "focus_on_this_question($loop->index,'null','null')" : '' }}">
                                                                             @if ($title_page_question['response'] == 10)
-                                                                                <textarea enterkeyhint="enter" onkeydown="if(event.keyCode == 13) @this.title_page_add_question();"
-                                                                                    class="question-title-focus eVpkze w-100 question-title-instruction" placeholder="Write a Question ..."
-                                                                                    wire:model.lazy="title_page_questions.{{ $qkey }}.title" oninput="auto_grow(this);"></textarea>
+                                                                                <textarea enterkeyhint="enter"
+                                                                                    onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
+                                                                                    class="question-title-focus eVpkze w-100 question-title-instruction" id="title_page{{ $loop->index }}"
+                                                                                    placeholder="Write a Question ..." wire:model.lazy="title_page_questions.{{ $qkey }}.title"
+                                                                                    oninput="auto_grow(this);"></textarea>
                                                                                 <script>
                                                                                     function auto_grow(element) {
                                                                                         element.style.height = "1px";
@@ -341,8 +343,9 @@
                                                                                 </script>
                                                                             @else
                                                                                 <input enterkeyhint="enter"
-                                                                                    onkeydown="if(event.keyCode == 13) @this.title_page_add_question();"
+                                                                                    onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
                                                                                     class="question-title-focus eVpkze w-100 h-100 question-title"
+                                                                                    id="title_page{{ $loop->index }}"
                                                                                     placeholder="Write a Question ..."
                                                                                     wire:model.lazy="title_page_questions.{{ $qkey }}.title">
                                                                             @endif
@@ -1830,8 +1833,7 @@
                                                                                 style="display: flex; align-items: center;">
                                                                                 <div class="eAfucY"
                                                                                     {{-- wire:click.prevent="{{ $pagequestionactiveone != $loop->index && $pageactiveone != $loop->parent->index ? "focus_on_this_question('null',$pagekey,$loop->index)" : '' }}" --}}
-                                                                                    onclick="@this.set('activeone', 'null');@this.set('pageactiveone', {{ $loop->parent->index }});@this.set('pagequestionactiveone', {{ $loop->index }});"
-                                                                                    >
+                                                                                    onclick="@this.set('activeone', 'null');@this.set('pageactiveone', {{ $loop->parent->index }});@this.set('pagequestionactiveone', {{ $loop->index }});">
                                                                                     {{-- @this.set('activeone', 'p_' + {{ $loop->parent->index }} + '_' + {{ $loop->index }}); --}}
                                                                                     @if ($pageQuestion['response'] == 10)
                                                                                         <textarea enterkeyhint="enter" onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();}"
@@ -1846,8 +1848,9 @@
                                                                                         </script>
                                                                                     @else
                                                                                         <input enterkeyhint="enter"
-                                                                                            onkeydown="if(event.keyCode == 13) @this.title_page_add_question();"
+                                                                                            onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('page'+{{ $loop->parent->index }}{{ $loop->index + 1 }}).focus();}"
                                                                                             class="question-title-focus eVpkze w-100 h-100 question-title"
+                                                                                            id="page{{ $loop->parent->index }}{{ $loop->index }}"
                                                                                             placeholder="Write a Question ..."
                                                                                             wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title">
                                                                                     @endif
