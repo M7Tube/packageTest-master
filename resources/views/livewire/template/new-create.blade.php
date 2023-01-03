@@ -1827,7 +1827,9 @@
                                                                             <div
                                                                                 style="display: flex; align-items: center;">
                                                                                 <div class="eAfucY"
-                                                                                    wire:click.prevent="{{ $pagequestionactiveone != $loop->index ? "focus_on_this_question('null',$pagekey,$loop->index)" : '' }}">
+                                                                                    {{-- wire:click.prevent="{{ $pagequestionactiveone != $loop->index && $pageactiveone != $loop->parent->index ? "focus_on_this_question('null',$pagekey,$loop->index)" : '' }}" --}}
+                                                                                    onclick="@this.set('activeone', 'null');@this.set('pageactiveone', {{ $loop->parent->index }});@this.set('pagequestionactiveone', {{ $loop->index }});"
+                                                                                    >
                                                                                     {{-- @this.set('activeone', 'p_' + {{ $loop->parent->index }} + '_' + {{ $loop->index }}); --}}
                                                                                     @if ($pageQuestion['response'] == 10)
                                                                                         <textarea enterkeyhint="enter" onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();}"
