@@ -1,7 +1,7 @@
 @extends('layouts.create-template-navbar')
 @section('body')
     <div id="myDiv" style="display: none;">
-        <div class="hgfTTj">
+        <div class="hgfTTj sticky-top">
             <nav class="cSQsdR">
                 <div class="gZDClP">
                     <a href="{{ route('index.template') }}" class="jvZSBO ldzCUn">
