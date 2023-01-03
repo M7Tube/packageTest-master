@@ -23,7 +23,7 @@ class StartInspectionResource extends JsonResource
             'title_page_title' => $this->title_page_title ?? null,
             'data' => [
                 // 'title_page' => $this->title_page ?? [],
-                'pages' => array_merge([['question'=>$this->title_page]],$this->pages ?? []),
+                'pages' => array_merge([['question'=>$this->title_page,'title'=>$this->title_page_title ?? null]],$this->pages ?? []),
             ],
             'user' => $this->user->first_name ?? 'Unknown',
             'created_at' => $this->created_at,
