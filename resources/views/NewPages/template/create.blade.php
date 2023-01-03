@@ -1,7 +1,40 @@
 @extends('layouts.create-template-navbar')
 @section('body')
     <div id="myDiv" style="display: none;">
-        
+        <div class="hgfTTj sticky-top">
+            <nav class="cSQsdR">
+                <div class="gZDClP">
+                    <a href="{{ route('index.template') }}" class="jvZSBO ldzCUn">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="#1f2533" focusable="false">
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+                        </svg>
+                    </a>
+                    <div class="jdIrDI">
+                        <div>
+                            <div class="ijlOct kLHZgE">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gZDClP kSQegF">
+                    <a class="{{ request()->routeIs('create.template') ? 'ispaZE' : 'cwqemj' }}"
+                        href="{{ route('create.template') }}">
+                        <span>
+                            Build
+                        </span>
+                    </a>
+                    <div class="bMyjvq">
+                        <a class="{{ request()->routeIs('preview.template') ? 'ispaZE' : 'cwqemj' }}"
+                            href="{{ route('preview.template', request()->query('template_id') ?? request('template_id')) }}">
+                            <span>
+                                Preview
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
         @livewire('template.new-create')
     </div>
 @endsection
