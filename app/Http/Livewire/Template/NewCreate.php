@@ -32,7 +32,7 @@ class NewCreate extends Component
     public $inspection_title_format = [['key' => null, 'value' => null]];
     protected $queryString = ['activeone', 'pageactiveone', 'pagequestionactiveone', 'template_id', 'new_template'];
     protected $listeners = [
-        'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex',
+        'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex','updating'
     ];
 
     public function mount()
@@ -647,6 +647,7 @@ class NewCreate extends Component
 
     public function updating()
     {
+        $this->dispatchBrowserEvent('updatedstart');
         $this->check_for_exist->title = $this->title ?? '';
         if ($this->icon == null)
             $this->check_for_exist->icon = null;

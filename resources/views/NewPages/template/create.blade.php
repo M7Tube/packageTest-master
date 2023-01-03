@@ -33,10 +33,30 @@
                         </a>
                     </div>
                 </div>
-                <div class="gZDClP kFKVjj">
+                {{-- <div class="gZDClP kFKVjj">
                     <div class="jzVVFK"></div>
                     <div class="bzDJqY"></div>
+                </div> --}}
+                <div class="ePvnVu hqxmFH">
+                    <div class="jzVVFK"></div>
+                    <div class="bzDJqY"></div>
+                    <div class="fFYwLD">
+                        <span class="badge text-bg-light" id="saving" style="display: none;">
+                            Saving...
+                        </span>
+                    </div>
                 </div>
+                <script type="text/javascript">
+                    var x = document.getElementById("saving");
+                    document.addEventListener('updatedstart', () => {
+                        x.style.display = "flex";
+                        setTimeout(delayFunction, 1000);
+                    });
+
+                    function delayFunction() {
+                        x.style.display = "none";
+                    }
+                </script>
             </nav>
         </div>
         @livewire('template.new-create')
