@@ -19,7 +19,8 @@
                 </div>
                 <div class="gZDClP kSQegF">
                     <a class="{{ request()->routeIs('create.template') ? 'ispaZE' : 'cwqemj' }}"
-                        href="{{ route('create.template') }}">
+                        {{-- href="{{ route('create.template') }}" --}}
+                        >
                         <span>
                             Build
                         </span>

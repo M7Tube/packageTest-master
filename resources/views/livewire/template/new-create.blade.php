@@ -819,6 +819,209 @@
                                             @else
                                             @endif
                                         </div>
+                                        <div class="hkphPX">
+                                            <div class="REnvQ">
+                                                <div class="GvAgP cuypVQ">
+                                                    <div class="jrHdov">
+                                                        <div class="huXueT">
+                                                            <div class="kGgXUq">
+                                                                <div type="section" class="eWljvT">
+                                                                    <svg viewBox="0 0 24 24" width="14"
+                                                                        height="14"
+                                                                        class="template-item-styled__StyledArrowDownSvg-sc-1tq96ts-8 cBgwtB"
+                                                                        focusable="false">
+                                                                        <path
+                                                                            d="M12.819 17.633l8.866-9.52a1.323 1.323 0 0 0-.028-1.745 1.113 1.113 0 0 0-1.625-.03l-7.663 8.228a.509.509 0 0 1-.755 0L3.968 6.354a1.113 1.113 0 0 0-1.625.03 1.323 1.323 0 0 0-.028 1.745l8.85 9.504c.22.235.517.368.827.367a1.12 1.12 0 0 0 .827-.367z"
+                                                                            fill="white" fill-rule="nonzero">
+                                                                        </path>
+                                                                    </svg>
+                                                                </div>
+                                                                <span style="padding-left: 0.3rem;" class="eSpMaC">
+                                                                </span>
+                                                                <div tabindex="-1" class="bBjJyf">
+                                                                    <div style="display: flex; align-items: center;">
+                                                                        <div itemtype="section" tabindex="0"
+                                                                            class="gnFdRB">
+                                                                            <span class="hXljZM">
+                                                                                Type section title
+                                                                            </span>
+                                                                        </div>
+                                                                        <div style="z-index: 1;" class="kSUFwR">
+                                                                            <button type="button" class="jvZSBO">
+                                                                                <svg viewBox="0 0 24 24"
+                                                                                    width="24" height="24"
+                                                                                    class="hFCnYj" focusable="false">
+                                                                                    <path fill="#545f70"
+                                                                                        fill-rule="nonzero"
+                                                                                        d="M8.364 16.075L3.59 11.687 2 13.149 8.364 19 22 6.463 20.41 5z">
+                                                                                    </path>
+                                                                                </svg>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div style="z-index: 1;" class="kSUFwR">
+                                                                            <div class="gSTyPU">
+                                                                                <button type="button" class="jvZSBO">
+                                                                                    <svg width="24" height="24"
+                                                                                        viewBox="0 0 14 14"
+                                                                                        focusable="false">
+                                                                                        <g transform="translate(5.542 1.458)"
+                                                                                            fill="#545f70"
+                                                                                            fill-rule="nonzero">
+                                                                                            <circle
+                                                                                                transform="rotate(90 1.458 5.542)"
+                                                                                                cx="1.458"
+                                                                                                cy="5.542"
+                                                                                                r="1.458">
+                                                                                            </circle>
+                                                                                            <circle
+                                                                                                transform="rotate(90 1.458 9.625)"
+                                                                                                cx="1.458"
+                                                                                                cy="9.625"
+                                                                                                r="1.458">
+                                                                                            </circle>
+                                                                                            <circle
+                                                                                                transform="rotate(90 1.458 1.458)"
+                                                                                                cx="1.458"
+                                                                                                cy="1.458"
+                                                                                                r="1.458">
+                                                                                            </circle>
+                                                                                        </g>
+                                                                                    </svg>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="gUpHHY">
+                                                            {{-- <div style="z-index: 1;" class="eMiEgJ">
+                                                                <div tabindex="0" role="checkbox"
+                                                                    aria-checked="false" class="xxrKk">
+                                                                    <input
+                                                                        id="9eed561e-a2c6-4ba3-b534-1a4e133ef96a-input"
+                                                                        aria-hidden="false" type="checkbox"
+                                                                        aria-checked="false" hidden="">
+                                                                    <div class="bDlfyK">
+                                                                        <svg viewBox="0 0 24 24" width="21"
+                                                                            height="21"
+                                                                            style="display: inline-block;"
+                                                                            focusable="false"
+                                                                            data-anchor="unchecked-checkbox-svg">
+                                                                            <path fill="none" d="M0 0h24v24H0V0z">
+                                                                            </path>
+                                                                            <path fill="#545f70"
+                                                                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z">
+                                                                            </path>
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+                                                                <label for="9eed561e-a2c6-4ba3-b534-1a4e133ef96a-input"
+                                                                    class="fJJVDV">
+                                                                    <div class="fDpeEn">
+                                                                        Repeat this section
+                                                                    </div>
+                                                                </label>
+                                                            </div> --}}
+                                                        </div>
+                                                    </div>
+                                                    <button tabindex="-1" class="bKqzym blqywb">
+                                                        <svg width="21" height="21" viewBox="0 0 14 14"
+                                                            focusable="false">
+                                                            <path
+                                                                d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                fill="#545f70" fill-rule="nonzero">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="blAOCI">
+                                            <div class="ipTQFP"></div>
+                                            <div class="REnvQ">
+                                                <div class="GvAgP cuypVQ">
+                                                    <div class="bAJknk">
+                                                        <div class="huXueT">
+                                                            <div class="kGgXUq">
+                                                                <div tabindex="-1" role="button"
+                                                                    aria-describedby="popup-57" draggable="false"
+                                                                    class="haXfJL">
+                                                                    <svg viewBox="0 0 24 24" width="24"
+                                                                        height="24" focusable="false">
+                                                                        <path fill="none" d="M0 0h24v24H0V0z">
+                                                                        </path>
+                                                                        <path fill="#675df4"
+                                                                            d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </div>
+                                                                <span style="padding-left: 0.3rem;" class="eSpMaC">
+                                                                </span>
+                                                                <div tabindex="-1" class="fTJQmL">
+                                                                    <div class="eiFrFc">
+                                                                    </div>
+                                                                    <div style="display: flex; align-items: center;">
+                                                                        <div itemtype="question" tabindex="0"
+                                                                            class="eAfucY">
+                                                                            <span class="hXljZM">
+                                                                                Type question
+                                                                            </span>
+                                                                        </div>
+                                                                        <div style="z-index: 1;" class="kSUFwR">
+                                                                        </div>
+                                                                        <div style="z-index: 1;" class="kSUFwR">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cYnFsn">
+                                                            <div style="width: 100%;">
+                                                                <div class="eWLEUv">
+                                                                    <div>
+                                                                        <div class="fyczhl">
+                                                                            <div color="#13855f" mode="light"
+                                                                                class="nDePA">
+                                                                                Yes
+                                                                            </div>
+                                                                            <div color="#c60022" mode="light"
+                                                                                class="jpbKJa">
+                                                                                No
+                                                                            </div>
+                                                                            <div color="#707070" mode="light"
+                                                                                class="davsXv">
+                                                                                N/A
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <svg viewBox="0 0 24 24" width="16"
+                                                                        height="16" class="kBTspn"
+                                                                        focusable="false">
+                                                                        <path
+                                                                            d="M12.819 17.633l8.866-9.52a1.323 1.323 0 0 0-.028-1.745 1.113 1.113 0 0 0-1.625-.03l-7.663 8.228a.509.509 0 0 1-.755 0L3.968 6.354a1.113 1.113 0 0 0-1.625.03 1.323 1.323 0 0 0-.028 1.745l8.85 9.504c.22.235.517.368.827.367a1.12 1.12 0 0 0 .827-.367z"
+                                                                            fill="#545f70" fill-rule="nonzero">
+                                                                        </path>
+                                                                    </svg>
+                                                                </div>
+                                                            </div>
+                                                            <div style="border-left: 1px solid rgb(191, 198, 212);"
+                                                                class="kSUFwR">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button tabindex="-1" class="bKqzym jGqRmA">
+                                                        <svg width="21" height="21" viewBox="0 0 14 14"
+                                                            focusable="false">
+                                                            <path
+                                                                d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                fill="#545f70" fill-rule="nonzero">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @empty
                                     @endforelse
                                     <div class="modal fade m-0 p-0" id="TitlePageResponseModal" tabindex="-1"
@@ -1284,7 +1487,7 @@
                                                                                                                                     {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
                                                                                                                             </div>
                                                                                                                             <div
-                                                                                                                                class="popover__Wrapper-sc-cb9u88-0 GvAgP color-editor__Container-sc-kdtz0f-0 iiszyV">
+                                                                                                                                class="GvAgP color-editor__Container-sc-kdtz0f-0 iiszyV">
                                                                                                                                 <label
                                                                                                                                     for="TP_add_response_color{{ $activeone }}{{ $responsKey }}"
                                                                                                                                     color="#13855f"
@@ -1445,9 +1648,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal fade m-0 p-0" id="EditMultipleChoiseOptionModal" tabindex="-1"
-                                        aria-labelledby="EditMultipleChoiseOptionModalLabel" aria-hidden="true"
-                                        wire:ignore.self>
+                                    <div class="modal fade m-0 p-0" id="EditMultipleChoiseOptionModal"
+                                        tabindex="-1" aria-labelledby="EditMultipleChoiseOptionModalLabel"
+                                        aria-hidden="true" wire:ignore.self>
                                         <div class="modal-dialog modal-fullscreen">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -1455,8 +1658,8 @@
                                                         id="EditMultipleChoiseOptionModalLabel">
                                                         Response Options
                                                     </h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
+                                                    <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="iVmibF cxbltl">
@@ -1546,7 +1749,7 @@
                                                                                                                                     {{-- style="color:{{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['font_color'] }}" --}}>
                                                                                                                             </div>
                                                                                                                             <div
-                                                                                                                                class="popover__Wrapper-sc-cb9u88-0 GvAgP color-editor__Container-sc-kdtz0f-0 iiszyV">
+                                                                                                                                class="GvAgP color-editor__Container-sc-kdtz0f-0 iiszyV">
                                                                                                                                 <label
                                                                                                                                     for="TP_edit_add_response_color{{ $activeone }}{{ $responsKey }}"
                                                                                                                                     color="#13855f"
@@ -2774,7 +2977,7 @@
                                                                                                         wire:model="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.title">
                                                                                                 </div>
                                                                                                 <div
-                                                                                                    class="popover__Wrapper-sc-cb9u88-0 GvAgP color-editor__Container-sc-kdtz0f-0 iiszyV">
+                                                                                                    class="GvAgP color-editor__Container-sc-kdtz0f-0 iiszyV">
                                                                                                     <label
                                                                                                         for="P_add_response_color{{ $pageactiveone }}{{ $pagequestionactiveone }}{{ $responsKey }}"
                                                                                                         color="#13855f"
@@ -3011,7 +3214,7 @@
                                                                                                         wire:model="pages.{{ $pageactiveone }}.question.{{ $pagequestionactiveone }}.multiple_choice.{{ $responsKey }}.title">
                                                                                                 </div>
                                                                                                 <div
-                                                                                                    class="popover__Wrapper-sc-cb9u88-0 GvAgP color-editor__Container-sc-kdtz0f-0 iiszyV">
+                                                                                                    class="GvAgP color-editor__Container-sc-kdtz0f-0 iiszyV">
                                                                                                     <label
                                                                                                         for="P_edit_add_response_color{{ $pageactiveone }}{{ $pagequestionactiveone }}{{ $responsKey }}"
                                                                                                         color="#13855f"
