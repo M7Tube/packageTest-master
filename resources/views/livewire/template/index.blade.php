@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                             </div> --}}
-                            <div class="BJtFb">
+                            {{-- <div class="BJtFb">
                                 <a style="color: white; text-decoration: none;" href="{{route('create.template')}}" class="immkQS">
                                     <span class="jibPFy">
                                         <svg width="1rem" height="1rem" viewBox="0 0 24 24" color="currentColor"
@@ -45,7 +45,7 @@
                                     </span>
                                     Create
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="cxKRws kexDQG table-responsive">

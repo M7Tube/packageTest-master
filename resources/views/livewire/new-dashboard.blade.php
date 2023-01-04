@@ -9,11 +9,12 @@
                         minutes.
                     </h6>
                     <a class=" mt-4 d-flex mx-auto align-items-center justify-content-center dashboard-createTemplate-button"
-                        href="{{ route('create.template') }}">{{ __('Create new template') }}</a>
+                        href="">{{ __('Create new template') }}</a>
+                        {{-- {{ route('create.template') }} --}}
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6 border">
+        {{-- <div class="col-12 col-md-6 border">
             <div class="bg-white">
                 <div class="p-5 bg-white">
                     <img src="{{ asset('images/undraw_code_inspection_bdl7(1).svg') }}" alt="Start Inspection"
@@ -24,6 +25,6 @@
                         href="{{ route('index.inspection') }}">{{ __('Start Inspection') }}</a>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
