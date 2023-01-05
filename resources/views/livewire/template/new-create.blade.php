@@ -343,7 +343,7 @@
                                                                         <div
                                                                             style="display: flex; align-items: center;">
                                                                             <div class="eAfucY"
-                                                                                wire:click.prevent="{{ $activeone != $loop->index ? "focus_on_this_question($loop->index,'null','null')" : '' }}">
+                                                                                wire:click.prevent="{{ $activeone != $loop->index ? "focus_on_this_question($loop->index,'null','null','null','null')" : '' }}">
                                                                                 @if ($title_page_question['response'] == 10)
                                                                                     <textarea enterkeyhint="enter"
                                                                                         onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
@@ -860,7 +860,8 @@
                                                                             <div
                                                                                 style="display: flex; align-items: center;">
                                                                                 <div itemtype="section" tabindex="0"
-                                                                                    class="gnFdRB" wire:click.prevent="{{ $activeone != $loop->index ? "focus_on_this_question($loop->index,'null','null')" : '' }}">
+                                                                                    class="gnFdRB"
+                                                                                    wire:click.prevent="{{ $activeone != $loop->index ? "focus_on_this_question('null',$loop->index,'null','null','null')" : '' }}">
                                                                                     <span class="hXljZM">
                                                                                         <input enterkeyhint="enter"
                                                                                             onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
@@ -890,10 +891,22 @@
                                                             @endif
                                                         </div>
                                                     </div>
+                                                    @if ($sectionactiveone == $loop->index && $sectionquestionactiveone =='null')
+                                                        <div class="fyPxKd elTKUx"></div>
+                                                        <div class="fmcVJh jIirFj"></div>
+                                                        <div class="fmcVJh fPLdzz"></div>
+                                                        <div class="fmcVJh iXxEYF"></div>
+                                                        <div class="fmcVJh jIirFj iVHMfM"></div>
+                                                        <div class="fyPxKd kklQix"></div>
+                                                        <div class="fyecfK"></div>
+                                                    @else
+                                                    @endif
                                                 </div>
                                                 @forelse ($title_page_question['question'] as $question)
                                                     <div class="blAOCI">
-                                                        <div class="ipTQFP"></div>
+                                                        <div class="ipTQFP"
+                                                            style="background-image:{{ $this->sectionquestionactiveone == $loop->index && $this->sectionactiveone == $loop->parent->index ? ' linear-gradient(rgb(233, 238, 246) 10px, transparent 5px), linear-gradient(to top, rgb(233, 238, 246) 10px, transparent 5px), linear-gradient(90deg, transparent 11px, 11px, rgb(103, 93, 244) 13px, transparent 13px);' : '' }}">
+                                                        </div>
                                                         <div class="REnvQ">
                                                             <div class="GvAgP cuypVQ">
                                                                 <div class="bAJknk">
@@ -912,7 +925,7 @@
                                                                                         d="M0 0h24v24H0V0z">
                                                                                     </path>
                                                                                     <path
-                                                                                        fill="{{ $this->activeone == $loop->index ? '#313235' : '#8c9097' }}"
+                                                                                        fill="{{ $this->sectionquestionactiveone == $loop->index && $this->sectionactiveone == $loop->parent->index ? '#313235' : '#8c9097' }}"
                                                                                         d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
                                                                                     </path>
                                                                                 </svg>
@@ -923,7 +936,7 @@
                                                                                 <div
                                                                                     style="display: flex; align-items: center;">
                                                                                     <div class="eAfucY"
-                                                                                        wire:click.prevent="{{ $activeone != $loop->index ? "focus_on_this_question($loop->index,'null','null')" : '' }}">
+                                                                                        wire:click.prevent="{{ $sectionquestionactiveone != $loop->index && $sectionactiveone != $loop->parent->index ? "focus_on_this_question('null',$qkey,$loop->index,'null','null')" : '' }}">
                                                                                         @if ($question['response'] == 10)
                                                                                             <textarea enterkeyhint="enter"
                                                                                                 onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
@@ -946,7 +959,7 @@
                                                                                                 wire:model.lazy="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.title">
                                                                                         @endif
                                                                                     </div>
-                                                                                    @if ($activeone == $loop->index)
+                                                                                    @if ($sectionactiveone == $loop->parent->index && $sectionquestionactiveone == $loop->index)
                                                                                         <div style="z-index: 1;"
                                                                                             class="kSUFwR"
                                                                                             wire:click="give_active_one('null')">
@@ -976,11 +989,11 @@
                                                                         </div>
                                                                     </div>
                                                                     <div
-                                                                        class="response-select-and-options hyJfGO  {{ $activeone == $loop->index ? 'un-hide' : 'hide' }}">
+                                                                        class="response-select-and-options hyJfGO  {{ $sectionactiveone == $loop->parent->index && $sectionquestionactiveone == $loop->index ? 'un-hide' : 'hide' }}">
                                                                         <div style="width: 100%;"
                                                                             data-bs-toggle="modal"
                                                                             data-bs-target="#TitlePageResponseModal"
-                                                                            wire:click.prevent="$set('activeone',{{ $loop->index }})">
+                                                                            wire:click.prevent="$set('sectionquestionactiveone',{{ $loop->index }})">
                                                                             <div class="eWLEUv">
                                                                                 <div>
                                                                                     @if ($question['response'] == 2)
@@ -1319,9 +1332,122 @@
                                                                     </svg>
                                                                 </button>
                                                             </div>
+
+                                                            <div class="sc-iJCRrE fwLGvX">
+                                                                <div class="cukrBe">
+                                                                    <div class="hLDzma">
+                                                                        <div>
+                                                                            @if ($question['response'] == 2)
+                                                                                <div class="epicTj">
+                                                                                    <div class="krtjey">
+                                                                                        <span
+                                                                                            style="margin-top:50px;"></span>
+                                                                                        Format:
+                                                                                        <div class="ORzaJ knjhoD">
+                                                                                            <input type="text"
+                                                                                                class="docNum_format"
+                                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.docNum_format" />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            @elseif($question['response'] == 1)
+                                                                                <div class="epicTj">
+                                                                                    <div class="krtjey">
+                                                                                        <span
+                                                                                            style="margin-top:50px;"></span>
+                                                                                        Format:
+                                                                                        <div class="ORzaJ knjhoD">
+                                                                                            <select
+                                                                                                wire:model.lazy="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.text_answer_format"
+                                                                                                class="text_answer_format">
+                                                                                                <option value="0">
+                                                                                                    {{ __('Short answer') }}
+                                                                                                </option>
+                                                                                                <option value="1">
+                                                                                                    {{ __('Long answer') }}
+                                                                                                </option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            @elseif($question['response'] == 5)
+                                                                                <div class="epicTj">
+                                                                                    <div class="eMiEgJ">
+                                                                                        <div role="checkbox"
+                                                                                            aria-checked="true"
+                                                                                            class="xxrKk">
+                                                                                            <input aria-hidden="false"
+                                                                                                type="checkbox"
+                                                                                                wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_date">
+                                                                                        </div>
+                                                                                        <label
+                                                                                            for="9ea156a4-4105-43e5-9bcc-686d413e9961-input"
+                                                                                            class="fJJVDV">
+                                                                                            <div class="fDpeEn">
+                                                                                                Date</div>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="epicTj">
+                                                                                    <div class="eMiEgJ">
+                                                                                        <div role="checkbox"
+                                                                                            aria-checked="true"
+                                                                                            class="xxrKk">
+                                                                                            <input aria-hidden="false"
+                                                                                                type="checkbox"
+                                                                                                wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_time">
+                                                                                        </div>
+                                                                                        <label
+                                                                                            for="128d3837-41f6-4887-9807-8fd3c5db4330-input"
+                                                                                            class="fJJVDV">
+                                                                                            <div class="fDpeEn">
+                                                                                                Time</div>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            @elseif($question['response'] == 7)
+                                                                                <div class="epicTj">
+                                                                                    <div class="eMiEgJ">
+                                                                                        <div role="checkbox"
+                                                                                            aria-checked="true"
+                                                                                            class="xxrKk">
+                                                                                            <input aria-hidden="false"
+                                                                                                type="checkbox"
+                                                                                                wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.multi_select_multiple_choise">
+                                                                                        </div>
+                                                                                        <label class="fJJVDV">
+                                                                                            <div class="fDpeEn">
+                                                                                                Multiple Selection
+                                                                                            </div>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            @endif
+                                                                            @if ($question['response'] != 10)
+                                                                                <div class="epicTj">
+                                                                                    <div class="eMiEgJ">
+                                                                                        <div role="checkbox"
+                                                                                            aria-checked="false"
+                                                                                            class="xxrKk">
+                                                                                            <input aria-hidden="false"
+                                                                                                type="checkbox"
+                                                                                                wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_required">
+                                                                                        </div>
+                                                                                        <label class="fJJVDV">
+                                                                                            <div class="fDpeEn">
+                                                                                                Required
+                                                                                            </div>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
 
-                                                        @if ($activeone == $loop->index)
+                                                        @if ($sectionactiveone == $loop->parent->index && $sectionquestionactiveone == $loop->index)
                                                             <div class="fyPxKd elTKUx"></div>
                                                             <div class="fmcVJh jIirFj"></div>
                                                             <div class="fmcVJh fPLdzz"></div>
