@@ -495,6 +495,7 @@ body {
     word-wrap: break-word;
     right: 0;
     outline: 0px !important;
+    background-color: transparent;
     -webkit-appearance: none;
     box-shadow: none !important;
 }
@@ -613,7 +614,8 @@ textarea {
     color: rgb(198, 0, 34);
     border: 1px solid transparent;
     background-color: rgba(198, 0, 34, 0.1);
-  }.davsXv {
+}
+.davsXv {
     font-family: Roboto, sans-serif;
     font-size: 0.8rem;
     font-weight: 400;
@@ -631,7 +633,7 @@ textarea {
     color: rgb(112, 112, 112);
     border: 1px solid transparent;
     background-color: rgba(112, 112, 112, 0.1);
-  }
+}
 /* .sortable-chosen {
     border-left: 2px solid rgb(103, 93, 244);
     border-right: 2px solid rgb(103, 93, 244);
@@ -2065,7 +2067,7 @@ input[type="checkbox"] {
 }
 .cYnFsn > div {
     height: 100%;
-  }
+}
 .hFCnYj {
     height: 100%;
     margin-right: 0.5rem;
@@ -3284,16 +3286,6 @@ input[type="checkbox"] {
     width: 1rem;
     font-size: 0.875rem;
 }
-.bBjJyf {
-    width: 100%;
-    border-width: 2px;
-    border-style: solid;
-    border-color: transparent;
-    border-radius: 0.3rem;
-    flex: 1 1 0%;
-    outline: 0px;
-    position: relative;
-}
 .elTKUx {
     left: 0px;
     top: -0.35rem;
@@ -3535,22 +3527,13 @@ input[type="checkbox"] {
     background-color: unset;
     pointer-events: auto;
 }
-.eAfucY {
-    width: 100%;
-    background: transparent;
-    resize: none;
-    overflow: auto;
-    padding: 0.5rem 0.25rem;
-    line-height: 1.5rem;
-    font-size: 1rem;
-    color: rgb(31, 37, 51);
-    outline: 0px;
-}.hXljZM {
+.hXljZM {
     color: rgb(130, 142, 160);
     font-weight: 400;
-  }.kSUFwR {
+}
+.kSUFwR {
     display: block;
-  }
+}
 @media (min-width: 36em) {
     .cuypVQ {
         position: relative;
@@ -3645,11 +3628,12 @@ input[type="checkbox"] {
 }
 
 @media (min-width: 48em) {
-    .bBjJyf {
+    /* .bBjJyf {
         border-color: rgb(103, 93, 244);
-    }.kSUFwR {
+    } */
+    .kSUFwR {
         display: none;
-      }
+    }
     .bAJknk {
         flex-direction: row;
     }

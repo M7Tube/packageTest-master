@@ -32,7 +32,7 @@ class NewCreate extends Component
     public $inspection_title_format = [['key' => null, 'value' => null]];
     protected $queryString = ['activeone', 'pageactiveone', 'pagequestionactiveone', 'template_id', 'new_template'];
     protected $listeners = [
-        'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex','updating'
+        'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex', 'updating'
     ];
 
     public function mount()
@@ -135,7 +135,7 @@ class NewCreate extends Component
         $this->new_template = 0;
         $this->uploading = false;
         $this->optional_uploading = false;
-        $this->title_page_questions[] = ['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0];
+        $this->title_page_questions[] = ['title' => null, 'response' => 1, 'is_section' => false, 'is_required' => false, 'text_answer_format' => 0];
         $this->common_multiple_choise_options = $this->option;
         $last = NewTemplate::all()->last();
         if ($last) {
@@ -440,14 +440,14 @@ class NewCreate extends Component
     public function title_page_add_question()
     {
         if ($this->activeone != null && $this->activeone != 'null' || $this->activeone == 0) {
-            array_splice($this->title_page_questions, $this->activeone + 1, 0, [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+            array_splice($this->title_page_questions, $this->activeone + 1, 0, [['title' => null, 'response' => 1, 'is_section' => false, 'is_required' => false, 'text_answer_format' => 0]]);
             $this->activeone = $this->activeone + 1;
         } else {
             if ($this->pageactiveone != 'null' &&  $this->pagequestionactiveone != 'null') {
-                array_splice($this->pages[$this->pageactiveone]['question'], $this->pagequestionactiveone  + 1, 0, [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+                array_splice($this->pages[$this->pageactiveone]['question'], $this->pagequestionactiveone  + 1, 0, [['title' => null, 'response' => 1, 'is_section' => false, 'is_required' => false, 'text_answer_format' => 0]]);
                 $this->pagequestionactiveone = $this->pagequestionactiveone  + 1;
             } else {
-                array_splice($this->title_page_questions, 0, 0, [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]);
+                array_splice($this->title_page_questions, 0, 0, [['title' => null, 'response' => 1, 'is_section' => false, 'is_required' => false, 'text_answer_format' => 0]]);
                 $this->activeone = 0;
             }
         }
@@ -468,7 +468,24 @@ class NewCreate extends Component
 
     public function add_page()
     {
-        $this->pages[] = ['question' => [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]];
+        $this->pages[] = ['question' => [['title' => null, 'response' => 1, 'is_section' => false, 'is_required' => false, 'text_answer_format' => 0]]];
+        $this->updating();
+    }
+
+    public function add_section()
+    {
+        if ($this->activeone != null && $this->activeone != 'null' || $this->activeone == 0) {
+            array_splice($this->title_page_questions, $this->activeone + 1, 0, [['title' => null, 'response' => null, 'is_section' => true, 'is_required' => null, 'text_answer_format' => null, 'question' => [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]]]);
+            $this->activeone = $this->activeone + 1;
+        } else {
+            if ($this->pageactiveone != 'null' &&  $this->pagequestionactiveone != 'null') {
+                array_splice($this->pages[$this->pageactiveone]['question'], $this->pagequestionactiveone  + 1, 0, [['title' => null, 'response' => null, 'is_section' => true, 'is_required' => null, 'text_answer_format' => null, 'question' => [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]]]);
+                $this->pagequestionactiveone = $this->pagequestionactiveone  + 1;
+            } else {
+                array_splice($this->title_page_questions, 0, 0, [['title' => null, 'response' => null, 'is_section' => true, 'is_required' => null, 'text_answer_format' => null, 'question' => [['title' => null, 'response' => 1, 'is_required' => false, 'text_answer_format' => 0]]]]);
+                $this->activeone = 0;
+            }
+        }
         $this->updating();
     }
 
@@ -673,7 +690,6 @@ class NewCreate extends Component
         $this->uploading = false;
         $this->optional_uploading = false;
         $this->dispatchBrowserEvent('updatedstart');
-
     }
 
     // public function render()
