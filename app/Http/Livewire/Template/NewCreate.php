@@ -494,14 +494,14 @@ class NewCreate extends Component
     public function add_section()
     {
         if ($this->activeone != null && $this->activeone != 'null' || $this->activeone == 0) {
-            array_splice($this->title_page_questions, $this->activeone + 1, 0, [['title' => null, 'response' => 1, 'is_section' => true, 'is_required' => false, 'text_answer_format' => 0]]);
+            array_splice($this->title_page_questions, $this->activeone + 1, 0, [['title' => null, 'response' => null, 'is_section' => true, 'is_required' => null]]);
             $this->activeone = $this->activeone + 1;
         } else {
             if ($this->pageactiveone != 'null' &&  $this->pagequestionactiveone != 'null') {
-                array_splice($this->pages[$this->pageactiveone]['question'], $this->pagequestionactiveone  + 1, 0, [['title' => null, 'response' => 1, 'is_section' => true, 'is_required' => false, 'text_answer_format' => 0]]);
+                array_splice($this->pages[$this->pageactiveone]['question'], $this->pagequestionactiveone  + 1, 0, [['title' => null, 'response' => null, 'is_section' => true, 'is_required' => null]]);
                 $this->pagequestionactiveone = $this->pagequestionactiveone  + 1;
             } else {
-                array_splice($this->title_page_questions, 0, 0, [['title' => null, 'response' => 1, 'is_section' => true, 'is_required' => false, 'text_answer_format' => 0]]);
+                array_splice($this->title_page_questions, 0, 0, [['title' => null, 'response' => null, 'is_section' => true, 'is_required' => null]]);
                 $this->activeone = 0;
             }
         }

@@ -3241,7 +3241,7 @@ input[type="checkbox"] {
     flex-direction: column;
     width: 100%;
     border-bottom: 1px solid rgb(191, 198, 212);
-    border-bottom-left-radius: 0.5rem;
+    /* border-bottom-left-radius: 0.5rem; */
     border-top: 1px solid rgb(191, 198, 212);
     background-color: rgb(233, 238, 246);
     border-left: 1px solid rgb(191, 198, 212);
