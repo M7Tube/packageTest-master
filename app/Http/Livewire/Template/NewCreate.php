@@ -536,7 +536,8 @@ class NewCreate extends Component
 
     public function title_page_delete_question($question_key, $sectionquestion = null)
     {
-        if ($this->sectionquestionactiveone == null || $this->sectionquestionactiveone == 'null') {
+        if ($sectionquestion == null || $sectionquestion == 0) {
+            dd('1'.$sectionquestion);
             if (count($this->title_page_questions) > 1) {
                 array_splice($this->title_page_questions, $question_key, 1);
                 if ($question_key == 0)
@@ -545,16 +546,15 @@ class NewCreate extends Component
                     $this->activeone = $question_key - 1;
                 $this->updating();
             }
-        } else {
-            if ($sectionquestion != null) {
-                if (count($this->title_page_questions[$question_key]['question']) > 1) {
-                    array_splice($this->title_page_questions[$question_key]['question'], $this->sectionquestionactiveone, 1);
-                    if ($this->sectionquestionactiveone == 0)
-                        $this->$this->sectionquestionactiveone = 0;
-                    else
-                        $this->sectionquestionactiveone = $this->sectionquestionactiveone - 1;
-                    $this->updating();
-                }
+        } elseif($sectionquestion != null || $sectionquestion == 0) {
+            dd('2'.$sectionquestion);
+            if (count($this->title_page_questions[$question_key]['question']) > 1) {
+                array_splice($this->title_page_questions[$question_key]['question'], $this->sectionquestionactiveone, 1);
+                if ($this->sectionquestionactiveone == 0)
+                    $this->$this->sectionquestionactiveone = 0;
+                else
+                    $this->sectionquestionactiveone = $this->sectionquestionactiveone - 1;
+                $this->updating();
             }
         }
     }
