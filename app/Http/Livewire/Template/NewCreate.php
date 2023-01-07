@@ -502,8 +502,13 @@ class NewCreate extends Component
     public function title_page_add_question()
     {
         if ($this->activeone != null && $this->activeone != 'null' || $this->activeone == 0) {
-            array_splice($this->title_page_questions, $this->activeone + 1, 0, [['title' => null, 'response' => 1, 'is_section' => false, 'is_required' => false, 'text_answer_format' => 0]]);
-            $this->activeone = $this->activeone + 1;
+            if($this->sectionquestionactiveone == null && $this->sectionquestionactiveone == 'null'){
+                array_splice($this->title_page_questions, $this->activeone + 1, 0, [['title' => null, 'response' => 1, 'is_section' => false, 'is_required' => false, 'text_answer_format' => 0]]);
+                $this->activeone = $this->activeone + 1;
+            }else{
+                array_splice($this->title_page_questions[$this->sectionquestionactiveone]['question'], $this->sectionquestionactiveone + 1, 0, [['title' => null, 'response' => 1, 'is_section' => false, 'is_required' => false, 'text_answer_format' => 0]]);
+                $this->sectionquestionactiveone = $this->sectionquestionactiveone + 1;
+            }
         } else {
             if ($this->pageactiveone != 'null' &&  $this->pagequestionactiveone != 'null') {
                 array_splice($this->pages[$this->pageactiveone]['question'], $this->pagequestionactiveone  + 1, 0, [['title' => null, 'response' => 1, 'is_section' => false, 'is_required' => false, 'text_answer_format' => 0]]);
