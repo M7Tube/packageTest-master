@@ -536,7 +536,7 @@ class NewCreate extends Component
 
     public function title_page_delete_question($question_key, $sectionquestion = null)
     {
-        if ($sectionquestion == null || $sectionquestion == 0) {
+        if ($this->sectionquestionactiveone == null) {
             dd('1'.$sectionquestion);
             if (count($this->title_page_questions) > 1) {
                 array_splice($this->title_page_questions, $question_key, 1);
@@ -546,7 +546,7 @@ class NewCreate extends Component
                     $this->activeone = $question_key - 1;
                 $this->updating();
             }
-        } elseif($sectionquestion != null || $sectionquestion == 0) {
+        } elseif($this->sectionquestionactiveone != null || $this->sectionquestionactiveone == 0) {
             dd('2'.$sectionquestion);
             if (count($this->title_page_questions[$question_key]['question']) > 1) {
                 array_splice($this->title_page_questions[$question_key]['question'], $this->sectionquestionactiveone, 1);
