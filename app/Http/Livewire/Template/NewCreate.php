@@ -380,14 +380,27 @@ class NewCreate extends Component
 
     public function setResponseValueFromReadyOptions($responseid, $optionid)
     {
-        $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
-        unset($this->title_page_questions[$this->activeone]);
-        $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
-        $this->title_page_questions[$this->activeone]['is_required'] = false;
-        $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
-        $this->title_page_questions[$this->activeone]['response'] = $responseid;
-        $this->title_page_questions[$this->activeone]['multiple_choice'] = $this->common_multiple_choise_options[$optionid];
-        $this->updating();
+        if ($this->sectionquestionactiveone == null || $this->sectionquestionactiveone == 'null') {
+            $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
+            unset($this->title_page_questions[$this->activeone]);
+            $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
+            $this->title_page_questions[$this->activeone]['is_required'] = false;
+            $this->title_page_questions[$this->activeone]['is_section'] = false;
+            $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
+            $this->title_page_questions[$this->activeone]['response'] = $responseid;
+            $this->title_page_questions[$this->activeone]['multiple_choice'] = $this->common_multiple_choise_options[$optionid];
+            $this->updating();
+        } else {
+            $oldtitle = $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['title'] ?? null;
+            unset($this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]);
+            $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['title'] = $oldtitle ?? null;
+            $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['is_required'] = false;
+            $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['is_section'] = true;
+            $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['multi_select_multiple_choise'] = false;
+            $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['response'] = $responseid;
+            $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['multiple_choice'] = $this->common_multiple_choise_options[$optionid];
+            $this->updating();
+        }
     }
 
     public function PageSetResponseValueFromReadyOptions($responseid, $optionid)
@@ -502,11 +515,11 @@ class NewCreate extends Component
     public function title_page_add_question()
     {
         if ($this->activeone != null && $this->activeone != 'null' || $this->activeone == 0) {
-            if($this->sectionquestionactiveone == null && $this->sectionquestionactiveone == 'null'){
+            if ($this->sectionquestionactiveone == null || $this->sectionquestionactiveone == 'null') {
                 array_splice($this->title_page_questions, $this->activeone + 1, 0, [['title' => null, 'response' => 1, 'is_section' => false, 'is_required' => false, 'text_answer_format' => 0]]);
                 $this->activeone = $this->activeone + 1;
-            }else{
-                array_splice($this->title_page_questions[$this->sectionquestionactiveone]['question'], $this->sectionquestionactiveone + 1, 0, [['title' => null, 'response' => 1, 'is_section' => false, 'is_required' => false, 'text_answer_format' => 0]]);
+            } else {
+                array_splice($this->title_page_questions[$this->activeone]['question'], $this->sectionquestionactiveone + 1, 0, [['title' => null, 'response' => 1, 'is_section' => false, 'is_required' => false, 'text_answer_format' => 0]]);
                 $this->sectionquestionactiveone = $this->sectionquestionactiveone + 1;
             }
         } else {
@@ -521,15 +534,28 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    public function title_page_delete_question($question_key)
+    public function title_page_delete_question($question_key, $sectionquestion = null)
     {
-        if (count($this->title_page_questions) > 1) {
-            array_splice($this->title_page_questions, $question_key, 1);
-            if ($question_key == 0)
-                $this->activeone = 0;
-            else
-                $this->activeone = $question_key - 1;
-            $this->updating();
+        if ($this->sectionquestionactiveone == null || $this->sectionquestionactiveone == 'null') {
+            if (count($this->title_page_questions) > 1) {
+                array_splice($this->title_page_questions, $question_key, 1);
+                if ($question_key == 0)
+                    $this->activeone = 0;
+                else
+                    $this->activeone = $question_key - 1;
+                $this->updating();
+            }
+        } else {
+            if ($sectionquestion != null) {
+                if (count($this->title_page_questions[$question_key]['question']) > 1) {
+                    array_splice($this->title_page_questions[$question_key]['question'], $this->sectionquestionactiveone, 1);
+                    if ($this->sectionquestionactiveone == 0)
+                        $this->$this->sectionquestionactiveone = 0;
+                    else
+                        $this->sectionquestionactiveone = $this->sectionquestionactiveone - 1;
+                    $this->updating();
+                }
+            }
         }
     }
 

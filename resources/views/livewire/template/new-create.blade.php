@@ -1322,7 +1322,18 @@
                                                                         </ul>
                                                                     </div>
                                                                 </div>
-                                                                <button tabindex="-1" class="bKqzym jGqRmA">
+                                                                @if (count($this->title_page_questions[$qkey]['question']) > 1)
+                                                                    <button class="bKqzym blqywb"
+                                                                        wire:click.prevent="title_page_delete_question({{ $loop->index }})">
+                                                                        <svg width="21" height="21"
+                                                                            viewBox="0 0 14 14" focusable="false">
+                                                                            <path
+                                                                                d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                                fill="#545f70" fill-rule="nonzero"></path>
+                                                                        </svg>
+                                                                    </button>
+                                                                @endif
+                                                                {{-- <button tabindex="-1" class="bKqzym jGqRmA">
                                                                     <svg width="21" height="21"
                                                                         viewBox="0 0 14 14" focusable="false">
                                                                         <path
@@ -1330,7 +1341,7 @@
                                                                             fill="#545f70" fill-rule="nonzero">
                                                                         </path>
                                                                     </svg>
-                                                                </button>
+                                                                </button> --}}
                                                             </div>
 
                                                             <div class="sc-iJCRrE fwLGvX">
