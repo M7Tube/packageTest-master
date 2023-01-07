@@ -343,7 +343,7 @@
                                                                         <div
                                                                             style="display: flex; align-items: center;">
                                                                             <div class="eAfucY"
-                                                                                wire:click.prevent="{{ $activeone != $loop->index ? "focus_on_this_question($loop->index,'null','null','null','null')" : '' }}">
+                                                                                wire:click.prevent="{{ $activeone != $loop->index ? "focus_on_this_question($loop->index,'null','null','null')" : '' }}">
                                                                                 @if ($title_page_question['response'] == 10)
                                                                                     <textarea enterkeyhint="enter"
                                                                                         onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
@@ -861,7 +861,7 @@
                                                                                 style="display: flex; align-items: center;">
                                                                                 <div itemtype="section" tabindex="0"
                                                                                     class="gnFdRB"
-                                                                                    wire:click.prevent="{{ $activeone != $loop->index ? "focus_on_this_question('null',$loop->index,'null','null','null')" : '' }}">
+                                                                                    wire:click.prevent="focus_on_this_question({{ $loop->index }},'null','null','null')">
                                                                                     <span class="hXljZM">
                                                                                         <input enterkeyhint="enter"
                                                                                             onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
@@ -891,7 +891,7 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    @if ($sectionactiveone == $loop->index && $sectionquestionactiveone =='null')
+                                                    @if ($activeone == $loop->index && $sectionquestionactiveone == 'null')
                                                         <div class="fyPxKd elTKUx"></div>
                                                         <div class="fmcVJh jIirFj"></div>
                                                         <div class="fmcVJh fPLdzz"></div>
@@ -905,7 +905,7 @@
                                                 @forelse ($title_page_question['question'] as $question)
                                                     <div class="blAOCI">
                                                         <div class="ipTQFP"
-                                                            style="background-image:{{ $this->sectionquestionactiveone == $loop->index && $this->sectionactiveone == $loop->parent->index ? ' linear-gradient(rgb(233, 238, 246) 10px, transparent 5px), linear-gradient(to top, rgb(233, 238, 246) 10px, transparent 5px), linear-gradient(90deg, transparent 11px, 11px, rgb(103, 93, 244) 13px, transparent 13px);' : '' }}">
+                                                            style="background-image:{{ $this->sectionquestionactiveone == $loop->index && $this->activeone == $loop->parent->index ? ' linear-gradient(rgb(233, 238, 246) 10px, transparent 5px), linear-gradient(to top, rgb(233, 238, 246) 10px, transparent 5px), linear-gradient(90deg, transparent 11px, 11px, rgb(103, 93, 244) 13px, transparent 13px);' : '' }}">
                                                         </div>
                                                         <div class="REnvQ">
                                                             <div class="GvAgP cuypVQ">
@@ -925,7 +925,7 @@
                                                                                         d="M0 0h24v24H0V0z">
                                                                                     </path>
                                                                                     <path
-                                                                                        fill="{{ $this->sectionquestionactiveone == $loop->index && $this->sectionactiveone == $loop->parent->index ? '#313235' : '#8c9097' }}"
+                                                                                        fill="{{ $this->sectionquestionactiveone == $loop->index && $this->activeone == $loop->parent->index ? '#313235' : '#8c9097' }}"
                                                                                         d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
                                                                                     </path>
                                                                                 </svg>
@@ -936,7 +936,7 @@
                                                                                 <div
                                                                                     style="display: flex; align-items: center;">
                                                                                     <div class="eAfucY"
-                                                                                        wire:click.prevent="{{ $sectionquestionactiveone != $loop->index && $sectionactiveone != $loop->parent->index ? "focus_on_this_question('null',$qkey,$loop->index,'null','null')" : '' }}">
+                                                                                        wire:click.prevent="focus_on_this_question({{ $qkey }},{{ $loop->index }},'null','null')">
                                                                                         @if ($question['response'] == 10)
                                                                                             <textarea enterkeyhint="enter"
                                                                                                 onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
@@ -959,7 +959,7 @@
                                                                                                 wire:model.lazy="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.title">
                                                                                         @endif
                                                                                     </div>
-                                                                                    @if ($sectionactiveone == $loop->parent->index && $sectionquestionactiveone == $loop->index)
+                                                                                    @if ($activeone == $loop->parent->index && $sectionquestionactiveone == $loop->index)
                                                                                         <div style="z-index: 1;"
                                                                                             class="kSUFwR"
                                                                                             wire:click="give_active_one('null')">
@@ -989,7 +989,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div
-                                                                        class="response-select-and-options hyJfGO  {{ $sectionactiveone == $loop->parent->index && $sectionquestionactiveone == $loop->index ? 'un-hide' : 'hide' }}">
+                                                                        class="response-select-and-options hyJfGO  {{ $activeone == $loop->parent->index && $sectionquestionactiveone == $loop->index ? 'un-hide' : 'hide' }}">
                                                                         <div style="width: 100%;"
                                                                             data-bs-toggle="modal"
                                                                             data-bs-target="#TitlePageResponseModal"
@@ -1447,7 +1447,7 @@
                                                             </div>
                                                         </div>
 
-                                                        @if ($sectionactiveone == $loop->parent->index && $sectionquestionactiveone == $loop->index)
+                                                        @if ($activeone == $loop->parent->index && $sectionquestionactiveone == $loop->index)
                                                             <div class="fyPxKd elTKUx"></div>
                                                             <div class="fmcVJh jIirFj"></div>
                                                             <div class="fmcVJh fPLdzz"></div>
@@ -1495,8 +1495,7 @@
                                                                         </svg>
                                                                     </button>
                                                                     <h4 class="eXEpbc ddvElQ">
-                                                                        Type of
-                                                                        response
+                                                                        Type of response
                                                                     </h4>
                                                                 </div>
                                                                 <div class="hLRzaS">

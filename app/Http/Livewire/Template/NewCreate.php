@@ -21,7 +21,7 @@ class NewCreate extends Component
     public $template_id;
     public $check;
     public $activeone;
-    public $sectionactiveone;
+    // public $sectionactiveone;
     public $sectionquestionactiveone;
     public $pageactiveone;
     public $pagequestionactiveone;
@@ -32,7 +32,7 @@ class NewCreate extends Component
     public $new_template;
     public $current_multiple_choise;
     public $inspection_title_format = [['key' => null, 'value' => null]];
-    protected $queryString = ['activeone', 'sectionactiveone' , 'sectionquestionactiveone' ,'pageactiveone', 'pagequestionactiveone', 'template_id', 'new_template'];
+    protected $queryString = ['activeone', 'sectionquestionactiveone', 'pageactiveone', 'pagequestionactiveone', 'template_id', 'new_template'];
     protected $listeners = [
         'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex', 'updating'
     ];
@@ -40,7 +40,7 @@ class NewCreate extends Component
     public function mount()
     {
         $this->activeone = 'null';
-        $this->sectionactiveone = 'null';
+        // $this->sectionactiveone = 'null';
         $this->sectionquestionactiveone = 'null';
         $this->pageactiveone = 'null';
         $this->pagequestionactiveone = 'null';
@@ -212,13 +212,14 @@ class NewCreate extends Component
 
     public function setResponseValue($response)
     {
-        if(($this->sectionactiveone == null || $this->sectionactiveone == 'null') &&($this->sectionquestionactiveone == null || $this->sectionquestionactiveone == 'null')){
+        if ($this->sectionquestionactiveone == null || $this->sectionquestionactiveone == 'null') {
             if ($response == 1) {
                 $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
                 unset($this->title_page_questions[$this->activeone]);
                 $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
                 $this->title_page_questions[$this->activeone]['response'] = $response;
                 $this->title_page_questions[$this->activeone]['is_required'] = false;
+                $this->title_page_questions[$this->activeone]['is_section'] = false;
                 $this->title_page_questions[$this->activeone]['text_answer_format'] = 0;
             } elseif ($response == 2) {
                 $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
@@ -226,6 +227,7 @@ class NewCreate extends Component
                 $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
                 $this->title_page_questions[$this->activeone]['response'] = $response;
                 $this->title_page_questions[$this->activeone]['is_required'] = false;
+                $this->title_page_questions[$this->activeone]['is_section'] = false;
                 $this->title_page_questions[$this->activeone]['docNum_format'] = '000001';
             } elseif ($response == 5) {
                 $oldtitle = $this->title_page_questions[$this->activeone]['title'] ?? null;
@@ -233,6 +235,7 @@ class NewCreate extends Component
                 $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
                 $this->title_page_questions[$this->activeone]['response'] = $response;
                 $this->title_page_questions[$this->activeone]['is_required'] = false;
+                $this->title_page_questions[$this->activeone]['is_section'] = false;
                 $this->title_page_questions[$this->activeone]['is_date'] = false;
                 $this->title_page_questions[$this->activeone]['is_time'] = false;
             } elseif ($response == 7) {
@@ -241,6 +244,7 @@ class NewCreate extends Component
                 $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
                 $this->title_page_questions[$this->activeone]['response'] = $response;
                 $this->title_page_questions[$this->activeone]['is_required'] = false;
+                $this->title_page_questions[$this->activeone]['is_section'] = false;
                 $this->title_page_questions[$this->activeone]['multi_select_multiple_choise'] = false;
                 if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone])) {
                     $this->title_page_questions[$this->activeone]['multiple_choice'] = [['title' => null, 'color' => '#13855f', 'font_color' => '#000000']];
@@ -251,46 +255,56 @@ class NewCreate extends Component
                 $this->title_page_questions[$this->activeone]['title'] = $oldtitle ?? null;
                 $this->title_page_questions[$this->activeone]['response'] = $response;
                 $this->title_page_questions[$this->activeone]['is_required'] = false;
+                $this->title_page_questions[$this->activeone]['is_section'] = false;
             }
-        }else{
+        } else {
             if ($response == 1) {
-                $oldtitle = $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['title'] ?? null;
-                unset($this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]);
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['title'] = $oldtitle ?? null;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['response'] = $response;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['is_required'] = false;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['text_answer_format'] = 0;
+                $oldtitle = $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['title'] ?? null;
+                unset($this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]);
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['title'] = $oldtitle ?? null;
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['response'] = $response;
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['is_required'] = false;
+                $this->title_page_questions[$this->activeone]['is_section'] = true;
+
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['text_answer_format'] = 0;
             } elseif ($response == 2) {
-                $oldtitle = $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['title'] ?? null;
-                unset($this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]);
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['title'] = $oldtitle ?? null;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['response'] = $response;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['is_required'] = false;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['docNum_format'] = '000001';
+                $oldtitle = $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['title'] ?? null;
+                unset($this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]);
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['title'] = $oldtitle ?? null;
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['response'] = $response;
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['is_required'] = false;
+                $this->title_page_questions[$this->activeone]['is_section'] = true;
+
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['docNum_format'] = '000001';
             } elseif ($response == 5) {
-                $oldtitle = $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['title'] ?? null;
-                unset($this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]);
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['title'] = $oldtitle ?? null;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['response'] = $response;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['is_required'] = false;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['is_date'] = false;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['is_time'] = false;
+                $oldtitle = $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['title'] ?? null;
+                unset($this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]);
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['title'] = $oldtitle ?? null;
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['response'] = $response;
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['is_required'] = false;
+                $this->title_page_questions[$this->activeone]['is_section'] = true;
+
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['is_date'] = false;
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['is_time'] = false;
             } elseif ($response == 7) {
-                $oldtitle = $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['title'] ?? null;
-                unset($this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]);
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['title'] = $oldtitle ?? null;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['response'] = $response;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['is_required'] = false;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['multi_select_multiple_choise'] = false;
-                if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone])) {
-                    $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['multiple_choice'] = [['title' => null, 'color' => '#13855f', 'font_color' => '#000000']];
+                $oldtitle = $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['title'] ?? null;
+                unset($this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]);
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['title'] = $oldtitle ?? null;
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['response'] = $response;
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['is_required'] = false;
+                $this->title_page_questions[$this->activeone]['is_section'] = true;
+
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['multi_select_multiple_choise'] = false;
+                if (!array_key_exists('multiple_choice', $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone])) {
+                    $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['multiple_choice'] = [['title' => null, 'color' => '#13855f', 'font_color' => '#000000']];
                 }
             } else {
-                $oldtitle = $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['title'] ?? null;
-                unset($this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]);
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['title'] = $oldtitle ?? null;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['response'] = $response;
-                $this->title_page_questions[$this->sectionactiveone]['question'][$this->sectionquestionactiveone]['is_required'] = false;
+                $oldtitle = $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['title'] ?? null;
+                unset($this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]);
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['title'] = $oldtitle ?? null;
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['response'] = $response;
+                $this->title_page_questions[$this->activeone]['question'][$this->sectionquestionactiveone]['is_required'] = false;
+                $this->title_page_questions[$this->activeone]['is_section'] = true;
             }
         }
         $this->updating();
@@ -476,10 +490,10 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    public function focus_on_this_question($question_key, $sectionactiveone, $sectionquestionactiveone, $pageactiveone, $pagequestionactiveone)
+    public function focus_on_this_question($question_key,  $sectionquestionactiveone, $pageactiveone, $pagequestionactiveone)
     {
         $this->activeone = $question_key;
-        $this->sectionactiveone = $sectionactiveone;
+        // $this->sectionactiveone = $sectionactiveone;
         $this->sectionquestionactiveone = $sectionquestionactiveone;
         $this->pageactiveone = $pageactiveone;
         $this->pagequestionactiveone = $pagequestionactiveone;
