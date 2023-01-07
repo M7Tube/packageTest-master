@@ -534,28 +534,35 @@ class NewCreate extends Component
         $this->updating();
     }
 
-    public function title_page_delete_question($question_key, $sectionquestion = null)
+    public function title_page_delete_question($question_key)
     {
-        if ($this->sectionquestionactiveone == null) {
-            dd('1'.$sectionquestion);
-            if (count($this->title_page_questions) > 1) {
-                array_splice($this->title_page_questions, $question_key, 1);
-                if ($question_key == 0)
-                    $this->activeone = 0;
-                else
-                    $this->activeone = $question_key - 1;
-                $this->updating();
-            }
-        } elseif($this->sectionquestionactiveone != null || $this->sectionquestionactiveone == 0) {
-            dd('2'.$sectionquestion);
-            if (count($this->title_page_questions[$question_key]['question']) > 1) {
-                array_splice($this->title_page_questions[$question_key]['question'], $this->sectionquestionactiveone, 1);
-                if ($this->sectionquestionactiveone == 0)
-                    $this->$this->sectionquestionactiveone = 0;
-                else
-                    $this->sectionquestionactiveone = $this->sectionquestionactiveone - 1;
-                $this->updating();
-            }
+        if (count($this->title_page_questions) > 1) {
+            array_splice($this->title_page_questions, $question_key, 1);
+            // if ($this->activeone != null || $this->activeone != 'null') {
+            if ($question_key == 0)
+                $this->activeone = 0;
+            else
+                $this->activeone = $question_key - 1;
+            // }
+            // } else {
+            //     // if ($question_key == 0)
+            //     //     $this->activeone = 0;
+            //     // else
+            //     $this->activeone = $this->activeone;
+            // }
+            $this->updating();
+        }
+    }
+
+    public function section_question_delete_question($question_key, $sectionquestion)
+    {
+        if (count($this->title_page_questions[$question_key]['question']) > 1) {
+            array_splice($this->title_page_questions[$question_key]['question'], $sectionquestion, 1);
+            if ($sectionquestion == 0)
+                $this->sectionquestionactiveone = 0;
+            else
+                $this->sectionquestionactiveone = $sectionquestion - 1;
+            $this->updating();
         }
     }
 
