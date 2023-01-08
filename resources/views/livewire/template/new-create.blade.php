@@ -1376,7 +1376,7 @@
                                                                                                                                     color="#13855f"
                                                                                                                                     role="button"
                                                                                                                                     style="margin-top: 4px; margin-right: 10px; background-color: {{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['color'] }}"
-                                                                                                                                    class="cTkvNJ">
+                                                                                                                                    class="cTkvNJ" onclick="">
                                                                                                                                 </label>
                                                                                                                                 <input
                                                                                                                                     id="TP_add_response_color{{ $activeone }}{{ $responsKey }}"
@@ -1490,9 +1490,6 @@
                                                                                 @endif
                                                                             @endif
                                                                         @endif
-                                                                        {{-- <script>
-
-                                                                            </script> --}}
                                                                     </div>
                                                                     <a style="text-decoration: none;
                                                                                     color: rgb(103, 93, 244);font-size: 12.5px;"
@@ -1638,7 +1635,7 @@
                                                                                                                                     color="#13855f"
                                                                                                                                     role="button"
                                                                                                                                     style="margin-top: 4px; margin-right: 10px; background-color: {{ $title_page_questions[$activeone]['multiple_choice'][$responsKey]['color'] }}"
-                                                                                                                                    class="cTkvNJ">
+                                                                                                                                    class="cTkvNJ" onclick="">
                                                                                                                                 </label>
                                                                                                                                 <input
                                                                                                                                     id="TP_edit_add_response_color{{ $activeone }}{{ $responsKey }}"
@@ -2965,7 +2962,7 @@
                                                                                                         color="#13855f"
                                                                                                         role="button"
                                                                                                         style="margin-top: 4px; margin-right: 10px; background-color: {{ $pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'][$responsKey]['color'] }}"
-                                                                                                        class="cTkvNJ">
+                                                                                                        class="cTkvNJ" onclick="">
                                                                                                     </label>
                                                                                                     <input
                                                                                                         type="color"
@@ -3202,7 +3199,7 @@
                                                                                                         color="#13855f"
                                                                                                         role="button"
                                                                                                         style="margin-top: 4px; margin-right: 10px; background-color: {{ $pages[$pageactiveone]['question'][$pagequestionactiveone]['multiple_choice'][$responsKey]['color'] }}"
-                                                                                                        class="cTkvNJ">
+                                                                                                        class="cTkvNJ" onclick="">
                                                                                                     </label>
                                                                                                     <input
                                                                                                         type="color"
