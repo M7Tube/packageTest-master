@@ -1787,7 +1787,7 @@ textarea {
 
 .kLpTzB {
     user-select: none;
-    border-right: 1px solid rgb(191, 198, 212);
+    /* border-right: 1px solid rgb(191, 198, 212); */
     position: relative;
     display: inline-flex;
     flex-direction: column;
@@ -3800,10 +3800,6 @@ input[type="checkbox"] {
         -moz-box-align: stretch;
         align-items: stretch;
         background: transparent;
-    }
-
-    .hkphPX {
-        border: medium none;
     }
 
     .LBNnk {

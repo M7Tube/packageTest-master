@@ -313,7 +313,8 @@
                                 <div class="kLpTzB wrapper" {{-- onclick="focusOnTitlePage()" {{ str_contains($this->activeone, 'p_') ? 'wire:ignore' : 'wire:ignore.self' }}  --}}>
                                     @forelse ($title_page_questions as $qkey => $title_page_question)
                                         @if ($title_page_question['is_section'] == false)
-                                            <div class="hkphPX dragable">
+                                            <div class="hkphPX dragable"
+                                                style="border-right: 1px solid rgb(191, 198, 212);">
                                                 <div class="REnvQ">
                                                     <div class="kxrOmS cuypVQ">
                                                         <div class="dBZFks">
@@ -835,7 +836,8 @@
                                         @endif
                                         @if ($title_page_question['is_section'] == true)
                                             <div class="dragable">
-                                                <div class="hkphPX">
+                                                <div class="hkphPX"
+                                                    style="background:rgb(233, 238, 246) none repeat scroll 0% 0%;">
                                                     <div class="REnvQ">
                                                         <div class="GvAgP cuypVQ">
                                                             <div class="jrHdov my-2">
@@ -850,8 +852,7 @@
                                                                                 <path fill="none"
                                                                                     d="M0 0h24v24H0V0z">
                                                                                 </path>
-                                                                                <path
-                                                                                    fill="white"
+                                                                                <path fill="white"
                                                                                     d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
                                                                                 </path>
                                                                             </svg>
@@ -866,7 +867,8 @@
                                                                                         <input enterkeyhint="enter"
                                                                                             onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
                                                                                             class="question-title-focus  w-100 h-100 question-title"
-                                                                                            id="title_page{{ $loop->index }}" style="color: white;"
+                                                                                            id="title_page{{ $loop->index }}"
+                                                                                            style="color: white;"
                                                                                             placeholder="Type section title"
                                                                                             wire:model.lazy="title_page_questions.{{ $qkey }}.title">
                                                                                     </span>
@@ -1279,8 +1281,8 @@
                                                         id="TitlePageMultipleChoiseOptionModalLabel">
                                                         Response Options
                                                     </h1>
-                                                    <button type="button" class="btn-close"
-                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="iVmibF cxbltl">
@@ -1529,9 +1531,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal fade m-0 p-0" id="EditMultipleChoiseOptionModal"
-                                        tabindex="-1" aria-labelledby="EditMultipleChoiseOptionModalLabel"
-                                        aria-hidden="true" wire:ignore.self>
+                                    <div class="modal fade m-0 p-0" id="EditMultipleChoiseOptionModal" tabindex="-1"
+                                        aria-labelledby="EditMultipleChoiseOptionModalLabel" aria-hidden="true"
+                                        wire:ignore.self>
                                         <div class="modal-dialog modal-fullscreen">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -1539,8 +1541,8 @@
                                                         id="EditMultipleChoiseOptionModalLabel">
                                                         Response Options
                                                     </h1>
-                                                    <button type="button" class="btn-close"
-                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="iVmibF cxbltl">
