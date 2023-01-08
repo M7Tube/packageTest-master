@@ -367,8 +367,7 @@
                                                                                 @endif
                                                                             </div>
                                                                             @if ($activeone == $loop->index)
-                                                                                <div style="z-index: 1;"
-                                                                                    class="kSUFwR"
+                                                                                <div class="kSUFwR" style="display: block;"
                                                                                     wire:click="give_active_one('null')">
                                                                                     <button type="button"
                                                                                         class="jvZSBO">
