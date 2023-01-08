@@ -1787,7 +1787,6 @@ textarea {
 
 .kLpTzB {
     user-select: none;
-    /* border-right: 1px solid rgb(191, 198, 212); */
     position: relative;
     display: inline-flex;
     flex-direction: column;
