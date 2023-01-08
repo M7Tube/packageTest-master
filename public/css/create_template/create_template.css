@@ -3243,7 +3243,7 @@ input[type="checkbox"] {
     border-bottom: 1px solid rgb(191, 198, 212);
     border-radius: 1rem;
     border-top: 1px solid rgb(191, 198, 212);
-    background-color:rgb(71, 64, 212);
+    background-color:#675df4;
     /* background-color: rgb(233, 238, 246); */
     border-left: 1px solid rgb(191, 198, 212);
 }
