@@ -3242,7 +3242,7 @@ input[type="checkbox"] {
     width: 100%;
     color: white;
     border-bottom: 1px solid rgb(191, 198, 212);
-    /* border-bottom-left-radius: 0.5rem; */
+    border-radius: 1rem;
     border-top: 1px solid rgb(191, 198, 212);
     background-color:rgb(71, 64, 212);
     /* background-color: rgb(233, 238, 246); */

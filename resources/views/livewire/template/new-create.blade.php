@@ -838,7 +838,7 @@
                                                 <div class="hkphPX">
                                                     <div class="REnvQ">
                                                         <div class="GvAgP cuypVQ">
-                                                            <div class="jrHdov">
+                                                            <div class="jrHdov my-2">
                                                                 <div class="huXueT">
                                                                     <div class="kGgXUq">
                                                                         <span style="padding-left: 0.3rem;"
@@ -851,7 +851,7 @@
                                                                                     d="M0 0h24v24H0V0z">
                                                                                 </path>
                                                                                 <path
-                                                                                    fill="{{ $this->activeone == $loop->index ? '#313235' : '#8c9097' }}"
+                                                                                    fill="white"
                                                                                     d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
                                                                                 </path>
                                                                             </svg>
@@ -866,7 +866,7 @@
                                                                                         <input enterkeyhint="enter"
                                                                                             onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
                                                                                             class="question-title-focus  w-100 h-100 question-title"
-                                                                                            id="title_page{{ $loop->index }}"
+                                                                                            id="title_page{{ $loop->index }}" style="color: white;"
                                                                                             placeholder="Type section title"
                                                                                             wire:model.lazy="title_page_questions.{{ $qkey }}.title">
                                                                                     </span>
@@ -891,7 +891,7 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    @if ($activeone == $loop->index)
+                                                    {{-- @if ($activeone == $loop->index)
                                                         <div class="fyPxKd elTKUx"></div>
                                                         <div class="fmcVJh jIirFj"></div>
                                                         <div class="fmcVJh fPLdzz"></div>
@@ -900,7 +900,7 @@
                                                         <div class="fyPxKd kklQix"></div>
                                                         <div class="fyecfK"></div>
                                                     @else
-                                                    @endif
+                                                    @endif --}}
                                                 </div>
                                             </div>
                                         @endif
