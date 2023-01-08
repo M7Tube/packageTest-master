@@ -838,7 +838,7 @@
                                             <div class="dragable">
                                                 <div class="hkphPX"
                                                     style="background:rgb(233, 238, 246) none repeat scroll 0% 0%;">
-                                                    <div class="REnvQ">
+                                                    <div class="REnvQ" style="{{$loop->last ? '' : 'border-bottom: 1px solid rgb(191, 198, 212);'}}">
                                                         <div class="GvAgP cuypVQ">
                                                             <div class="jrHdov my-2">
                                                                 <div class="huXueT">
@@ -1905,7 +1905,7 @@
                                         <div class="kLpTzB pagewrapper{{ $loop->index }}" {{-- onclick="focusOnPage()" {{ str_contains($this->activeone, 'p_') ? 'wire:ignore.self' : 'wire:ignore' }} --}}>
                                             @forelse ($page['question'] as $pageQuestionkey => $pageQuestion)
                                                 @if ($pageQuestion['is_section'] == false)
-                                                    <div class="hkphPX page_dragable">
+                                                    <div class="hkphPX page_dragable" style="border-right: 1px solid rgb(191, 198, 212);">
                                                         <div class="REnvQ">
                                                             <div class="kxrOmS cuypVQ">
                                                                 <div class="dBZFks">
@@ -2462,7 +2462,7 @@
                                                     <div class="page_dragable">
                                                         <div class="hkphPX"
                                                             style="background:rgb(233, 238, 246) none repeat scroll 0% 0%;">
-                                                            <div class="REnvQ">
+                                                            <div class="REnvQ" style="{{$loop->last ? '' : 'border-bottom: 1px solid rgb(191, 198, 212);'}}">
                                                                 <div class="GvAgP cuypVQ">
                                                                     <div class="jrHdov my-2">
                                                                         <div class="huXueT">
