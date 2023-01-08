@@ -868,7 +868,7 @@
                                                                                             onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
                                                                                             class="question-title-focus  w-100 h-100 question-title"
                                                                                             id="title_page{{ $loop->index }}"
-                                                                                            style="color: white;"
+                                                                                            style="color: white; font-weight:bold;"
                                                                                             placeholder="Type section title"
                                                                                             wire:model.lazy="title_page_questions.{{ $qkey }}.title">
                                                                                     </span>
@@ -2496,7 +2496,7 @@
                                                                                                     onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('page'+{{ $loop->parent->index }}{{ $loop->index + 1 }}).focus();}"
                                                                                                     class="question-title-focus eVpkze w-100 h-100 question-title"
                                                                                                     id="page{{ $loop->parent->index }}{{ $loop->index }}"
-                                                                                                    style="color: white;"
+                                                                                                    style="color: white; font-weight:bold;"
                                                                                                     placeholder="Write a Question ..."
                                                                                                     wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title">
                                                                                             </span>
