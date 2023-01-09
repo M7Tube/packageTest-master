@@ -673,7 +673,7 @@
                                                                             </div>
                                                                         </div>
                                                                     @endif
-                                                                    @if (count($this->title_page_questions) > 1)
+                                                                    @if (count($this->title_page_questions) > 1 && $activeone == $loop->index)
                                                                         <div class="epicTj">
                                                                             <div class="iBzfYz">
                                                                                 <li>
@@ -698,7 +698,7 @@
                                                                 </ul>
                                                             </div>
                                                         </div>
-                                                        @if (count($this->title_page_questions) > 1)
+                                                        @if (count($this->title_page_questions) > 1 && $activeone == $loop->index)
                                                             <button class="bKqzym blqywb"
                                                                 wire:click.prevent="title_page_delete_question({{ $loop->index }})">
                                                                 <svg width="21" height="21"
@@ -1322,7 +1322,6 @@
                                                                         </ul>
                                                                     </div>
                                                                 </div>
-                                                               {{--  --}}
                                                                 @if (count($this->title_page_questions[$qkey]['question']) > 1)
                                                                     <button class="bKqzym blqywb"
                                                                         wire:click.prevent="section_delete_question({{ $loop->parent->index }},{{ $loop->index }})">
