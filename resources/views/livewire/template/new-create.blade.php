@@ -1322,6 +1322,7 @@
                                                                         </ul>
                                                                     </div>
                                                                 </div>
+                                                               {{--  --}}
                                                                 @if (count($this->title_page_questions[$qkey]['question']) > 1)
                                                                     <button class="bKqzym blqywb"
                                                                         wire:click.prevent="section_delete_question({{ $loop->parent->index }},{{ $loop->index }})">
