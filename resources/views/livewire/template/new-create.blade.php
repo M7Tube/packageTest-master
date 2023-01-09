@@ -3873,7 +3873,6 @@
             </div>
         </div>
     @endif
-    {{--  --}}
     {{-- <script>
             function focusOnTitlePage() {
                 const pages1 = document.querySelectorAll('.pages');
