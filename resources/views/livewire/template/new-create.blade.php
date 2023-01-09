@@ -3812,58 +3812,56 @@
             </div>
         </div>
     </div>
-    @if ((new \Jenssegers\Agent\Agent())->isMobile())
-        <div class="mt-5 under-1">
-            <div class="under-2">
-                <div class="under-3" wire:click.prevent="title_page_add_question">
-                    <a>
-                        <div class="under-4">
-                            <svg viewBox="0 0 24 24" width="21" height="21" focusable="false"
-                                data-anchor="plus-svg">
-                                <path d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#17966c"></path>
-                            </svg>
-                        </div>
-                        <div class="under-5">
-                            Question
-                        </div>
-                    </a>
+    <div class="mt-5 under-1 d-sm-block d-lg-none">
+        <div class="under-2">
+            <div class="under-3" wire:click.prevent="title_page_add_question">
+                <a>
+                    <div class="under-4">
+                        <svg viewBox="0 0 24 24" width="21" height="21" focusable="false"
+                            data-anchor="plus-svg">
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#17966c"></path>
+                        </svg>
+                    </div>
+                    <div class="under-5">
+                        Question
+                    </div>
+                </a>
+            </div>
+            <div class="under-6" wire:click.prevent="add_section()">
+                <div class="under-7">
+                    <svg width="21" height="21" viewBox="0 0 14 14" focusable="false">
+                        <g transform="translate(1 1)" fill="#675df4" fill-rule="nonzero">
+                            <rect width="12" height="4.066" rx="0.733"></rect>
+                            <path
+                                d="M.8 5.947v5.164h10.4V5.947H.8zm0-.89h10.4c.442 0 .8.399.8.89v5.164c0 .491-.358.889-.8.889H.8c-.442 0-.8-.398-.8-.889V5.947c0-.491.358-.89.8-.89z">
+                            </path>
+                        </g>
+                    </svg>
                 </div>
-                <div class="under-6" wire:click.prevent="add_section()">
-                    <div class="under-7">
+                <div class="under-8">
+                    Section
+                </div>
+            </div>
+            <div class="under-9" wire:click.prevent="add_page()">
+                <a>
+                    <div class="under-10">
                         <svg width="21" height="21" viewBox="0 0 14 14" focusable="false">
-                            <g transform="translate(1 1)" fill="#675df4" fill-rule="nonzero">
-                                <rect width="12" height="4.066" rx="0.733"></rect>
+                            <g fill="#675df4" fill-rule="nonzero">
+                                <path d="M8.675.998v4L12 5z"></path>
                                 <path
-                                    d="M.8 5.947v5.164h10.4V5.947H.8zm0-.89h10.4c.442 0 .8.399.8.89v5.164c0 .491-.358.889-.8.889H.8c-.442 0-.8-.398-.8-.889V5.947c0-.491.358-.89.8-.89z">
+                                    d="M7.833 6.018H12v6.232c0 .45-.286.75-.714.75H2.714C2.286 13 2 12.7 2 12.25V1.75c0-.45.286-.75.714-.75h5.12v5.018z">
                                 </path>
                             </g>
                         </svg>
                     </div>
-                    <div class="under-8">
-                        Section
+                    <div class="under-11">
+                        Page
                     </div>
-                </div>
-                <div class="under-9" wire:click.prevent="add_page()">
-                    <a>
-                        <div class="under-10">
-                            <svg width="21" height="21" viewBox="0 0 14 14" focusable="false">
-                                <g fill="#675df4" fill-rule="nonzero">
-                                    <path d="M8.675.998v4L12 5z"></path>
-                                    <path
-                                        d="M7.833 6.018H12v6.232c0 .45-.286.75-.714.75H2.714C2.286 13 2 12.7 2 12.25V1.75c0-.45.286-.75.714-.75h5.12v5.018z">
-                                    </path>
-                                </g>
-                            </svg>
-                        </div>
-                        <div class="under-11">
-                            Page
-                        </div>
-                    </a>
-                </div>
+                </a>
             </div>
         </div>
-    @endif
+    </div>
     {{-- <script>
             function focusOnTitlePage() {
                 const pages1 = document.querySelectorAll('.pages');
