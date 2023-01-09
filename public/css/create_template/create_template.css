@@ -1787,6 +1787,7 @@ textarea {
 
 .kLpTzB {
     user-select: none;
+    border-right: 1px solid rgb(191, 198, 212);
     position: relative;
     display: inline-flex;
     flex-direction: column;
@@ -1897,6 +1898,11 @@ element {
     cursor: grab;
 }
 
+[data-rbd-drag-handle-context-id="0"] {
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    touch-action: manipulation;
+}
 input[type="checkbox"] {
     accent-color: rgb(71, 64, 212);
 }
@@ -2249,6 +2255,17 @@ input[type="checkbox"] {
     display: flex;
     flex: 1 1 0%;
     flex-direction: column;
+}
+
+[data-rbd-drag-handle-context-id="0"] {
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+[data-rbd-drag-handle-context-id="0"] {
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    touch-action: manipulation;
 }
 
 .eSpMaC {
@@ -3223,15 +3240,17 @@ input[type="checkbox"] {
     display: flex;
     flex-direction: column;
     width: 100%;
-    color: white;
     border-bottom: 1px solid rgb(191, 198, 212);
-    /* border-radius: 1rem; */
+    border-bottom-left-radius: 0.5rem;
     border-top: 1px solid rgb(191, 198, 212);
-    background-color:#675df4;
-    /* background-color: rgb(233, 238, 246); */
+    background-color: rgb(233, 238, 246);
     border-left: 1px solid rgb(191, 198, 212);
 }
-
+.huXueT {
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+}
 .kGgXUq {
     -moz-box-pack: justify;
     justify-content: space-between;
@@ -3446,7 +3465,11 @@ input[type="checkbox"] {
     background-color: rgb(255, 255, 255);
     border-left: 1px solid rgb(191, 198, 212);
 }
-
+.huXueT {
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+}
 .kGgXUq {
     -moz-box-pack: justify;
     justify-content: space-between;
@@ -3474,13 +3497,19 @@ input[type="checkbox"] {
     height: 2rem;
     z-index: 1;
 }
-
+[data-rbd-drag-handle-context-id="0"] {
+    cursor: -webkit-grab;
+    cursor: grab;
+}
 [data-rbd-drag-handle-context-id="0"] {
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     touch-action: manipulation;
 }
-
+.eSpMaC {
+    width: 1rem;
+    font-size: 0.875rem;
+}
 .fTJQmL {
     width: 100%;
     border-width: 2px;
@@ -3612,6 +3641,9 @@ input[type="checkbox"] {
         position: relative;
         overflow: hidden;
         z-index: 1;
+    }
+    .kSUFwR {
+        display: none;
     }
     .gUpHHY {
         display: flex;
@@ -3766,6 +3798,10 @@ input[type="checkbox"] {
         -moz-box-align: stretch;
         align-items: stretch;
         background: transparent;
+    }
+
+    .hkphPX {
+        border: medium none;
     }
 
     .LBNnk {

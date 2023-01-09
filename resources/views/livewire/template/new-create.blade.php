@@ -1324,7 +1324,7 @@
                                                                 </div>
                                                                 @if (count($this->title_page_questions[$qkey]['question']) > 1)
                                                                     <button class="bKqzym blqywb"
-                                                                        wire:click.prevent="section_question_delete_question({{ $loop->parent->index }},{{$loop->index}})">
+                                                                        wire:click.prevent="title_page_delete_question({{ $loop->parent->index }},{{ $loop->index }})">
                                                                         <svg width="21" height="21"
                                                                             viewBox="0 0 14 14" focusable="false">
                                                                             <path
