@@ -526,7 +526,9 @@ class NewCreate extends Component
                     $this->activeone = $newIndex - 1;
                 break;
             default:
-                if ($oldIndex > $this->activeone)
+                if (($oldIndex > $this->activeone) && ($newIndex > $this->activeone)) {
+                } elseif (($oldIndex < $this->activeone) && ($newIndex < $this->activeone)) {
+                } elseif ($oldIndex > $this->activeone)
                     $this->activeone = $this->activeone + 1;
                 elseif ($oldIndex < $this->activeone)
                     $this->activeone = $this->activeone - 1;
@@ -551,7 +553,9 @@ class NewCreate extends Component
                     $this->pagequestionactiveone = $newIndex - 1;
                 break;
             default:
-                if ($oldIndex > $this->pagequestionactiveone)
+                if (($oldIndex > $this->pagequestionactiveone) && ($newIndex > $this->pagequestionactiveone)) {
+                } elseif (($oldIndex < $this->pagequestionactiveone) && ($newIndex < $this->pagequestionactiveone)) {
+                } elseif ($oldIndex > $this->pagequestionactiveone)
                     $this->pagequestionactiveone = $this->pagequestionactiveone + 1;
                 elseif ($oldIndex < $this->pagequestionactiveone)
                     $this->pagequestionactiveone = $this->pagequestionactiveone - 1;
