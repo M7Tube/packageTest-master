@@ -3632,7 +3632,7 @@ input[type="checkbox"] {
         border-color: rgb(103, 93, 244);
     } */
     .kSUFwR {
-        display: none;
+        display: block;
     }
     .bAJknk {
         flex-direction: row;
@@ -3641,9 +3641,6 @@ input[type="checkbox"] {
         position: relative;
         overflow: hidden;
         z-index: 1;
-    }
-    .kSUFwR {
-        display: none;
     }
     .gUpHHY {
         display: flex;
