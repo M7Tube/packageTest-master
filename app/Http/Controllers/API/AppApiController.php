@@ -326,6 +326,7 @@ class AppApiController extends Controller
                 'Template' => StartInspectionResource::collection([$template]),
             ]);
         }
+        return $this->fails(200, 'an error occurred');
     }
     public function export(Request $request)
     {
@@ -385,7 +386,7 @@ class AppApiController extends Controller
         $pdf = PDF2::loadView('pdf.new_7_11_2022.api_en_pdf', $data);
         $name = 'file' . now() . '.pdf';
         Storage::put('pdf/' . str_replace(' ', '', $name), $pdf->output());
-        return $file = 'https://www.c-rpt.com/storage/app/pdf' . '/' . $name;
+        return 'https://www.c-rpt.com/storage/app/pdf' . '/' . $name;
 
     }
 
