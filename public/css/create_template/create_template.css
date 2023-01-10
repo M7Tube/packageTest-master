@@ -3282,6 +3282,10 @@ input[type="checkbox"] {
 .cBgwtB {
     transition: transform 0.2s ease-out 0s;
 }
+.cPAVgy {
+    transition: transform 0.2s ease-out 0s;
+    transform: rotate(-90deg);
+}
 .eSpMaC {
     width: 1rem;
     font-size: 0.875rem;
