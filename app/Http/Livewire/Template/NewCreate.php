@@ -5,33 +5,34 @@ namespace App\Http\Livewire\Template;
 use App\Models\NewTemplate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use phpDocumentor\Reflection\Types\Integer;
 
 class NewCreate extends Component
 {
     use WithFileUploads;
 
-    public string $title;
-    public string $desc;
-    public string $icon;
-    public string $optional_icon;
-    public array $pages = [];
-    public array $common_multiple_choise_options;
-    public array $title_page_questions;
-    public string $title_page_title;
-    public int $template_id;
-    public string $check;
-    public int $activeone;
-    // public string $sectionactiveone;
-    public int $sectionquestionactiveone;
-    public int $pageactiveone;
-    public int $pagequestionactiveone;
-    public array $option;
-    public string $check_for_exist;
-    public bool $uploading;
-    public string $optional_uploading;
-    public string $new_template;
-    public array $current_multiple_choise;
-    public array $inspection_title_format = [['key' => null, 'value' => null]];
+    public $title;
+    public $desc;
+    public $icon;
+    public $optional_icon;
+    public $pages = [];
+    public $common_multiple_choise_options;
+    public $title_page_questions;
+    public $title_page_title;
+    public $template_id;
+    public $check;
+    public $activeone;
+    // public $sectionactiveone;
+    public $sectionquestionactiveone;
+    public $pageactiveone;
+    public $pagequestionactiveone;
+    public $option;
+    public $check_for_exist;
+    public $uploading;
+    public $optional_uploading;
+    public $new_template;
+    public $current_multiple_choise;
+    public $inspection_title_format = [['key' => null, 'value' => null]];
     protected $queryString = ['activeone', 'sectionquestionactiveone', 'pageactiveone', 'pagequestionactiveone', 'template_id', 'new_template'];
     protected $listeners = [
         'changeindex', 'change_active_one', 'multiple_choise_changeindex', 'page_changeindex', 'updating'
@@ -594,6 +595,9 @@ class NewCreate extends Component
     public function give_active_one($value)
     {
         $this->activeone = $value;
+        $this->sectionquestionactiveone = $value;
+        $this->pageactiveone = $value;
+        $this->pagequestionactiveone = $value;
         $this->updating();
     }
 
