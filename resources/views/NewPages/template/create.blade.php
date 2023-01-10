@@ -65,6 +65,25 @@
 @endsection
 @section('script')
     <script>
+        function section_hide_control(id) {
+            const questions=document.getElementById("section"+id);
+            const hide=document.getElementById("hide"+id);
+            const un_hide=document.getElementById("un_hide"+id);
+            const drag_icon=document.getElementById("drag_icon"+id);
+            if(hide.style.display=='block'){
+                hide.style.display="none";
+                un_hide.style.display="block";
+                questions.style.display="none";
+                drag_icon.style.display="flex";
+            }else if(hide.style.display=='none'){
+                hide.style.display="block";
+                un_hide.style.display="none";
+                questions.style.display="block";
+                drag_icon.style.display="none";
+            }
+        }
+    </script>
+    <script>
         const dragArea = document.querySelector(".wrapper");
         new Sortable(dragArea, {
             onEnd: function(evt) {
