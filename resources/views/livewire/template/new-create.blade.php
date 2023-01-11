@@ -20,7 +20,7 @@
                     @if (!$icon)
                         <div class="col-12 col-md-3 logo-alignment">
                             <div class="position-relative">
-                                <input type="file" wire:model.lazy="icon" alt="template icon" style="display:none;"
+                                <input type="file" wire:model="icon" alt="template icon" style="display:none;"
                                        id="customefileupload" accept="image/*">
                                 <label for="customefileupload" class="customfileupload">
                                     <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
@@ -93,7 +93,7 @@
                 <div class="col-6" wire:loading.remove wire:target="optional_icon">
                     @if (!$optional_icon)
                         <div class="col-12 col-md-3 second-logo-alignment">
-                            <input type="file" wire:model.lazy="optional_icon" alt="template icon"
+                            <input type="file" wire:model="optional_icon" alt="template icon"
                                    style="display:none;" id="customefileupload2" accept="image/*">
                             <label for="customefileupload2" class="customfileupload">
                                 <svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
@@ -158,10 +158,10 @@
 
                     <div class="d-flex align-items-start justify-content-start">
                         <input type="text" style="font-family: sans-serif, 'Font Awesome 5 Free'" for="title"
-                               wire:model.lazy="title" class="title mt-2" placeholder="Your template title"/>
+                               wire:model="title" class="title mt-2" placeholder="Your template title"/>
                     </div>
                     <div class="d-flex align-items-start justify-content-start">
-                        <input type="text" for="title" wire:model.lazy="desc" class="mt-2 real-desc"
+                        <input type="text" for="title" wire:model="desc" class="mt-2 real-desc"
                                placeholder="Add a description"/>
                     </div>
                     <div class="mt-2">
@@ -279,7 +279,7 @@
                         <div class="fceloL mt-1">
                             <input type="text" class="desc"
                                    style="font-size: 1.2rem; width: 110%; font-family: sans-serif, 'Font Awesome 5 Free"
-                                   placeholder="Title Page" wire:model.lazy="title_page_title">
+                                   placeholder="Title Page" wire:model="title_page_title">
                         </div>
                     </div>
                 </div>
@@ -343,8 +343,8 @@
                                                                         </svg>
                                                                     </div>
                                                                     <div class="bBjJyf">
-                                                                        {{-- <div class="eiFrFc" id="t{{ $qkey }}">
-                                                                        </div> --}}
+                                                                        <div class="eiFrFc d-block" id="t{{ $loop->index }}" wire:click.prevent="$set('activeone',{{ $loop->index }})" onclick="remove_layout({{ $loop->index }})">
+                                                                        </div>
                                                                         <div
                                                                             style="display: flex; align-items: center;">
                                                                             <div class="eAfucY"
@@ -355,7 +355,7 @@
                                                                                               class="question-title-focus eVpkze w-100 question-title-instruction"
                                                                                               id="title_page{{ $loop->index }}"
                                                                                               placeholder="Write a Question ..."
-                                                                                              wire:model.lazy="title_page_questions.{{ $qkey }}.title"
+                                                                                              wire:model="title_page_questions.{{ $qkey }}.title"
                                                                                               oninput="auto_grow(this);"></textarea>
                                                                                     <script>
                                                                                         function auto_grow(element) {
@@ -369,11 +369,11 @@
                                                                                            class="question-title-focus eVpkze w-100 h-100 question-title"
                                                                                            id="title_page{{ $loop->index }}"
                                                                                            placeholder="Write a Question ..."
-                                                                                           wire:model.lazy="title_page_questions.{{ $qkey }}.title">
+                                                                                           wire:model="title_page_questions.{{ $qkey }}.title">
                                                                                 @endif
                                                                             </div>
                                                                             @if ($activeone == $loop->index)
-                                                                                <div class="kSUFwR"
+                                                                                <div class="kSUFwR" style="z-index: 1;"
                                                                                      wire:click="give_active_one('null')">
                                                                                     <button type="button"
                                                                                             class="jvZSBO">
@@ -595,7 +595,7 @@
                                                                                         <div class="ORzaJ knjhoD">
                                                                                             <input type="text"
                                                                                                    class="docNum_format"
-                                                                                                   wire:model.lazy="title_page_questions.{{ $qkey }}.docNum_format"/>
+                                                                                                   wire:model="title_page_questions.{{ $qkey }}.docNum_format"/>
                                                                                         </div>
                                                                                     </a>
                                                                                 </li>
@@ -608,7 +608,7 @@
                                                                                     <a class="dropdown-item">
                                                                                         Format:
                                                                                         <select
-                                                                                            wire:model.lazy="title_page_questions.{{ $qkey }}.text_answer_format"
+                                                                                            wire:model="title_page_questions.{{ $qkey }}.text_answer_format"
                                                                                             class="text_answer_format">
                                                                                             <option value="0">
                                                                                                 {{ __('Short answer') }}
@@ -628,7 +628,7 @@
                                                                                     <a class="dropdown-item">
                                                                                         <input aria-hidden="false"
                                                                                                type="checkbox"
-                                                                                               wire:model.defer="title_page_questions.{{ $qkey }}.is_date">
+                                                                                               wire:model="title_page_questions.{{ $qkey }}.is_date">
                                                                                         Date
                                                                                     </a>
                                                                                 </li>
@@ -640,7 +640,7 @@
                                                                                     <a class="dropdown-item">
                                                                                         <input aria-hidden="false"
                                                                                                type="checkbox"
-                                                                                               wire:model.defer="title_page_questions.{{ $qkey }}.is_time">
+                                                                                               wire:model="title_page_questions.{{ $qkey }}.is_time">
                                                                                         Time
                                                                                     </a>
                                                                                 </li>
@@ -653,7 +653,7 @@
                                                                                     <a class="dropdown-item">
                                                                                         <input aria-hidden="false"
                                                                                                type="checkbox"
-                                                                                               wire:model.defer="title_page_questions.{{ $qkey }}.multi_select_multiple_choise">
+                                                                                               wire:model="title_page_questions.{{ $qkey }}.multi_select_multiple_choise">
                                                                                         Multiple Selection
                                                                                     </a>
                                                                                 </li>
@@ -667,7 +667,7 @@
                                                                                     <a class="dropdown-item">
                                                                                         <input aria-hidden="false"
                                                                                                type="checkbox"
-                                                                                               wire:model.lazy="title_page_questions.{{ $qkey }}.is_required">
+                                                                                               wire:model="title_page_questions.{{ $qkey }}.is_required">
                                                                                         Required
                                                                                     </a>
                                                                                 </li>
@@ -723,7 +723,7 @@
                                                                                 <div class="ORzaJ knjhoD">
                                                                                     <input type="text"
                                                                                            class="docNum_format"
-                                                                                           wire:model.lazy="title_page_questions.{{ $qkey }}.docNum_format"/>
+                                                                                           wire:model="title_page_questions.{{ $qkey }}.docNum_format"/>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -734,7 +734,7 @@
                                                                                 Format:
                                                                                 <div class="ORzaJ knjhoD">
                                                                                     <select
-                                                                                        wire:model.lazy="title_page_questions.{{ $qkey }}.text_answer_format"
+                                                                                        wire:model="title_page_questions.{{ $qkey }}.text_answer_format"
                                                                                         class="text_answer_format">
                                                                                         <option value="0">
                                                                                             {{ __('Short answer') }}
@@ -847,7 +847,7 @@
                                                                         <span style="padding-left: 0.3rem;"
                                                                               class="eSpMaC">
                                                                         </span>
-                                                                        <div class="eWljvT" onclick="section_hide_control({{$loop->index}})" wire:ignore>
+                                                                        <div class="eWljvT" type="button" data-bs-toggle="collapse" data-bs-target="#section-collapse{{$loop->index}}" aria-expanded="true" aria-controls="section-collapse{{$loop->index}}">
                                                                             <svg viewBox="0 0 24 24" width="14"
                                                                                  height="14" id="un_hide{{$loop->index}}"
                                                                                  class="cPAVgy" style="display: none;"
@@ -868,7 +868,7 @@
                                                                                     fill-rule="nonzero"></path>
                                                                             </svg>
                                                                         </div>
-                                                                        <div class="haXfJL drag-icon" id="drag_icon{{$loop->index}}" style="display: none;" wire:ignore.self>
+                                                                        <div class="haXfJL drag-icon" id="drag_icon{{$loop->index}}">
                                                                             <svg viewBox="0 0 24 24" width="24"
                                                                                  height="24" focusable="false">
                                                                                 <path fill="none"
@@ -892,7 +892,7 @@
                                                                                                class="question-title-focus  w-100 h-100 question-title"
                                                                                                id="title_page{{ $loop->index }}"
                                                                                                placeholder="Type section title"
-                                                                                               wire:model.lazy="title_page_questions.{{ $qkey }}.title">
+                                                                                               wire:model="title_page_questions.{{ $qkey }}.title">
                                                                                     </span>
                                                                                 </div>
                                                                             </div>
@@ -923,570 +923,587 @@
                                                         <div class="fmcVJh jIirFj iVHMfM"></div>
                                                         <div class="fyPxKd kklQix"></div>
                                                         <div class="fyecfK"></div>
-                                                    @else
                                                     @endif
                                                 </div>
-                                                <div id="section{{$loop->index}}" style="display: block" wire:ignore.self>
-                                                    @forelse ($title_page_question['question'] as $question)
-                                                        <div class="blAOCI">
-                                                            <div class="ipTQFP"
-                                                                 style="background-image:{{ $this->sectionquestionactiveone == $loop->index && $this->activeone == $loop->parent->index ? ' linear-gradient(rgb(233, 238, 246) 10px, transparent 5px), linear-gradient(to top, rgb(233, 238, 246) 10px, transparent 5px), linear-gradient(90deg, transparent 11px, 11px, rgb(103, 93, 244) 13px, transparent 13px);' : '' }}">
-                                                            </div>
-                                                            <div class="REnvQ">
-                                                                <div class="GvAgP cuypVQ">
-                                                                    <div class="bAJknk">
-                                                                        <div class="huXueT">
-                                                                            <div class="kGgXUq">
+                                                <div wire:ignore.self>
+                                                    <div id="section-collapse{{$loop->index}}" class="accordion-collapse collapse show section-wrapper{{$loop->index}}">
+                                                        @forelse ($title_page_question['question'] as $question)
+                                                            <div class="blAOCI section-dragable">
+                                                                <div class="ipTQFP"
+                                                                     style="background-image:{{ $this->sectionquestionactiveone == $loop->index && $this->activeone == $loop->parent->index ? ' linear-gradient(rgb(233, 238, 246) 10px, transparent 5px), linear-gradient(to top, rgb(233, 238, 246) 10px, transparent 5px), linear-gradient(90deg, transparent 11px, 11px, rgb(103, 93, 244) 13px, transparent 13px);' : '' }}">
+                                                                </div>
+                                                                <div class="REnvQ">
+                                                                    <div class="GvAgP cuypVQ">
+                                                                        <div class="bAJknk">
+                                                                            <div class="huXueT">
+                                                                                <div class="kGgXUq">
                                                                             <span
                                                                                 style="padding-left: 0.75rem; padding-top: 0.45rem; padding-right:0rem; margin: 0%;"
                                                                                 class="eSpMaC">
                                                                                 {{ !empty($question['is_required']) ? ($question['is_required'] == 1 ? '*' : '') : '' }}
                                                                             </span>
-                                                                                <div class="haXfJL drag-icon">
-                                                                                    <svg viewBox="0 0 24 24"
-                                                                                         width="24" height="24"
-                                                                                         focusable="false">
-                                                                                        <path fill="none"
-                                                                                              d="M0 0h24v24H0V0z">
-                                                                                        </path>
-                                                                                        <path
-                                                                                            fill="{{ $this->sectionquestionactiveone == $loop->index && $this->activeone == $loop->parent->index ? '#313235' : '#8c9097' }}"
-                                                                                            d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
-                                                                                        </path>
-                                                                                    </svg>
-                                                                                </div>
-                                                                                <div class="bBjJyf">
-                                                                                    {{-- <div class="eiFrFc" id="t{{ $qkey }}">
-                                                                                    </div> --}}
-                                                                                    <div
-                                                                                        style="display: flex; align-items: center;">
-                                                                                        <div class="eAfucY"
-                                                                                             wire:click.prevent="focus_on_this_question({{ $qkey }},{{ $loop->index }},'null','null')">
-                                                                                            @if ($question['response'] == 10)
-                                                                                                <textarea
-                                                                                                    enterkeyhint="enter"
-                                                                                                    onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
-                                                                                                    class="question-title-focus eVpkze w-100 question-title-instruction"
-                                                                                                    id="title_page{{ $qkey }}{{ $loop->index }}"
-                                                                                                    placeholder="Write a Question ..."
-                                                                                                    wire:model.lazy="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.title"
-                                                                                                    oninput="auto_grow(this);"></textarea>
-                                                                                                <script>
-                                                                                                    function auto_grow(element) {
-                                                                                                        element.style.height = "1px";
-                                                                                                        element.style.height = (element.scrollHeight) + "px";
-                                                                                                    }
-                                                                                                </script>
-                                                                                            @else
-                                                                                                <input enterkeyhint="enter"
-                                                                                                       onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
-                                                                                                       class="question-title-focus eVpkze w-100 h-100 question-title"
-                                                                                                       id="title_page{{ $qkey }}{{ $loop->index }}"
-                                                                                                       placeholder="Write a Question ..."
-                                                                                                       wire:model.lazy="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.title">
-                                                                                            @endif
-                                                                                        </div>
-                                                                                        @if ($activeone == $loop->parent->index && $sectionquestionactiveone == $loop->index)
-                                                                                            <div class="kSUFwR"
-                                                                                                 wire:click="give_active_one('null')">
-                                                                                                <button type="button"
-                                                                                                        class="jvZSBO">
-                                                                                                    <svg viewBox="0 0 24 24"
-                                                                                                         width="24"
-                                                                                                         height="24"
-                                                                                                         class="hFCnYj"
-                                                                                                         focusable="false">
-                                                                                                        <path
-                                                                                                            fill="#545f70"
-                                                                                                            fill-rule="nonzero"
-                                                                                                            d="M8.364 16.075L3.59 11.687 2 13.149 8.364 19 22 6.463 20.41 5z">
-                                                                                                        </path>
-                                                                                                    </svg>
-                                                                                                </button>
-                                                                                            </div>
-                                                                                        @endif
+                                                                                    <div class="haXfJL section-drag-icon">
+                                                                                        <svg viewBox="0 0 24 24"
+                                                                                             width="24" height="24"
+                                                                                             focusable="false">
+                                                                                            <path fill="none"
+                                                                                                  d="M0 0h24v24H0V0z">
+                                                                                            </path>
+                                                                                            <path
+                                                                                                fill="{{ $this->sectionquestionactiveone == $loop->index && $this->activeone == $loop->parent->index ? '#313235' : '#8c9097' }}"
+                                                                                                d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                                                                            </path>
+                                                                                        </svg>
                                                                                     </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div
-                                                                            class="response-select-and-options hyJfGO  {{ $activeone == $loop->parent->index && $sectionquestionactiveone == $loop->index ? 'un-hide' : 'hide' }}">
-                                                                            <div style="width: 100%;"
-                                                                                 data-bs-toggle="modal"
-                                                                                 data-bs-target="#TitlePageResponseModal"
-                                                                                 wire:click.prevent="$set('sectionquestionactiveone',{{ $loop->index }})">
-                                                                                <div class="eWLEUv">
-                                                                                    <div>
-                                                                                        @if ($question['response'] == 2)
-                                                                                            <div class="iWJCbx">
-                                                                                                <svg width="15"
-                                                                                                     height="15"
-                                                                                                     viewBox="0 0 14 14"
-                                                                                                     focusable="false">
-                                                                                                    <g fill="#fe8500"
-                                                                                                       fill-rule="nonzero">
-                                                                                                        <path
-                                                                                                            d="M2.21 9.682a.637.637 0 0 1-.637-.636V4.985l-.352.175a.636.636 0 1 1-.568-1.138l1.272-.636a.635.635 0 0 1 .921.57v5.09a.637.637 0 0 1-.636.636zM7.937 9.682H4.755a.637.637 0 0 1-.45-1.086l2.546-2.545a.85.85 0 0 0 .25-.605.849.849 0 0 0-.25-.604.874.874 0 0 0-1.21 0 .846.846 0 0 0-.25.604.637.637 0 0 1-1.272 0c0-.569.221-1.103.623-1.504.805-.804 2.205-.804 3.009 0 .402.402.623.937.623 1.504 0 .568-.222 1.103-.623 1.505L6.29 8.41h1.646a.637.637 0 0 1 0 1.272zM13 6.104c.214-.29.346-.646.346-1.035 0-.966-.785-1.75-1.75-1.75-.656 0-1.251.362-1.553.944a.636.636 0 1 0 1.13.586.477.477 0 1 1 .423.697.637.637 0 0 0 0 1.273.797.797 0 0 1 0 1.59.797.797 0 0 1-.795-.795.637.637 0 0 0-1.273 0 2.07 2.07 0 0 0 2.068 2.068 2.07 2.07 0 0 0 2.068-2.068c0-.597-.258-1.132-.665-1.51z">
-                                                                                                        </path>
-                                                                                                    </g>
-                                                                                                </svg>
-                                                                                            </div>
-                                                                                            Document number
-                                                                                        @elseif($question['response'] == 1)
-                                                                                            <div class="iWJCbx">
-                                                                                                <svg width="15"
-                                                                                                     height="15"
-                                                                                                     viewBox="0 0 14 14"
-                                                                                                     focusable="false">
-                                                                                                    <path
-                                                                                                        d="M2.33333333,2.33333333 L2.33333333,4.97716191 L3.7929974,4.97716191 L3.7929974,4.28724799 C3.7929974,4.03503038 3.985625,3.82984264 4.22242188,3.82984264 L6.11229427,3.82984264 L6.11229427,9.52966171 C6.11229427,9.88941502 5.83754427,10.1820993 5.49979427,10.1820993 L4.8983776,10.1820993 L4.8983776,11.6666667 L9.11447396,11.6666667 L9.11447396,10.1820993 L8.51305729,10.1820993 C8.17534375,10.1820993 7.90055729,9.88941502 7.90055729,9.52966171 L7.90055729,3.82982322 L9.77757813,3.82982322 C10.0143568,3.82982322 10.2070026,4.03501096 10.2070026,4.28722858 L10.2070026,4.97714249 L11.6666667,4.97714249 L11.6666667,2.33333333 L2.33333333,2.33333333 Z"
-                                                                                                        fill="#fe8500"
-                                                                                                        fill-rule="nonzero">
-                                                                                                    </path>
-                                                                                                </svg>
-                                                                                            </div>
-                                                                                            Text answer
-                                                                                        @elseif($question['response'] == 3)
-                                                                                            <div class="jpgcYH">
-                                                                                                <svg viewBox="0 0 24 24"
-                                                                                                     width="15"
-                                                                                                     height="15"
-                                                                                                     focusable="false">
-                                                                                                    <path fill="none"
-                                                                                                          d="M0 0h24v24H0V0z">
-                                                                                                    </path>
-                                                                                                    <path fill="#5e9cff"
-                                                                                                          d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.29 13.29a.996.996 0 0 1-1.41 0L5.71 12.7a.996.996 0 1 1 1.41-1.41L10 14.17l6.88-6.88a.996.996 0 1 1 1.41 1.41l-7.58 7.59z">
-                                                                                                    </path>
-                                                                                                </svg>
-                                                                                            </div>
-                                                                                            Checkbox
-                                                                                        @elseif($question['response'] == 4)
-                                                                                            <div class="erayDs">
-                                                                                                <svg width="15"
-                                                                                                     height="15"
-                                                                                                     viewBox="0 0 14 14"
-                                                                                                     focusable="false">
-                                                                                                    <g fill="#ffb000"
-                                                                                                       fill-rule="nonzero">
-                                                                                                        <path
-                                                                                                            d="M2.21 9.682a.637.637 0 0 1-.637-.636V4.985l-.352.175a.636.636 0 1 1-.568-1.138l1.272-.636a.635.635 0 0 1 .921.57v5.09a.637.637 0 0 1-.636.636zM7.937 9.682H4.755a.637.637 0 0 1-.45-1.086l2.546-2.545a.85.85 0 0 0 .25-.605.849.849 0 0 0-.25-.604.874.874 0 0 0-1.21 0 .846.846 0 0 0-.25.604.637.637 0 0 1-1.272 0c0-.569.221-1.103.623-1.504.805-.804 2.205-.804 3.009 0 .402.402.623.937.623 1.504 0 .568-.222 1.103-.623 1.505L6.29 8.41h1.646a.637.637 0 0 1 0 1.272zM13 6.104c.214-.29.346-.646.346-1.035 0-.966-.785-1.75-1.75-1.75-.656 0-1.251.362-1.553.944a.636.636 0 1 0 1.13.586.477.477 0 1 1 .423.697.637.637 0 0 0 0 1.273.797.797 0 0 1 0 1.59.797.797 0 0 1-.795-.795.637.637 0 0 0-1.273 0 2.07 2.07 0 0 0 2.068 2.068 2.07 2.07 0 0 0 2.068-2.068c0-.597-.258-1.132-.665-1.51z">
-                                                                                                        </path>
-                                                                                                    </g>
-                                                                                                </svg>
-                                                                                            </div>
-                                                                                            Number
-                                                                                        @elseif($question['response'] == 5)
-                                                                                            <div class="flVgHp">
-                                                                                                <svg viewBox="0 0 24 24"
-                                                                                                     width="15"
-                                                                                                     height="15"
-                                                                                                     focusable="false">
-                                                                                                    <path fill="none"
-                                                                                                          d="M0 0h24v24H0V0z">
-                                                                                                    </path>
-                                                                                                    <path fill="#81b532"
-                                                                                                          d="M20 3h-1V2c0-.55-.45-1-1-1s-1 .45-1 1v1H7V2c0-.55-.45-1-1-1s-1 .45-1 1v1H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 18H5c-.55 0-1-.45-1-1V8h16v12c0 .55-.45 1-1 1z">
-                                                                                                    </path>
-                                                                                                </svg>
-                                                                                            </div>
-                                                                                            Date & Time
-                                                                                        @elseif($question['response'] == 6)
-                                                                                            <div class="ipAtGo">
-                                                                                                <svg width="15"
-                                                                                                     height="15"
-                                                                                                     viewBox="0 0 14 14"
-                                                                                                     focusable="false">
-                                                                                                    <path
-                                                                                                        d="M9.513 5.581l1.958.695-1.628 4.284c-.153.403-.98 1.663-1.555 1.92l-.14.368a.24.24 0 0 1-.306.138.229.229 0 0 1-.142-.297l.132-.348c-.292-.548-.074-2.14.054-2.476L9.513 5.58zm2.834-4.532c-.538-.19-1.169.203-1.35.679L9.819 4.832l1.958.694 1.178-3.104c.149-.389-.067-1.182-.607-1.373zM8.804 5.421a.478.478 0 0 0 .614-.272l1.245-3.243a.457.457 0 0 0-.282-.593.483.483 0 0 0-.615.272L8.522 4.828a.457.457 0 0 0 .282.593zM7.13 11.286c-.125-.117-.296-.5-.42-.35-.124.15-.035.094-.182.09h-.051c-.093-.251-.28-.41-.562-.471-.372-.078-.67.096-.875.23.018-.103.048-.225.07-.314.072-.284.145-.579.09-.855a.494.494 0 0 0-.452-.395c-.576-.032-1.047.276-1.461.554-.436.292-.715.466-.993.368-.34-.12-.374-1.031-.21-1.843.145-.731.417-2.093 1.113-2.71.234-.209.573-.434.852-.325.328.128.599.664.66 1.302.025.27.261.467.538.443a.491.491 0 0 0 .446-.535c-.098-1.04-.59-1.854-1.282-2.124-.415-.16-1.075-.203-1.875.507-.87.773-1.19 2.084-1.424 3.251-.116.583-.4 2.517.85 2.959.76.269 1.38-.147 1.876-.48.091-.06.181-.12.268-.174-.083.356-.134.737.083 1.058.322.482.779.534 1.356.157l.072-.047c.053.11.148.233.32.316.207.101.415.106.566.11.065.002.153.004.18.015.093.041-.228-.1-.121.001.08.075.165.153.272.234a.496.496 0 0 0 .692-.099.488.488 0 0 0-.1-.687c-.308-.19-.241-.134-.296-.186z"
-                                                                                                        fill="#00b6cb"
-                                                                                                        fill-rule="nonzero">
-                                                                                                    </path>
-                                                                                                </svg>
-                                                                                            </div>
-                                                                                            Signature
-                                                                                        @elseif($question['response'] == 7)
-                                                                                            <div class="fyczhl">
-                                                                                                @if (!empty($title_page_questions[$loop->parent->index]['question'][$loop->index]['multiple_choice']))
-                                                                                                    @forelse ($title_page_questions[$loop->parent->index]['question'][$loop->index]['multiple_choice'] as $responsKey => $respons)
-                                                                                                        <div
-                                                                                                            class="nDePA mx-1"
-                                                                                                            style="color:{{ $respons['font_color'] }}; background-color:{{ $respons['color'] }};"
-                                                                                                            {{-- style="color:{{ $this->adjustBrightness($respons['color'], -0.5) }}; background-color:{{ $respons['color'] }};" --}}>
-                                                                                                            {{ $respons['title'] ?? '' }}
-                                                                                                        </div>
-                                                                                                    @empty
-                                                                                                    @endforelse
+                                                                                    <div class="bBjJyf">
+                                                                                        <div class="eiFrFc d-block" id="s{{ $loop->index }}" onclick="@this.set('activeone',{{ $loop->parent->index }});@this.set('sectionquestionactiveone',{{ $loop->index }});section_remove_layout({{ $loop->index }});">
+                                                                                        </div>
+                                                                                        <div
+                                                                                            style="display: flex; align-items: center;">
+                                                                                            <div class="eAfucY"
+                                                                                                 wire:click.prevent="focus_on_this_question({{ $qkey }},{{ $loop->index }},'null','null')">
+                                                                                                @if ($question['response'] == 10)
+                                                                                                    <textarea
+                                                                                                        enterkeyhint="enter"
+                                                                                                        onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
+                                                                                                        class="question-title-focus eVpkze w-100 question-title-instruction"
+                                                                                                        id="title_page{{ $qkey }}{{ $loop->index }}"
+                                                                                                        placeholder="Write a Question ..."
+                                                                                                        wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.title"
+                                                                                                        oninput="auto_grow(this);"></textarea>
+                                                                                                    <script>
+                                                                                                        function auto_grow(element) {
+                                                                                                            element.style.height = "1px";
+                                                                                                            element.style.height = (element.scrollHeight) + "px";
+                                                                                                        }
+                                                                                                    </script>
+                                                                                                @else
+                                                                                                    <input enterkeyhint="enter"
+                                                                                                           onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();document.getElementById('title_page'+{{ $loop->index + 1 }}).focus();}"
+                                                                                                           class="question-title-focus eVpkze w-100 h-100 question-title"
+                                                                                                           id="title_page{{ $qkey }}{{ $loop->index }}"
+                                                                                                           placeholder="Write a Question ..."
+                                                                                                           wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.title">
                                                                                                 @endif
                                                                                             </div>
-                                                                                        @elseif($question['response'] == 8)
-                                                                                            <div class="iWJCbx">
-                                                                                                <svg width="15"
-                                                                                                     height="15"
-                                                                                                     viewBox="0 0 14 14">
-                                                                                                    <g stroke="none"
-                                                                                                       stroke-width="1"
-                                                                                                       fill="none"
-                                                                                                       fill-rule="evenodd">
-                                                                                                        <path
-                                                                                                            d="M7,2 C5.065,2 3.5,3.60760144 3.5,5.59527478 C3.5,7.73703133 5.71,10.6902928 6.62,11.8151002 C6.82,12.0616333 7.185,12.0616333 7.385,11.8151002 C8.29,10.6902928 10.5,7.73703133 10.5,5.59527478 C10.5,3.60760144 8.935,2 7,2 Z M7,6.87930149 C6.31,6.87930149 5.75,6.30405752 5.75,5.59527478 C5.75,4.88649204 6.31,4.31124807 7,4.31124807 C7.69,4.31124807 8.25,4.88649204 8.25,5.59527478 C8.25,6.30405752 7.69,6.87930149 7,6.87930149 Z"
-                                                                                                            fill="#fe8500"
-                                                                                                            fill-rule="nonzero">
-                                                                                                        </path>
-                                                                                                    </g>
-                                                                                                </svg>
-                                                                                            </div>
-                                                                                            Location
-                                                                                        @elseif($question['response'] == 10)
-                                                                                            <div class="fDgnZG">
-                                                                                                <svg width="15"
-                                                                                                     height="15"
-                                                                                                     viewBox="0 0 14 14"
-                                                                                                     focusable="false">
-                                                                                                    <path
-                                                                                                        d="M12.763 12.316c-.148-.086-1.049-.644-1.53-1.653a5.528 5.528 0 0 0 1.765-4.015c0-3.101-2.704-5.648-6-5.648C3.705 1 1 3.547 1 6.648c0 3.102 2.704 5.648 5.999 5.648.442 0 .917-.041 1.573-.179 1.723.916 3.269.89 3.857.88.262-.003.452.045.55-.226a.357.357 0 0 0-.216-.455zM7.702 9.484a.703.703 0 1 1-1.406 0V6.648a.703.703 0 1 1 1.406 0v2.836zm-.703-4.617a.703.703 0 1 1 0-1.406.703.703 0 0 1 0 1.406z"
-                                                                                                        fill="#648fff"
-                                                                                                        fill-rule="nonzero">
-                                                                                                    </path>
-                                                                                                </svg>
-                                                                                            </div>
-                                                                                            Instruction
-                                                                                        @elseif($question['response'] == 11)
-                                                                                            <div class="fJrMSZ">
-                                                                                                <svg width="15"
-                                                                                                     height="15"
-                                                                                                     viewBox="0 0 16 16"
-                                                                                                     focusable="false"
-                                                                                                     fill="none">
-                                                                                                    <path
-                                                                                                        d="M16 11.2V1.6c0-.88-.72-1.6-1.6-1.6H4.8c-.88 0-1.6.72-1.6 1.6v9.6c0 .88.72 1.6 1.6 1.6h9.6c.88 0 1.6-.72 1.6-1.6zM7.52 8.424l1.304 1.744 2.064-2.576a.4.4 0 0 1 .624 0l2.368 2.96a.399.399 0 0 1-.312.648H5.6a.4.4 0 0 1-.32-.64l1.6-2.136a.406.406 0 0 1 .64 0zM0 4v10.4c0 .88.72 1.6 1.6 1.6H12c.44 0 .8-.36.8-.8 0-.44-.36-.8-.8-.8H2.4c-.44 0-.8-.36-.8-.8V4c0-.44-.36-.8-.8-.8-.44 0-.8.36-.8.8z"
-                                                                                                        fill="#00b6cb">
-                                                                                                    </path>
-                                                                                                </svg>
-                                                                                            </div>
-                                                                                            Media
-                                                                                        @endif
+                                                                                            @if ($activeone == $loop->parent->index && $sectionquestionactiveone == $loop->index)
+                                                                                                <div class="kSUFwR"
+                                                                                                     wire:click="give_active_one('null')">
+                                                                                                    <button type="button"
+                                                                                                            class="jvZSBO">
+                                                                                                        <svg viewBox="0 0 24 24"
+                                                                                                             width="24"
+                                                                                                             height="24"
+                                                                                                             class="hFCnYj"
+                                                                                                             focusable="false">
+                                                                                                            <path
+                                                                                                                fill="#545f70"
+                                                                                                                fill-rule="nonzero"
+                                                                                                                d="M8.364 16.075L3.59 11.687 2 13.149 8.364 19 22 6.463 20.41 5z">
+                                                                                                            </path>
+                                                                                                        </svg>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            @endif
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <svg viewBox="0 0 24 24"
-                                                                                         width="16" height="16"
-                                                                                         class="kBTspn" focusable="false">
-                                                                                        <path
-                                                                                            d="M12.819 17.633l8.866-9.52a1.323 1.323 0 0 0-.028-1.745 1.113 1.113 0 0 0-1.625-.03l-7.663 8.228a.509.509 0 0 1-.755 0L3.968 6.354a1.113 1.113 0 0 0-1.625.03 1.323 1.323 0 0 0-.028 1.745l8.85 9.504c.22.235.517.368.827.367a1.12 1.12 0 0 0 .827-.367z"
-                                                                                            fill="#545f70"
-                                                                                            fill-rule="nonzero">
-                                                                                        </path>
-                                                                                    </svg>
                                                                                 </div>
                                                                             </div>
                                                                             <div
-                                                                                style="border-left: 1px solid rgb(191, 198, 212);"
-                                                                                class="three-dots-small-show"
-                                                                                data-bs-toggle="dropdown"
-                                                                                aria-expanded="false">
-                                                                                <div class="hcjgmp">
-                                                                                    <button type="button" class="jvZSBO">
-                                                                                        <svg width="24" height="24"
-                                                                                             viewBox="0 0 14 14"
-                                                                                             focusable="false">
-                                                                                            <g transform="translate(5.542 1.458)"
-                                                                                               fill="#545f70"
-                                                                                               fill-rule="nonzero">
-                                                                                                <circle
-                                                                                                    transform="rotate(90 1.458 5.542)"
-                                                                                                    cx="1.458"
-                                                                                                    cy="5.542"
-                                                                                                    r="1.458">
-                                                                                                </circle>
-                                                                                                <circle
-                                                                                                    transform="rotate(90 1.458 9.625)"
-                                                                                                    cx="1.458"
-                                                                                                    cy="9.625"
-                                                                                                    r="1.458">
-                                                                                                </circle>
-                                                                                                <circle
-                                                                                                    transform="rotate(90 1.458 1.458)"
-                                                                                                    cx="1.458"
-                                                                                                    cy="1.458"
-                                                                                                    r="1.458">
-                                                                                                </circle>
-                                                                                            </g>
-                                                                                        </svg>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                            {{-- mobiledropdown section --}}
-                                                                            <ul class="dropdown-menu">
-                                                                                @if ($question['response'] == 2)
-                                                                                    <div class="epicTj"
-                                                                                         style="margin-left: 5px;">
-                                                                                        <div class="iBzfYz">
-                                                                                            <li>
-                                                                                                <a class="dropdown-item">
-                                                                                                <span
-                                                                                                    style="margin-top:50px;"></span>
-                                                                                                    Format:
-                                                                                                    <div
-                                                                                                        class="ORzaJ knjhoD">
-                                                                                                        <input
-                                                                                                            type="text"
-                                                                                                            class="docNum_format"
-                                                                                                            wire:model.lazy="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.docNum_format"/>
-                                                                                                    </div>
-                                                                                                </a>
-                                                                                            </li>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                @elseif($question['response'] == 1)
-                                                                                    <div class="epicTj"
-                                                                                         style="margin-left: 5px;">
-                                                                                        <div class="iBzfYz">
-                                                                                            <li>
-                                                                                                <a class="dropdown-item">
-                                                                                                    Format:
-                                                                                                    <select
-                                                                                                        wire:model.lazy="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.text_answer_format"
-                                                                                                        class="text_answer_format">
-                                                                                                        <option
-                                                                                                            value="0">
-                                                                                                            {{ __('Short answer') }}
-                                                                                                        </option>
-                                                                                                        <option
-                                                                                                            value="1">
-                                                                                                            {{ __('Long answer') }}
-                                                                                                        </option>
-                                                                                                    </select>
-                                                                                                </a>
-                                                                                            </li>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                @elseif($question['response'] == 5)
-                                                                                    <div class="epicTj"
-                                                                                         style="margin-left: 5px;">
-                                                                                        <div class="iBzfYz">
-                                                                                            <li>
-                                                                                                <a class="dropdown-item">
-                                                                                                    <input
-                                                                                                        aria-hidden="false"
-                                                                                                        type="checkbox"
-                                                                                                        wire:model.defer="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_date">
-                                                                                                    Date
-                                                                                                </a>
-                                                                                            </li>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="epicTj"
-                                                                                         style="margin-left: 5px;">
-                                                                                        <div class="iBzfYz">
-                                                                                            <li>
-                                                                                                <a class="dropdown-item">
-                                                                                                    <input
-                                                                                                        aria-hidden="false"
-                                                                                                        type="checkbox"
-                                                                                                        wire:model.defer="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_time">
-                                                                                                    Time
-                                                                                                </a>
-                                                                                            </li>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                @elseif($question['response'] == 7)
-                                                                                    <div class="epicTj"
-                                                                                         style="margin-left: 5px;">
-                                                                                        <div class="iBzfYz">
-                                                                                            <li>
-                                                                                                <a class="dropdown-item">
-                                                                                                    <input
-                                                                                                        aria-hidden="false"
-                                                                                                        type="checkbox"
-                                                                                                        wire:model.defer="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.multi_select_multiple_choise">
-                                                                                                    Multiple Selection
-                                                                                                </a>
-                                                                                            </li>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                @endif
-                                                                                @if ($question['response'] != 10)
-                                                                                    <div class="epicTj"
-                                                                                         style="margin-left: 5px;">
-                                                                                        <div class="iBzfYz">
-                                                                                            <li>
-                                                                                                <a class="dropdown-item">
-                                                                                                    <input
-                                                                                                        aria-hidden="false"
-                                                                                                        type="checkbox"
-                                                                                                        wire:model.lazy="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_required">
-                                                                                                    Required
-                                                                                                </a>
-                                                                                            </li>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                @endif
-                                                                                @if (count($this->title_page_questions[$qkey]['question']) > 1 && $sectionquestionactiveone == $loop->index)
-                                                                                    <div class="epicTj">
-                                                                                        <div class="iBzfYz">
-                                                                                            <li>
-                                                                                                <a class="dropdown-item"
-                                                                                                   wire:click.prevent="section_delete_question({{ $loop->parent->index }},{{ $loop->index }})">
-                                                                                                    <svg width="21"
-                                                                                                         height="21"
+                                                                                class="response-select-and-options hyJfGO  {{ $activeone == $loop->parent->index && $sectionquestionactiveone == $loop->index ? 'un-hide' : 'hide' }}">
+                                                                                <div style="width: 100%;"
+                                                                                     data-bs-toggle="modal"
+                                                                                     data-bs-target="#TitlePageResponseModal"
+                                                                                     wire:click.prevent="$set('sectionquestionactiveone',{{ $loop->index }})">
+                                                                                    <div class="eWLEUv">
+                                                                                        <div>
+                                                                                            @if ($question['response'] == 2)
+                                                                                                <div class="iWJCbx">
+                                                                                                    <svg width="15"
+                                                                                                         height="15"
+                                                                                                         viewBox="0 0 14 14"
+                                                                                                         focusable="false">
+                                                                                                        <g fill="#fe8500"
+                                                                                                           fill-rule="nonzero">
+                                                                                                            <path
+                                                                                                                d="M2.21 9.682a.637.637 0 0 1-.637-.636V4.985l-.352.175a.636.636 0 1 1-.568-1.138l1.272-.636a.635.635 0 0 1 .921.57v5.09a.637.637 0 0 1-.636.636zM7.937 9.682H4.755a.637.637 0 0 1-.45-1.086l2.546-2.545a.85.85 0 0 0 .25-.605.849.849 0 0 0-.25-.604.874.874 0 0 0-1.21 0 .846.846 0 0 0-.25.604.637.637 0 0 1-1.272 0c0-.569.221-1.103.623-1.504.805-.804 2.205-.804 3.009 0 .402.402.623.937.623 1.504 0 .568-.222 1.103-.623 1.505L6.29 8.41h1.646a.637.637 0 0 1 0 1.272zM13 6.104c.214-.29.346-.646.346-1.035 0-.966-.785-1.75-1.75-1.75-.656 0-1.251.362-1.553.944a.636.636 0 1 0 1.13.586.477.477 0 1 1 .423.697.637.637 0 0 0 0 1.273.797.797 0 0 1 0 1.59.797.797 0 0 1-.795-.795.637.637 0 0 0-1.273 0 2.07 2.07 0 0 0 2.068 2.068 2.07 2.07 0 0 0 2.068-2.068c0-.597-.258-1.132-.665-1.51z">
+                                                                                                            </path>
+                                                                                                        </g>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                Document number
+                                                                                            @elseif($question['response'] == 1)
+                                                                                                <div class="iWJCbx">
+                                                                                                    <svg width="15"
+                                                                                                         height="15"
                                                                                                          viewBox="0 0 14 14"
                                                                                                          focusable="false">
                                                                                                         <path
-                                                                                                            d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
-                                                                                                            fill="#545f70"
+                                                                                                            d="M2.33333333,2.33333333 L2.33333333,4.97716191 L3.7929974,4.97716191 L3.7929974,4.28724799 C3.7929974,4.03503038 3.985625,3.82984264 4.22242188,3.82984264 L6.11229427,3.82984264 L6.11229427,9.52966171 C6.11229427,9.88941502 5.83754427,10.1820993 5.49979427,10.1820993 L4.8983776,10.1820993 L4.8983776,11.6666667 L9.11447396,11.6666667 L9.11447396,10.1820993 L8.51305729,10.1820993 C8.17534375,10.1820993 7.90055729,9.88941502 7.90055729,9.52966171 L7.90055729,3.82982322 L9.77757813,3.82982322 C10.0143568,3.82982322 10.2070026,4.03501096 10.2070026,4.28722858 L10.2070026,4.97714249 L11.6666667,4.97714249 L11.6666667,2.33333333 L2.33333333,2.33333333 Z"
+                                                                                                            fill="#fe8500"
                                                                                                             fill-rule="nonzero">
                                                                                                         </path>
                                                                                                     </svg>
-                                                                                                    Delete
-                                                                                                </a>
-                                                                                            </li>
+                                                                                                </div>
+                                                                                                Text answer
+                                                                                            @elseif($question['response'] == 3)
+                                                                                                <div class="jpgcYH">
+                                                                                                    <svg viewBox="0 0 24 24"
+                                                                                                         width="15"
+                                                                                                         height="15"
+                                                                                                         focusable="false">
+                                                                                                        <path fill="none"
+                                                                                                              d="M0 0h24v24H0V0z">
+                                                                                                        </path>
+                                                                                                        <path fill="#5e9cff"
+                                                                                                              d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.29 13.29a.996.996 0 0 1-1.41 0L5.71 12.7a.996.996 0 1 1 1.41-1.41L10 14.17l6.88-6.88a.996.996 0 1 1 1.41 1.41l-7.58 7.59z">
+                                                                                                        </path>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                Checkbox
+                                                                                            @elseif($question['response'] == 4)
+                                                                                                <div class="erayDs">
+                                                                                                    <svg width="15"
+                                                                                                         height="15"
+                                                                                                         viewBox="0 0 14 14"
+                                                                                                         focusable="false">
+                                                                                                        <g fill="#ffb000"
+                                                                                                           fill-rule="nonzero">
+                                                                                                            <path
+                                                                                                                d="M2.21 9.682a.637.637 0 0 1-.637-.636V4.985l-.352.175a.636.636 0 1 1-.568-1.138l1.272-.636a.635.635 0 0 1 .921.57v5.09a.637.637 0 0 1-.636.636zM7.937 9.682H4.755a.637.637 0 0 1-.45-1.086l2.546-2.545a.85.85 0 0 0 .25-.605.849.849 0 0 0-.25-.604.874.874 0 0 0-1.21 0 .846.846 0 0 0-.25.604.637.637 0 0 1-1.272 0c0-.569.221-1.103.623-1.504.805-.804 2.205-.804 3.009 0 .402.402.623.937.623 1.504 0 .568-.222 1.103-.623 1.505L6.29 8.41h1.646a.637.637 0 0 1 0 1.272zM13 6.104c.214-.29.346-.646.346-1.035 0-.966-.785-1.75-1.75-1.75-.656 0-1.251.362-1.553.944a.636.636 0 1 0 1.13.586.477.477 0 1 1 .423.697.637.637 0 0 0 0 1.273.797.797 0 0 1 0 1.59.797.797 0 0 1-.795-.795.637.637 0 0 0-1.273 0 2.07 2.07 0 0 0 2.068 2.068 2.07 2.07 0 0 0 2.068-2.068c0-.597-.258-1.132-.665-1.51z">
+                                                                                                            </path>
+                                                                                                        </g>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                Number
+                                                                                            @elseif($question['response'] == 5)
+                                                                                                <div class="flVgHp">
+                                                                                                    <svg viewBox="0 0 24 24"
+                                                                                                         width="15"
+                                                                                                         height="15"
+                                                                                                         focusable="false">
+                                                                                                        <path fill="none"
+                                                                                                              d="M0 0h24v24H0V0z">
+                                                                                                        </path>
+                                                                                                        <path fill="#81b532"
+                                                                                                              d="M20 3h-1V2c0-.55-.45-1-1-1s-1 .45-1 1v1H7V2c0-.55-.45-1-1-1s-1 .45-1 1v1H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 18H5c-.55 0-1-.45-1-1V8h16v12c0 .55-.45 1-1 1z">
+                                                                                                        </path>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                Date & Time
+                                                                                            @elseif($question['response'] == 6)
+                                                                                                <div class="ipAtGo">
+                                                                                                    <svg width="15"
+                                                                                                         height="15"
+                                                                                                         viewBox="0 0 14 14"
+                                                                                                         focusable="false">
+                                                                                                        <path
+                                                                                                            d="M9.513 5.581l1.958.695-1.628 4.284c-.153.403-.98 1.663-1.555 1.92l-.14.368a.24.24 0 0 1-.306.138.229.229 0 0 1-.142-.297l.132-.348c-.292-.548-.074-2.14.054-2.476L9.513 5.58zm2.834-4.532c-.538-.19-1.169.203-1.35.679L9.819 4.832l1.958.694 1.178-3.104c.149-.389-.067-1.182-.607-1.373zM8.804 5.421a.478.478 0 0 0 .614-.272l1.245-3.243a.457.457 0 0 0-.282-.593.483.483 0 0 0-.615.272L8.522 4.828a.457.457 0 0 0 .282.593zM7.13 11.286c-.125-.117-.296-.5-.42-.35-.124.15-.035.094-.182.09h-.051c-.093-.251-.28-.41-.562-.471-.372-.078-.67.096-.875.23.018-.103.048-.225.07-.314.072-.284.145-.579.09-.855a.494.494 0 0 0-.452-.395c-.576-.032-1.047.276-1.461.554-.436.292-.715.466-.993.368-.34-.12-.374-1.031-.21-1.843.145-.731.417-2.093 1.113-2.71.234-.209.573-.434.852-.325.328.128.599.664.66 1.302.025.27.261.467.538.443a.491.491 0 0 0 .446-.535c-.098-1.04-.59-1.854-1.282-2.124-.415-.16-1.075-.203-1.875.507-.87.773-1.19 2.084-1.424 3.251-.116.583-.4 2.517.85 2.959.76.269 1.38-.147 1.876-.48.091-.06.181-.12.268-.174-.083.356-.134.737.083 1.058.322.482.779.534 1.356.157l.072-.047c.053.11.148.233.32.316.207.101.415.106.566.11.065.002.153.004.18.015.093.041-.228-.1-.121.001.08.075.165.153.272.234a.496.496 0 0 0 .692-.099.488.488 0 0 0-.1-.687c-.308-.19-.241-.134-.296-.186z"
+                                                                                                            fill="#00b6cb"
+                                                                                                            fill-rule="nonzero">
+                                                                                                        </path>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                Signature
+                                                                                            @elseif($question['response'] == 7)
+                                                                                                <div class="fyczhl">
+                                                                                                    @if (!empty($title_page_questions[$loop->parent->index]['question'][$loop->index]['multiple_choice']))
+                                                                                                        @forelse ($title_page_questions[$loop->parent->index]['question'][$loop->index]['multiple_choice'] as $responsKey => $respons)
+                                                                                                            <div
+                                                                                                                class="nDePA mx-1"
+                                                                                                                style="color:{{ $respons['font_color'] }}; background-color:{{ $respons['color'] }};"
+                                                                                                                {{-- style="color:{{ $this->adjustBrightness($respons['color'], -0.5) }}; background-color:{{ $respons['color'] }};" --}}>
+                                                                                                                {{ $respons['title'] ?? '' }}
+                                                                                                            </div>
+                                                                                                        @empty
+                                                                                                        @endforelse
+                                                                                                    @endif
+                                                                                                </div>
+                                                                                            @elseif($question['response'] == 8)
+                                                                                                <div class="iWJCbx">
+                                                                                                    <svg width="15"
+                                                                                                         height="15"
+                                                                                                         viewBox="0 0 14 14">
+                                                                                                        <g stroke="none"
+                                                                                                           stroke-width="1"
+                                                                                                           fill="none"
+                                                                                                           fill-rule="evenodd">
+                                                                                                            <path
+                                                                                                                d="M7,2 C5.065,2 3.5,3.60760144 3.5,5.59527478 C3.5,7.73703133 5.71,10.6902928 6.62,11.8151002 C6.82,12.0616333 7.185,12.0616333 7.385,11.8151002 C8.29,10.6902928 10.5,7.73703133 10.5,5.59527478 C10.5,3.60760144 8.935,2 7,2 Z M7,6.87930149 C6.31,6.87930149 5.75,6.30405752 5.75,5.59527478 C5.75,4.88649204 6.31,4.31124807 7,4.31124807 C7.69,4.31124807 8.25,4.88649204 8.25,5.59527478 C8.25,6.30405752 7.69,6.87930149 7,6.87930149 Z"
+                                                                                                                fill="#fe8500"
+                                                                                                                fill-rule="nonzero">
+                                                                                                            </path>
+                                                                                                        </g>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                Location
+                                                                                            @elseif($question['response'] == 10)
+                                                                                                <div class="fDgnZG">
+                                                                                                    <svg width="15"
+                                                                                                         height="15"
+                                                                                                         viewBox="0 0 14 14"
+                                                                                                         focusable="false">
+                                                                                                        <path
+                                                                                                            d="M12.763 12.316c-.148-.086-1.049-.644-1.53-1.653a5.528 5.528 0 0 0 1.765-4.015c0-3.101-2.704-5.648-6-5.648C3.705 1 1 3.547 1 6.648c0 3.102 2.704 5.648 5.999 5.648.442 0 .917-.041 1.573-.179 1.723.916 3.269.89 3.857.88.262-.003.452.045.55-.226a.357.357 0 0 0-.216-.455zM7.702 9.484a.703.703 0 1 1-1.406 0V6.648a.703.703 0 1 1 1.406 0v2.836zm-.703-4.617a.703.703 0 1 1 0-1.406.703.703 0 0 1 0 1.406z"
+                                                                                                            fill="#648fff"
+                                                                                                            fill-rule="nonzero">
+                                                                                                        </path>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                Instruction
+                                                                                            @elseif($question['response'] == 11)
+                                                                                                <div class="fJrMSZ">
+                                                                                                    <svg width="15"
+                                                                                                         height="15"
+                                                                                                         viewBox="0 0 16 16"
+                                                                                                         focusable="false"
+                                                                                                         fill="none">
+                                                                                                        <path
+                                                                                                            d="M16 11.2V1.6c0-.88-.72-1.6-1.6-1.6H4.8c-.88 0-1.6.72-1.6 1.6v9.6c0 .88.72 1.6 1.6 1.6h9.6c.88 0 1.6-.72 1.6-1.6zM7.52 8.424l1.304 1.744 2.064-2.576a.4.4 0 0 1 .624 0l2.368 2.96a.399.399 0 0 1-.312.648H5.6a.4.4 0 0 1-.32-.64l1.6-2.136a.406.406 0 0 1 .64 0zM0 4v10.4c0 .88.72 1.6 1.6 1.6H12c.44 0 .8-.36.8-.8 0-.44-.36-.8-.8-.8H2.4c-.44 0-.8-.36-.8-.8V4c0-.44-.36-.8-.8-.8-.44 0-.8.36-.8.8z"
+                                                                                                            fill="#00b6cb">
+                                                                                                        </path>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                Media
+                                                                                            @endif
                                                                                         </div>
+                                                                                        <svg viewBox="0 0 24 24"
+                                                                                             width="16" height="16"
+                                                                                             class="kBTspn" focusable="false">
+                                                                                            <path
+                                                                                                d="M12.819 17.633l8.866-9.52a1.323 1.323 0 0 0-.028-1.745 1.113 1.113 0 0 0-1.625-.03l-7.663 8.228a.509.509 0 0 1-.755 0L3.968 6.354a1.113 1.113 0 0 0-1.625.03 1.323 1.323 0 0 0-.028 1.745l8.85 9.504c.22.235.517.368.827.367a1.12 1.12 0 0 0 .827-.367z"
+                                                                                                fill="#545f70"
+                                                                                                fill-rule="nonzero">
+                                                                                            </path>
+                                                                                        </svg>
                                                                                     </div>
-                                                                                @endif
-                                                                            </ul>
+                                                                                </div>
+                                                                                <div
+                                                                                    style="border-left: 1px solid rgb(191, 198, 212);"
+                                                                                    class="three-dots-small-show"
+                                                                                    data-bs-toggle="dropdown"
+                                                                                    aria-expanded="false">
+                                                                                    <div class="hcjgmp">
+                                                                                        <button type="button" class="jvZSBO">
+                                                                                            <svg width="24" height="24"
+                                                                                                 viewBox="0 0 14 14"
+                                                                                                 focusable="false">
+                                                                                                <g transform="translate(5.542 1.458)"
+                                                                                                   fill="#545f70"
+                                                                                                   fill-rule="nonzero">
+                                                                                                    <circle
+                                                                                                        transform="rotate(90 1.458 5.542)"
+                                                                                                        cx="1.458"
+                                                                                                        cy="5.542"
+                                                                                                        r="1.458">
+                                                                                                    </circle>
+                                                                                                    <circle
+                                                                                                        transform="rotate(90 1.458 9.625)"
+                                                                                                        cx="1.458"
+                                                                                                        cy="9.625"
+                                                                                                        r="1.458">
+                                                                                                    </circle>
+                                                                                                    <circle
+                                                                                                        transform="rotate(90 1.458 1.458)"
+                                                                                                        cx="1.458"
+                                                                                                        cy="1.458"
+                                                                                                        r="1.458">
+                                                                                                    </circle>
+                                                                                                </g>
+                                                                                            </svg>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                                {{-- mobiledropdown section --}}
+                                                                                <ul class="dropdown-menu">
+                                                                                    @if ($question['response'] == 2)
+                                                                                        <div class="epicTj"
+                                                                                             style="margin-left: 5px;">
+                                                                                            <div class="iBzfYz">
+                                                                                                <li>
+                                                                                                    <a class="dropdown-item">
+                                                                                                <span
+                                                                                                    style="margin-top:50px;"></span>
+                                                                                                        Format:
+                                                                                                        <div
+                                                                                                            class="ORzaJ knjhoD">
+                                                                                                            <input
+                                                                                                                type="text"
+                                                                                                                class="docNum_format"
+                                                                                                                wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.docNum_format"/>
+                                                                                                        </div>
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @elseif($question['response'] == 1)
+                                                                                        <div class="epicTj"
+                                                                                             style="margin-left: 5px;">
+                                                                                            <div class="iBzfYz">
+                                                                                                <li>
+                                                                                                    <a class="dropdown-item">
+                                                                                                        Format:
+                                                                                                        <select
+                                                                                                            wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.text_answer_format"
+                                                                                                            class="text_answer_format">
+                                                                                                            <option
+                                                                                                                value="0">
+                                                                                                                {{ __('Short answer') }}
+                                                                                                            </option>
+                                                                                                            <option
+                                                                                                                value="1">
+                                                                                                                {{ __('Long answer') }}
+                                                                                                            </option>
+                                                                                                        </select>
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @elseif($question['response'] == 5)
+                                                                                        <div class="epicTj"
+                                                                                             style="margin-left: 5px;">
+                                                                                            <div class="iBzfYz">
+                                                                                                <li>
+                                                                                                    <a class="dropdown-item">
+                                                                                                        <input
+                                                                                                            aria-hidden="false"
+                                                                                                            type="checkbox"
+                                                                                                            wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_date">
+                                                                                                        Date
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="epicTj"
+                                                                                             style="margin-left: 5px;">
+                                                                                            <div class="iBzfYz">
+                                                                                                <li>
+                                                                                                    <a class="dropdown-item">
+                                                                                                        <input
+                                                                                                            aria-hidden="false"
+                                                                                                            type="checkbox"
+                                                                                                            wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_time">
+                                                                                                        Time
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @elseif($question['response'] == 7)
+                                                                                        <div class="epicTj"
+                                                                                             style="margin-left: 5px;">
+                                                                                            <div class="iBzfYz">
+                                                                                                <li>
+                                                                                                    <a class="dropdown-item">
+                                                                                                        <input
+                                                                                                            aria-hidden="false"
+                                                                                                            type="checkbox"
+                                                                                                            wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.multi_select_multiple_choise">
+                                                                                                        Multiple Selection
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                    @if ($question['response'] != 10)
+                                                                                        <div class="epicTj"
+                                                                                             style="margin-left: 5px;">
+                                                                                            <div class="iBzfYz">
+                                                                                                <li>
+                                                                                                    <a class="dropdown-item">
+                                                                                                        <input
+                                                                                                            aria-hidden="false"
+                                                                                                            type="checkbox"
+                                                                                                            wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_required">
+                                                                                                        Required
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                    @if (count($this->title_page_questions[$qkey]['question']) > 1 && $sectionquestionactiveone == $loop->index)
+                                                                                        <div class="epicTj">
+                                                                                            <div class="iBzfYz">
+                                                                                                <li>
+                                                                                                    <a class="dropdown-item"
+                                                                                                       wire:click.prevent="section_delete_question({{ $loop->parent->index }},{{ $loop->index }})">
+                                                                                                        <svg width="21"
+                                                                                                             height="21"
+                                                                                                             viewBox="0 0 14 14"
+                                                                                                             focusable="false">
+                                                                                                            <path
+                                                                                                                d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                                                                fill="#545f70"
+                                                                                                                fill-rule="nonzero">
+                                                                                                            </path>
+                                                                                                        </svg>
+                                                                                                        Delete
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                </ul>
+                                                                            </div>
                                                                         </div>
+                                                                        @if (count($this->title_page_questions[$qkey]['question']) > 1 && $sectionquestionactiveone == $loop->index)
+                                                                            <button class="bKqzym blqywb"
+                                                                                    wire:click.prevent="section_delete_question({{ $loop->parent->index }},{{ $loop->index }})">
+                                                                                <svg width="21" height="21"
+                                                                                     viewBox="0 0 14 14" focusable="false">
+                                                                                    <path
+                                                                                        d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
+                                                                                        fill="#545f70" fill-rule="nonzero">
+                                                                                    </path>
+                                                                                </svg>
+                                                                            </button>
+                                                                        @endif
                                                                     </div>
-                                                                    @if (count($this->title_page_questions[$qkey]['question']) > 1 && $sectionquestionactiveone == $loop->index)
-                                                                        <button class="bKqzym blqywb"
-                                                                                wire:click.prevent="section_delete_question({{ $loop->parent->index }},{{ $loop->index }})">
-                                                                            <svg width="21" height="21"
-                                                                                 viewBox="0 0 14 14" focusable="false">
-                                                                                <path
-                                                                                    d="M3.541 11.083c.002.644.561 1.165 1.25 1.167h5c.69-.002 1.249-.523 1.25-1.167v-7H3.543v7zm8.125-8.75H9.479l-.625-.583H5.73l-.625.583H2.917V3.5h8.75l-.001-1.167z"
-                                                                                    fill="#545f70" fill-rule="nonzero">
-                                                                                </path>
-                                                                            </svg>
-                                                                        </button>
-                                                                    @endif
-                                                                </div>
-                                                                <div class="sc-iJCRrE fwLGvX">
-                                                                    <div class="cukrBe">
-                                                                        <div class="hLDzma">
-                                                                            <div>
-                                                                                @if ($question['response'] == 2)
-                                                                                    <div class="epicTj">
-                                                                                        <div class="krtjey">
+                                                                    <div class="sc-iJCRrE fwLGvX">
+                                                                        <div class="cukrBe">
+                                                                            <div class="hLDzma">
+                                                                                <div>
+                                                                                    @if ($question['response'] == 2)
+                                                                                        <div class="epicTj">
+                                                                                            <div class="krtjey">
                                                                                         <span
                                                                                             style="margin-top:50px;"></span>
-                                                                                            Format:
-                                                                                            <div class="ORzaJ knjhoD">
-                                                                                                <input type="text"
-                                                                                                       class="docNum_format"
-                                                                                                       wire:model.lazy="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.docNum_format"/>
+                                                                                                Format:
+                                                                                                <div class="ORzaJ knjhoD">
+                                                                                                    <input type="text"
+                                                                                                           class="docNum_format"
+                                                                                                           wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.docNum_format"/>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                    </div>
-                                                                                @elseif($question['response'] == 1)
-                                                                                    <div class="epicTj">
-                                                                                        <div class="krtjey">
+                                                                                    @elseif($question['response'] == 1)
+                                                                                        <div class="epicTj">
+                                                                                            <div class="krtjey">
                                                                                         <span
                                                                                             style="margin-top:50px;"></span>
-                                                                                            Format:
-                                                                                            <div class="ORzaJ knjhoD">
-                                                                                                <select
-                                                                                                    wire:model.lazy="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.text_answer_format"
-                                                                                                    class="text_answer_format">
-                                                                                                    <option value="0">
-                                                                                                        {{ __('Short answer') }}
-                                                                                                    </option>
-                                                                                                    <option value="1">
-                                                                                                        {{ __('Long answer') }}
-                                                                                                    </option>
-                                                                                                </select>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                @elseif($question['response'] == 5)
-                                                                                    <div class="epicTj">
-                                                                                        <div class="eMiEgJ">
-                                                                                            <div role="checkbox"
-                                                                                                 aria-checked="true"
-                                                                                                 class="xxrKk">
-                                                                                                <input aria-hidden="false"
-                                                                                                       type="checkbox"
-                                                                                                       wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_date">
-                                                                                            </div>
-                                                                                            <label
-                                                                                                for="9ea156a4-4105-43e5-9bcc-686d413e9961-input"
-                                                                                                class="fJJVDV">
-                                                                                                <div class="fDpeEn">
-                                                                                                    Date
+                                                                                                Format:
+                                                                                                <div class="ORzaJ knjhoD">
+                                                                                                    <select
+                                                                                                        wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.text_answer_format"
+                                                                                                        class="text_answer_format">
+                                                                                                        <option value="0">
+                                                                                                            {{ __('Short answer') }}
+                                                                                                        </option>
+                                                                                                        <option value="1">
+                                                                                                            {{ __('Long answer') }}
+                                                                                                        </option>
+                                                                                                    </select>
                                                                                                 </div>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="epicTj">
-                                                                                        <div class="eMiEgJ">
-                                                                                            <div role="checkbox"
-                                                                                                 aria-checked="true"
-                                                                                                 class="xxrKk">
-                                                                                                <input aria-hidden="false"
-                                                                                                       type="checkbox"
-                                                                                                       wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_time">
                                                                                             </div>
-                                                                                            <label
-                                                                                                for="128d3837-41f6-4887-9807-8fd3c5db4330-input"
-                                                                                                class="fJJVDV">
-                                                                                                <div class="fDpeEn">
-                                                                                                    Time
-                                                                                                </div>
-                                                                                            </label>
                                                                                         </div>
-                                                                                    </div>
-                                                                                @elseif($question['response'] == 7)
-                                                                                    <div class="epicTj">
-                                                                                        <div class="eMiEgJ">
-                                                                                            <div role="checkbox"
-                                                                                                 aria-checked="true"
-                                                                                                 class="xxrKk">
-                                                                                                <input aria-hidden="false"
-                                                                                                       type="checkbox"
-                                                                                                       wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.multi_select_multiple_choise">
+                                                                                    @elseif($question['response'] == 5)
+                                                                                        <div class="epicTj">
+                                                                                            <div class="eMiEgJ">
+                                                                                                <div role="checkbox"
+                                                                                                     aria-checked="true"
+                                                                                                     class="xxrKk">
+                                                                                                    <input aria-hidden="false"
+                                                                                                           type="checkbox"
+                                                                                                           wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_date">
+                                                                                                </div>
+                                                                                                <label
+                                                                                                    for="9ea156a4-4105-43e5-9bcc-686d413e9961-input"
+                                                                                                    class="fJJVDV">
+                                                                                                    <div class="fDpeEn">
+                                                                                                        Date
+                                                                                                    </div>
+                                                                                                </label>
                                                                                             </div>
-                                                                                            <label class="fJJVDV">
-                                                                                                <div class="fDpeEn">
-                                                                                                    Multiple Selection
-                                                                                                </div>
-                                                                                            </label>
                                                                                         </div>
-                                                                                    </div>
-                                                                                @endif
-                                                                                @if ($question['response'] != 10)
-                                                                                    <div class="epicTj">
-                                                                                        <div class="eMiEgJ">
-                                                                                            <div role="checkbox"
-                                                                                                 aria-checked="false"
-                                                                                                 class="xxrKk">
-                                                                                                <input aria-hidden="false"
-                                                                                                       type="checkbox"
-                                                                                                       wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_required">
+                                                                                        <div class="epicTj">
+                                                                                            <div class="eMiEgJ">
+                                                                                                <div role="checkbox"
+                                                                                                     aria-checked="true"
+                                                                                                     class="xxrKk">
+                                                                                                    <input aria-hidden="false"
+                                                                                                           type="checkbox"
+                                                                                                           wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_time">
+                                                                                                </div>
+                                                                                                <label
+                                                                                                    for="128d3837-41f6-4887-9807-8fd3c5db4330-input"
+                                                                                                    class="fJJVDV">
+                                                                                                    <div class="fDpeEn">
+                                                                                                        Time
+                                                                                                    </div>
+                                                                                                </label>
                                                                                             </div>
-                                                                                            <label class="fJJVDV">
-                                                                                                <div class="fDpeEn">
-                                                                                                    Required
-                                                                                                </div>
-                                                                                            </label>
                                                                                         </div>
-                                                                                    </div>
-                                                                                @endif
+                                                                                    @elseif($question['response'] == 7)
+                                                                                        <div class="epicTj">
+                                                                                            <div class="eMiEgJ">
+                                                                                                <div role="checkbox"
+                                                                                                     aria-checked="true"
+                                                                                                     class="xxrKk">
+                                                                                                    <input aria-hidden="false"
+                                                                                                           type="checkbox"
+                                                                                                           wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.multi_select_multiple_choise">
+                                                                                                </div>
+                                                                                                <label class="fJJVDV">
+                                                                                                    <div class="fDpeEn">
+                                                                                                        Multiple Selection
+                                                                                                    </div>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                    @if ($question['response'] != 10)
+                                                                                        <div class="epicTj">
+                                                                                            <div class="eMiEgJ">
+                                                                                                <div role="checkbox"
+                                                                                                     aria-checked="false"
+                                                                                                     class="xxrKk">
+                                                                                                    <input aria-hidden="false"
+                                                                                                           type="checkbox"
+                                                                                                           wire:model="title_page_questions.{{ $qkey }}.question.{{ $loop->index }}.is_required">
+                                                                                                </div>
+                                                                                                <label class="fJJVDV">
+                                                                                                    <div class="fDpeEn">
+                                                                                                        Required
+                                                                                                    </div>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @endif
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
 
-                                                            @if ($activeone == $loop->parent->index && $sectionquestionactiveone == $loop->index)
-                                                                <div class="fyPxKd elTKUx"></div>
-                                                                <div class="fmcVJh jIirFj"></div>
-                                                                <div class="fmcVJh fPLdzz"></div>
-                                                                <div class="fmcVJh iXxEYF"></div>
-                                                                <div class="fmcVJh jIirFj iVHMfM"></div>
-                                                                <div class="fyPxKd kklQix"></div>
-                                                                <div class="fyecfK"></div>
-                                                            @else
-                                                            @endif
-                                                        </div>
-                                                    @empty
-                                                    @endforelse
+                                                                @if ($activeone == $loop->parent->index && $sectionquestionactiveone == $loop->index)
+                                                                    <div class="fyPxKd elTKUx"></div>
+                                                                    <div class="fmcVJh jIirFj"></div>
+                                                                    <div class="fmcVJh fPLdzz"></div>
+                                                                    <div class="fmcVJh iXxEYF"></div>
+                                                                    <div class="fmcVJh jIirFj iVHMfM"></div>
+                                                                    <div class="fyPxKd kklQix"></div>
+                                                                    <div class="fyecfK"></div>
+                                                                @else
+                                                                @endif
+                                                            </div>
+                                                        @empty
+                                                        @endforelse
+                                                        <script>
+                                                            const section_wrapper{{$loop->index}} = document.querySelector(".section-wrapper"+{{$loop->index}});
+                                                            new Sortable(section_wrapper{{$loop->index}}, {
+                                                                onEnd: function(evt) {
+                                                                    // Livewire.emit('change_active_one', evt.newIndex);
+                                                                    Livewire.emit('section_changeindex', {{$loop->index}} , evt.oldDraggableIndex, evt.newDraggableIndex);
+                                                                },
+                                                                animation: 350,
+                                                                // filter: ".last-section",
+                                                                draggable: ".section-dragable",
+                                                                handle: ".section-drag-icon",
+                                                                // dragClass: "sortable-chosen",
+                                                                // ghostClass: "sortable-chosen",
+                                                                // chosenClass: "sortable-chosen",
+                                                            });
+                                                        </script>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endif
@@ -2445,12 +2462,12 @@
                                             wire:model="pages.{{ $loop->index }}.title">
                                         </div>
                                     </div> --}}
-                            {{-- .lazy --}}
+                            {{--  --}}
                             {{-- <div> --}}
                             <div class="fceloL mt-1 flex: 2 1 0%;">
                                 <input type="text" class="desc"
                                        style="font-size: 1.2rem; width: 100%; font-family: sans-serif, 'Font Awesome 5 Free"
-                                       placeholder="Untitled page" wire:model.lazy="pages.{{ $loop->index }}.title">
+                                       placeholder="Untitled page" wire:model="pages.{{ $loop->index }}.title">
                             </div>
                             {{-- </div> --}}
                             <div>
@@ -2551,7 +2568,7 @@
                                                                                                   onkeydown="if(event.keyCode == 13) {@this.title_page_add_question();}"
                                                                                                   class="question-title-focus eVpkze w-100 question-title-instruction"
                                                                                                   placeholder="Write a Question ..."
-                                                                                                  wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"
+                                                                                                  wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title"
                                                                                                   oninput="auto_grow2(this);"></textarea>
                                                                                         <script>
                                                                                             function auto_grow2(element) {
@@ -2565,7 +2582,7 @@
                                                                                                class="question-title-focus eVpkze w-100 h-100 question-title"
                                                                                                id="page{{ $loop->parent->index }}{{ $loop->index }}"
                                                                                                placeholder="Write a Question ..."
-                                                                                               wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title">
+                                                                                               wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.title">
                                                                                     @endif
                                                                                 </div>
                                                                                 @if ($pagequestionactiveone == $loop->index && $pageactiveone == $loop->parent->index)
@@ -2805,7 +2822,7 @@
                                                                                             <div class="ORzaJ knjhoD">
                                                                                                 <input type="text"
                                                                                                        class="docNum_format"
-                                                                                                       wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.docNum_format"/>
+                                                                                                       wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.docNum_format"/>
                                                                                             </div>
                                                                                         </a>
                                                                                     </li>
@@ -2819,7 +2836,7 @@
                                                                                         <a class="dropdown-item">
                                                                                             Format:
                                                                                             <select
-                                                                                                wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.text_answer_format"
+                                                                                                wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.text_answer_format"
                                                                                                 class="text_answer_format">
                                                                                                 <option
                                                                                                     value="0">
@@ -2842,7 +2859,7 @@
                                                                                         <a class="dropdown-item">
                                                                                             <input aria-hidden="false"
                                                                                                    type="checkbox"
-                                                                                                   wire:model.defer="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_date">
+                                                                                                   wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_date">
                                                                                             Date
                                                                                         </a>
                                                                                     </li>
@@ -2855,7 +2872,7 @@
                                                                                         <a class="dropdown-item">
                                                                                             <input aria-hidden="false"
                                                                                                    type="checkbox"
-                                                                                                   wire:model.defer="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_time">
+                                                                                                   wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_time">
                                                                                             Time
                                                                                         </a>
                                                                                     </li>
@@ -2869,7 +2886,7 @@
                                                                                         <a class="dropdown-item">
                                                                                             <input aria-hidden="false"
                                                                                                    type="checkbox"
-                                                                                                   wire:model.defer="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.multi_select_multiple_choise">
+                                                                                                   wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.multi_select_multiple_choise">
                                                                                             Multiple Selection
                                                                                         </a>
                                                                                     </li>
@@ -2884,7 +2901,7 @@
                                                                                         <a class="dropdown-item">
                                                                                             <input aria-hidden="false"
                                                                                                    type="checkbox"
-                                                                                                   wire:model.defer="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_required">
+                                                                                                   wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.is_required">
                                                                                             Required
                                                                                         </a>
                                                                                     </li>
@@ -2942,7 +2959,7 @@
                                                                                     <div class="ORzaJ knjhoD">
                                                                                         <input type="text"
                                                                                                class="docNum_format"
-                                                                                               wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.docNum_format"/>
+                                                                                               wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.docNum_format"/>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -2954,7 +2971,7 @@
                                                                                     Format:
                                                                                     <div class="ORzaJ knjhoD">
                                                                                         <select
-                                                                                            wire:model.lazy="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.text_answer_format"
+                                                                                            wire:model="pages.{{ $loop->parent->index }}.question.{{ $loop->index }}.text_answer_format"
                                                                                             class="text_answer_format">
                                                                                             <option value="0">
                                                                                                 {{ __('Short answer') }}
