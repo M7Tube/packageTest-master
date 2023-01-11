@@ -65,6 +65,24 @@
 @endsection
 @section('script')
     <script>
+        function remove_layout(id) {
+            $("#t"+id).on("click", function(event) {
+                $("#t"+id).removeClass("d-block");
+                $("#t"+id).addClass("d-none");
+                // $("#clients-edit-wrapper").remove();
+                // event.preventDefault();
+            });
+        }
+        function section_remove_layout(question_id) {
+            $("#s"+question_id).on("click", function(event) {
+                $("#s"+question_id).removeClass("d-block");
+                $("#s"+question_id).addClass("d-none");
+                // $("#clients-edit-wrapper").remove();
+                // event.preventDefault();
+            });
+        }
+    </script>
+    <script>
         function section_hide_control(id) {
             const questions=document.getElementById("section"+id);
             const hide=document.getElementById("hide"+id);
@@ -130,4 +148,6 @@
             // chosenClass: "sortable-chosen",
         });
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 @endsection
