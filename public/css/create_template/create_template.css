@@ -2068,6 +2068,12 @@ input[type="checkbox"] {
 .cYnFsn > div {
     height: 100%;
 }
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,<svg viewBox='0 0 24 24' width='14' height='14' id='hide{{$loop->index}}' class='cBgwtB' style='display: block;' focusable='false'><path d='M12.819 17.633l8.866-9.52a1.323 1.323 0 0 0-.028-1.745 1.113 1.113 0 0 0-1.625-.03l-7.663 8.228a.509.509 0 0 1-.755 0L3.968 6.354a1.113 1.113 0 0 0-1.625.03 1.323 1.323 0 0 0-.028 1.745l8.85 9.504c.22.235.517.368.827.367a1.12 1.12 0 0 0 .827-.367z' fill='white' fill-rule='nonzero'></path></svg>") !important;
+}
+.accordion-button.collapsed::after {
+    background-image: url("data:image/svg+xml,<svg viewBox='0 0 24 24' width='14' height='14' id='hide{{$loop->index}}' class='cPAVgy' style='display: block;' focusable='false'><path d='M12.819 17.633l8.866-9.52a1.323 1.323 0 0 0-.028-1.745 1.113 1.113 0 0 0-1.625-.03l-7.663 8.228a.509.509 0 0 1-.755 0L3.968 6.354a1.113 1.113 0 0 0-1.625.03 1.323 1.323 0 0 0-.028 1.745l8.85 9.504c.22.235.517.368.827.367a1.12 1.12 0 0 0 .827-.367z' fill='white' fill-rule='nonzero'></path></svg>") !important;
+}
 .hFCnYj {
     height: 100%;
     margin-right: 0.5rem;
