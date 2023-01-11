@@ -9,7 +9,7 @@
                         minutes.
                     </h6>
                     <a class=" mt-4 d-flex mx-auto align-items-center justify-content-center dashboard-createTemplate-button"
-                        href="">{{ __('Create new template') }}</a>
+                        href="{{ route('create.template') }}">{{ __('Create new template') }}</a>
                         {{-- {{ route('create.template') }} --}}
                 </div>
             </div>
